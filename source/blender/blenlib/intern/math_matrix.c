@@ -45,6 +45,13 @@ void zero_m4(float m[4][4])
 	memset(m, 0, 4 * 4 * sizeof(float));
 }
 
+void unit_m2(float m[2][2])
+{
+	m[0][0] = m[1][1] = 1.0;
+	m[0][1] = 0.0;
+	m[1][0] = 0.0;
+}
+
 void unit_m3(float m[3][3])
 {
 	m[0][0] = m[1][1] = m[2][2] = 1.0;

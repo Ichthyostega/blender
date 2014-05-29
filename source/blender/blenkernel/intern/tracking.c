@@ -185,7 +185,7 @@ void BKE_tracking_free(MovieTracking *tracking)
 }
 
 /* Initialize motion tracking settings to default values,
- * used when new movie clip datablock is creating.
+ * used when new movie clip datablock is created.
  */
 void BKE_tracking_settings_init(MovieTracking *tracking)
 {
@@ -201,6 +201,13 @@ void BKE_tracking_settings_init(MovieTracking *tracking)
 	tracking->settings.default_weight = 1.0f;
 	tracking->settings.dist = 1;
 	tracking->settings.object_distance = 1;
+
+	tracking->stabilization.scaleinf = 1.0f;
+	tracking->stabilization.anchor_frame = MINFRAME;
+	tracking->stabilization.target_pos[0] = 0.0f;
+	tracking->stabilization.target_pos[1] = 0.0f;
+	tracking->stabilization.target_rot = 0.0f;
+	tracking->stabilization.scale = 1.0f;
 
 	tracking->stabilization.scaleinf = 1.0f;
 	tracking->stabilization.locinf = 1.0f;
@@ -418,6 +425,9 @@ MovieTrackingTrack *BKE_tracking_track_add(MovieTracking *tracking, ListBase *tr
 	track->flag = settings->default_flag;
 	track->algorithm_flag = settings->default_algorithm_flag;
 	track->weight = settings->default_weight;
+
+	zero_v2(track->stabilization_offset_base);
+	unit_m2(track->stabilization_rotation_base);
 
 	memset(&marker, 0, sizeof(marker));
 	marker.pos[0] = x;

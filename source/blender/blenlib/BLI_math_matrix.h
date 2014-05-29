@@ -52,6 +52,7 @@ extern "C" {
 void zero_m3(float R[3][3]);
 void zero_m4(float R[4][4]);
 
+void unit_m2(float R[2][2]);
 void unit_m3(float R[3][3]);
 void unit_m4(float R[4][4]);
 
