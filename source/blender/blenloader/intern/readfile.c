@@ -7454,6 +7454,22 @@ static void direct_link_moviePlaneTracks(FileData *fd, ListBase *plane_tracks_ba
 	}
 }
 
+/**
+ * Setup rotation stabilization from ancient single track spec.
+ * Former Version of 2D stabilization used a single tracking marker to determine the rotation
+ * to be compensated. Now several tracks can contribute to rotation detection and this feature
+ * is enabled by the MovieTrackingTrack#flag on a per track base. This function migrates
+ * an old-style setting to the corresponding flag and clears the old setting.
+ *
+ * @todo place this into a proper migration entry in versioning_270.c
+ */
+static void migrate_old_rot_track_setting(MovieTracking *tracking)
+{
+	MovieTrackingTrack *rot_track = tracking->stabilization.rot_track;
+	rot_track->flag |= TRACK_USE_2D_STAB_ROT;
+	tracking->stabilization.rot_track = NULL;
+}
+
 static void direct_link_movieclip(FileData *fd, MovieClip *clip)
 {
 	MovieTracking *tracking = &clip->tracking;
@@ -7480,6 +7496,7 @@ static void direct_link_movieclip(FileData *fd, MovieClip *clip)
 
 	clip->tracking.stabilization.ok = 0;
 	clip->tracking.stabilization.rot_track = newdataadr(fd, clip->tracking.stabilization.rot_track);
+	if (tracking->stabilization.rot_track) migrate_old_rot_track_setting(tracking);
 
 	clip->tracking.dopesheet.ok = 0;
 	BLI_listbase_clear(&clip->tracking.dopesheet.channels);

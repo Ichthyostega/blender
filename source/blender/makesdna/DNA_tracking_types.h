@@ -159,6 +159,15 @@ typedef struct MovieTrackingTrack {
 	 * disappearing.
 	 */
 	float weight, pad;
+
+	/* ** 2D stabilization internals ** */
+	float stabilization_offset_base[2];      /* baseline contribution to determined offset. */
+	float stabilization_rotation_base[2][2]; /* baseline contribution to determined rotation. */
+	   /* Baseline defined at reference frame for this track,
+	    * which is as close as possible to the anchor_frame.
+	    * Rotation contribution matrix is relative
+	    * to already translated frame center
+	    */
 } MovieTrackingTrack;
 
 typedef struct MovieTrackingPlaneMarker {
@@ -254,15 +263,19 @@ typedef struct MovieTrackingStabilization {
 
 	/* 2d stabilization */
 	float maxscale;         /* max auto-scale factor */
-	MovieTrackingTrack *rot_track;  /* track used to stabilize rotation */
+	MovieTrackingTrack *rot_track;  /* @deprecated formerly a single track was used to stabilize rotation */
+
+	int anchor_frame;		/* reference point to anchor stabilization offset */
+	float target_pos[2];	/* expected target position of frame after raw stabilization, will be subtracted */
+	float target_rot;       /* expected target rotation of frame after raw stabilization, will be compensated */
+	float scale;			/* zoom factor known to be present on original footage. Also used for autoscale */
 
 	float locinf, scaleinf, rotinf; /* influence on location, scale and rotation */
 
 	int filter;     /* filter used for pixel interpolation */
 
 	/* some pre-computing run-time variables */
-	int ok;                     /* are precomputed values and scaled buf relevant? */
-	float scale;                /* autoscale factor */
+	int ok;                     /* are track initialization offsets and precomputed scale still valid? */
 } MovieTrackingStabilization;
 
 typedef struct MovieTrackingReconstruction {
@@ -386,7 +399,8 @@ enum {
 	TRACK_USE_2D_STAB       = (1 << 8),
 	TRACK_PREVIEW_GRAYSCALE = (1 << 9),
 	TRACK_DOPE_SEL          = (1 << 10),
-	TRACK_PREVIEW_ALPHA     = (1 << 11)
+	TRACK_PREVIEW_ALPHA     = (1 << 11),
+	TRACK_USE_2D_STAB_ROT   = (1 << 12)
 };
 
 /* MovieTrackingTrack->motion_model */
