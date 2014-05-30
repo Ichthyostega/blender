@@ -36,10 +36,12 @@
 #include "DNA_movieclip_types.h"
 
 #include "BLI_utildefines.h"
+#include "BLI_sort_utils.h"
 #include "BLI_math.h"
 
 #include "BKE_tracking.h"
 
+#include "MEM_guardedalloc.h"
 #include "IMB_imbuf_types.h"
 #include "IMB_imbuf.h"
 
@@ -83,10 +85,11 @@ static bool stabilization_median_point_get(MovieTracking *tracking, int framenr,
  * Thus the translation contribution is comprised of the offset relative to the image position at that
  * reference frame, plus a guess of the contribution for the time span between the anchor_frame and the
  * local reference frame of this track. The constant part of this contribution is precomputed initially.
+ * At the anchor_frame, by definition the contribution of all tracks is zero, keeping the frame in place.
  *
  * @param tracking marker data to use as contribution for current frame.
  * @param result_offset total cumulated contribution of this track,
- * 						relative to the stabilization anchor_frame
+ *                      relative to the stabilization anchor_frame
  */
 static void translation_contribution(MovieTrackingTrack *track, MovieTrackingMarker *marker,
                                      float result_offset[2])
@@ -129,11 +132,55 @@ static void rotation_contribution(MovieTrackingTrack *track, MovieTrackingMarker
 }
 
 
-static bool average_all_contributions(MovieTracking *tracking, int framenr,
-                                      float translation[2], float* angle)
+/**
+ * Get tracking data, if available and applicable for this frame.
+ * We use only data recorded for this tracking marker on the exact frame requested.
+ * But on condition that the anchor_frame lies \e within the range covered by this track's data,
+ * we allow to extend the usage of the first / last data on a track into the uncovered area.
+ * This mechanism causes the stabilization to "stall" at the beginning and end of the clip
+ * with the most outlying values determined, instead of jumping back to uncompensated state.
+ */
+static MovieTrackingMarker *get_tracking_data(MovieTrackingTrack *track, int framenr, int anchor_frame)
+{
+	MovieTrackingMarker *marker = BKE_tracking_marker_get(track, framenr);
+	MovieTrackingMarker *first, *last;
+
+	if (!marker || (marker->flag & MARKER_DISABLED)) {
+		return NULL;
+	}
+	else if (marker->framenr == framenr) {
+		return marker;
+	}
+
+	BLI_assert(marker);
+	BLI_assert(0 < track->markersnr);
+
+	first = &track->markers[0];
+	last  = &track->markers[track->markersnr - 1];
+
+	if ((marker == first && marker->framenr < anchor_frame) ||
+	    (marker == last  && marker->framenr > anchor_frame))
+		return marker;
+	else
+		return NULL;
+}
+
+/**
+ * Weighted average of the per track cumulated contributions at given frame
+ * @return true if all desired calculations could be done and all averages are available
+ * @note even if the result is not \c true, the returned translation and angle are
+ *       always sensible and as good as can be. Especially in the initialization phase
+ *       we might not be able to get any average (yet) or get only a translation value.
+ *       Since initialization visits tracks in a specific order, starting from anchor_frame,
+ *       the result is logically correct non the less. But under normal operation conditions,
+ *       a result of \c false should disable the stabilization function
+ */
+static bool average_track_contributions(MovieTracking *tracking, int framenr,
+                                        float translation[2], float* angle)
 {
 	bool ok; float weight_sum;
 	MovieTrackingTrack *track;
+	int anchor = tracking->stabilization.anchor_frame;
 	BLI_assert(tracking->stabilization.flag & TRACKING_2D_STABILIZATION);
 
 	zero_v2(translation);
@@ -142,12 +189,14 @@ static bool average_all_contributions(MovieTracking *tracking, int framenr,
 	ok = false;
 	weight_sum = 0.0f;
 	for (track = tracking->tracks.first; track; track = track->next) {
+		if (!track->is_init_for_stabilization) continue;
 		if (track->flag & TRACK_USE_2D_STAB) {
-			MovieTrackingMarker *marker = BKE_tracking_marker_get_exact(track, framenr);
+			MovieTrackingMarker *marker = get_tracking_data(track, framenr, anchor);
 			if (marker) {
 				float offset[2];
 				weight_sum += track->weight;
 				translation_contribution(track, marker, offset);
+				mul_v2_fl(offset, track->weight);
 				add_v2_v2(translation, offset);
 				ok = (weight_sum > 0);
 			}
@@ -163,13 +212,14 @@ static bool average_all_contributions(MovieTracking *tracking, int framenr,
 	ok = false;
 	weight_sum = 0.0f;
 	for (track = tracking->tracks.first; track; track = track->next) {
+		if (!track->is_init_for_stabilization) continue;
 		if (track->flag & TRACK_USE_2D_STAB_ROT) {
-			MovieTrackingMarker *marker = BKE_tracking_marker_get_exact(track, framenr);
+			MovieTrackingMarker *marker = get_tracking_data(track, framenr, anchor);
 			if (marker) {
 				float rotation;
 				weight_sum += track->weight;
 				rotation_contribution(track, marker, translation, &rotation);
-				*angle += rotation;
+				*angle += rotation * track->weight;
 				ok = (weight_sum > 0);
 			}
 		}
@@ -179,6 +229,146 @@ static bool average_all_contributions(MovieTracking *tracking, int framenr,
 	*angle /= weight_sum;
 	return ok;
 }
+
+
+typedef struct TrackInitOrder {
+	int sort_value;
+	int reference_frame;
+	MovieTrackingTrack *data;
+} TrackInitOrder;
+
+/**
+ * reorder tracks starting with those providing a tracking data frame
+ * closest to the global anchor_frame. Tracks with a gap at anchor_frame or
+ * starting farer away from anchor_frame altogether will be visited later.
+ * This allows to build up baseline contributions incrementally.
+ *
+ * @param order array for sorting the tracks. Must be of suitable size to hold all tracks.
+ * @return number of actually usable tracks, can be less than the overall number of tracks
+ * @remark after returning, the order array holds entries up to the number of usable tracks,
+ *         appropriately sorted starting with the closest tracks. Initialisation includes
+ *         disabled tracks, since they might be enabled through automation later.
+ */
+static int establish_track_initialization_order(MovieTracking *tracking, TrackInitOrder order[])
+{
+	size_t tracknr = 0;
+	MovieTrackingTrack *track;
+	int anchor_frame = tracking->stabilization.anchor_frame;
+
+	for (track = tracking->tracks.first; track; track = track->next) {
+		MovieTrackingMarker *marker;
+		order[tracknr].data = track;
+		marker = BKE_tracking_marker_get(track, anchor_frame);
+		if (marker &&
+			(track->flag & (TRACK_USE_2D_STAB | TRACK_USE_2D_STAB_ROT))) {
+
+			order[tracknr].sort_value = abs(marker->framenr - anchor_frame);
+			order[tracknr].reference_frame = marker->framenr;
+			++tracknr;
+		}
+	}
+	if (tracknr) {
+		qsort(order, tracknr, sizeof(TrackInitOrder), BLI_sortutil_cmp_int);
+	}
+	return tracknr;
+}
+
+
+/**
+ * Setup the constant part of this track's contribution to the determined frame movement.
+ * Tracks usually don't provide tracking data for every frame. Thus, for determining data
+ * at a given frame, we split up the contribution into a part covered by actual measurements
+ * on this track, and the initial gap between this track's reference frame and the global
+ * anchor_frame. The (missing) data for the gap can be substituted by the average offset
+ * observed by the other tracks covering the gap. This approximation doesn't introduce
+ * wrong data, but it records data with incorrect weight. A totally correct solution
+ * would require us to average the contribution per frame, and then integrate stepwise
+ * over all frames -- which of course would be way more expensive, especially for longer
+ * clips. To the contrary, our solution cumulates the total contribution per track and
+ * averages afterwards over all tracks; it can thus be calculated just based on the
+ * data of a single frame, plus the "baseline" for the reference frame, which we're
+ * computing here.
+ *
+ * Since we're averaging \e contributions, we have to calculate the \e difference of
+ * the measured position at current frame and the position at the reference frame.
+ * But the "reference" part of this difference is constant and can thus be packed
+ * together with the baseline contribution into a single precomputed vector per track.
+ *
+ * In case of the rotation contribution, the principle is the same, but we have to
+ * compensate for the already determined translation, because each rotation contribution
+ * needs to be measured relative to the \e current image center, otherwise the rotation
+ * performed for stabilization would not cancel out the measured rotation precisely.
+ * To circumvent problems with the definition range of the arcus tangens function,
+ * we perform this baseline addition and reference angle subtraction in polar
+ * coordinates and bake this operation into a precomputed rotation matrix.
+ *
+ * @param track to initialize
+ * @param reference_frame local for this track, the closest pick to the global anchor_frame
+ * @param average_translation observed by the \e other tracks for the gap between
+ *                            reference_frame and anchor_frame. This average must not contain
+ *                            contributions of not yet initialized frames
+ * @note when done, this track is marked as initialized
+ */
+static void initialize_track_for_stabilization(MovieTrackingTrack *track, int reference_frame,
+                                               const float average_translation[2], float average_angle)
+{
+	float pos[2], angle;
+	float frame_center[2];
+
+	MovieTrackingMarker *marker = BKE_tracking_marker_get_exact(track, reference_frame);
+	BLI_assert(marker); /* otherwise logic for initialization order is broken */
+
+	sub_v2_v2v2(track->stabilization_offset_base, average_translation, marker->pos);
+
+	copy_v2_fl(frame_center, 0.5f);
+	sub_v2_v2v2(pos, marker->pos, frame_center);
+	sub_v2_v2  (pos, average_translation);
+
+	angle = average_angle - atan2f(pos[1],pos[0]);
+	rotate_m2(track->stabilization_rotation_base, angle);
+
+	track->is_init_for_stabilization = true;
+}
+
+
+static void initialize_all_tracks(MovieTracking *tracking)
+{
+	size_t i, tracknr = 0;
+	MovieTrackingTrack *track;
+	TrackInitOrder *order;
+
+	/* attempt to start initialization at anchor_frame.
+	 * By definition, offset contribution is zero there */
+	int reference_frame = tracking->stabilization.anchor_frame;
+	float average_translation[2], average_angle=0;
+	zero_v2(average_translation);
+
+	for (track = tracking->tracks.first; track; track = track->next) {
+		track->is_init_for_stabilization = false;
+		++tracknr;
+	}
+	if (!tracknr) return;
+
+	order = MEM_mallocN(tracknr * sizeof(TrackInitOrder), "stabilization track order");
+	if (!order) return;
+
+	tracknr = establish_track_initialization_order(tracking, order);
+	if (!tracknr) goto cleanup;
+
+	for (i=0; i < tracknr; ++i) {
+		track = order[i].data;
+		if (reference_frame != order[i].reference_frame) {
+			reference_frame = order[i].reference_frame;
+			average_track_contributions(tracking, reference_frame, average_translation, &average_angle);
+		}
+		initialize_track_for_stabilization(track, reference_frame, average_translation, average_angle);
+	}
+
+	cleanup:
+	MEM_freeN(order);
+	return;
+}
+
 
 /* Calculate stabilization data (translation, scale and rotation) from
  * given median of first and current frame medians, tracking data and

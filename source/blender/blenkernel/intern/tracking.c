@@ -560,6 +560,7 @@ MovieTrackingTrack *BKE_tracking_track_add(MovieTracking *tracking, ListBase *tr
 	track->algorithm_flag = settings->default_algorithm_flag;
 	track->weight = settings->default_weight;
 
+	track->is_init_for_stabilization = false;
 	zero_v2(track->stabilization_offset_base);
 	unit_m2(track->stabilization_rotation_base);
 
@@ -1257,7 +1258,7 @@ MovieTrackingMarker *BKE_tracking_marker_get_exact(MovieTrackingTrack *track, in
 {
 	MovieTrackingMarker *marker = BKE_tracking_marker_get(track, framenr);
 
-	if (marker->framenr != framenr)
+	if (!marker || marker->framenr != framenr)
 		return NULL;
 
 	return marker;
