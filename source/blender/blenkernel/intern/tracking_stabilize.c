@@ -21,6 +21,7 @@
  * Contributor(s): Blender Foundation,
  *                 Sergey Sharybin
  *                 Keir Mierle
+ *                 Ichthyostega (H.Voßeler)
  *
  * ***** END GPL LICENSE BLOCK *****
  */
@@ -45,39 +46,7 @@
 #include "IMB_imbuf_types.h"
 #include "IMB_imbuf.h"
 
-/* Calculate median point of markers of tracks marked as used for
- * 2D stabilization.
- *
- * NOTE: frame number should be in clip space, not scene space
- *
- * ** OBSOLETE ** will be replaced by rewrite
- */
-static bool stabilization_median_point_get(MovieTracking *tracking, int framenr, float median[2])
-{
-	bool ok = false;
-	float min[2], max[2];
-	MovieTrackingTrack *track;
 
-	INIT_MINMAX2(min, max);
-
-	track = tracking->tracks.first;
-	while (track) {
-		if (track->flag & TRACK_USE_2D_STAB) {
-			MovieTrackingMarker *marker = BKE_tracking_marker_get(track, framenr);
-
-			minmax_v2v2_v2(min, max, marker->pos);
-
-			ok = true;
-		}
-
-		track = track->next;
-	}
-
-	median[0] = (max[0] + min[0]) / 2.0f;
-	median[1] = (max[1] + min[1]) / 2.0f;
-
-	return ok;
-}
 
 /**
  * Calculate the contribution of a single track at implicitly given time point (frame).
@@ -389,14 +358,6 @@ static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, in
 		return false;
 	}
 
-	if (!stab->ok) {
-		initialize_all_tracks(tracking);
-		if (stab->flag & TRACKING_AUTOSCALE) {
-			stabilization_calculate_autoscale_factor(tracking, width, height);
-		}
-		stab->ok = true;
-	}
-
 	return average_track_contributions(tracking, framenr, translation, angle);
 }
 
@@ -407,7 +368,7 @@ static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, in
  * @param do_compensate actually output values necessary to \e compensate the determined
  *                      frame movement. Otherwise, the effective target movement is returned
  */
-static void stabilization_calculate_data(MovieTracking *tracking, int framenr, int width, int height,
+static void stabilization_calculate_data(MovieTracking *tracking, int width, int height,
                                          bool do_compensate,
                                          float translation[2], float *scale, float *angle)
 {
@@ -437,134 +398,130 @@ static void stabilization_calculate_data(MovieTracking *tracking, int framenr, i
 }
 
 
-
-/* Calculate factor of a scale, which will eliminate black areas
- * appearing on the frame caused by frame translation.
+/**
+ * Determine the inner part of the frame, which is always safe to use.
+ * When enlarging the image by the inverse of this factor, any black areas
+ * appearing due to frame translation and rotation will be removed.
+ * @note when calling this function, basic initialization of tracks must be done already
  */
-static float stabilization_calculate_autoscale_factor(MovieTracking *tracking, int width, int height)
+static void stabilization_determine_safe_image_area(MovieTracking *tracking, int width, int height)
 {
-	float firstmedian[2];
 	MovieTrackingStabilization *stab = &tracking->stabilization;
 	float aspect = tracking->camera.pixel_aspect;
 
-	/* Early output if stabilization data is already up-to-date. */
-	if (stab->ok)
-		return stab->scale;
+	int sfra = INT_MAX, efra = INT_MIN, cfra;
+	float scale = 1.0f;
+	MovieTrackingTrack *track;
 
-	/* See comment in BKE_tracking_stabilization_data_get about first frame. */
-	if (stabilization_median_point_get(tracking, 1, firstmedian)) {
-		int sfra = INT_MAX, efra = INT_MIN, cfra;
-		float scale = 1.0f;
-		MovieTrackingTrack *track;
+	/* Early output if stabilization is already initialized or not enabled. */
+	if (stab->ok || !(stab->flag & TRACKING_2D_STABILIZATION)) return;
 
-		stab->scale = 1.0f;
 
-		/* Calculate frame range of tracks used for stabilization. */
-		track = tracking->tracks.first;
-		while (track) {
-			if (track->flag & TRACK_USE_2D_STAB ||
-			    ((stab->flag & TRACKING_STABILIZE_ROTATION) && track == stab->rot_track))
-			{
-				sfra = min_ii(sfra, track->markers[0].framenr);
-				efra = max_ii(efra, track->markers[track->markersnr - 1].framenr);
-			}
+	stab->scale = 1.0f;
 
-			track = track->next;
+	/* Calculate maximal frame range of tracks where stabilization is active. */
+	for (track = tracking->tracks.first; track; track = track->next) {
+		if ((track->flag & TRACK_USE_2D_STAB) ||
+			((stab->flag & TRACKING_STABILIZE_ROTATION) && (track->flag & TRACK_USE_2D_STAB_ROT)))
+		{
+			int first_frame = track->markers[0].framenr;
+			int last_frame  = track->markers[track->markersnr - 1].framenr;
+			sfra = min_ii(sfra, first_frame);
+			efra = max_ii(efra, last_frame);
 		}
+	}
 
-		/* For every frame we calculate scale factor needed to eliminate black
-		 * area and choose largest scale factor as final one.
-		 */
-		for (cfra = sfra; cfra <= efra; cfra++) {
-			float median[2];
-			float translation[2], angle, tmp_scale;
-			int i;
-			float mat[4][4];
-			float points[4][2] = {{0.0f, 0.0f}, {0.0f, height}, {width, height}, {width, 0.0f}};
-			float si, co;
+	/* For every frame we calculate scale factor needed to eliminate black border area
+	 * and choose largest scale factor as final one.
+	 */
+	for (cfra = sfra; cfra <= efra; cfra++) {
+		float translation[2], angle, tmp_scale;
+		int i;
+		float mat[4][4];
+		float points[4][2] = {{0.0f, 0.0f}, {0.0f, height}, {width, height}, {width, 0.0f}};
+		float si, co;
+		bool do_compensate = false;
 
-			stabilization_median_point_get(tracking, cfra, median);
+		stabilization_determine_offset_for_frame(tracking, cfra, translation, &angle);
+		stabilization_calculate_data(tracking, width, height, do_compensate,
+				                     translation, &tmp_scale, &angle);
 
-			stabilization_calculate_data(tracking, cfra, width, height, firstmedian, median, translation,
-			                             &tmp_scale, &angle);
+		BKE_tracking_stabilization_data_to_mat4(width, height, aspect, translation, 1.0f, angle, mat);
 
-			BKE_tracking_stabilization_data_to_mat4(width, height, aspect, translation, 1.0f, angle, mat);
+		si = sinf(angle);
+		co = cosf(angle);
 
-			si = sinf(angle);
-			co = cosf(angle);
+		/* investigate the transformed border lines for this frame */
+		for (i = 0; i < 4; i++) {
+			int j;
+			float a[3] = {0.0f, 0.0f, 0.0f}, b[3] = {0.0f, 0.0f, 0.0f};
 
-			for (i = 0; i < 4; i++) {
-				int j;
-				float a[3] = {0.0f, 0.0f, 0.0f}, b[3] = {0.0f, 0.0f, 0.0f};
+			copy_v2_v2(a, points[i]);
+			copy_v2_v2(b, points[(i + 1) % 4]);
+			a[2] = b[2] = 0.0f;
 
-				copy_v3_v3(a, points[i]);
-				copy_v3_v3(b, points[(i + 1) % 4]);
+			mul_m4_v3(mat, a);
+			mul_m4_v3(mat, b);
 
-				mul_m4_v3(mat, a);
-				mul_m4_v3(mat, b);
+			for (j = 0; j < 4; j++) {
+				float point[3] = {points[j][0], points[j][1], 0.0f};
+				float v1[3], v2[3];
 
-				for (j = 0; j < 4; j++) {
-					float point[3] = {points[j][0], points[j][1], 0.0f};
-					float v1[3], v2[3];
+				sub_v3_v3v3(v1, b, a);
+				sub_v3_v3v3(v2, point, a);
 
-					sub_v3_v3v3(v1, b, a);
-					sub_v3_v3v3(v2, point, a);
+				if (cross_v2v2(v1, v2) >= 0.0f) {
+					const float rotDx[4][2] = {{1.0f, 0.0f}, {0.0f, -1.0f}, {-1.0f, 0.0f}, {0.0f, 1.0f}};
+					const float rotDy[4][2] = {{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, -1.0f}, {-1.0f, 0.0f}};
 
-					if (cross_v2v2(v1, v2) >= 0.0f) {
-						const float rotDx[4][2] = {{1.0f, 0.0f}, {0.0f, -1.0f}, {-1.0f, 0.0f}, {0.0f, 1.0f}};
-						const float rotDy[4][2] = {{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, -1.0f}, {-1.0f, 0.0f}};
+					float dx = translation[0] * rotDx[j][0] + translation[1] * rotDx[j][1],
+						  dy = translation[0] * rotDy[j][0] + translation[1] * rotDy[j][1];
 
-						float dx = translation[0] * rotDx[j][0] + translation[1] * rotDx[j][1],
-						      dy = translation[0] * rotDy[j][0] + translation[1] * rotDy[j][1];
+					float w, h, E, F, G, H, I, J, K, S;
 
-						float w, h, E, F, G, H, I, J, K, S;
-
-						if (j % 2) {
-							w = (float)height / 2.0f;
-							h = (float)width / 2.0f;
-						}
-						else {
-							w = (float)width / 2.0f;
-							h = (float)height / 2.0f;
-						}
-
-						E = -w * co + h * si;
-						F = -h * co - w * si;
-
-						if ((i % 2) == (j % 2)) {
-							G = -w * co - h * si;
-							H = h * co - w * si;
-						}
-						else {
-							G = w * co + h * si;
-							H = -h * co + w * si;
-						}
-
-						I = F - H;
-						J = G - E;
-						K = G * F - E * H;
-
-						S = (-w * I - h * J) / (dx * I + dy * J + K);
-
-						scale = max_ff(scale, S);
+					if (j % 2) {
+						w = (float)height / 2.0f;
+						h = (float)width / 2.0f;
 					}
+					else {
+						w = (float)width / 2.0f;
+						h = (float)height / 2.0f;
+					}
+
+					E = -w * co + h * si;
+					F = -h * co - w * si;
+
+					if ((i % 2) == (j % 2)) {
+						G = -w * co - h * si;
+						H = h * co - w * si;
+					}
+					else {
+						G = w * co + h * si;
+						H = -h * co + w * si;
+					}
+
+					I = F - H;
+					J = G - E;
+					K = G * F - E * H;
+
+					S = (dx * I + dy * J + K) / (-w * I - h * J);
+
+					scale = min_ff(scale, S);
 				}
 			}
 		}
-
-		stab->scale = scale;
-
-		if (stab->maxscale > 0.0f)
-			stab->scale = min_ff(stab->scale, stab->maxscale);
-	}
-	else {
-		stab->scale = 1.0f;
 	}
 
-	stab->ok = true;
+	stab->scale = scale;
 
-	return stab->scale;
+	if (stab->maxscale > 0.0f)
+		stab->scale = max_ff(stab->scale, 1.0f / stab->maxscale);
 }
+
+
+
+
+/* === public interface functions === */
 
 /**
  * Get stabilization data (translation, scaling and angle) for a given frame.
@@ -576,12 +533,24 @@ static float stabilization_calculate_autoscale_factor(MovieTracking *tracking, i
 void BKE_tracking_stabilization_data_get(MovieTracking *tracking, int framenr, int width, int height,
                                          float translation[2], float *scale, float *angle)
 {
+	MovieTrackingStabilization *stab = &tracking->stabilization;
+
+	bool enabled = stab->flag & TRACKING_2D_STABILIZATION;
+	bool initialized = stab->ok;
 	bool do_compensate = false; /* planned to become a parameter of a stabilization compositor node */
 
-	if ((tracking->stabilization.flag & TRACKING_2D_STABILIZATION) &&
+	if (enabled && !initialized) {
+		initialize_all_tracks(tracking);
+		if (stab->flag & TRACKING_AUTOSCALE) {
+			stabilization_determine_safe_image_area(tracking, width, height);
+		}
+		stab->ok = true;
+	}
+
+	if (enabled &&
 		stabilization_determine_offset_for_frame(tracking, framenr, translation, angle)) {
 
-		stabilization_calculate_data(tracking, framenr, width, height, do_compensate, translation, scale, angle);
+		stabilization_calculate_data(tracking, width, height, do_compensate, translation, scale, angle);
 	}
 	else {
 		zero_v2(translation);
@@ -712,13 +681,7 @@ void BKE_tracking_stabilization_data_to_mat4(int width, int height, float aspect
 	aspect_mat[0][0] = 1.0f / aspect;
 	invert_m4_m4(inv_aspect_mat, aspect_mat);
 
-	/* image center as rotation center
-	 *
-	 * Rotation matrix is constructing in a way rotation happens around image center,
-	 * and it's matter of calculating translation in a way, that applying translation
-	 * after rotation would make it so rotation happens around median point of tracks
-	 * used for translation stabilization.
-	 */
+	/* image center as rotation center */
 	center_mat[3][0] = (float)width / 2.0f;
 	center_mat[3][1] = (float)height / 2.0f;
 	invert_m4_m4(inv_center_mat, center_mat);
