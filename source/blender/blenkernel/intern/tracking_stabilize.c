@@ -370,50 +370,73 @@ static void initialize_all_tracks(MovieTracking *tracking)
 }
 
 
-/* Calculate stabilization data (translation, scale and rotation) from
- * given median of first and current frame medians, tracking data and
- * frame number.
- *
- * NOTE: frame number should be in clip space, not scene space
+/**
+ * Retrieve the measurement of frame movement by averaging contributions of active tracks.
+ * @param translation measurement in normalized 0..1 coordinates
+ * @param angle measurement in radians -pi..+pi counter clockwise relative to translation compensated frame center
+ * @return calculation enabled and all data retrieved as expected for this frame.
+ * @note when returning \c false, output params are reset to neutral values
+ */
+static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, int framenr,
+                                                     float translation[2], float* angle)
+{
+	MovieTrackingStabilization *stab = &tracking->stabilization;
+
+	/* Early output if stabilization is disabled. */
+	if ((stab->flag & TRACKING_2D_STABILIZATION) == 0) {
+		zero_v2(translation);
+		*angle = 0.0f;
+		return false;
+	}
+
+	if (!stab->ok) {
+		initialize_all_tracks(tracking);
+		if (stab->flag & TRACKING_AUTOSCALE) {
+			stabilization_calculate_autoscale_factor(tracking, width, height);
+		}
+		stab->ok = true;
+	}
+
+	return average_track_contributions(tracking, framenr, translation, angle);
+}
+
+/**
+ * Calculate stabilization data (translation, scale and rotation) from given raw measurements.
+ * Result is in absolute image dimensions, includes automatic or manual scaling and compensates
+ * for a target frame position, if given.
+ * @param do_compensate actually output values necessary to \e compensate the determined
+ *                      frame movement. Otherwise, the effective target movement is returned
  */
 static void stabilization_calculate_data(MovieTracking *tracking, int framenr, int width, int height,
-                                         const float firstmedian[2], const float median[2],
+                                         bool do_compensate,
                                          float translation[2], float *scale, float *angle)
 {
 	MovieTrackingStabilization *stab = &tracking->stabilization;
 
 	*scale = (stab->scale - 1.0f) * stab->scaleinf + 1.0f;
-	*angle = 0.0f;
 
-	translation[0] = (firstmedian[0] - median[0]) * width * (*scale);
-	translation[1] = (firstmedian[1] - median[1]) * height * (*scale);
+	translation[0] *= width * (*scale);
+	translation[1] *= height * (*scale);
 
 	mul_v2_fl(translation, stab->locinf);
+	*angle *= stab->rotinf;
 
-	if ((stab->flag & TRACKING_STABILIZE_ROTATION) && stab->rot_track && stab->rotinf) {
-		MovieTrackingMarker *marker;
-		float a[2], b[2];
-		float x0 = (float)width / 2.0f, y0 = (float)height / 2.0f;
-		float x = median[0] * width, y = median[1] * height;
+	/* compensate for a target frame position.
+	 * This allows to follow tracking / panning shots in a semi manual fashion,
+	 * when animating the settings for the target frame position
+	 */
+	sub_v2_v2(translation, stab->target_pos);
+	*angle -= stab->target_rot;
 
-		marker = BKE_tracking_marker_get(stab->rot_track, 1);
-		sub_v2_v2v2(a, marker->pos, firstmedian);
-		a[0] *= width;
-		a[1] *= height;
-
-		marker = BKE_tracking_marker_get(stab->rot_track, framenr);
-		sub_v2_v2v2(b, marker->pos, median);
-		b[0] *= width;
-		b[1] *= height;
-
-		*angle = -atan2f(a[0] * b[1] - a[1] * b[0], a[0] * b[0] + a[1] * b[1]);
-		*angle *= stab->rotinf;
-
-		/* convert to rotation around image center */
-		translation[0] -= (x0 + (x - x0) * cosf(*angle) - (y - y0) * sinf(*angle) - x) * (*scale);
-		translation[1] -= (y0 + (x - x0) * sinf(*angle) + (y - y0) * cosf(*angle) - y) * (*scale);
+	/* output measured data, or inverse of the measured values for compensation? */
+	if (do_compensate) {
+		mul_v2_fl(translation, -1.0f);
+		*angle *= -1.0f;
+		if (*scale != 0.0f) *scale = 1.0f / *scale;
 	}
 }
+
+
 
 /* Calculate factor of a scale, which will eliminate black areas
  * appearing on the frame caused by frame translation.
@@ -543,51 +566,22 @@ static float stabilization_calculate_autoscale_factor(MovieTracking *tracking, i
 	return stab->scale;
 }
 
-/* Get stabilization data (translation, scaling and angle) for a given frame.
- *
- * NOTE: frame number should be in clip space, not scene space
+/**
+ * Get stabilization data (translation, scaling and angle) for a given frame.
+ * Returned data describes the detected movement, but with any chosen scale factor
+ * already applied and any target frame position already compensated. In case
+ * stabilization fails or is disabled, neutral values are returned.
+ * @note frame number should be in clip space, not scene space
  */
 void BKE_tracking_stabilization_data_get(MovieTracking *tracking, int framenr, int width, int height,
                                          float translation[2], float *scale, float *angle)
 {
-	float firstmedian[2], median[2];
-	MovieTrackingStabilization *stab = &tracking->stabilization;
+	bool do_compensate = false; /* planned to become a parameter of a stabilization compositor node */
 
-	/* Early output if stabilization is disabled. */
-	if ((stab->flag & TRACKING_2D_STABILIZATION) == 0) {
-		zero_v2(translation);
-		*scale = 1.0f;
-		*angle = 0.0f;
+	if ((tracking->stabilization.flag & TRACKING_2D_STABILIZATION) &&
+		stabilization_determine_offset_for_frame(tracking, framenr, translation, angle)) {
 
-		return;
-	}
-
-	/* Even if tracks does not start at frame 1, their position will
-	 * be estimated at this frame, which will give reasonable result
-	 * in most of cases.
-	 *
-	 * However, it's still better to replace this with real first
-	 * frame number at which tracks are appearing.
-	 */
-	if (stabilization_median_point_get(tracking, 1, firstmedian)) {
-		stabilization_median_point_get(tracking, framenr, median);
-
-		if ((stab->flag & TRACKING_AUTOSCALE) == 0)
-			stab->scale = 1.0f;
-
-		if (!stab->ok) {
-			if (stab->flag & TRACKING_AUTOSCALE)
-				stabilization_calculate_autoscale_factor(tracking, width, height);
-
-			stabilization_calculate_data(tracking, framenr, width, height, firstmedian, median,
-			                             translation, scale, angle);
-
-			stab->ok = true;
-		}
-		else {
-			stabilization_calculate_data(tracking, framenr, width, height, firstmedian, median,
-			                             translation, scale, angle);
-		}
+		stabilization_calculate_data(tracking, framenr, width, height, do_compensate, translation, scale, angle);
 	}
 	else {
 		zero_v2(translation);
