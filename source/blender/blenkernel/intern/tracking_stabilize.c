@@ -376,8 +376,8 @@ static void stabilization_calculate_data(MovieTracking *tracking, int width, int
 
 	*scale = (stab->scale - 1.0f) * stab->scaleinf + 1.0f;
 
-	translation[0] *= width * (*scale);
-	translation[1] *= height * (*scale);
+	translation[0] *= width;
+	translation[1] *= height;
 
 	mul_v2_fl(translation, stab->locinf);
 	*angle *= stab->rotinf;
@@ -440,7 +440,7 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
 		float mat[4][4];
 		float points[4][2] = {{0.0f, 0.0f}, {0.0f, height}, {width, height}, {width, 0.0f}};
 		float si, co;
-		bool do_compensate = false;
+		bool do_compensate = true;
 
 		stabilization_determine_offset_for_frame(tracking, cfra, translation, &angle);
 		stabilization_calculate_data(tracking, width, height, do_compensate,
@@ -451,7 +451,8 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
 		si = sinf(angle);
 		co = cosf(angle);
 
-		/* investigate the transformed border lines for this frame */
+		/* investigate the transformed border lines for this frame;
+		 * find out, where it cuts the original frame. */
 		for (i = 0; i < 4; i++) {
 			int j;
 			float a[3] = {0.0f, 0.0f, 0.0f}, b[3] = {0.0f, 0.0f, 0.0f};
@@ -528,7 +529,11 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
  * Returned data describes the detected movement, but with any chosen scale factor
  * already applied and any target frame position already compensated. In case
  * stabilization fails or is disabled, neutral values are returned.
- * @note frame number should be in clip space, not scene space
+ * @param framenr frame number, relative to the clip (not relative to the scene timeline)
+ * @param width width of the frame, used to scale the determined translation
+ * @param translation (output) of the lateral shift
+ * @param scale (output) of the scaling to apply
+ * @param angle (output) of the rotation angle, relative to the frame center
  */
 void BKE_tracking_stabilization_data_get(MovieTracking *tracking, int framenr, int width, int height,
                                          float translation[2], float *scale, float *angle)
@@ -537,7 +542,7 @@ void BKE_tracking_stabilization_data_get(MovieTracking *tracking, int framenr, i
 
 	bool enabled = stab->flag & TRACKING_2D_STABILIZATION;
 	bool initialized = stab->ok;
-	bool do_compensate = false; /* planned to become a parameter of a stabilization compositor node */
+	bool do_compensate = true; /* might to become a parameter of a stabilization compositor node */
 
 	if (enabled && !initialized) {
 		initialize_all_tracks(tracking);
@@ -609,6 +614,10 @@ ImBuf *BKE_tracking_stabilize_frame(MovieTracking *tracking, int framenr, ImBuf 
 	/* Calculate stabilization matrix. */
 	BKE_tracking_stabilization_data_get(tracking, framenr, width, height, tloc, &tscale, &tangle);
 	BKE_tracking_stabilization_data_to_mat4(ibuf->x, ibuf->y, aspect, tloc, tscale, tangle, mat);
+
+	/* The following code visits each nominal target grid position
+	 * and picks interpolated data "backwards" from source.
+	 * thus we need the inverse of the transformation to apply. */
 	invert_m4(mat);
 
 	if (filter == TRACKING_FILTER_NEAREST)
@@ -667,30 +676,33 @@ void BKE_tracking_stabilization_data_to_mat4(int width, int height, float aspect
                                              float mat[4][4])
 {
 	float translation_mat[4][4], rotation_mat[4][4], scale_mat[4][4],
-	      center_mat[4][4], inv_center_mat[4][4],
+	      pivot_mat[4][4], inv_pivot_mat[4][4],
 	      aspect_mat[4][4], inv_aspect_mat[4][4];
 	float scale_vector[3] = {scale, scale, scale};
 
 	unit_m4(translation_mat);
 	unit_m4(rotation_mat);
 	unit_m4(scale_mat);
-	unit_m4(center_mat);
+	unit_m4(pivot_mat);
 	unit_m4(aspect_mat);
 
 	/* aspect ratio correction matrix */
 	aspect_mat[0][0] = 1.0f / aspect;
 	invert_m4_m4(inv_aspect_mat, aspect_mat);
 
-	/* image center as rotation center */
-	center_mat[3][0] = (float)width / 2.0f;
-	center_mat[3][1] = (float)height / 2.0f;
-	invert_m4_m4(inv_center_mat, center_mat);
+	/* motion compensated image center as rotation center.
+	 * This is not 100% correct, but reflects the way the rotation data was measured.
+	 * Actually we'd need a way to find a good pivot, and use that both for averaging
+	 * and for compensation */
+	pivot_mat[3][0] = (float)width / 2.0f  - translation[0];
+	pivot_mat[3][1] = (float)height / 2.0f - translation[1];
+	invert_m4_m4(inv_pivot_mat, pivot_mat);
 
 	size_to_mat4(scale_mat, scale_vector);       /* scale matrix */
 	add_v2_v2(translation_mat[3], translation);  /* translation matrix */
 	rotate_m4(rotation_mat, 'Z', angle);         /* rotation matrix */
 
 	/* compose transformation matrix */
-	mul_m4_series(mat, translation_mat, center_mat, aspect_mat, rotation_mat, inv_aspect_mat,
-	             scale_mat, inv_center_mat);
+	mul_m4_series(mat, translation_mat, pivot_mat, aspect_mat, rotation_mat, inv_aspect_mat,
+	              scale_mat, inv_pivot_mat);
 }
