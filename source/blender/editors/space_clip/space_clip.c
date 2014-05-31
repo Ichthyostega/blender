@@ -453,7 +453,7 @@ static void clip_operatortypes(void)
 	/* navigation */
 	WM_operatortype_append(CLIP_OT_frame_jump);
 
-	/* foorage */
+	/* center footage */
 	WM_operatortype_append(CLIP_OT_set_center_principal);
 
 	/* selection */
@@ -501,6 +501,9 @@ static void clip_operatortypes(void)
 	WM_operatortype_append(CLIP_OT_stabilize_2d_add);
 	WM_operatortype_append(CLIP_OT_stabilize_2d_remove);
 	WM_operatortype_append(CLIP_OT_stabilize_2d_select);
+	WM_operatortype_append(CLIP_OT_stabilize_2d_rotation_add);
+	WM_operatortype_append(CLIP_OT_stabilize_2d_rotation_remove);
+	WM_operatortype_append(CLIP_OT_stabilize_2d_rotation_select);
 	WM_operatortype_append(CLIP_OT_stabilize_2d_set_rotation);
 
 	/* clean-up */
