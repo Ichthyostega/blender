@@ -96,7 +96,7 @@ void CLIP_OT_stabilize_2d_add(wmOperatorType *ot)
 {
 	/* identifiers */
 	ot->name = "Add Stabilization Tracks";
-	ot->description = "Add selected tracks to 2D stabilization tool";
+	ot->description = "Add selected tracks to 2D translation stabilization";
 	ot->idname = "CLIP_OT_stabilize_2d_add";
 
 	/* api callbacks */
@@ -151,7 +151,7 @@ void CLIP_OT_stabilize_2d_remove(wmOperatorType *ot)
 {
 	/* identifiers */
 	ot->name = "Remove Stabilization Track";
-	ot->description = "Remove selected track from stabilization";
+	ot->description = "Remove selected track from translation stabilization";
 	ot->idname = "CLIP_OT_stabilize_2d_remove";
 
 	/* api callbacks */
@@ -193,7 +193,7 @@ void CLIP_OT_stabilize_2d_select(wmOperatorType *ot)
 {
 	/* identifiers */
 	ot->name = "Select Stabilization Tracks";
-	ot->description = "Select tracks which are used for stabilization";
+	ot->description = "Select tracks which are used for translation stabilization";
 	ot->idname = "CLIP_OT_stabilize_2d_select";
 
 	/* api callbacks */
@@ -204,8 +204,162 @@ void CLIP_OT_stabilize_2d_select(wmOperatorType *ot)
 	ot->flag = OPTYPE_REGISTER | OPTYPE_UNDO;
 }
 
+/********************** add 2d stabilization tracks for rotation operator ****************/
+
+static int stabilize_2d_rotation_add_exec(bContext *C, wmOperator *UNUSED(op))
+{
+	SpaceClip *sc = CTX_wm_space_clip(C);
+	MovieClip *clip = ED_space_clip_get_clip(sc);
+	MovieTracking *tracking = &clip->tracking;
+	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
+	MovieTrackingTrack *track;
+	MovieTrackingStabilization *stab = &tracking->stabilization;
+	int update = 0;
+
+	track = tracksbase->first;
+	while (track) {
+		if (TRACK_VIEW_SELECTED(sc, track) && (track->flag & TRACK_USE_2D_STAB_ROT) == 0) {
+			track->flag |= TRACK_USE_2D_STAB_ROT;
+			stab->tot_rot_track++;
+
+			update = 1;
+		}
+
+		track = track->next;
+	}
+
+	if (update) {
+		stab->ok = 0;
+
+		DAG_id_tag_update(&clip->id, 0);
+		WM_event_add_notifier(C, NC_MOVIECLIP | ND_DISPLAY, clip);
+	}
+
+	return OPERATOR_FINISHED;
+}
+
+void CLIP_OT_stabilize_2d_rotation_add(wmOperatorType *ot)
+{
+	/* identifiers */
+	ot->name = "Add Stabilization Rotation Tracks";
+	ot->description = "Add selected tracks to 2D rotation stabilization";
+	ot->idname = "CLIP_OT_stabilize_2d_rotation_add";
+
+	/* api callbacks */
+	ot->exec = stabilize_2d_rotation_add_exec;
+	ot->poll = stabilize_2d_poll;
+
+	/* flags */
+	ot->flag = OPTYPE_REGISTER | OPTYPE_UNDO;
+}
+
+/********************** remove 2d stabilization tracks for rotation operator *************/
+
+static int stabilize_2d_rotation_remove_exec(bContext *C, wmOperator *UNUSED(op))
+{
+	SpaceClip *sc = CTX_wm_space_clip(C);
+	MovieClip *clip = ED_space_clip_get_clip(sc);
+	MovieTracking *tracking = &clip->tracking;
+	MovieTrackingStabilization *stab = &tracking->stabilization;
+	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
+	MovieTrackingTrack *track;
+	int a = 0, update = 0;
+
+	track = tracksbase->first;
+	while (track) {
+		if (track->flag & TRACK_USE_2D_STAB_ROT) {
+			if (a == stab->act_rot_track) {
+				track->flag &= ~TRACK_USE_2D_STAB_ROT;
+
+				stab->act_rot_track--;
+				stab->tot_rot_track--;
+
+				if (stab->act_rot_track < 0)
+					stab->act_rot_track = 0;
+
+				update = 1;
+
+				break;
+			}
+
+			a++;
+		}
+
+		track = track->next;
+	}
+
+	if (update) {
+		stab->ok = 0;
+
+		DAG_id_tag_update(&clip->id, 0);
+		WM_event_add_notifier(C, NC_MOVIECLIP | ND_DISPLAY, clip);
+	}
+
+	return OPERATOR_FINISHED;
+}
+
+void CLIP_OT_stabilize_2d_rotation_remove(wmOperatorType *ot)
+{
+	/* identifiers */
+	ot->name = "Remove Stabilization Rotation Track";
+	ot->description = "Remove selected track from rotation stabilization";
+	ot->idname = "CLIP_OT_stabilize_2d_rotation_remove";
+
+	/* api callbacks */
+	ot->exec = stabilize_2d_rotation_remove_exec;
+	ot->poll = stabilize_2d_poll;
+
+	/* flags */
+	ot->flag = OPTYPE_REGISTER | OPTYPE_UNDO;
+}
+
+/********************** select 2d stabilization rotation tracks operator *****************/
+
+static int stabilize_2d_rotation_select_exec(bContext *C, wmOperator *UNUSED(op))
+{
+	SpaceClip *sc = CTX_wm_space_clip(C);
+	MovieClip *clip = ED_space_clip_get_clip(sc);
+	MovieTracking *tracking = &clip->tracking;
+	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
+	MovieTrackingTrack *track;
+	int update = 0;
+
+	track = tracksbase->first;
+	while (track) {
+		if (track->flag & TRACK_USE_2D_STAB_ROT) {
+			BKE_tracking_track_flag_set(track, TRACK_AREA_ALL, SELECT);
+
+			update = 1;
+		}
+
+		track = track->next;
+	}
+
+	if (update)
+		WM_event_add_notifier(C, NC_MOVIECLIP | ND_SELECT, clip);
+
+	return OPERATOR_FINISHED;
+}
+
+void CLIP_OT_stabilize_2d_rotation_select(wmOperatorType *ot)
+{
+	/* identifiers */
+	ot->name = "Select Stabilization Rotation Tracks";
+	ot->description = "Select tracks which are used for rotation stabilization";
+	ot->idname = "CLIP_OT_stabilize_2d_rotation_select";
+
+	/* api callbacks */
+	ot->exec = stabilize_2d_rotation_select_exec;
+	ot->poll = stabilize_2d_poll;
+
+	/* flags */
+	ot->flag = OPTYPE_REGISTER | OPTYPE_UNDO;
+}
+
 /***************** set 2d stabilization rotation track operator ****************/
 
+
+/** @deprecated use the collection of rotation tracks instead */
 static int stabilize_2d_set_rotation_exec(bContext *C, wmOperator *UNUSED(op))
 {
 	SpaceClip *sc = CTX_wm_space_clip(C);
@@ -215,7 +369,15 @@ static int stabilize_2d_set_rotation_exec(bContext *C, wmOperator *UNUSED(op))
 
 	if (act_track != NULL) {
 		MovieTrackingStabilization *stab = &tracking->stabilization;
-		stab->rot_track = act_track;
+		MovieTrackingTrack *track;
+
+		/* emulate the old behaviour: clear all rotation flags
+		 * and then set the rotation flag for the current track solely */
+		for (track = tracking->tracks.first; track; track=track->next) {
+			track->flag &= ~TRACK_USE_2D_STAB_ROT;
+		}
+		act_track->flag |= TRACK_USE_2D_STAB_ROT;
+
 		stab->ok = 0;
 
 		DAG_id_tag_update(&clip->id, 0);
@@ -229,8 +391,8 @@ void CLIP_OT_stabilize_2d_set_rotation(wmOperatorType *ot)
 {
 	/* identifiers */
 	ot->name = "Set Rotation Track";
-	ot->description = "Use active track to compensate rotation when "
-	                  "doing 2D stabilization";
+	ot->description = "Deprecated (formerly this operator used the active track solely "
+                      "to compensate rotation when doing 2D stabilization)";
 	ot->idname = "CLIP_OT_stabilize_2d_set_rotation";
 
 	/* api callbacks */

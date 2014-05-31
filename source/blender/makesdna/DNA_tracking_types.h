@@ -260,7 +260,8 @@ typedef struct MovieTrackingSettings {
 
 typedef struct MovieTrackingStabilization {
 	int flag;
-	int tot_track, act_track;       /* total number and index of active track in list */
+	int tot_track, act_track;       	/* total number of translation tracks and index of active track in list */
+	int tot_rot_track, act_rot_track;	/* total number of translation tracks and index of active track in list */
 
 	/* 2d stabilization */
 	float maxscale;         /* max auto-scale factor */
@@ -467,7 +468,8 @@ enum {
 enum {
 	TRACKING_2D_STABILIZATION   = (1 << 0),
 	TRACKING_AUTOSCALE          = (1 << 1),
-	TRACKING_STABILIZE_ROTATION = (1 << 2)
+	TRACKING_STABILIZE_ROTATION = (1 << 2),
+	TRACKING_SHOW_STAB_TRACKS   = (1 << 5)
 };
 
 /* MovieTrackingStrabilization->filter */

@@ -185,6 +185,12 @@ void CLIP_OT_detect_features(struct wmOperatorType *ot);
 void CLIP_OT_stabilize_2d_add(struct wmOperatorType *ot);
 void CLIP_OT_stabilize_2d_remove(struct wmOperatorType *ot);
 void CLIP_OT_stabilize_2d_select(struct wmOperatorType *ot);
+
+void CLIP_OT_stabilize_2d_rotation_add(struct wmOperatorType *ot);
+void CLIP_OT_stabilize_2d_rotation_remove(struct wmOperatorType *ot);
+void CLIP_OT_stabilize_2d_rotation_select(struct wmOperatorType *ot);
+
+/** @deprecated */
 void CLIP_OT_stabilize_2d_set_rotation(struct wmOperatorType *ot);
 
 void CLIP_OT_clean_tracks(struct wmOperatorType *ot);

@@ -7498,6 +7498,8 @@ static void direct_link_movieclip(FileData *fd, MovieClip *clip)
 	clip->tracking.stabilization.rot_track = newdataadr(fd, clip->tracking.stabilization.rot_track);
 	if (tracking->stabilization.rot_track) migrate_old_rot_track_setting(tracking);
 
+	if (!clip->tracking.stabilization.scale) clip->tracking.stabilization.scale = 1.0f;
+
 	clip->tracking.dopesheet.ok = 0;
 	BLI_listbase_clear(&clip->tracking.dopesheet.channels);
 	BLI_listbase_clear(&clip->tracking.dopesheet.coverage_segments);
