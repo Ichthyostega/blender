@@ -59,6 +59,23 @@
 #include "readfile.h"
 
 
+/**
+ * Setup rotation stabilization from ancient single track spec.
+ * Former Version of 2D stabilization used a single tracking marker to determine the rotation
+ * to be compensated. Now several tracks can contribute to rotation detection and this feature
+ * is enabled by the MovieTrackingTrack#flag on a per track base.
+ */
+static void migrate_single_rot_stabilization_track_settings(MovieTrackingStabilization *stab)
+{
+	if (stab->rot_track) {
+		stab->rot_track->flag |= TRACK_USE_2D_STAB_ROT;
+	}
+	stab->rot_track = NULL; /* this field is now ignored */
+
+	/* by default show the track lists expanded, to improve "discoverability" */
+	stab->flag |= TRACKING_SHOW_STAB_TRACKS;
+}
+
 static void do_version_constraints_radians_degrees_270_1(ListBase *lb)
 {
 	bConstraint *con;
@@ -109,6 +126,7 @@ static void do_version_constraints_radians_degrees_270_5(ListBase *lb)
 		}
 	}
 }
+
 
 void blo_do_versions_270(FileData *fd, Library *UNUSED(lib), Main *main)
 {
@@ -294,6 +312,19 @@ void blo_do_versions_270(FileData *fd, Library *UNUSED(lib), Main *main)
 		for (scene = main->scene.first; scene; scene = scene->id.next) {
 			int num_layers = BLI_countlist(&scene->r.layers);
 			scene->r.actlay = min_ff(scene->r.actlay, num_layers - 1);
+		}
+	}
+
+	/* TODO::Ichthyo Tracking-2D-Stabilization rework by Ichthyostega: please add the correct final version here, in case this patch hits mainline */
+	if (!MAIN_VERSION_ATLEAST(main, 270, 55) &&
+	     MAIN_VERSION_ATLEAST(main, 261, 0)) {
+
+		MovieClip *clip;
+		for (clip = main->movieclip.first; clip; clip = clip->id.next) {
+			if (clip->tracking.stabilization.rot_track) {
+
+				migrate_single_rot_stabilization_track_settings(&clip->tracking.stabilization);
+			}
 		}
 	}
 }
