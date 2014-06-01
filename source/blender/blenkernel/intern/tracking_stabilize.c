@@ -102,22 +102,31 @@ static void rotation_contribution(MovieTrackingTrack *track, MovieTrackingMarker
 
 
 /**
- * Get tracking data, if available and applicable for this frame.
- * We use only data recorded for this tracking marker on the exact frame requested.
- * But on condition that the anchor_frame lies \e within the range covered by this track's data,
- * we allow to extend the usage of the first / last data on a track into the uncovered area.
- * This mechanism causes the stabilization to "stall" at the beginning and end of the clip
- * with the most outlying values determined, instead of jumping back to uncompensated state.
+ * Retrieve tracking data, if available and applicable for this frame.
+ * The returned weight value signals the validity; data recorded for this tracking marker
+ * on the exact requested frame is output with the full weight of this track, while gaps
+ * in the data sequence cause the weight to go to zero.
+ *
+ * There is special treatment for the regions beyond the range covered by this track's data.
+ * On condition that the anchor_frame lies \e within this range, we rather "fade out" the
+ * first / last data on a track, which causes the stabilization to "stall" at the beginning
+ * and end of the clip, instead of jumping back to uncompensated state immediately.
+ *
+ * @param marker the retrieved data is output via this parameter, may be \c NULL.
+ * @return weight to use for this data point when averaging
  */
-static MovieTrackingMarker *get_tracking_data(MovieTrackingTrack *track, int framenr, int anchor_frame)
+static MovieTrackingMarker *get_tracking_data_point(MovieTrackingTrack *track, int framenr, int anchor_frame,
+                                                    float *weight)
 {
 	MovieTrackingMarker *marker = BKE_tracking_marker_get(track, framenr);
 	MovieTrackingMarker *first, *last;
 
-	if (!marker || (marker->flag & MARKER_DISABLED)) {
+	if (!marker) {
+		*weight = 0.0f;
 		return NULL;
 	}
-	else if (marker->framenr == framenr) {
+	else if (marker->framenr == framenr && !(marker->flag & MARKER_DISABLED)) {
+		*weight = track->weight;
 		return marker;
 	}
 
@@ -127,11 +136,20 @@ static MovieTrackingMarker *get_tracking_data(MovieTrackingTrack *track, int fra
 	first = &track->markers[0];
 	last  = &track->markers[track->markersnr - 1];
 
+	/* before track start / after track end? */
 	if ((marker == first && marker->framenr < anchor_frame) ||
-	    (marker == last  && marker->framenr > anchor_frame))
+	    (marker == last  && marker->framenr > anchor_frame)) {
+
+		float fade_out = 1/end_fade_timebase * (framenr - marker->framenr);
+		BLI_assert(fade_out > 0);
+		*weight = track->weight * exp2f(-fade_out*fade_out);
 		return marker;
-	else
+	}
+	else {
+		/* no marker at this frame (=gap) or marker disabled */
+		*weight = 0.0f;
 		return NULL;
+	}
 }
 
 /**
@@ -160,12 +178,13 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr,
 	for (track = tracking->tracks.first; track; track = track->next) {
 		if (!track->is_init_for_stabilization) continue;
 		if (track->flag & TRACK_USE_2D_STAB) {
-			MovieTrackingMarker *marker = get_tracking_data(track, framenr, anchor);
+			float weight = 0.0f;
+			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, anchor, &weight);
 			if (marker) {
 				float offset[2];
-				weight_sum += track->weight;
+				weight_sum += weight;
 				translation_contribution(track, marker, offset);
-				mul_v2_fl(offset, track->weight);
+				mul_v2_fl(offset, weight);
 				add_v2_v2(translation, offset);
 				ok = (weight_sum > 0);
 			}
@@ -183,12 +202,13 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr,
 	for (track = tracking->tracks.first; track; track = track->next) {
 		if (!track->is_init_for_stabilization) continue;
 		if (track->flag & TRACK_USE_2D_STAB_ROT) {
-			MovieTrackingMarker *marker = get_tracking_data(track, framenr, anchor);
+			float weight = 0.0f;
+			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, anchor, &weight);
 			if (marker) {
 				float rotation;
-				weight_sum += track->weight;
+				weight_sum += weight;
 				rotation_contribution(track, marker, translation, &rotation);
-				*angle += rotation * track->weight;
+				*angle += rotation * weight;
 				ok = (weight_sum > 0);
 			}
 		}
