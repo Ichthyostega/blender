@@ -961,6 +961,7 @@ class CLIP_PT_stabilization(CLIP_PT_reconstruction_panel, Panel):
             row.prop(stab, "influence_rotation")
 
 
+        layout.prop(stab, "use_stabilize_scale")
         if stab.use_autoscale:
             row = layout.row(align=True)
             row.prop(stab, "use_autoscale")

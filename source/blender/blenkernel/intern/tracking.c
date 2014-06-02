@@ -569,6 +569,7 @@ MovieTrackingTrack *BKE_tracking_track_add(MovieTracking *tracking, ListBase *tr
 	track->is_init_for_stabilization = false;
 	zero_v2(track->stabilization_offset_base);
 	unit_m2(track->stabilization_rotation_base);
+	track->stabilization_scale_base = 1.0;
 
 	memset(&marker, 0, sizeof(marker));
 	marker.pos[0] = x;

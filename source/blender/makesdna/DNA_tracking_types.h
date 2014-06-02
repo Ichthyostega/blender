@@ -164,11 +164,14 @@ typedef struct MovieTrackingTrack {
 	int is_init_for_stabilization;
 	float stabilization_offset_base[2];      /* baseline contribution to determined offset. */
 	float stabilization_rotation_base[2][2]; /* baseline contribution to determined rotation. */
+	float stabilization_scale_base;          /* baseline contribution to determined zoom. */
 	   /* Baseline defined at reference frame for this track,
 	    * which is as close as possible to the anchor_frame.
 	    * Rotation contribution matrix is relative
 	    * to already translated frame center
 	    */
+
+	float pad;
 } MovieTrackingTrack;
 
 typedef struct MovieTrackingPlaneMarker {
@@ -469,6 +472,7 @@ enum {
 	TRACKING_2D_STABILIZATION   = (1 << 0),
 	TRACKING_AUTOSCALE          = (1 << 1),
 	TRACKING_STABILIZE_ROTATION = (1 << 2),
+	TRACKING_STABILIZE_SCALE    = (1 << 3),
 	TRACKING_SHOW_STAB_TRACKS   = (1 << 5)
 };
 
