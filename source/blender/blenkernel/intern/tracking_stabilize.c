@@ -172,8 +172,9 @@ static MovieTrackingMarker *get_tracking_data_point(MovieTrackingTrack *track, i
 	if ((marker == first && marker->framenr < anchor_frame) ||
 	    (marker == last  && marker->framenr > anchor_frame)) {
 
-		float fade_out = 1/TRACK_END_FADE_TIMEBASE * (framenr - marker->framenr);
-		BLI_assert(fade_out > 0);
+		float fade_out = 1.0f / TRACK_END_FADE_TIMEBASE * (framenr - marker->framenr);
+		BLI_assert((marker == first && framenr <= marker->framenr) || (marker == last && framenr >= marker->framenr));
+
 		*weight = track->weight * exp2f(-fade_out*fade_out);
 		return marker;
 	}
