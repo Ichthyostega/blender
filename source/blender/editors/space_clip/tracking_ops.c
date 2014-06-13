@@ -3315,7 +3315,7 @@ static int stabilize_2d_add_exec(bContext *C, wmOperator *UNUSED(op))
 	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
 	MovieTrackingTrack *track;
 	MovieTrackingStabilization *stab = &tracking->stabilization;
-	int update = 0;
+	bool update = false;
 
 	track = tracksbase->first;
 	while (track) {
@@ -3323,7 +3323,7 @@ static int stabilize_2d_add_exec(bContext *C, wmOperator *UNUSED(op))
 			track->flag |= TRACK_USE_2D_STAB;
 			stab->tot_track++;
 
-			update = 1;
+			update = true;
 		}
 
 		track = track->next;
@@ -3364,7 +3364,8 @@ static int stabilize_2d_remove_exec(bContext *C, wmOperator *UNUSED(op))
 	MovieTrackingStabilization *stab = &tracking->stabilization;
 	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
 	MovieTrackingTrack *track;
-	int a = 0, update = 0;
+	int a = 0;
+	bool update = false;
 
 	track = tracksbase->first;
 	while (track) {
@@ -3378,7 +3379,7 @@ static int stabilize_2d_remove_exec(bContext *C, wmOperator *UNUSED(op))
 				if (stab->act_track < 0)
 					stab->act_track = 0;
 
-				update = 1;
+				update = true;
 
 				break;
 			}
@@ -3423,14 +3424,14 @@ static int stabilize_2d_select_exec(bContext *C, wmOperator *UNUSED(op))
 	MovieTracking *tracking = &clip->tracking;
 	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
 	MovieTrackingTrack *track;
-	int update = 0;
+	bool update = false;
 
 	track = tracksbase->first;
 	while (track) {
 		if (track->flag & TRACK_USE_2D_STAB) {
 			BKE_tracking_track_flag_set(track, TRACK_AREA_ALL, SELECT);
 
-			update = 1;
+			update = true;
 		}
 
 		track = track->next;
@@ -3467,7 +3468,7 @@ static int stabilize_2d_rotation_add_exec(bContext *C, wmOperator *UNUSED(op))
 	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
 	MovieTrackingTrack *track;
 	MovieTrackingStabilization *stab = &tracking->stabilization;
-	int update = 0;
+	bool update = false;
 
 	track = tracksbase->first;
 	while (track) {
@@ -3475,7 +3476,7 @@ static int stabilize_2d_rotation_add_exec(bContext *C, wmOperator *UNUSED(op))
 			track->flag |= TRACK_USE_2D_STAB_ROT;
 			stab->tot_rot_track++;
 
-			update = 1;
+			update = true;
 		}
 
 		track = track->next;
@@ -3516,7 +3517,8 @@ static int stabilize_2d_rotation_remove_exec(bContext *C, wmOperator *UNUSED(op)
 	MovieTrackingStabilization *stab = &tracking->stabilization;
 	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
 	MovieTrackingTrack *track;
-	int a = 0, update = 0;
+	int a = 0;
+	bool update = false;
 
 	track = tracksbase->first;
 	while (track) {
@@ -3530,7 +3532,7 @@ static int stabilize_2d_rotation_remove_exec(bContext *C, wmOperator *UNUSED(op)
 				if (stab->act_rot_track < 0)
 					stab->act_rot_track = 0;
 
-				update = 1;
+				update = true;
 
 				break;
 			}
@@ -3575,14 +3577,14 @@ static int stabilize_2d_rotation_select_exec(bContext *C, wmOperator *UNUSED(op)
 	MovieTracking *tracking = &clip->tracking;
 	ListBase *tracksbase = BKE_tracking_get_active_tracks(tracking);
 	MovieTrackingTrack *track;
-	int update = 0;
+	bool update = false;
 
 	track = tracksbase->first;
 	while (track) {
 		if (track->flag & TRACK_USE_2D_STAB_ROT) {
 			BKE_tracking_track_flag_set(track, TRACK_AREA_ALL, SELECT);
 
-			update = 1;
+			update = true;
 		}
 
 		track = track->next;
