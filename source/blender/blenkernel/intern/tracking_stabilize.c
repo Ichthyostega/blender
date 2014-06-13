@@ -120,14 +120,14 @@ static void rotation_contribution(MovieTrackingTrack *track, MovieTrackingMarker
 	float frame_center[2];
 	copy_v2_fl(frame_center, 0.5f);
 	sub_v2_v2v2(pos, marker->pos, frame_center);
-	sub_v2_v2  (pos, averaged_translation_contribution);
+	sub_v2_v2(pos, averaged_translation_contribution);
 
 	pos[0] *= aspect;
 	mul_m2v2(track->stabilization_rotation_base, pos);
 
 	*result_angle = atan2f(pos[1],pos[0]);
 
-	len = sqrt(pos[0]*pos[0] + pos[1]*pos[1]) + SCALE_ERROR_LIMIT_BIAS;
+	len = len_v2(pos) + SCALE_ERROR_LIMIT_BIAS;
 	*result_scale = len * track->stabilization_scale_base;
 	BLI_assert(0.0 < *result_scale);
 }
@@ -350,7 +350,7 @@ static void initialize_track_for_stabilization(MovieTrackingTrack *track, int re
 	float frame_center[2];
 
 	MovieTrackingMarker *marker = BKE_tracking_marker_get_exact(track, reference_frame);
-	BLI_assert(marker); /* otherwise logic for initialization order is broken */
+	BLI_assert(marker); /* logic for initialization order ensures there *is* a marker on that very frame */
 
 	sub_v2_v2v2(track->stabilization_offset_base, average_translation, marker->pos);
 
@@ -492,8 +492,9 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
 	MovieTrackingTrack *track;
 
 	/* Early output if stabilization is already initialized or not enabled. */
-	if (stab->ok || !(stab->flag & TRACKING_2D_STABILIZATION)) return;
-
+	if (stab->ok || !(stab->flag & TRACKING_2D_STABILIZATION)) {
+		return;
+	}
 
 	stab->scale = 1.0f;
 

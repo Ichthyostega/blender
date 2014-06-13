@@ -1671,9 +1671,9 @@ static void rna_def_trackingStabilization(BlenderRNA *brna)
 	PropertyRNA *prop;
 
 	static EnumPropertyItem filter_items[] = {
-		{TRACKING_FILTER_NEAREST,  "NEAREST",  0, "Nearest",  "no interpolation; use nearest neighbor pixel"},
-		{TRACKING_FILTER_BILINEAR, "BILINEAR", 0, "Bilinear", "linear interpolation between adjacent pixels"},
-		{TRACKING_FILTER_BICUBIC,  "BICUBIC",  0, "Bicubic",  "high quality pixel interpolation"},
+		{TRACKING_FILTER_NEAREST,  "NEAREST",  0, "Nearest",  "No interpolation; use nearest neighbor pixel"},
+		{TRACKING_FILTER_BILINEAR, "BILINEAR", 0, "Bilinear", "Simple interpolation between adjacent pixels"},
+		{TRACKING_FILTER_BICUBIC,  "BICUBIC",  0, "Bicubic",  "High quality pixel interpolation"},
 		{0, NULL, 0, NULL, NULL}
 	};
 
@@ -1817,7 +1817,7 @@ static void rna_def_trackingStabilization(BlenderRNA *brna)
 	prop = RNA_def_property(srna, "filter_type", PROP_ENUM, PROP_NONE);
 	RNA_def_property_enum_sdna(prop, NULL, "filter");
 	RNA_def_property_enum_items(prop, filter_items);
-	RNA_def_property_ui_text(prop, "Interpolate", "Method to interpolate sub-pixel shifts and rotations due to stabilization");
+	RNA_def_property_ui_text(prop, "Interpolate", "Interpolation to use for sub-pixel shifts and rotations due to stabilization");
 	RNA_def_property_update(prop, NC_MOVIECLIP | ND_DISPLAY, "rna_tracking_flushUpdate");
 
 	/* UI display : show participating tracks */

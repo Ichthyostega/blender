@@ -335,8 +335,7 @@ void BKE_tracking_settings_init(MovieTracking *tracking)
 
 	tracking->stabilization.scaleinf = 1.0f;
 	tracking->stabilization.anchor_frame = MINFRAME;
-	tracking->stabilization.target_pos[0] = 0.0f;
-	tracking->stabilization.target_pos[1] = 0.0f;
+	zero_v2(tracking->stabilization.target_pos);
 	tracking->stabilization.target_rot = 0.0f;
 	tracking->stabilization.scale = 1.0f;
 
