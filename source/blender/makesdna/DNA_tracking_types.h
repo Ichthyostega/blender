@@ -268,7 +268,7 @@ typedef struct MovieTrackingStabilization {
 
 	/* 2d stabilization */
 	float maxscale;         /* max auto-scale factor */
-	MovieTrackingTrack *rot_track;  /* @deprecated formerly a single track was used to stabilize rotation */
+	MovieTrackingTrack *rot_track DNA_DEPRECATED;  /* use TRACK_USE_2D_STAB_ROT on individual tracks instead */
 
 	int anchor_frame;		/* reference point to anchor stabilization offset */
 	float target_pos[2];	/* expected target position of frame after raw stabilization, will be subtracted */

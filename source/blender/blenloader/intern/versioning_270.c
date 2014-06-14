@@ -84,7 +84,10 @@
 static void migrate_single_rot_stabilization_track_settings(MovieTrackingStabilization *stab)
 {
 	if (stab->rot_track) {
-		stab->rot_track->flag |= TRACK_USE_2D_STAB_ROT;
+		if (!(stab->rot_track->flag & TRACK_USE_2D_STAB_ROT)) {
+			stab->tot_rot_track++;
+			stab->rot_track->flag |= TRACK_USE_2D_STAB_ROT;
+		}
 	}
 	stab->rot_track = NULL; /* this field is now ignored */
 
@@ -1338,9 +1341,8 @@ void blo_do_versions_270(FileData *fd, Library *UNUSED(lib), Main *main)
 		/* ------- end of grease pencil initialization --------------- */
 	}
 
-	/* TODO::Ichthyo Tracking-2D-Stabilization rework by Ichthyostega: please add the correct final version here, in case this patch hits mainline */
-	if (!MAIN_VERSION_ATLEAST(main, 275, 55) &&
-	     MAIN_VERSION_ATLEAST(main, 261, 0)) {
+	if (!DNA_struct_elem_find(fd->filesdna, "MovieTrackingStabilization", "int", "tot_rot_track") &&
+		DNA_struct_elem_find(fd->filesdna, "MovieTrackingStabilization", "MovieTrackingTrack*" ,"rot_track")) {
 
 		MovieClip *clip;
 		for (clip = main->movieclip.first; clip; clip = clip->id.next) {
