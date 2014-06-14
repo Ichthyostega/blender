@@ -190,9 +190,6 @@ void CLIP_OT_stabilize_2d_rotation_add(struct wmOperatorType *ot);
 void CLIP_OT_stabilize_2d_rotation_remove(struct wmOperatorType *ot);
 void CLIP_OT_stabilize_2d_rotation_select(struct wmOperatorType *ot);
 
-/** @deprecated */
-void CLIP_OT_stabilize_2d_set_rotation(struct wmOperatorType *ot);
-
 void CLIP_OT_clean_tracks(struct wmOperatorType *ot);
 
 void CLIP_OT_tracking_object_new(struct wmOperatorType *ot);
