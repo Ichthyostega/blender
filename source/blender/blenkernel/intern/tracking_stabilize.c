@@ -69,6 +69,33 @@ static float SCALE_ERROR_LIMIT_BIAS = 0.01;
 
 
 
+/* == private working data == */
+
+/**
+ * Per track baseline for stabilization, defined at reference frame.
+ * A track's reference frame is chosen as close as possible to the (global) anchor_frame.
+ * Baseline holds the constant part of each track's contribution to the observed movement;
+ * it is calculated at initialization pass, using the measurement value at reference frame
+ * plus the average contribution to fill the gap between global anchor_frame and the
+ * reference frame for this track.
+ */
+typedef struct TrackStabilizationBase {
+	float stabilization_offset_base[2];
+	float stabilization_rotation_base[2][2]; /* measured relative to translated pivot */
+	float stabilization_scale_base;          /* measured relative to translated pivot */
+	bool is_init_for_stabilization;
+} TrackStabilizationBase;
+
+/**
+ * Tracks are reordered for initialization, starting as close as possible to anchor_frame
+ */
+typedef struct TrackInitOrder {
+	int sort_value;
+	int reference_frame;
+	MovieTrackingTrack *data;
+} TrackInitOrder;
+
+
 
 /**
  * Calculate the contribution of a single track at implicitly given time point (frame).
@@ -78,15 +105,16 @@ static float SCALE_ERROR_LIMIT_BIAS = 0.01;
  * local reference frame of this track. The constant part of this contribution is precomputed initially.
  * At the anchor_frame, by definition the contribution of all tracks is zero, keeping the frame in place.
  *
+ * @param trackRef per track baseline contribution at reference frame; filled in at initialization
  * @param marker tracking data to use as contribution for current frame.
  * @param result_offset total cumulated contribution of this track,
  *                      relative to the stabilization anchor_frame,
  *                      in normalized (0...1) coordinates.
  */
-static void translation_contribution(MovieTrackingTrack *track, MovieTrackingMarker *marker,
+static void translation_contribution(TrackStabilizationBase *trackRef, MovieTrackingMarker *marker,
                                      float result_offset[2])
 {
-	add_v2_v2v2(result_offset, track->stabilization_offset_base, marker->pos);
+	add_v2_v2v2(result_offset, trackRef->stabilization_offset_base, marker->pos);
 }
 
 /**
@@ -111,7 +139,7 @@ static void translation_contribution(MovieTrackingTrack *track, MovieTrackingMar
  *   To handle those values in the same framework, we average the scales as logarithms.
  *  @param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
  */
-static void rotation_contribution(MovieTrackingTrack *track, MovieTrackingMarker *marker, float aspect,
+static void rotation_contribution(TrackStabilizationBase *trackRef, MovieTrackingMarker *marker, float aspect,
                                   float averaged_translation_contribution[2],
                                   float *result_angle, float *result_scale)
 {
@@ -123,13 +151,19 @@ static void rotation_contribution(MovieTrackingTrack *track, MovieTrackingMarker
 	sub_v2_v2(pos, averaged_translation_contribution);
 
 	pos[0] *= aspect;
-	mul_m2v2(track->stabilization_rotation_base, pos);
+	mul_m2v2(trackRef->stabilization_rotation_base, pos);
 
 	*result_angle = atan2f(pos[1],pos[0]);
 
 	len = len_v2(pos) + SCALE_ERROR_LIMIT_BIAS;
-	*result_scale = len * track->stabilization_scale_base;
+	*result_scale = len * trackRef->stabilization_scale_base;
 	BLI_assert(0.0 < *result_scale);
+}
+
+
+bool is_init_for_stabilization(MovieTrackingTrack *track) {
+	TrackStabilizationBase *base = track->stabilizationBase;
+	return (base && base->is_init_for_stabilization);
 }
 
 
@@ -211,14 +245,14 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 	ok = false;
 	weight_sum = 0.0f;
 	for (track = tracking->tracks.first; track; track = track->next) {
-		if (!track->is_init_for_stabilization) continue;
+		if (!is_init_for_stabilization(track)) continue;
 		if (track->flag & TRACK_USE_2D_STAB) {
 			float weight = 0.0f;
 			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, anchor, &weight);
 			if (marker) {
 				float offset[2];
 				weight_sum += weight;
-				translation_contribution(track, marker, offset);
+				translation_contribution(track->stabilizationBase, marker, offset);
 				mul_v2_fl(offset, weight);
 				add_v2_v2(translation, offset);
 				ok = (weight_sum > 0);
@@ -235,14 +269,14 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 	ok = false;
 	weight_sum = 0.0f;
 	for (track = tracking->tracks.first; track; track = track->next) {
-		if (!track->is_init_for_stabilization) continue;
+		if (!is_init_for_stabilization(track)) continue;
 		if (track->flag & TRACK_USE_2D_STAB_ROT) {
 			float weight = 0.0f;
 			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, anchor, &weight);
 			if (marker) {
 				float rotation, scale;
 				weight_sum += weight;
-				rotation_contribution(track, marker, aspect, translation, &rotation, &scale);
+				rotation_contribution(track->stabilizationBase, marker, aspect, translation, &rotation, &scale);
 				*angle += rotation * weight;
 				if (stab->flag & TRACKING_STABILIZE_SCALE)
 					*scale_step += logf(scale) * weight;
@@ -258,12 +292,6 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 	return ok;
 }
 
-
-typedef struct TrackInitOrder {
-	int sort_value;
-	int reference_frame;
-	MovieTrackingTrack *data;
-} TrackInitOrder;
 
 /**
  * reorder tracks starting with those providing a tracking data frame
@@ -349,10 +377,15 @@ static void initialize_track_for_stabilization(MovieTrackingTrack *track, int re
 	float pos[2], angle, len;
 	float frame_center[2];
 
+	TrackStabilizationBase *trackRef = track->stabilizationBase;
 	MovieTrackingMarker *marker = BKE_tracking_marker_get_exact(track, reference_frame);
 	BLI_assert(marker); /* logic for initialization order ensures there *is* a marker on that very frame */
 
-	sub_v2_v2v2(track->stabilization_offset_base, average_translation, marker->pos);
+	if (!trackRef) {
+		trackRef = track->stabilizationBase = MEM_callocN(sizeof(TrackStabilizationBase), "2D stabilization per track baseline data");
+	}
+
+	sub_v2_v2v2(trackRef->stabilization_offset_base, average_translation, marker->pos);
 
 	copy_v2_fl(frame_center, 0.5f);
 	sub_v2_v2v2(pos, marker->pos, frame_center);
@@ -360,12 +393,12 @@ static void initialize_track_for_stabilization(MovieTrackingTrack *track, int re
 
 	pos[0] *= aspect;
 	angle = average_angle - atan2f(pos[1],pos[0]);
-	rotate_m2(track->stabilization_rotation_base, angle);
+	rotate_m2(trackRef->stabilization_rotation_base, angle);
 
 	len = sqrt(pos[0]*pos[0] + pos[1]*pos[1]) + SCALE_ERROR_LIMIT_BIAS;
-	track->stabilization_scale_base = expf(average_scale_step) / len;
+	trackRef->stabilization_scale_base = expf(average_scale_step) / len;
 
-	track->is_init_for_stabilization = true;
+	trackRef->is_init_for_stabilization = true;
 }
 
 
@@ -383,7 +416,10 @@ static void initialize_all_tracks(MovieTracking *tracking, float aspect)
 	zero_v2(average_translation);
 
 	for (track = tracking->tracks.first; track; track = track->next) {
-		track->is_init_for_stabilization = false;
+		TrackStabilizationBase *base = track->stabilizationBase;
+		if (base) {
+			base->is_init_for_stabilization = false;
+		}
 		++tracknr;
 	}
 	if (!tracknr) return;
