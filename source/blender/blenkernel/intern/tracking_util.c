@@ -155,6 +155,10 @@ void tracks_map_merge(TracksMap *map, MovieTracking *tracking)
 				track->pat_flag = old_track->pat_flag;
 				track->search_flag = old_track->search_flag;
 
+				/* discard stabilization working data; needs to be recalculated anyway */
+				if (old_track->stabilizationBase)
+					MEM_freeN(old_track->stabilizationBase);
+
 				/* Copy all the rest settings back from the map to the actual tracks. */
 				MEM_freeN(old_track->markers);
 				*old_track = *track;

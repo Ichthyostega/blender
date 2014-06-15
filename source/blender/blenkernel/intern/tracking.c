@@ -565,11 +565,6 @@ MovieTrackingTrack *BKE_tracking_track_add(MovieTracking *tracking, ListBase *tr
 	track->algorithm_flag = settings->default_algorithm_flag;
 	track->weight = settings->default_weight;
 
-	track->is_init_for_stabilization = false;
-	zero_v2(track->stabilization_offset_base);
-	unit_m2(track->stabilization_rotation_base);
-	track->stabilization_scale_base = 1.0;
-
 	memset(&marker, 0, sizeof(marker));
 	marker.pos[0] = x;
 	marker.pos[1] = y;
@@ -606,6 +601,7 @@ MovieTrackingTrack *BKE_tracking_track_duplicate(MovieTrackingTrack *track)
 	new_track->next = new_track->prev = NULL;
 
 	new_track->markers = MEM_dupallocN(new_track->markers);
+	new_track->stabilizationBase = MEM_dupallocN(new_track->stabilizationBase);
 
 	return new_track;
 }
@@ -629,6 +625,8 @@ void BKE_tracking_track_free(MovieTrackingTrack *track)
 {
 	if (track->markers)
 		MEM_freeN(track->markers);
+	if (track->stabilizationBase)
+		MEM_freeN(track->stabilizationBase);
 }
 
 /* Set flag for all specified track's areas.
