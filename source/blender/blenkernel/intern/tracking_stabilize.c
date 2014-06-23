@@ -35,9 +35,11 @@
 #include <limits.h>
 
 #include "DNA_movieclip_types.h"
+#include "DNA_scene_types.h"
 
 #include "BLI_utildefines.h"
 #include "BLI_sort_utils.h"
+#include "BLI_math_vector.h"
 #include "BLI_math.h"
 
 #include "BKE_tracking.h"
@@ -48,14 +50,6 @@
 
 
 /* == Parameterization constants == */
-
-/**
- * when crossing the start / end of a track's definition range,
- * the last valid contribution value frozen, but this effect is damed,
- * causing the track's contribution to be faded out by an exponential function.
- * This is the time base  of this fade (in frames)
- */
-static float TRACK_END_FADE_TIMEBASE = 25.0f;
 
 /**
  * when measuring the scale changes relative to the rotation pivot point, it might happen
@@ -161,9 +155,78 @@ static void rotation_contribution(TrackStabilizationBase *trackRef, MovieTrackin
 }
 
 
-bool is_init_for_stabilization(MovieTrackingTrack *track) {
+static bool is_init_for_stabilization(MovieTrackingTrack *track) {
 	TrackStabilizationBase *base = track->stabilizationBase;
 	return (base && base->is_init_for_stabilization);
+}
+
+static bool is_usable_for_stabilization(MovieTrackingTrack *track) {
+	return (track->flag & TRACK_USE_2D_STAB) &&
+			is_init_for_stabilization(track);
+}
+
+
+static int search_closest_marker_index(MovieTrackingTrack *track, int ref_frame) {
+	MovieTrackingMarker *markers = track->markers;
+	int end = track->markersnr;
+	int i = track->last_marker;
+
+	i = MAX2(0, i);
+	i = MIN2(i, end - 1);
+	for ( ; i < end - 1 && markers[i].framenr <= ref_frame; ++i);
+	for ( ; 0 < i && markers[i].framenr > ref_frame; --i);
+
+	track->last_marker = i;
+	return i;
+}
+
+static void retrieve_next_higher_usable_frame(MovieTrackingTrack *track, int i, int ref_frame, int *next_higher) {
+	MovieTrackingMarker *markers = track->markers;
+	int end = track->markersnr;
+	BLI_assert(0 <= i && i < end);
+
+	/* TODO should also consider the track_weight, but this would require to get automation data for markers[i].framenr */
+	while (i < end && (markers[i].framenr < ref_frame || (markers[i].flag & MARKER_DISABLED))) {
+		++i;
+	}
+	if (i < end && markers[i].framenr < *next_higher) {
+		BLI_assert(markers[i].framenr >= ref_frame);
+		*next_higher = markers[i].framenr;
+	}
+}
+
+static void	retrieve_next_lower_usable_frame(MovieTrackingTrack *track, int i, int ref_frame, int *next_lower) {
+	MovieTrackingMarker *markers = track->markers;
+	int end = track->markersnr;
+	BLI_assert(0 <= i && i < end);
+
+	/* TODO should also consider the track_weight, but this would require to get automation data for markers[i].framenr */
+	while (i >= 0 && (markers[i].framenr > ref_frame || (markers[i].flag & MARKER_DISABLED))) {
+		--i;
+	}
+	if (0 <= i && markers[i].framenr > *next_lower) {
+		BLI_assert(markers[i].framenr <= ref_frame);
+		*next_lower = markers[i].framenr;
+	}
+}
+
+
+/**
+ * find closest frames with usable stabilization data.
+ * A frame counts as usable when there is at least one track marked for translation stabilization,
+ * which has an enabled tracking marker at this very frame. We search both for the next lower
+ * and next higher position, to allow the caller to interpolate gaps and to extrapolate
+ * at the ends of the definition range.
+ * @remarks regarding performance note that the individual tracks will cache the last search position.
+ */
+static void find_next_working_frames(MovieTracking *tracking, int framenr, int *next_lower, int *next_higher) {
+	MovieTrackingTrack *track;
+	for (track = tracking->tracks.first; track; track = track->next)
+		if (is_usable_for_stabilization(track)){
+			int startpoint = search_closest_marker_index(track, framenr);
+			retrieve_next_higher_usable_frame(track, startpoint, framenr, next_higher);
+			retrieve_next_lower_usable_frame(track, startpoint, framenr, next_lower);
+		}
 }
 
 
@@ -172,44 +235,14 @@ bool is_init_for_stabilization(MovieTrackingTrack *track) {
  * The returned weight value signals the validity; data recorded for this tracking marker
  * on the exact requested frame is output with the full weight of this track, while gaps
  * in the data sequence cause the weight to go to zero.
- *
- * There is special treatment for the regions beyond the range covered by this track's data.
- * On condition that the anchor_frame lies \e within this range, we rather "fade out" the
- * first / last data on a track, which causes the stabilization to "stall" at the beginning
- * and end of the clip, instead of jumping back to uncompensated state immediately.
- *
- * @param marker the retrieved data is output via this parameter, may be \c NULL.
- * @return weight to use for this data point when averaging
  */
-static MovieTrackingMarker *get_tracking_data_point(MovieTrackingTrack *track, int framenr, int anchor_frame,
+static MovieTrackingMarker *get_tracking_data_point(MovieTrackingTrack *track, int framenr,
                                                     float *weight)
 {
 	MovieTrackingMarker *marker = BKE_tracking_marker_get(track, framenr);
-	MovieTrackingMarker *first, *last;
 
-	if (!marker) {
-		*weight = 0.0f;
-		return NULL;
-	}
-	else if (marker->framenr == framenr && !(marker->flag & MARKER_DISABLED)) {
+	if (marker && marker->framenr == framenr && !(marker->flag & MARKER_DISABLED)) {
 		*weight = track->weight;
-		return marker;
-	}
-
-	BLI_assert(marker);
-	BLI_assert(0 < track->markersnr);
-
-	first = &track->markers[0];
-	last  = &track->markers[track->markersnr - 1];
-
-	/* before track start / after track end? */
-	if ((marker == first && marker->framenr < anchor_frame) ||
-	    (marker == last  && marker->framenr > anchor_frame)) {
-
-		float fade_out = 1.0f / TRACK_END_FADE_TIMEBASE * (framenr - marker->framenr);
-		BLI_assert((marker == first && framenr <= marker->framenr) || (marker == last && framenr >= marker->framenr));
-
-		*weight = track->weight * exp2f(-fade_out*fade_out);
 		return marker;
 	}
 	else {
@@ -218,6 +251,7 @@ static MovieTrackingMarker *get_tracking_data_point(MovieTrackingTrack *track, i
 		return NULL;
 	}
 }
+
 
 /**
  * Weighted average of the per track cumulated contributions at given frame
@@ -235,7 +269,6 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 	bool ok; float weight_sum;
 	MovieTrackingTrack *track;
 	MovieTrackingStabilization *stab = &tracking->stabilization;
-	int anchor = tracking->stabilization.anchor_frame;
 	BLI_assert(stab->flag & TRACKING_2D_STABILIZATION);
 
 	zero_v2(translation);
@@ -248,7 +281,7 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 		if (!is_init_for_stabilization(track)) continue;
 		if (track->flag & TRACK_USE_2D_STAB) {
 			float weight = 0.0f;
-			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, anchor, &weight);
+			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, &weight);
 			if (marker) {
 				float offset[2];
 				weight_sum += weight;
@@ -272,7 +305,7 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 		if (!is_init_for_stabilization(track)) continue;
 		if (track->flag & TRACK_USE_2D_STAB_ROT) {
 			float weight = 0.0f;
-			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, anchor, &weight);
+			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, &weight);
 			if (marker) {
 				float rotation, scale;
 				weight_sum += weight;
@@ -285,11 +318,56 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 			}
 		}
 	}
-	if (!ok) return false;
+	if (ok) {
+		*scale_step /= weight_sum;
+		*angle /= weight_sum;
+	}
+	else {
+		/* we reach this point because translation could be calculated,
+		 * but rotation/scale found no data to work on. */
+		*scale_step = 0.0f;
+		*angle = 0.0f;
+	}
+	return true;
+}
 
-	*scale_step /= weight_sum;
-	*angle /= weight_sum;
-	return ok;
+
+/**
+ * linear interpolation of data retrieved at two measurement points.
+ * This function is used to fill gaps in the middle of the covered area,
+ * at frames without any usable tracks for stabilization.
+ *
+ * @param framenr position to interpolate for
+ * @param frame_a valid measurement point below framenr
+ * @param frame_b valid measurement point above framenr
+ * @return \c true if both measurements could actually be retrieved.
+ *         Otherwise output parameters remain unaltered
+ */
+static bool interpolate_averaged_track_contributions(MovieTracking *tracking,
+                                                     int framenr, int frame_a, int frame_b, float aspect,
+                                                     float translation[2], float* angle, float* scale_step) {
+	float t, s;
+	float trans_a[2], trans_b[2];
+	float angle_a, angle_b;
+	float scale_a, scale_b;
+	bool success = false;
+
+	BLI_assert(frame_a <= frame_b);
+	BLI_assert(frame_a <= framenr);
+	BLI_assert(framenr <= frame_b);
+
+	t = ((float)framenr - frame_a) / (frame_b - frame_a);
+	s = 1.0f - t;
+
+	success = average_track_contributions(tracking, frame_a, aspect, trans_a, &angle_a, &scale_a);
+	if (!success) return false;
+	success = average_track_contributions(tracking, frame_b, aspect, trans_b, &angle_b, &scale_b);
+	if (!success) return false;
+
+	interp_v2_v2v2(translation, trans_a, trans_b, t);
+	*scale_step = s * scale_a + t * scale_b;
+	*angle = s * angle_a + t * angle_b;
+	return true;
 }
 
 
@@ -302,7 +380,7 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
  * @param order array for sorting the tracks. Must be of suitable size to hold all tracks.
  * @return number of actually usable tracks, can be less than the overall number of tracks
  * @remark after returning, the order array holds entries up to the number of usable tracks,
- *         appropriately sorted starting with the closest tracks. Initialisation includes
+ *         appropriately sorted starting with the closest tracks. Initialization includes
  *         disabled tracks, since they might be enabled through automation later.
  */
 static int establish_track_initialization_order(MovieTracking *tracking, TrackInitOrder order[])
@@ -457,6 +535,7 @@ static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, in
                                                      float translation[2], float* angle, float* scale_step)
 {
 	MovieTrackingStabilization *stab = &tracking->stabilization;
+	bool success = false;
 
 	/* Early output if stabilization is disabled. */
 	if ((stab->flag & TRACKING_2D_STABILIZATION) == 0) {
@@ -466,7 +545,29 @@ static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, in
 		return false;
 	}
 
-	return average_track_contributions(tracking, framenr, aspect, translation, angle, scale_step);
+	success = average_track_contributions(tracking, framenr, aspect, translation, angle, scale_step);
+	if (!success) {
+		/* try to hold extrapolated settings beyond the definition range
+		 * and to interpolate in gaps without any usable tracking data
+		 * to prevent sudden jump to image zero position
+		 */
+		int next_lower = MINAFRAME;
+		int next_higher = MAXFRAME;
+		find_next_working_frames(tracking, framenr, &next_lower, &next_higher);
+		if (next_lower >= MINFRAME && next_higher < MAXFRAME) {
+			success = interpolate_averaged_track_contributions(tracking, framenr, next_lower, next_higher, aspect,
+			                                                   translation, angle, scale_step);
+		}
+		else if (next_higher < MAXFRAME) {
+			/* before start of stabilized range: extrapolate start point settings */
+			success = average_track_contributions(tracking, next_higher, aspect, translation, angle, scale_step);
+		}
+		else if (next_lower >= MINFRAME) {
+			/* after end of stabilized range: extrapolate end point settings */
+			success = average_track_contributions(tracking, next_lower, aspect, translation, angle, scale_step);
+		}
+	}
+	return success;
 }
 
 /**
