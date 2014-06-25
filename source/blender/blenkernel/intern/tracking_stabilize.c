@@ -591,9 +591,6 @@ static void stabilization_calculate_data(MovieTracking *tracking, int size, floa
 		*scale *= expf(scale_step * stab->scaleinf); /* averaged in log scale */
 	}
 
-	translation[0] *= (float)size * aspect;
-	translation[1] *= (float)size;
-
 	mul_v2_fl(translation, stab->locinf);
 	*angle *= stab->rotinf;
 
@@ -603,6 +600,10 @@ static void stabilization_calculate_data(MovieTracking *tracking, int size, floa
 	 */
 	sub_v2_v2(translation, stab->target_pos);
 	*angle -= stab->target_rot;
+
+	/* convert from relative to absolute coordinates, square pixels. */
+	translation[0] *= (float)size * aspect;
+	translation[1] *= (float)size;
 
 	/* output measured data, or inverse of the measured values for compensation? */
 	if (do_compensate) {
