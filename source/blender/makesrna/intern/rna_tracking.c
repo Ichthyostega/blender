@@ -1756,9 +1756,9 @@ static void rna_def_trackingStabilization(BlenderRNA *brna)
 	/* target position */
 	prop = RNA_def_property(srna, "target_pos", PROP_FLOAT, PROP_TRANSLATION);
 	RNA_def_property_array(prop, 2);
-	RNA_def_property_ui_range(prop, -FLT_MAX, FLT_MAX, 1000, 1); /* increment in steps of 10 pixels (1 pixel with shift). Show 1 digit after point */
+	RNA_def_property_ui_range(prop, -FLT_MAX, FLT_MAX, 1, 3); /* increment in steps of 0.01 and show 3 digit after point */
 	RNA_def_property_float_sdna(prop, NULL, "target_pos");
-	RNA_def_property_ui_text(prop, "Expected Position", "Known offset of original shot, will be subtracted; e.g. for panning shot");
+	RNA_def_property_ui_text(prop, "Expected Position", "Known relative offset of original shot, will be subtracted; e.g. for panning shot, can be animated");
 	RNA_def_property_update(prop, NC_MOVIECLIP | ND_DISPLAY, NULL);
 
 	/* target rotation */
