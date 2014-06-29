@@ -134,15 +134,16 @@ static void translation_contribution(TrackStabilizationBase *trackRef, MovieTrac
  *  @param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
  */
 static void rotation_contribution(TrackStabilizationBase *trackRef, MovieTrackingMarker *marker, float aspect,
-                                  float averaged_translation_contribution[2],
+                                  float target_pos[2], float averaged_translation_contribution[2],
                                   float *result_angle, float *result_scale)
 {
 	float len;
 	float pos[2];
-	float frame_center[2];
-	copy_v2_fl(frame_center, 0.5f);
-	sub_v2_v2v2(pos, marker->pos, frame_center);
-	sub_v2_v2(pos, averaged_translation_contribution);
+	float pivot[2];
+	copy_v2_fl(pivot, 0.5f); /* use center of frame as hard wired pivot */
+	add_v2_v2(pivot, averaged_translation_contribution);
+	sub_v2_v2(pivot, target_pos);
+	sub_v2_v2v2(pos, marker->pos, pivot);
 
 	pos[0] *= aspect;
 	mul_m2v2(trackRef->stabilization_rotation_base, pos);
@@ -309,7 +310,7 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 			if (marker) {
 				float rotation, scale;
 				weight_sum += weight;
-				rotation_contribution(track->stabilizationBase, marker, aspect, translation, &rotation, &scale);
+				rotation_contribution(track->stabilizationBase, marker, aspect, stab->target_pos, translation, &rotation, &scale);
 				*angle += rotation * weight;
 				if (stab->flag & TRACKING_STABILIZE_SCALE)
 					*scale_step += logf(scale) * weight;
@@ -439,21 +440,22 @@ static int establish_track_initialization_order(MovieTracking *tracking, TrackIn
  * @param track to initialize
  * @param reference_frame local for this track, the closest pick to the global anchor_frame
  * @param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
+ * @param target_pos possibly animated target position as set by the user for the reference_frame
  * @param average_translation value observed by the \e other tracks for the gap between
  *                            reference_frame and anchor_frame. This average must not contain
  *                            contributions of not yet initialized frames
  * @param average_scale_step image scale factor observed on average by the other tracks
  *                            for this frame. This value is recorded and averaged as logarithm.
  *                            The recorded scale changes are damped for very small contributions,
- *                            to limit the effect of probe points coming close to the pivot point.
+ *                            to limit the effect of probe points approaching the pivot too closely.
  * @note when done, this track is marked as initialized
  */
 static void initialize_track_for_stabilization(MovieTrackingTrack *track, int reference_frame, float aspect,
-                                               const float average_translation[2], float average_angle,
-                                               float average_scale_step)
+                                               const float target_pos[2], const float average_translation[2],
+                                               float average_angle, float average_scale_step)
 {
 	float pos[2], angle, len;
-	float frame_center[2];
+	float pivot[2];
 
 	TrackStabilizationBase *trackRef = track->stabilizationBase;
 	MovieTrackingMarker *marker = BKE_tracking_marker_get_exact(track, reference_frame);
@@ -463,17 +465,21 @@ static void initialize_track_for_stabilization(MovieTrackingTrack *track, int re
 		trackRef = track->stabilizationBase = MEM_callocN(sizeof(TrackStabilizationBase), "2D stabilization per track baseline data");
 	}
 
+	/* per track baseline value for translation */
 	sub_v2_v2v2(trackRef->stabilization_offset_base, average_translation, marker->pos);
 
-	copy_v2_fl(frame_center, 0.5f);
-	sub_v2_v2v2(pos, marker->pos, frame_center);
-	sub_v2_v2  (pos, average_translation);
+	/* per track baseline value for rotation */
+	copy_v2_fl(pivot, 0.5f); /* use center of frame as hard wired pivot */
+	add_v2_v2(pivot, average_translation);
+	sub_v2_v2(pivot, target_pos);
+	sub_v2_v2v2(pos, marker->pos, pivot);
 
 	pos[0] *= aspect;
 	angle = average_angle - atan2f(pos[1],pos[0]);
 	rotate_m2(trackRef->stabilization_rotation_base, angle);
 
-	len = sqrt(pos[0]*pos[0] + pos[1]*pos[1]) + SCALE_ERROR_LIMIT_BIAS;
+	/* per track baseline value for zoom */
+	len = len_v2(pos) + SCALE_ERROR_LIMIT_BIAS;
 	trackRef->stabilization_scale_base = expf(average_scale_step) / len;
 
 	trackRef->is_init_for_stabilization = true;
@@ -491,6 +497,8 @@ static void initialize_all_tracks(MovieTracking *tracking, float aspect)
 	int reference_frame = tracking->stabilization.anchor_frame;
 	float average_angle=0, average_scale_step=0;
 	float average_translation[2];
+	float target_pos_at_ref_frame[2];
+	zero_v2(target_pos_at_ref_frame);
 	zero_v2(average_translation);
 
 	for (track = tracking->tracks.first; track; track = track->next) {
@@ -513,8 +521,9 @@ static void initialize_all_tracks(MovieTracking *tracking, float aspect)
 		if (reference_frame != order[i].reference_frame) {
 			reference_frame = order[i].reference_frame;
 			average_track_contributions(tracking, reference_frame, aspect, average_translation, &average_angle, &average_scale_step);
+			copy_v2_v2(target_pos_at_ref_frame, tracking->stabilization.target_pos); /* TODO this is not correct: we need to get the animated value for reference_frame */
 		}
-		initialize_track_for_stabilization(track, reference_frame, aspect, average_translation, average_angle, average_scale_step);
+		initialize_track_for_stabilization(track, reference_frame, aspect, target_pos_at_ref_frame, average_translation, average_angle, average_scale_step);
 	}
 
 	cleanup:
