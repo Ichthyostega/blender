@@ -95,6 +95,7 @@ void tracks_map_insert(TracksMap *map, MovieTrackingTrack *track, void *customda
 	MovieTrackingTrack new_track = *track;
 
 	new_track.markers = MEM_dupallocN(new_track.markers);
+	new_track.stabilizationBase = NULL; /* not used here, no need to duplicate */
 
 	map->tracks[map->ptr] = new_track;
 
