@@ -100,6 +100,7 @@ void tracks_map_insert(TracksMap *map, MovieTrackingTrack *track, void *customda
 	MovieTrackingTrack new_track = *track;
 
 	new_track.markers = MEM_dupallocN(new_track.markers);
+	new_track.stabilizationBase = NULL; /* not used here, no need to duplicate */
 
 	map->tracks[map->ptr] = new_track;
 
@@ -142,6 +143,12 @@ void tracks_map_merge(TracksMap *map, MovieTracking *tracking)
 
 		track = &map->tracks[a];
 
+		/* discard any stabilization working data to prevent double-free;
+		 * it needs to be recalculated anyway */
+		if (track->stabilizationBase)
+			MEM_freeN(track->stabilizationBase);
+		track->stabilizationBase = NULL;
+
 		/* find original of operating track in list of previously displayed tracks */
 		old_track = BLI_ghash_lookup(map->hash, track);
 		if (old_track) {
@@ -155,7 +162,7 @@ void tracks_map_merge(TracksMap *map, MovieTracking *tracking)
 				track->pat_flag = old_track->pat_flag;
 				track->search_flag = old_track->search_flag;
 
-				/* discard stabilization working data; needs to be recalculated anyway */
+				/* discard stabilization working data; old_track about to be trashed */
 				if (old_track->stabilizationBase)
 					MEM_freeN(old_track->stabilizationBase);
 
