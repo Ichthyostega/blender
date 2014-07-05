@@ -231,6 +231,24 @@ static void find_next_working_frames(MovieTracking *tracking, int framenr, int *
 }
 
 
+/** find active (enabled) marker closest to the reference frame */
+static MovieTrackingMarker *get_closest_marker(MovieTrackingTrack *track, int ref_frame) {
+	if (track->markersnr > 0) {
+		int next_lower = MINAFRAME;
+		int next_higher = MAXFRAME;
+		int  i = search_closest_marker_index(track, ref_frame);
+		retrieve_next_higher_usable_frame(track, i, ref_frame, &next_higher);
+		retrieve_next_lower_usable_frame(track, i, ref_frame, &next_lower);
+
+		if ((next_higher - ref_frame) < (ref_frame - next_lower))
+			return BKE_tracking_marker_get_exact(track, next_higher);
+		else
+			return BKE_tracking_marker_get_exact(track, next_lower);
+	}
+	return NULL;
+}
+
+
 /**
  * Retrieve tracking data, if available and applicable for this frame.
  * The returned weight value signals the validity; data recorded for this tracking marker
@@ -393,7 +411,7 @@ static int establish_track_initialization_order(MovieTracking *tracking, TrackIn
 	for (track = tracking->tracks.first; track; track = track->next) {
 		MovieTrackingMarker *marker;
 		order[tracknr].data = track;
-		marker = BKE_tracking_marker_get(track, anchor_frame);
+		marker = get_closest_marker(track, anchor_frame);
 		if (marker &&
 			(track->flag & (TRACK_USE_2D_STAB | TRACK_USE_2D_STAB_ROT))) {
 
