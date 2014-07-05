@@ -91,68 +91,35 @@ typedef struct TrackInitOrder {
 
 
 
-/**
- * Calculate the contribution of a single track at implicitly given time point (frame).
- * Each track has a local reference frame, which is as close as possible to the global anchor_frame.
- * Thus the translation contribution is comprised of the offset relative to the image position at that
- * reference frame, plus a guess of the contribution for the time span between the anchor_frame and the
- * local reference frame of this track. The constant part of this contribution is precomputed initially.
- * At the anchor_frame, by definition the contribution of all tracks is zero, keeping the frame in place.
- *
- * @param trackRef per track baseline contribution at reference frame; filled in at initialization
- * @param marker tracking data to use as contribution for current frame.
- * @param result_offset total cumulated contribution of this track,
- *                      relative to the stabilization anchor_frame,
- *                      in normalized (0...1) coordinates.
- */
-static void translation_contribution(TrackStabilizationBase *trackRef, MovieTrackingMarker *marker,
-                                     float result_offset[2])
-{
-	add_v2_v2v2(result_offset, trackRef->stabilization_offset_base, marker->pos);
+/* == access animated values for given frame == */
+
+static float get_animated_locinf(MovieTrackingStabilization *stab, int framenr) {
+	return stab->locinf;  /* TODO: access F-curve */
 }
 
-/**
- * Similar to the #translation_contribution, the rotation contribution is comprised of the contribution
- * by this individual track, and the averaged contribution from anchor_frame to the ref point of this track.
- * - contribution is in terms of angles, -pi < angle < +pi, and all averaging happens in this domain
- * - yet the actual measurement happens as vector between center of frame and the tracking point
- * - moreover, the frame center has to be compensated for the already determined shift offset,
- *   in order to get the pure rotation around the image center. To turn this into a \e contribution,
- *   the likewise corrected angle at the reference frame has to be subtracted, to get only the pure
- *   angle difference this tracking point has captured.
- * - to get from vectors to angles, we have to go through an arcus tangens, which involves the issue
- *   of the definition range: the resulting angles will flip by 360deg when the measured vector passes
- *   from the 2nd to the third quadrant, thus messing up the average calculation. Since \e any tracking
- *   point might be used, these problems are quite common in practice.
- * - thus we perform the subtraction of the reference and the addition of the baseline contribution
- *   in polar coordinates as simple addition of angles; since these parts are fixed, we can bake
- *   them into a rotation matrix. With this approach, the border of the arcus tangens definition range
- *   will be reached only, when the \e whole contribution approaches +- 180deg, meaning we've already
- *   tilted the frame upside down. This situation is way less common and can be tolerated.
- * - when activated, also changes in image scale relative to the rotation center can be picked up.
- *   To handle those values in the same framework, we average the scales as logarithms.
- *  @param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
- */
-static void rotation_contribution(TrackStabilizationBase *trackRef, MovieTrackingMarker *marker, float aspect,
-                                  float target_pos[2], float averaged_translation_contribution[2],
-                                  float *result_angle, float *result_scale)
-{
-	float len;
-	float pos[2];
-	float pivot[2];
-	copy_v2_fl(pivot, 0.5f); /* use center of frame as hard wired pivot */
-	add_v2_v2(pivot, averaged_translation_contribution);
-	sub_v2_v2(pivot, target_pos);
-	sub_v2_v2v2(pos, marker->pos, pivot);
+static float get_animated_rotinf(MovieTrackingStabilization *stab, int framenr) {
+	return stab->rotinf;  /* TODO: access F-curve */
+}
 
-	pos[0] *= aspect;
-	mul_m2v2(trackRef->stabilization_rotation_base, pos);
+static float get_animated_scaleinf(MovieTrackingStabilization *stab, int framenr) {
+	return stab->scaleinf;  /* TODO: access F-curve */
+}
 
-	*result_angle = atan2f(pos[1],pos[0]);
+static void get_animated_target_pos(MovieTrackingStabilization *stab, int framenr,
+		                            float target_pos[2]) {
+	copy_v2_v2(target_pos, stab->target_pos);  /* TODO: access F-curve */
+}
 
-	len = len_v2(pos) + SCALE_ERROR_LIMIT_BIAS;
-	*result_scale = len * trackRef->stabilization_scale_base;
-	BLI_assert(0.0 < *result_scale);
+static float get_animated_target_rot(MovieTrackingStabilization *stab, int framenr) {
+	return stab->target_rot;  /* TODO: access F-curve */
+}
+
+static float get_animated_target_scale(MovieTrackingStabilization *stab, int framenr) {
+	return stab->scale;  /* TODO: access F-curve */
+}
+
+static float get_animated_weight(MovieTrackingTrack *track, int framenr) {
+	return track->weight;  /* TODO: access F-curve */
 }
 
 
@@ -261,7 +228,7 @@ static MovieTrackingMarker *get_tracking_data_point(MovieTrackingTrack *track, i
 	MovieTrackingMarker *marker = BKE_tracking_marker_get(track, framenr);
 
 	if (marker && marker->framenr == framenr && !(marker->flag & MARKER_DISABLED)) {
-		*weight = track->weight;
+		*weight = get_animated_weight(track, framenr);
 		return marker;
 	}
 	else {
@@ -269,6 +236,71 @@ static MovieTrackingMarker *get_tracking_data_point(MovieTrackingTrack *track, i
 		*weight = 0.0f;
 		return NULL;
 	}
+}
+
+
+/**
+ * Calculate the contribution of a single track at implicitly given time point (frame).
+ * Each track has a local reference frame, which is as close as possible to the global anchor_frame.
+ * Thus the translation contribution is comprised of the offset relative to the image position at that
+ * reference frame, plus a guess of the contribution for the time span between the anchor_frame and the
+ * local reference frame of this track. The constant part of this contribution is precomputed initially.
+ * At the anchor_frame, by definition the contribution of all tracks is zero, keeping the frame in place.
+ *
+ * @param trackRef per track baseline contribution at reference frame; filled in at initialization
+ * @param marker tracking data to use as contribution for current frame.
+ * @param result_offset total cumulated contribution of this track,
+ *                      relative to the stabilization anchor_frame,
+ *                      in normalized (0...1) coordinates.
+ */
+static void translation_contribution(TrackStabilizationBase *trackRef, MovieTrackingMarker *marker,
+                                     float result_offset[2])
+{
+	add_v2_v2v2(result_offset, trackRef->stabilization_offset_base, marker->pos);
+}
+
+/**
+ * Similar to the #translation_contribution, the rotation contribution is comprised of the contribution
+ * by this individual track, and the averaged contribution from anchor_frame to the ref point of this track.
+ * - contribution is in terms of angles, -pi < angle < +pi, and all averaging happens in this domain
+ * - yet the actual measurement happens as vector between center of frame and the tracking point
+ * - moreover, the frame center has to be compensated for the already determined shift offset,
+ *   in order to get the pure rotation around the image center. To turn this into a \e contribution,
+ *   the likewise corrected angle at the reference frame has to be subtracted, to get only the pure
+ *   angle difference this tracking point has captured.
+ * - to get from vectors to angles, we have to go through an arcus tangens, which involves the issue
+ *   of the definition range: the resulting angles will flip by 360deg when the measured vector passes
+ *   from the 2nd to the third quadrant, thus messing up the average calculation. Since \e any tracking
+ *   point might be used, these problems are quite common in practice.
+ * - thus we perform the subtraction of the reference and the addition of the baseline contribution
+ *   in polar coordinates as simple addition of angles; since these parts are fixed, we can bake
+ *   them into a rotation matrix. With this approach, the border of the arcus tangens definition range
+ *   will be reached only, when the \e whole contribution approaches +- 180deg, meaning we've already
+ *   tilted the frame upside down. This situation is way less common and can be tolerated.
+ * - when activated, also changes in image scale relative to the rotation center can be picked up.
+ *   To handle those values in the same framework, we average the scales as logarithms.
+ *  @param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
+ */
+static void rotation_contribution(TrackStabilizationBase *trackRef, MovieTrackingMarker *marker, float aspect,
+                                  float target_pos[2], float averaged_translation_contribution[2],
+                                  float *result_angle, float *result_scale)
+{
+	float len;
+	float pos[2];
+	float pivot[2];
+	copy_v2_fl(pivot, 0.5f); /* use center of frame as hard wired pivot */
+	add_v2_v2(pivot, averaged_translation_contribution);
+	sub_v2_v2(pivot, target_pos);
+	sub_v2_v2v2(pos, marker->pos, pivot);
+
+	pos[0] *= aspect;
+	mul_m2v2(trackRef->stabilization_rotation_base, pos);
+
+	*result_angle = atan2f(pos[1],pos[0]);
+
+	len = len_v2(pos) + SCALE_ERROR_LIMIT_BIAS;
+	*result_scale = len * trackRef->stabilization_scale_base;
+	BLI_assert(0.0 < *result_scale);
 }
 
 
@@ -327,8 +359,10 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, &weight);
 			if (marker) {
 				float rotation, scale;
+				float target_pos[2];
 				weight_sum += weight;
-				rotation_contribution(track->stabilizationBase, marker, aspect, stab->target_pos, translation, &rotation, &scale);
+				get_animated_target_pos(stab, framenr, target_pos);
+				rotation_contribution(track->stabilizationBase, marker, aspect, target_pos, translation, &rotation, &scale);
 				*angle += rotation * weight;
 				if (stab->flag & TRACKING_STABILIZE_SCALE)
 					*scale_step += logf(scale) * weight;
@@ -606,27 +640,30 @@ static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, in
  * @param do_compensate actually output values necessary to \e compensate the determined
  *                      frame movement. Otherwise, the effective target movement is returned
  */
-static void stabilization_calculate_data(MovieTracking *tracking, int size, float aspect,
+static void stabilization_calculate_data(MovieTracking *tracking, int framenr, int size, float aspect,
                                          bool do_compensate, float scale_step,
                                          float translation[2], float *scale, float *angle)
 {
 	MovieTrackingStabilization *stab = &tracking->stabilization;
+	float target_pos[2];
+	float scaleinf = get_animated_scaleinf(stab, framenr);
 
-	*scale = (stab->scale - 1.0f) * stab->scaleinf + 1.0f;
+	*scale = (get_animated_target_scale(stab,framenr) - 1.0f) * scaleinf + 1.0f;
 
 	if (stab->flag & TRACKING_STABILIZE_SCALE) {
-		*scale *= expf(scale_step * stab->scaleinf); /* averaged in log scale */
+		*scale *= expf(scale_step * scaleinf); /* averaged in log scale */
 	}
 
-	mul_v2_fl(translation, stab->locinf);
-	*angle *= stab->rotinf;
+	mul_v2_fl(translation, get_animated_locinf(stab,framenr));
+	*angle *= get_animated_rotinf(stab,framenr);
 
 	/* compensate for a target frame position.
 	 * This allows to follow tracking / panning shots in a semi manual fashion,
 	 * when animating the settings for the target frame position
 	 */
-	sub_v2_v2(translation, stab->target_pos);
-	*angle -= stab->target_rot;
+	get_animated_target_pos(stab,framenr,target_pos);
+	sub_v2_v2(translation, target_pos);
+	*angle -= get_animated_target_rot(stab,framenr);
 
 	/* convert from relative to absolute coordinates, square pixels. */
 	translation[0] *= (float)size * aspect;
@@ -687,7 +724,7 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
 		bool do_compensate = true;
 
 		stabilization_determine_offset_for_frame(tracking, cfra, image_aspect, translation, &angle, &scale_step);
-		stabilization_calculate_data(tracking, size, image_aspect, do_compensate, scale_step,
+		stabilization_calculate_data(tracking, cfra, size, image_aspect, do_compensate, scale_step,
 				                     translation, &tmp_scale, &angle);
 
 		BKE_tracking_stabilization_data_to_mat4(size*image_aspect, size, pixel_aspect, translation, 1.0f, angle, mat);
@@ -802,7 +839,7 @@ void BKE_tracking_stabilization_data_get(MovieTracking *tracking, int framenr, i
 	if (enabled &&
 		stabilization_determine_offset_for_frame(tracking, framenr, aspect, translation, angle, &scale_step)) {
 
-		stabilization_calculate_data(tracking, size, aspect, do_compensate, scale_step, translation, scale, angle);
+		stabilization_calculate_data(tracking, framenr, size, aspect, do_compensate, scale_step, translation, scale, angle);
 	}
 	else {
 		zero_v2(translation);
