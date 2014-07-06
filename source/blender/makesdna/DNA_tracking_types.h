@@ -269,8 +269,10 @@ typedef struct MovieTrackingStabilization {
 
 	int filter;     /* filter used for pixel interpolation */
 
-	/* some pre-computing run-time variables */
-	int ok;                     /* are track initialization offsets and precomputed scale still valid? */
+	/* initialization and run-time data */
+	int ok;					/* are track initialization offsets and precomputed scale still valid? */
+
+	void *animated_params;	/* runtime data for accessing possibly animated values, e.g. target_pos, locinf,... */
 } MovieTrackingStabilization;
 
 typedef struct MovieTrackingReconstruction {
