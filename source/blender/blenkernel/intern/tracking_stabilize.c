@@ -89,6 +89,12 @@ typedef struct TrackInitOrder {
 	MovieTrackingTrack *data;
 } TrackInitOrder;
 
+/**
+ * Runtime data for accessing possibly animated values
+ */
+typedef struct StabilizationAnimatedValues {
+	MovieClip *clip;
+} StabilizationAnimatedValues;
 
 
 /* == access animated values for given frame == */
@@ -131,6 +137,16 @@ static bool is_init_for_stabilization(MovieTrackingTrack *track) {
 static bool is_usable_for_stabilization(MovieTrackingTrack *track) {
 	return (track->flag & TRACK_USE_2D_STAB) &&
 			is_init_for_stabilization(track);
+}
+
+/** Prepare access to possibly animated values: retrieve available F-curves */
+static void initialize_animated_params(MovieTrackingStabilization *stab, MovieClip *clip) {
+	StabilizationAnimatedValues *ani = stab->animated_params;
+	if (!ani) {
+		ani = stab->animated_params = MEM_callocN(sizeof(StabilizationAnimatedValues), "2D stabilization animation runtime data");
+		ani->clip = clip;
+	}
+	BLI_assert(clip == ani->clip); /* otherwise init and memory ownership is possibly broken */
 }
 
 
@@ -816,9 +832,10 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
  * @param scale (output) of the scaling to apply
  * @param angle (output) of the rotation angle, relative to the frame center
  */
-void BKE_tracking_stabilization_data_get(MovieTracking *tracking, int framenr, int width, int height,
+void BKE_tracking_stabilization_data_get(MovieClip *clip, int framenr, int width, int height,
                                          float translation[2], float *scale, float *angle)
 {
+	MovieTracking *tracking = &clip->tracking;
 	MovieTrackingStabilization *stab = &tracking->stabilization;
 
 	bool enabled = stab->flag & TRACKING_2D_STABILIZATION;
@@ -829,6 +846,7 @@ void BKE_tracking_stabilization_data_get(MovieTracking *tracking, int framenr, i
 	int size = height;
 
 	if (enabled && !initialized) {
+		initialize_animated_params(stab, clip);
 		initialize_all_tracks(tracking, aspect);
 		if (stab->flag & TRACKING_AUTOSCALE) {
 			stabilization_determine_safe_image_area(tracking, size, aspect);
@@ -853,10 +871,11 @@ void BKE_tracking_stabilization_data_get(MovieTracking *tracking, int framenr, i
  *
  * NOTE: frame number should be in clip space, not scene space
  */
-ImBuf *BKE_tracking_stabilize_frame(MovieTracking *tracking, int framenr, ImBuf *ibuf,
+ImBuf *BKE_tracking_stabilize_frame(MovieClip *clip, int framenr, ImBuf *ibuf,
                                     float translation[2], float *scale, float *angle)
 {
 	float tloc[2], tscale, tangle;
+	MovieTracking *tracking = &clip->tracking;
 	MovieTrackingStabilization *stab = &tracking->stabilization;
 	ImBuf *tmpibuf;
 	int width = ibuf->x, height = ibuf->y;
@@ -896,7 +915,7 @@ ImBuf *BKE_tracking_stabilize_frame(MovieTracking *tracking, int framenr, ImBuf 
 	tmpibuf = IMB_allocImBuf(ibuf->x, ibuf->y, ibuf->planes, ibuf_flags);
 
 	/* Calculate stabilization matrix. */
-	BKE_tracking_stabilization_data_get(tracking, framenr, width, height, tloc, &tscale, &tangle);
+	BKE_tracking_stabilization_data_get(clip, framenr, width, height, tloc, &tscale, &tangle);
 	BKE_tracking_stabilization_data_to_mat4(ibuf->x, ibuf->y, pixel_aspect, tloc, tscale, tangle, mat);
 
 	/* The following code visits each nominal target grid position

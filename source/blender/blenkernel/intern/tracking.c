@@ -182,6 +182,11 @@ void BKE_tracking_free(MovieTracking *tracking)
 		BKE_tracking_distortion_free(tracking->camera.intrinsics);
 
 	tracking_dopesheet_free(&tracking->dopesheet);
+
+	if (tracking->stabilization.animated_params) {
+		MEM_freeN(tracking->stabilization.animated_params);
+		tracking->stabilization.animated_params = NULL;
+	}
 }
 
 /* Initialize motion tracking settings to default values,
@@ -217,6 +222,7 @@ void BKE_tracking_settings_init(MovieTracking *tracking)
 	tracking->stabilization.locinf = 1.0f;
 	tracking->stabilization.rotinf = 1.0f;
 	tracking->stabilization.maxscale = 2.0f;
+	tracking->stabilization.animated_params = NULL;
 	tracking->stabilization.filter = TRACKING_FILTER_BILINEAR;
 	tracking->stabilization.flag |= TRACKING_SHOW_STAB_TRACKS;
 
