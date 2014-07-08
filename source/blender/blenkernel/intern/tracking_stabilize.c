@@ -113,6 +113,7 @@ typedef struct StabilizationAnimatedValues {
 	FCurve *target_pos[2];
 	FCurve *target_rot;
 	FCurve *target_scale;
+	bool useAnimation;
 } StabilizationAnimatedValues;
 
 
@@ -128,9 +129,9 @@ static FCurve *retrieve_track_weight_animation(MovieClip *clip, MovieTrackingTra
 	return id_data_find_fcurve(&clip->id, track, &RNA_MovieTrackingTrack, "weight", 0, NULL);
 }
 
-static float fetch_from_fcurve(FCurve *animation, int framenr, MovieClip *clip, float default_value) {
-	if (animation) {
-		int scene_framenr = BKE_movieclip_remap_clip_to_scene_frame(clip, framenr);
+static float fetch_from_fcurve(FCurve *animation, int framenr, StabilizationAnimatedValues *ani, float default_value) {
+	if (animation && ani->useAnimation) {
+		int scene_framenr = BKE_movieclip_remap_clip_to_scene_frame(ani->clip, framenr);
 		return evaluate_fcurve(animation, scene_framenr);
 	}
 	return default_value;
@@ -139,40 +140,41 @@ static float fetch_from_fcurve(FCurve *animation, int framenr, MovieClip *clip, 
 
 static float get_animated_locinf(MovieTrackingStabilization *stab, int framenr) {
 	StabilizationAnimatedValues *ani = stab->animated_params;
-	return fetch_from_fcurve(ani->locinf, framenr, ani->clip, stab->locinf);
+	return fetch_from_fcurve(ani->locinf, framenr, ani, stab->locinf);
 }
 
 static float get_animated_rotinf(MovieTrackingStabilization *stab, int framenr) {
 	StabilizationAnimatedValues *ani = stab->animated_params;
-	return fetch_from_fcurve(ani->rotinf, framenr, ani->clip, stab->rotinf);
+	return fetch_from_fcurve(ani->rotinf, framenr, ani, stab->rotinf);
 }
 
 static float get_animated_scaleinf(MovieTrackingStabilization *stab, int framenr) {
 	StabilizationAnimatedValues *ani = stab->animated_params;
-	return fetch_from_fcurve(ani->scaleinf, framenr, ani->clip, stab->scaleinf);
+	return fetch_from_fcurve(ani->scaleinf, framenr, ani, stab->scaleinf);
 }
 
 static void get_animated_target_pos(MovieTrackingStabilization *stab, int framenr,
 		                            float target_pos[2]) {
 	StabilizationAnimatedValues *ani = stab->animated_params;
-	target_pos[0] = fetch_from_fcurve(ani->target_pos[0], framenr, ani->clip, stab->target_pos[0]);
-	target_pos[1] = fetch_from_fcurve(ani->target_pos[1], framenr, ani->clip, stab->target_pos[1]);
+	target_pos[0] = fetch_from_fcurve(ani->target_pos[0], framenr, ani, stab->target_pos[0]);
+	target_pos[1] = fetch_from_fcurve(ani->target_pos[1], framenr, ani, stab->target_pos[1]);
 }
 
 static float get_animated_target_rot(MovieTrackingStabilization *stab, int framenr) {
 	StabilizationAnimatedValues *ani = stab->animated_params;
-	return fetch_from_fcurve(ani->target_rot, framenr, ani->clip, stab->target_rot);
+	return fetch_from_fcurve(ani->target_rot, framenr, ani, stab->target_rot);
 }
 
 static float get_animated_target_scale(MovieTrackingStabilization *stab, int framenr) {
 	StabilizationAnimatedValues *ani = stab->animated_params;
-	return fetch_from_fcurve(ani->target_scale, framenr, ani->clip, stab->scale);
+	return fetch_from_fcurve(ani->target_scale, framenr, ani, stab->scale);
 }
 
 static float get_animated_weight(MovieTrackingTrack *track, int framenr) {
 	TrackStabilizationBase *working_data = track->stabilizationBase;
-	if (working_data) {
-		return fetch_from_fcurve(working_data->track_weight_curve, framenr, working_data->clip, track->weight);
+	if (working_data && working_data->track_weight_curve) {
+		int scene_framenr = BKE_movieclip_remap_clip_to_scene_frame(working_data->clip, framenr);
+		return evaluate_fcurve(working_data->track_weight_curve, scene_framenr);
 	}
 	return track->weight;
 }
@@ -192,6 +194,14 @@ static void initialize_animated_params(MovieTrackingStabilization *stab, MovieCl
 	ani->target_pos[1] = retrieve_stab_animation(clip, "target_pos", 1);
 	ani->target_rot    = retrieve_stab_animation(clip, "target_rot", 0);
 	ani->target_scale  = retrieve_stab_animation(clip, "target_zoom", 0);
+	ani->useAnimation  = true;
+}
+
+static void use_values_from_fcurves(MovieTrackingStabilization *stab, bool toggle) {
+	StabilizationAnimatedValues *ani = stab->animated_params;
+	if (ani) {
+		ani->useAnimation = toggle;
+	}
 }
 
 
@@ -698,6 +708,7 @@ static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, in
 		 */
 		int next_lower = MINAFRAME;
 		int next_higher = MAXFRAME;
+		use_values_from_fcurves(stab, true);
 		find_next_working_frames(tracking, framenr, &next_lower, &next_higher);
 		if (next_lower >= MINFRAME && next_higher < MAXFRAME) {
 			success = interpolate_averaged_track_contributions(tracking, framenr, next_lower, next_higher, aspect,
@@ -711,6 +722,7 @@ static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, in
 			/* after end of stabilized range: extrapolate end point settings */
 			success = average_track_contributions(tracking, next_lower, aspect, translation, angle, scale_step);
 		}
+		use_values_from_fcurves(stab, false);
 	}
 	return success;
 }
@@ -919,6 +931,7 @@ void BKE_tracking_stabilization_data_get(MovieClip *clip, int framenr, int width
 		if (stab->flag & TRACKING_AUTOSCALE) {
 			stabilization_determine_safe_image_area(tracking, size, aspect);
 		}
+		use_values_from_fcurves(stab, false); /* just use values for the global current frame */
 		stab->ok = true;
 	}
 
