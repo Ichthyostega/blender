@@ -917,12 +917,13 @@ void BKE_tracking_stabilization_data_get(MovieClip *clip, int framenr, int width
 {
 	MovieTracking *tracking = &clip->tracking;
 	MovieTrackingStabilization *stab = &tracking->stabilization;
+	float pixel_aspect = tracking->camera.pixel_aspect;
 
 	bool enabled = stab->flag & TRACKING_2D_STABILIZATION;
 	bool initialized = stab->ok;
 	bool do_compensate = true; /* might become a parameter of a stabilization compositor node */
 	float scale_step = 0.0f;
-	float aspect = (float)width / height;
+	float aspect = (float)width * pixel_aspect / height;
 	int size = height;
 
 	if (enabled && !initialized) {
