@@ -485,6 +485,7 @@ if(UNIX AND NOT APPLE)
 			FILES
 				${CMAKE_SOURCE_DIR}/release/freedesktop/blender.desktop
 				${CMAKE_SOURCE_DIR}/release/freedesktop/icons/scalable/apps/blender.svg
+				${CMAKE_SOURCE_DIR}/doc/manpage/blenderplayer.1
 			DESTINATION "."
 		)
 
@@ -505,6 +506,10 @@ if(UNIX AND NOT APPLE)
 			# manpage only with 'blender' binary
 			install(
 				FILES ${CMAKE_CURRENT_BINARY_DIR}/blender.1
+				DESTINATION share/man/man1
+			)
+			install(
+				FILES ${CMAKE_SOURCE_DIR}/doc/manpage/blenderplayer.1
 				DESTINATION share/man/man1
 			)
 		endif()
