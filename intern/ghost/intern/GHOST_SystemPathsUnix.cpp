@@ -61,6 +61,9 @@ GHOST_SystemPathsUnix::~GHOST_SystemPathsUnix()
 
 const GHOST_TUns8 *GHOST_SystemPathsUnix::getSystemDir(int, const char *versionstr) const
 {
+	/* XXX On Debian ignore versionstr when building the system path */
+	versionstr = "";
+
 	/* no prefix assumes a portable build which only uses bundled scripts */
 	if (static_path) {
 		static string system_path = string(static_path) + "/blender/" + versionstr;
