@@ -17,13 +17,13 @@
 <node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1436714472167" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
-<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1436714488441" TEXT="Umgebung">
+<node CREATED="1436641870656" FOLDED="true" ID="ID_1917334295" MODIFIED="1436716727131" TEXT="Umgebung">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1436641910011" TEXT="SCons-Build"/>
 <node CREATED="1436641912336" ID="ID_1618985498" MODIFIED="1436641915507" TEXT="Eclipse-CDT"/>
 <node CREATED="1436641916575" ID="ID_1658953336" MODIFIED="1436641921363" TEXT="Git-Zweig"/>
 </node>
-<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1436641878147" TEXT="Backport">
+<node CREATED="1436641873568" FOLDED="true" ID="ID_38644124" MODIFIED="1436716730252" TEXT="Backport">
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
 <node CREATED="1436641933487" ID="ID_761151833" MODIFIED="1436641943273" TEXT="Debian/Wheezy">
 <node CREATED="1436641944199" ID="ID_1369329699" MODIFIED="1436641947899" TEXT="nur Python 3.2">
@@ -57,9 +57,10 @@
 <icon BUILTIN="button_cancel"/>
 </node>
 <node CREATED="1436642134070" ID="ID_1101247684" MODIFIED="1436642137250" TEXT="zweiter Anlauf">
-<node CREATED="1436714326727" ID="ID_636372309" MODIFIED="1436714414138" TEXT="Patch-Update">
+<node CREATED="1436714326727" ID="ID_636372309" MODIFIED="1436716527128" TEXT="Patch-Update">
 <icon BUILTIN="pencil"/>
-<node CREATED="1436714331607" ID="ID_1393441477" MODIFIED="1436714344931" TEXT="versioning_270.c">
+<node CREATED="1436714331607" ID="ID_1393441477" MODIFIED="1436716509758" TEXT="versioning_270.c">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436714346607" ID="ID_1720871627" MODIFIED="1436714354267" TEXT="vorl&#xe4;ufiger Patch"/>
 <node CREATED="1436714355159" ID="ID_128810073" MODIFIED="1436714404934" TEXT="korrekte Versionsnummer">
 <richcontent TYPE="NOTE"><html>
@@ -81,7 +82,9 @@
 </richcontent>
 </node>
 </node>
-<node CREATED="1436715622090" ID="ID_1481119374" MODIFIED="1436715628438" TEXT="mul_m4_series"/>
+<node CREATED="1436715622090" ID="ID_1481119374" MODIFIED="1436716512126" TEXT="mul_m4_series">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 </node>
 </node>
@@ -164,23 +167,23 @@
 </html>
 </richcontent>
 <icon BUILTIN="hourglass"/>
-<node CREATED="1436642890723" ID="ID_1737347479" MODIFIED="1436643102784" TEXT="auto-Zoom">
-<icon BUILTIN="smiley-neutral"/>
+<node CREATED="1436642890723" ID="ID_1737347479" MODIFIED="1436716612894" TEXT="auto-Zoom">
+<icon BUILTIN="full-2"/>
 </node>
 <node CREATED="1436642904227" ID="ID_673570813" MODIFIED="1436642913113" TEXT="Rahmen f&#xfc;llen">
 <icon BUILTIN="full-1"/>
 </node>
-<node CREATED="1436642962795" ID="ID_1765712063" MODIFIED="1436643069373" TEXT="Automations-L&#xfc;cken">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1436642962795" ID="ID_1765712063" MODIFIED="1436716602846" TEXT="Automations-L&#xfc;cken">
+<icon BUILTIN="full-1"/>
 </node>
-<node CREATED="1436642920834" ID="ID_76129276" MODIFIED="1436643075203" TEXT="Pivot steuerbar machen">
-<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1436642920834" ID="ID_76129276" MODIFIED="1436716608936" TEXT="Pivot steuerbar machen">
+<icon BUILTIN="full-1"/>
 </node>
-<node CREATED="1436642978642" ID="ID_1118009424" MODIFIED="1436643093128" TEXT="Scherung / Parallelogramm">
-<icon BUILTIN="licq"/>
+<node CREATED="1436642978642" ID="ID_1118009424" MODIFIED="1436716618230" TEXT="Scherung / Parallelogramm">
+<icon BUILTIN="full-3"/>
 </node>
-<node CREATED="1436642933843" ID="ID_1292059741" MODIFIED="1436643096632" TEXT="D&#xe4;mpfungs-Filter">
-<icon BUILTIN="licq"/>
+<node CREATED="1436642933843" ID="ID_1292059741" MODIFIED="1436716622584" TEXT="D&#xe4;mpfungs-Filter">
+<icon BUILTIN="full-3"/>
 </node>
 </node>
 <node CREATED="1436712879197" HGAP="113" ID="ID_715016663" MODIFIED="1436713633915" TEXT="QA" VSHIFT="45">
@@ -307,8 +310,26 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1436643251354" ID="ID_1278770990" MODIFIED="1436643256546" TEXT="calculate_autoscale_factor">
-<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1436643251354" FOLDED="true" ID="ID_1278770990" MODIFIED="1436716714533" TEXT="calculate_autoscale_factor">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        nur ein Seiteneffekt der Umstellung auf BKE_tracking_marker_get_exact
+      </li>
+      <li>
+        nicht relevant, da mein Patch ohnehin hier andere Wege geht
+      </li>
+      <li>
+        und wird von meinem Patch beiseite geschoben
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
 <node CREATED="1436643258978" HGAP="24" ID="ID_1534897468" MODIFIED="1436643369246" VSHIFT="13">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -352,8 +373,8 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1436712958844" ID="ID_44109468" MODIFIED="1436713380414" TEXT="mul_m4_series">
-<icon BUILTIN="pencil"/>
+<node CREATED="1436712958844" FOLDED="true" ID="ID_44109468" MODIFIED="1436716650732" TEXT="mul_m4_series">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436712994716" ID="ID_966132964" MODIFIED="1436712996872" TEXT="Umbenennung"/>
 <node CREATED="1436712999667" ID="ID_1656750440" MODIFIED="1436713048307" TEXT="die zugeh&#xf6;rige mul_m3_series wurde angepa&#xdf;t">
 <richcontent TYPE="NOTE"><html>
@@ -379,15 +400,14 @@
 <icon BUILTIN="messagebox_warning"/>
 <node CREATED="1436713192595" ID="ID_416553782" MODIFIED="1436713201455" TEXT="Umstellung auf Var-Args"/>
 <node COLOR="#990033" CREATED="1436713201859" ID="ID_875916190" MODIFIED="1436713231930" TEXT="5415ee41250"/>
-<node CREATED="1436713347803" ID="ID_155544961" MODIFIED="1436713373022" TEXT="TODO: mein NULL-Arg beseitigen">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1436713347803" FOLDED="true" ID="ID_155544961" MODIFIED="1436716645436" TEXT="TODO: mein NULL-Arg beseitigen">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436714063416" ID="ID_298235149" MODIFIED="1436714068324" TEXT="Build Compensation"/>
 <node CREATED="1436714088128" ID="ID_602034551" MODIFIED="1436714095380" TEXT="Consistent handling of Pixel Aspect"/>
-<node CREATED="1436714101064" ID="ID_1301628361" MODIFIED="1436714104811" TEXT="New Feature: Zoom"/>
 </node>
 </node>
 </node>
-<node CREATED="1436715548194" ID="ID_807995611" MODIFIED="1436715601363" TEXT="math_matrix unit_m2">
+<node CREATED="1436715548194" FOLDED="true" ID="ID_807995611" MODIFIED="1436716653163" TEXT="math_matrix unit_m2">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436715561554" ID="ID_492799754" MODIFIED="1436715583470" TEXT="hat Upstream inzwischen auch nachgetragen"/>
 <node CREATED="1436715583922" ID="ID_1403764095" MODIFIED="1436715592046" TEXT="meine Definition ist &#xfc;berfl&#xfc;ssig"/>
