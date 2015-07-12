@@ -14,9 +14,11 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1436641851143" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1436714472167" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
-<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1436641873243" TEXT="Umgebung">
+<icon BUILTIN="go"/>
+<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1436714488441" TEXT="Umgebung">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1436641910011" TEXT="SCons-Build"/>
 <node CREATED="1436641912336" ID="ID_1618985498" MODIFIED="1436641915507" TEXT="Eclipse-CDT"/>
 <node CREATED="1436641916575" ID="ID_1658953336" MODIFIED="1436641921363" TEXT="Git-Zweig"/>
@@ -45,11 +47,43 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641853957" HGAP="81" ID="ID_576569203" MODIFIED="1436641863949" POSITION="left" TEXT="Review" VSHIFT="9">
+<node CREATED="1436641853957" HGAP="81" ID="ID_576569203" MODIFIED="1436714459865" POSITION="left" TEXT="Review" VSHIFT="9">
 <font NAME="SansSerif" SIZE="16"/>
-<node CREATED="1436642114382" ID="ID_975531283" MODIFIED="1436642117826" TEXT="Entry"/>
-<node CREATED="1436642124742" ID="ID_1890100547" MODIFIED="1436642133674" TEXT="erster Anlauf"/>
-<node CREATED="1436642134070" ID="ID_1101247684" MODIFIED="1436642137250" TEXT="zweiter Anlauf"/>
+<icon BUILTIN="prepare"/>
+<node CREATED="1436642114382" ID="ID_975531283" MODIFIED="1436714422577" TEXT="Entry">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1436642124742" ID="ID_1890100547" MODIFIED="1436714441672" TEXT="erster Anlauf">
+<icon BUILTIN="button_cancel"/>
+</node>
+<node CREATED="1436642134070" ID="ID_1101247684" MODIFIED="1436642137250" TEXT="zweiter Anlauf">
+<node CREATED="1436714326727" ID="ID_636372309" MODIFIED="1436714414138" TEXT="Patch-Update">
+<icon BUILTIN="pencil"/>
+<node CREATED="1436714331607" ID="ID_1393441477" MODIFIED="1436714344931" TEXT="versioning_270.c">
+<node CREATED="1436714346607" ID="ID_1720871627" MODIFIED="1436714354267" TEXT="vorl&#xe4;ufiger Patch"/>
+<node CREATED="1436714355159" ID="ID_128810073" MODIFIED="1436714404934" TEXT="korrekte Versionsnummer">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      nice-to have
+    </p>
+    <p>
+      denn ein nachfolgendes Changeset l&#246;st das anders
+    </p>
+    <p>
+      Aber ich vermeide dadurch dumme Fragen
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1436715622090" ID="ID_1481119374" MODIFIED="1436715628438" TEXT="mul_m4_series"/>
+</node>
+</node>
 </node>
 <node CREATED="1436642086687" HGAP="-16" ID="ID_667891095" MODIFIED="1436642092300" POSITION="left" TEXT="Doku" VSHIFT="95">
 <node CREATED="1436642093110" ID="ID_1489772734" MODIFIED="1436642098202" TEXT="Github-Wiki"/>
@@ -114,7 +148,7 @@
 <icon BUILTIN="bell"/>
 </node>
 </node>
-<node CREATED="1436642834707" HGAP="43" ID="ID_1765241815" MODIFIED="1436642886796" VSHIFT="33">
+<node CREATED="1436642834707" HGAP="74" ID="ID_1765241815" MODIFIED="1436712877257" VSHIFT="27">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -149,12 +183,46 @@
 <icon BUILTIN="licq"/>
 </node>
 </node>
+<node CREATED="1436712879197" HGAP="113" ID="ID_715016663" MODIFIED="1436713633915" TEXT="QA" VSHIFT="45">
+<font NAME="SansSerif" SIZE="16"/>
+<icon BUILTIN="stop"/>
+<node CREATED="1436713462114" ID="ID_310396424" MODIFIED="1436713484622" TEXT="double free">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1436713491938" ID="ID_41806219" MODIFIED="1436713495638" TEXT="tracking_util.c"/>
+<node CREATED="1436713496298" ID="ID_1219431946" MODIFIED="1436713521047">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      /* discard stabilization working data; needs to be recalculated anyway */
+    </p>
+    <p>
+      if (old_track-&gt;stabilizationBase)
+    </p>
+    <p>
+      MEM_freeN(old_track-&gt;stabilizationBase);
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1436713525394" ID="ID_1709258110" MODIFIED="1436713536726" TEXT="Reentrance?"/>
+<node CREATED="1436713537290" ID="ID_583801813" MODIFIED="1436713545230" TEXT="MEM_freeN setzt nicht auf NULL"/>
+<node CREATED="1436713553162" ID="ID_1010119941" MODIFIED="1436713566180" TEXT="aufzukl&#xe4;ren">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
+</node>
 </node>
 <node CREATED="1436642178566" HGAP="81" ID="ID_1345154609" MODIFIED="1436642184732" POSITION="right" TEXT="Integration" VSHIFT="96">
 <font NAME="SansSerif" SIZE="14"/>
-<node CREATED="1436642185702" ID="ID_1881635323" MODIFIED="1436642191034" TEXT="lfd. Upstream">
+<node CREATED="1436642185702" ID="ID_1881635323" MODIFIED="1436713387684" TEXT="lfd. Upstream">
+<icon BUILTIN="prepare"/>
 <node CREATED="1436642198422" ID="ID_63230369" MODIFIED="1436642220650" TEXT="2.70 &#x2023; 2.75a">
-<node CREATED="1436642231118" ID="ID_1478045690" MODIFIED="1436642242642" TEXT="BKE_tracking_marker_get_exact">
+<node CREATED="1436642231118" ID="ID_1478045690" MODIFIED="1436712917536" TEXT="BKE_tracking_marker_get_exact">
+<icon BUILTIN="pencil"/>
 <node CREATED="1436642264148" HGAP="25" ID="ID_507794779" MODIFIED="1436642284571" VSHIFT="-16">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -280,11 +348,61 @@
 <node CREATED="1436643347425" ID="ID_1070614877" MODIFIED="1436643357954" TEXT="Vorsicht: setzt die alte Logik voraus">
 <icon BUILTIN="button_cancel"/>
 </node>
+<node CREATED="1436712931668" ID="ID_111914994" MODIFIED="1436712945183" TEXT="erledigt: mein Patch ersetzt die alte Logik">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1436712958844" ID="ID_44109468" MODIFIED="1436713380414" TEXT="mul_m4_series">
+<icon BUILTIN="pencil"/>
+<node CREATED="1436712994716" ID="ID_966132964" MODIFIED="1436712996872" TEXT="Umbenennung"/>
+<node CREATED="1436712999667" ID="ID_1656750440" MODIFIED="1436713048307" TEXT="die zugeh&#xf6;rige mul_m3_series wurde angepa&#xdf;t">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <ul>
+      <li>
+        irgendwas mit Anpassung der Argument-Reihenfolge
+      </li>
+      <li>
+        betrifft mich nicht, da ich nur _m4_verwende
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+<node COLOR="#990033" CREATED="1436713240259" ID="ID_787560384" MODIFIED="1436713309513" TEXT="8489b94e07"/>
+<node CREATED="1436713330147" ID="ID_1027241853" MODIFIED="1436713335550" TEXT="Campbell Barton&lt;ideasman42@gmail.com&gt; 21.07.14 10:55 "/>
+<node CREATED="1436713050420" ID="ID_397248731" MODIFIED="1436713191181" TEXT="benachbart und relevant">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1436713192595" ID="ID_416553782" MODIFIED="1436713201455" TEXT="Umstellung auf Var-Args"/>
+<node COLOR="#990033" CREATED="1436713201859" ID="ID_875916190" MODIFIED="1436713231930" TEXT="5415ee41250"/>
+<node CREATED="1436713347803" ID="ID_155544961" MODIFIED="1436713373022" TEXT="TODO: mein NULL-Arg beseitigen">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1436714063416" ID="ID_298235149" MODIFIED="1436714068324" TEXT="Build Compensation"/>
+<node CREATED="1436714088128" ID="ID_602034551" MODIFIED="1436714095380" TEXT="Consistent handling of Pixel Aspect"/>
+<node CREATED="1436714101064" ID="ID_1301628361" MODIFIED="1436714104811" TEXT="New Feature: Zoom"/>
 </node>
 </node>
 </node>
-<node CREATED="1436642648667" ID="ID_1919094305" MODIFIED="1436642657080" TEXT="Problem: Format f&#xfc;r Daten-Feed"/>
-<node CREATED="1436642631660" ID="ID_923860681" MODIFIED="1436642639336" TEXT="Problem: Compositor-Nodes"/>
+<node CREATED="1436715548194" ID="ID_807995611" MODIFIED="1436715601363" TEXT="math_matrix unit_m2">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1436715561554" ID="ID_492799754" MODIFIED="1436715583470" TEXT="hat Upstream inzwischen auch nachgetragen"/>
+<node CREATED="1436715583922" ID="ID_1403764095" MODIFIED="1436715592046" TEXT="meine Definition ist &#xfc;berfl&#xfc;ssig"/>
+<node CREATED="1436715592690" ID="ID_1139940521" MODIFIED="1436715597004" TEXT="aus Patch entfernt">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1436642648667" ID="ID_1919094305" MODIFIED="1436713399028" TEXT="Problem: Format f&#xfc;r Daten-Feed">
+<icon BUILTIN="stop"/>
+</node>
+<node CREATED="1436642631660" ID="ID_923860681" MODIFIED="1436713395834" TEXT="Problem: Compositor-Nodes">
+<icon BUILTIN="stop"/>
+</node>
 </node>
 </node>
 </map>
