@@ -57,8 +57,9 @@
 <icon BUILTIN="button_cancel"/>
 </node>
 <node CREATED="1436642134070" ID="ID_1101247684" MODIFIED="1436642137250" TEXT="zweiter Anlauf">
-<node CREATED="1436714326727" ID="ID_636372309" MODIFIED="1436716527128" TEXT="Patch-Update">
-<icon BUILTIN="pencil"/>
+<node CREATED="1436749670772" ID="ID_787845565" MODIFIED="1436749672856" TEXT="Patch">
+<node CREATED="1436714326727" FOLDED="true" ID="ID_636372309" MODIFIED="1436749640163" TEXT="Patch-Update">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436714331607" ID="ID_1393441477" MODIFIED="1436716509758" TEXT="versioning_270.c">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436714346607" ID="ID_1720871627" MODIFIED="1436714354267" TEXT="vorl&#xe4;ufiger Patch"/>
@@ -78,13 +79,36 @@
       Aber ich vermeide dadurch dumme Fragen
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1436715622090" ID="ID_1481119374" MODIFIED="1436716512126" TEXT="mul_m4_series">
 <icon BUILTIN="button_ok"/>
 </node>
+<node CREATED="1436749604261" ID="ID_1280054834" MODIFIED="1436749621690" TEXT="double-free">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      untersucht,
+    </p>
+    <p>
+      noch einen gefunden,
+    </p>
+    <p>
+      abgedichtet
+    </p>
+  </body>
+</html></richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1436749653805" ID="ID_874379201" MODIFIED="1436749685012" TEXT="in mein DEB einbringen">
+<icon BUILTIN="pencil"/>
+</node>
+<node CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1436749664569" TEXT="erneut einreichen"/>
 </node>
 </node>
 </node>
@@ -109,7 +133,7 @@
 </richcontent>
 <icon BUILTIN="idea"/>
 <node CREATED="1436741297860" ID="ID_164730890" MODIFIED="1436741313808" TEXT="Memory Management">
-<node CREATED="1436741366548" ID="ID_640241160" MODIFIED="1436741371976" TEXT="System">
+<node CREATED="1436741366548" FOLDED="true" ID="ID_640241160" MODIFIED="1436748600592" TEXT="System">
 <node CREATED="1436741373676" ID="ID_1221253732" MODIFIED="1436741383280" TEXT="eigner Allokator">
 <node CREATED="1436741403724" ID="ID_1848419789" MODIFIED="1436741407400" TEXT="mallocn.c"/>
 <node CREATED="1436741407939" ID="ID_29563260" MODIFIED="1436741419744" TEXT="&#xfc;ber f-ptr virtualisiert"/>
@@ -147,7 +171,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1436742376976" ID="ID_1510557677" MODIFIED="1436742379116" TEXT="Tracking">
+<node CREATED="1436742376976" FOLDED="true" ID="ID_1510557677" MODIFIED="1436748585785" TEXT="Tracking">
 <node CREATED="1436742392144" ID="ID_222217427" MODIFIED="1436742397308" TEXT="tracking_reconstruction">
 <node CREATED="1436742412760" ID="ID_1334916516" MODIFIED="1436742420244" TEXT="findet Trajektorie als L&#xf6;sung"/>
 <node CREATED="1436744482528" ID="ID_1337998690" MODIFIED="1436744506187" STYLE="fork">
@@ -166,7 +190,8 @@
 <node CREATED="1436742421504" ID="ID_611423963" MODIFIED="1436742510140" TEXT="SolveCameraJob"/>
 <node CREATED="1436742510824" ID="ID_1934601769" MODIFIED="1436742551723" TEXT="danach: fertigstellen">
 <node CREATED="1436742553048" ID="ID_535884950" MODIFIED="1436742567243" TEXT="BKE_tracking_reconstruction_finish"/>
-<node CREATED="1436742568167" ID="ID_1381465869" MODIFIED="1436742582907" TEXT="ruft: tracks_map_merge">
+<node CREATED="1436742568167" ID="ID_1381465869" MODIFIED="1436746132008" TEXT="ruft: tracks_map_merge">
+<linktarget COLOR="#99ffff" DESTINATION="ID_1381465869" ENDARROW="Default" ENDINCLINATION="-260;-167;" ID="Arrow_ID_555610345" SOURCE="ID_1739650187" STARTARROW="None" STARTINCLINATION="-10;97;"/>
 <node CREATED="1436742659007" ID="ID_67946877" MODIFIED="1436742675411" TEXT="TracksMap">
 <node CREATED="1436742675903" ID="ID_1352457271" MODIFIED="1436742684315" TEXT="ist eine hashmap von Tracks"/>
 <node CREATED="1436742715263" ID="ID_287648938" MODIFIED="1436742724763" TEXT="h&#xe4;llt auch eine Liste"/>
@@ -370,11 +395,45 @@
 <icon BUILTIN="full-3"/>
 </node>
 </node>
-<node CREATED="1436712879197" HGAP="113" ID="ID_715016663" MODIFIED="1436713633915" TEXT="QA" VSHIFT="45">
+<node CREATED="1436745870315" HGAP="225" ID="ID_744407749" MODIFIED="1436745881353" TEXT="Interna" VSHIFT="26">
+<node CREATED="1436745882619" FOLDED="true" ID="ID_1225557596" MODIFIED="1436748518672" TEXT="Initialisierung">
+<linktarget COLOR="#99ffff" DESTINATION="ID_1225557596" ENDARROW="Default" ENDINCLINATION="-73;187;" ID="Arrow_ID_445220708" SOURCE="ID_1274016984" STARTARROW="None" STARTINCLINATION="586;-144;"/>
+<icon BUILTIN="button_ok"/>
+<node CREATED="1436745891907" ID="ID_1179549760" MODIFIED="1436745899895" TEXT="globale Flag (stab-&gt;ok)"/>
+<node CREATED="1436745900955" ID="ID_615132699" MODIFIED="1436745931551" TEXT="wird explizit zur&#xfc;ckgesetzt">
+<node CREATED="1436745932587" ID="ID_1459135370" MODIFIED="1436745934775" TEXT="rna_tracking_flushUpdate">
+<node CREATED="1436745954435" ID="ID_1358053192" MODIFIED="1436745961119" TEXT="wird von allen GUI-Updates gerufen"/>
+<node CREATED="1436745961571" ID="ID_1317573038" MODIFIED="1436745970319" TEXT="d.h. erzwingt jeweils re-Initialisierung"/>
+</node>
+<node CREATED="1436745935315" ID="ID_1054774814" MODIFIED="1436745951711" TEXT="Add/Remove-Track Operatoren"/>
+</node>
+<node CREATED="1436746010995" ID="ID_1552016561" MODIFIED="1436746015806" TEXT="wird zentral getriggert">
+<node CREATED="1436746035186" ID="ID_1741295884" MODIFIED="1436746036894" TEXT="BKE_tracking_stabilization_data_get"/>
+<node CREATED="1436746037626" ID="ID_1910514621" MODIFIED="1436746054240">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      d.h. der <b>eine und einzige</b>&#160;Zugangsweg
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1436745972875" ID="ID_38554048" MODIFIED="1436745976214" TEXT="einzelne Tracks">
+<node CREATED="1436745977018" ID="ID_1385608866" MODIFIED="1436745983895" TEXT="haben lokale Arbeitsdaten"/>
+<node CREATED="1436745984291" ID="ID_358383713" MODIFIED="1436745999910" TEXT="Berechnungen sind pro Track per Guard gesch&#xfc;tzt"/>
+</node>
+</node>
+</node>
+<node CREATED="1436712879197" HGAP="113" ID="ID_715016663" MODIFIED="1436747370320" TEXT="QA" VSHIFT="45">
 <font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="stop"/>
-<node CREATED="1436713462114" ID="ID_310396424" MODIFIED="1436713484622" TEXT="double free">
-<icon BUILTIN="messagebox_warning"/>
+<icon BUILTIN="go"/>
+<node CREATED="1436713462114" FOLDED="true" ID="ID_310396424" MODIFIED="1436748522137" TEXT="double free">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436713491938" ID="ID_41806219" MODIFIED="1436713495638" TEXT="tracking_util.c"/>
 <node CREATED="1436713496298" ID="ID_1219431946" MODIFIED="1436713521047">
 <richcontent TYPE="NODE"><html>
@@ -397,19 +456,124 @@
 </node>
 <node CREATED="1436713525394" ID="ID_1709258110" MODIFIED="1436713536726" TEXT="Reentrance?"/>
 <node CREATED="1436713537290" ID="ID_583801813" MODIFIED="1436713545230" TEXT="MEM_freeN setzt nicht auf NULL"/>
-<node CREATED="1436713553162" ID="ID_1010119941" MODIFIED="1436713566180" TEXT="aufzukl&#xe4;ren">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1436713553162" ID="ID_1010119941" MODIFIED="1436746673352" TEXT="aufzukl&#xe4;ren">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1436746071938" ID="ID_561487150" MODIFIED="1436746078294" TEXT="schwer zu verstehen">
+<node CREATED="1436746079594" ID="ID_1606005684" MODIFIED="1436746084430" TEXT="verteiltes Mem-management"/>
+<node CREATED="1436746084922" ID="ID_1739650187" MODIFIED="1436746139944" TEXT="tracks_map_merge">
+<arrowlink COLOR="#99ffff" DESTINATION="ID_1381465869" ENDARROW="Default" ENDINCLINATION="-260;-167;" ID="Arrow_ID_555610345" STARTARROW="None" STARTINCLINATION="-10;97;"/>
+</node>
+</node>
+<node CREATED="1436746167410" ID="ID_1726276915" MODIFIED="1436746171891" TEXT="Ergebnis">
+<icon BUILTIN="idea"/>
+<node CREATED="1436746173050" ID="ID_447101326" MODIFIED="1436746475972" TEXT="die auff&#xe4;llige Stelle war harmlos">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...vermutlich habe ich mir das damals genau so klargemacht
+    </p>
+    <ul>
+      <li>
+        an der Stelle werden die Daten eines old_track umkopiert
+      </li>
+      <li>
+        dieser old_track stammt aus den Tracks zur Kamera bzw. zu einem zu trackenden Objekt
+      </li>
+      <li>
+        Zweck ist, diese Daten auf eine neue, frische Kopie umzusetzen
+      </li>
+      <li>
+        der old_track wurde bereits vorher aus der &#220;bergeordneten Struktur (Kamera / Objekt) herausgenommen
+      </li>
+      <li>
+        Spinlock
+      </li>
+      <li>
+        kurz darauf wird old_track mit den Inhalten aus dem Track aus der trackMap &#252;berschrieben
+      </li>
+      <li>
+        d.h. die bisherigen Inhalte sind weg.
+      </li>
+      <li>
+        daher spielt es keine Rolle mehr, man mu&#223; den Zeiger nicht NULLen
+      </li>
+      <li>
+        die trackMap wird &#252;brigens anschlie&#223;end ganz ordnungsgem&#228;&#223; freigegeben
+      </li>
+      <li>
+        <font color="#ff0000"><b>BOOOM&#160;</b></font>und da steckt die Falle...
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1436746182266" ID="ID_628620151" MODIFIED="1436746669512" TEXT="aber direkt daneben schlummerte ein double-free-Fehler">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ....denn die Inhalte werden hierbei einfach Roh r&#252;berkopiert
+    </p>
+    <ul>
+      <li>
+        der bestehende Code biegt das gleich danach grade, indem...<br />&#160;&#160;*old_track = *track; old_track-&gt;markers = MEM_dupallocN(old_track-&gt;markers);
+      </li>
+      <li>
+        denn das Problem ist: das Original wird nachher ordnungsgem&#228;&#223; freigegeben<br />und mit der Kopie wird weitergearbeitet, und sie wird sp&#228;ter freigegeben<br />
+      </li>
+      <li>
+        d.h. wir haben das typische shallow copy - Problem<br />
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1436746837007" ID="ID_1274016984" MODIFIED="1436746934547" TEXT="Initialisierung gepr&#xfc;ft und OK">
+<arrowlink COLOR="#99ffff" DESTINATION="ID_1225557596" ENDARROW="Default" ENDINCLINATION="-73;187;" ID="Arrow_ID_445220708" STARTARROW="None" STARTINCLINATION="586;-144;"/>
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+</node>
+<node CREATED="1436746684200" HGAP="43" ID="ID_1766091774" MODIFIED="1436747354156" TEXT="L&#xf6;sung" VSHIFT="-2">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1436746690480" ID="ID_1817396651" MODIFIED="1436746697380" TEXT="bestehender Code OK"/>
+<node CREATED="1436746698016" ID="ID_1484775451" MODIFIED="1436746715884" TEXT="mu&#xdf; dicht daneben an zwei weiteren Stellen explizit freigeben"/>
+<node CREATED="1436746716280" ID="ID_1995217976" MODIFIED="1436746731412">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      und <i>bei diesen</i>&#160;auch auf NULL setzen
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1436746741000" ID="ID_1149113879" MODIFIED="1436747351344" TEXT="In das Changeset einarbeiten!">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 </node>
 </node>
 </node>
 <node CREATED="1436642178566" HGAP="81" ID="ID_1345154609" MODIFIED="1436642184732" POSITION="right" TEXT="Integration" VSHIFT="96">
 <font NAME="SansSerif" SIZE="14"/>
-<node CREATED="1436642185702" ID="ID_1881635323" MODIFIED="1436713387684" TEXT="lfd. Upstream">
-<icon BUILTIN="prepare"/>
-<node CREATED="1436642198422" ID="ID_63230369" MODIFIED="1436642220650" TEXT="2.70 &#x2023; 2.75a">
-<node CREATED="1436642231118" ID="ID_1478045690" MODIFIED="1436712917536" TEXT="BKE_tracking_marker_get_exact">
-<icon BUILTIN="pencil"/>
+<node CREATED="1436642185702" ID="ID_1881635323" MODIFIED="1436749574835" TEXT="lfd. Upstream">
+<icon BUILTIN="go"/>
+<node CREATED="1436642198422" ID="ID_63230369" MODIFIED="1436749586592" TEXT="2.70 &#x2023; 2.75a">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1436642231118" FOLDED="true" ID="ID_1478045690" MODIFIED="1436749563252" TEXT="BKE_tracking_marker_get_exact">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436642264148" HGAP="25" ID="ID_507794779" MODIFIED="1436642284571" VSHIFT="-16">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -448,12 +612,66 @@
 </html>
 </richcontent>
 </node>
-<node CREATED="1436642298454" ID="ID_925480568" MODIFIED="1436642583543" TEXT="wer war das?">
-<icon BUILTIN="help"/>
-<node CREATED="1436642303742" ID="ID_768326846" MODIFIED="1436642337697" TEXT="das zeigt Interesse am Thema"/>
-<node CREATED="1436642597252" ID="ID_329769462" MODIFIED="1436642606358" TEXT="Vorischt Politik">
+<node CREATED="1436642298454" ID="ID_925480568" MODIFIED="1436749542446" TEXT="wer war das?">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1436642597252" ID="ID_329769462" MODIFIED="1436749312457" TEXT="Vorischt Politik">
 <font NAME="SansSerif" SIZE="9"/>
 <icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1436642303742" ID="ID_768326846" MODIFIED="1436642337697" TEXT="das zeigt Interesse am Thema"/>
+<node CREATED="1436749316198" ID="ID_1030497381" MODIFIED="1436749328050" TEXT="Sergej">
+<node CREATED="1436749329038" ID="ID_700248974" MODIFIED="1436749456444">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Fix <font color="#ff0033"><b>T40382</b></font>: 2D stabilization uses disabled markers
+    </p>
+    <p>
+      This lead to unpredictable results in some cases.&#160;&#160;&#160;&#160;
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1436749333350" ID="ID_956278016" MODIFIED="1436749402596">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="#990033">543ce859&#160; </font>vom 5.06.14
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1436749469173" ID="ID_514811460" MODIFIED="1436749528581" TEXT="Entwarnung!">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      das war definitiv noch vor dem Review-Proze&#223;
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Seitdem ist praktisch nichts mehr in dem Bereich passiert
+    </p>
+    <p>
+      (nur etwas Code-clean-up durch Campbell Barton)
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="idea"/>
+</node>
 </node>
 </node>
 <node CREATED="1436642341461" ID="ID_1451582484" MODIFIED="1436642511553" TEXT="Bewertung: halbgar">
