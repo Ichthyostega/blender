@@ -23,7 +23,7 @@
 <node CREATED="1436641912336" ID="ID_1618985498" MODIFIED="1436641915507" TEXT="Eclipse-CDT"/>
 <node CREATED="1436641916575" ID="ID_1658953336" MODIFIED="1436641921363" TEXT="Git-Zweig"/>
 </node>
-<node CREATED="1436641873568" FOLDED="true" ID="ID_38644124" MODIFIED="1436716730252" TEXT="Backport">
+<node CREATED="1436641873568" FOLDED="true" ID="ID_38644124" MODIFIED="1450568671828" TEXT="Backport">
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
 <node CREATED="1436641933487" ID="ID_761151833" MODIFIED="1436641943273" TEXT="Debian/Wheezy">
 <node CREATED="1436641944199" ID="ID_1369329699" MODIFIED="1436641947899" TEXT="nur Python 3.2">
@@ -33,7 +33,7 @@
 <node CREATED="1436642037079" ID="ID_108601883" MODIFIED="1436642044682" TEXT="Name der Import-Lib"/>
 </node>
 <node CREATED="1436641950647" ID="ID_588391845" MODIFIED="1436641995509" TEXT="OpenEXR 2.2.0">
-<linktarget COLOR="#b0b0b0" DESTINATION="ID_588391845" ENDARROW="Default" ENDINCLINATION="-48;30;" ID="Arrow_ID_1192109263" SOURCE="ID_1205869713" STARTARROW="None" STARTINCLINATION="86;-8;"/>
+<linktarget COLOR="#a9b4c1" DESTINATION="ID_588391845" ENDARROW="Default" ENDINCLINATION="-48;30;" ID="Arrow_ID_1192109263" SOURCE="ID_1205869713" STARTARROW="None" STARTINCLINATION="86;-8;"/>
 </node>
 </node>
 </node>
@@ -105,10 +105,32 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1436749653805" ID="ID_874379201" MODIFIED="1436749685012" TEXT="in mein DEB einbringen">
-<icon BUILTIN="pencil"/>
+<node CREATED="1436749653805" ID="ID_874379201" MODIFIED="1437142722453" TEXT="in mein DEB einbringen">
+<icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1436749664569" TEXT="erneut einreichen"/>
+</node>
+<node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1437071976006">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      als <b>PPA</b>
+    </p>
+  </body>
+</html></richcontent>
+<node CREATED="1437071977057" ID="ID_436153482" LINK="https://launchpad.net/~ichthyo/+archive/ubuntu/blender" MODIFIED="1438346475708" TEXT="PPA auf Ubuntu/Launchpad">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1437072016822" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender"/>
+<node CREATED="1437076248383" ID="ID_1862473466" MODIFIED="1437142713542" TEXT="f&#xfc;r Ubuntu Vivid (14.04)">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1437142739463" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
+<icon BUILTIN="flag-yellow"/>
+</node>
 </node>
 </node>
 </node>
@@ -129,8 +151,7 @@
       <font size="5">Interna</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 <node CREATED="1436741297860" ID="ID_164730890" MODIFIED="1436741313808" TEXT="Memory Management">
 <node CREATED="1436741366548" FOLDED="true" ID="ID_640241160" MODIFIED="1436748600592" TEXT="System">
@@ -165,8 +186,7 @@
       ....und gibt dann auch NULL zur&#252;ck
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 </node>
 </node>
@@ -184,8 +204,7 @@
       verwendet die <b>libmv</b>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436742421504" ID="ID_611423963" MODIFIED="1436742510140" TEXT="SolveCameraJob"/>
 <node CREATED="1436742510824" ID="ID_1934601769" MODIFIED="1436742551723" TEXT="danach: fertigstellen">
@@ -208,8 +227,7 @@
       <i>alle Tracks, die zur L&#246;sung verwendet wurden</i>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1436744783383" ID="ID_1784038555" MODIFIED="1436744877988">
@@ -222,8 +240,7 @@
       Zweck:
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1436744852167" ID="ID_831457150" MODIFIED="1436744889220">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -237,8 +254,7 @@
       anhand der Ergebnisse der L&#246;sungssuche
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <font NAME="SansSerif" SIZE="12"/>
 <node CREATED="1436744930670" ID="ID_611428953" MODIFIED="1436744936195" TEXT="Ursprungs-Tracks">
 <node CREATED="1436744937023" ID="ID_1136089691" MODIFIED="1436744943042" TEXT="entweder f&#xfc;r die Kamera"/>
@@ -252,8 +268,7 @@
       ...ein Objekt, dessen Bewegung getrackt wird
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -277,8 +292,7 @@
       aus der Track-Map herauskopiert
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436745028150" ID="ID_118255154" MODIFIED="1436745038178" TEXT="Alle aktiven Tracks haben eindeutige ID"/>
 </node>
@@ -293,7 +307,7 @@
 <node CREATED="1436744724263" ID="ID_1532098647" MODIFIED="1436744727019" TEXT="den Kontext"/>
 <node CREATED="1436744727367" ID="ID_789567659" MODIFIED="1436744730427" TEXT="die libmv-Daten"/>
 <node CREATED="1436744730871" ID="ID_442743824" MODIFIED="1436745072887" TEXT="die Tracks-Map">
-<linktarget COLOR="#b0b0b0" DESTINATION="ID_442743824" ENDARROW="Default" ENDINCLINATION="242;0;" ID="Arrow_ID_80646076" SOURCE="ID_713897662" STARTARROW="None" STARTINCLINATION="242;0;"/>
+<linktarget COLOR="#a9b4c1" DESTINATION="ID_442743824" ENDARROW="Default" ENDINCLINATION="242;0;" ID="Arrow_ID_80646076" SOURCE="ID_713897662" STARTARROW="None" STARTINCLINATION="242;0;"/>
 <node CREATED="1436744772599" ID="ID_1584559788" MODIFIED="1436744774147" TEXT="BKE_tracking_track_free"/>
 </node>
 </node>
@@ -312,8 +326,7 @@
       <b>Werkzeug</b>&#160;statt Magie
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436643133194" ID="ID_1822818488" MODIFIED="1436643167139" TEXT="Der Kameramann wei&#xdf; was er tut">
 <font BOLD="true" NAME="SansSerif" SIZE="14"/>
@@ -338,8 +351,7 @@
       und Manipulation
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436642787204" ID="ID_1096643282" MODIFIED="1436642794408" TEXT="Koordinaten">
 <node CREATED="1436642795331" ID="ID_1403585828" MODIFIED="1436642800167" TEXT="logisch definieren"/>
@@ -373,8 +385,7 @@
       <font size="4">Funktionen</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="hourglass"/>
 <node CREATED="1436642890723" ID="ID_1737347479" MODIFIED="1436716612894" TEXT="auto-Zoom">
 <icon BUILTIN="full-2"/>
@@ -419,8 +430,7 @@
       d.h. der <b>eine und einzige</b>&#160;Zugangsweg
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1436745972875" ID="ID_38554048" MODIFIED="1436745976214" TEXT="einzelne Tracks">
@@ -451,8 +461,7 @@
       MEM_freeN(old_track-&gt;stabilizationBase);
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436713525394" ID="ID_1709258110" MODIFIED="1436713536726" TEXT="Reentrance?"/>
 <node CREATED="1436713537290" ID="ID_583801813" MODIFIED="1436713545230" TEXT="MEM_freeN setzt nicht auf NULL"/>
@@ -508,8 +517,7 @@
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436746182266" ID="ID_628620151" MODIFIED="1436746669512" TEXT="aber direkt daneben schlummerte ein double-free-Fehler">
 <richcontent TYPE="NOTE"><html>
@@ -532,8 +540,7 @@
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436746837007" ID="ID_1274016984" MODIFIED="1436746934547" TEXT="Initialisierung gepr&#xfc;ft und OK">
 <arrowlink COLOR="#99ffff" DESTINATION="ID_1225557596" ENDARROW="Default" ENDINCLINATION="-73;187;" ID="Arrow_ID_445220708" STARTARROW="None" STARTINCLINATION="586;-144;"/>
@@ -555,8 +562,7 @@
       und <i>bei diesen</i>&#160;auch auf NULL setzen
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436746741000" ID="ID_1149113879" MODIFIED="1436747351344" TEXT="In das Changeset einarbeiten!">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
@@ -587,8 +593,7 @@
       durch BKE_tracking_marker_get
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436642286181" ID="ID_365288615" MODIFIED="1436642460161" TEXT="Deutung: Versuch einer Interpolation">
 <richcontent TYPE="NOTE"><html>
@@ -609,8 +614,7 @@
       Durch diese &#196;nderung f&#228;llt er stattdessen auf den n&#228;chsten Wert zur Linken (?) zur&#252;ck.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436642298454" ID="ID_925480568" MODIFIED="1436749542446" TEXT="wer war das?">
 <icon BUILTIN="button_ok"/>
@@ -633,8 +637,7 @@
       This lead to unpredictable results in some cases.&#160;&#160;&#160;&#160;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436749333350" ID="ID_956278016" MODIFIED="1436749402596">
 <richcontent TYPE="NODE"><html>
@@ -646,8 +649,7 @@
       <font color="#990033">543ce859&#160; </font>vom 5.06.14
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436749469173" ID="ID_514811460" MODIFIED="1436749528581" TEXT="Entwarnung!">
 <richcontent TYPE="NOTE"><html>
@@ -668,8 +670,7 @@
       (nur etwas Code-clean-up durch Campbell Barton)
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 </node>
 </node>
@@ -690,8 +691,7 @@
       Aber blo&#223; nicht ein Problem bei der Wurzel packen, das w&#228;re uncool.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 </node>
 <node CREATED="1436642517285" ID="ID_412832600" MODIFIED="1436642578965" TEXT="Urteil: durch meine L&#xf6;sung ersetzen">
@@ -707,8 +707,7 @@
       und auch all die komplexen Randf&#228;lle korrekt handhabt.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
@@ -730,8 +729,7 @@
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1436643258978" HGAP="24" ID="ID_1534897468" MODIFIED="1436643369246" VSHIFT="13">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -748,8 +746,7 @@
       }
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1436643306177" ID="ID_1635942159" MODIFIED="1436643325528">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -763,8 +760,7 @@
       und ohne Guard
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1436643327049" ID="ID_177311182" MODIFIED="1436643336197" TEXT="Grund: vermutlich marker_get_exact"/>
 </node>
@@ -793,8 +789,7 @@
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node COLOR="#990033" CREATED="1436713240259" ID="ID_787560384" MODIFIED="1436713309513" TEXT="8489b94e07"/>
 <node CREATED="1436713330147" ID="ID_1027241853" MODIFIED="1436713335550" TEXT="Campbell Barton&lt;ideasman42@gmail.com&gt; 21.07.14 10:55 "/>
@@ -817,6 +812,62 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
+</node>
+<node CREATED="1450569522268" ID="ID_1081477982" MODIFIED="1450569534882" TEXT="2.75a &#x2023; 2.76b">
+<icon BUILTIN="pencil"/>
+<node CREATED="1450571427991" ID="ID_959805861" MODIFIED="1450571478605" TEXT="Debian/experimental hat daf&#xfc;r schon ein Paket">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1450571440317" ID="ID_1416713451" MODIFIED="1450575112282">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      mein 2.75a-backport-Paket
+    </p>
+    <p>
+      mit offiziellem Debian/experimental
+    </p>
+    <p>
+      zusammenf&#252;hren
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+<node CREATED="1450571535425" ID="ID_1747962691" MODIFIED="1450571550526">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Vorgabe: so viel wie m&#246;glich
+    </p>
+    <p>
+      von den Debian-Leuten nehmen
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1450571914686" ID="ID_832182740" MODIFIED="1450571920945" TEXT="neu von Debian: -DWITH_INPUT_NDOF=ON"/>
+<node CREATED="1450575008379" ID="ID_1826230736" MODIFIED="1450575025421">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      sie verwenden <b>Python 3.3</b>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1450575119572" ID="ID_1008983154" MODIFIED="1450575127039" TEXT="ich behalte meine Boost-Versionen"/>
+</node>
+<node CREATED="1450575054700" ID="ID_731153880" MODIFIED="1450575065535" TEXT="Patch rebasen"/>
 </node>
 </node>
 <node CREATED="1436642648667" ID="ID_1919094305" MODIFIED="1436713399028" TEXT="Problem: Format f&#xfc;r Daten-Feed">
