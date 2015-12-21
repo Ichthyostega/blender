@@ -576,7 +576,7 @@
 <font NAME="SansSerif" SIZE="14"/>
 <node CREATED="1436642185702" ID="ID_1881635323" MODIFIED="1436749574835" TEXT="lfd. Upstream">
 <icon BUILTIN="go"/>
-<node CREATED="1436642198422" ID="ID_63230369" MODIFIED="1436749586592" TEXT="2.70 &#x2023; 2.75a">
+<node CREATED="1436642198422" FOLDED="true" ID="ID_63230369" MODIFIED="1450740356167" TEXT="2.70 &#x2023; 2.75a">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436642231118" FOLDED="true" ID="ID_1478045690" MODIFIED="1436749563252" TEXT="BKE_tracking_marker_get_exact">
 <icon BUILTIN="button_ok"/>
@@ -813,8 +813,8 @@
 </node>
 </node>
 </node>
-<node CREATED="1450569522268" ID="ID_1081477982" MODIFIED="1450569534882" TEXT="2.75a &#x2023; 2.76b">
-<icon BUILTIN="pencil"/>
+<node CREATED="1450569522268" FOLDED="true" ID="ID_1081477982" MODIFIED="1450740353608" TEXT="2.75a &#x2023; 2.76b">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1450571427991" ID="ID_959805861" MODIFIED="1450571478605" TEXT="Debian/experimental hat daf&#xfc;r schon ein Paket">
 <icon BUILTIN="idea"/>
 </node>
@@ -834,8 +834,7 @@
       zusammenf&#252;hren
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1450571535425" ID="ID_1747962691" MODIFIED="1450571550526">
 <richcontent TYPE="NODE"><html>
@@ -867,7 +866,64 @@
 </node>
 <node CREATED="1450575119572" ID="ID_1008983154" MODIFIED="1450575127039" TEXT="ich behalte meine Boost-Versionen"/>
 </node>
-<node CREATED="1450575054700" ID="ID_731153880" MODIFIED="1450575065535" TEXT="Patch rebasen"/>
+<node CREATED="1450575054700" ID="ID_731153880" MODIFIED="1450740270084" TEXT="Patch rebasen">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1450740216281" ID="ID_709735981" MODIFIED="1450740263223" TEXT="auf release 2.76b">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1450740223768" ID="ID_1405887448" MODIFIED="1450740265978" TEXT="auf aktuellen master">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Ichthyo.Stand.15-12 = 6f224941
+    </p>
+    <p>
+      Author: Bastien Montagne &lt;montagne29@wanadoo.fr&gt;
+    </p>
+    <p>
+      Date:&#160;&#160;&#160;Sun Dec 20 23:06:18 2015 +0100
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;NewDepsgraph: Fix typo tagging wrong flag.
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1450740315652" ID="ID_434422417" MODIFIED="1450740329218" TEXT="Debug-Build + Arbeitsumgebung wiederherstellen">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1450740286671" ID="ID_262230426" MODIFIED="1450740312120">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      erfolgreich gebaut,
+    </p>
+    <p>
+      Paket l&#228;&#223;t sich installieren,
+    </p>
+    <p>
+      startet
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 </node>
 <node CREATED="1436642648667" ID="ID_1919094305" MODIFIED="1436713399028" TEXT="Problem: Format f&#xfc;r Daten-Feed">
