@@ -17,14 +17,52 @@
 <node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1436714472167" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
-<node CREATED="1436641870656" FOLDED="true" ID="ID_1917334295" MODIFIED="1436716727131" TEXT="Umgebung">
-<icon BUILTIN="button_ok"/>
+<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1450747670433" TEXT="Umgebung">
+<icon BUILTIN="pencil"/>
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1436641910011" TEXT="SCons-Build"/>
 <node CREATED="1436641912336" ID="ID_1618985498" MODIFIED="1436641915507" TEXT="Eclipse-CDT"/>
 <node CREATED="1436641916575" ID="ID_1658953336" MODIFIED="1436641921363" TEXT="Git-Zweig"/>
+<node CREATED="1450744777276" ID="ID_1521884380" MODIFIED="1450744783647" TEXT="Libraries f&#xfc;r debug-Build">
+<node CREATED="1450744786299" ID="ID_1516085841" MODIFIED="1450744802324" TEXT="Grundinstallation">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      apt-get install libalut-dev libavcodec-dev libavdevice-dev libavformat-dev libboost-locale1.55-dev libilmbase-dev libjemalloc-dev libjpeg-dev liblzma-dev liblzo2-dev libopenal-dev libopencolorio-dev libopenexr-dev libopenimageio-dev libopenjpeg-dev libspnav-dev libswscale-dev libtiff-dev python3-requests
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="info"/>
 </node>
-<node CREATED="1436641873568" FOLDED="true" ID="ID_38644124" MODIFIED="1450568671828" TEXT="Backport">
+<node CREATED="1450744914930" ID="ID_1895661092" MODIFIED="1450744928303" TEXT="zus&#xe4;tzlich (GL, SDL)">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      apt-get install libgettextpo-dev libglew-dev libgsm1-dev libsdl-dev
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1450747636835" TEXT="Backport">
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
+<node CREATED="1450747645311" HGAP="57" ID="ID_319007264" MODIFIED="1450747653404" TEXT="Debian/Jessie" VSHIFT="12">
+<node CREATED="1450747598613" ID="ID_1595421125" MODIFIED="1450747628567" TEXT="Problem: brauche Python 3.5">
+<icon BUILTIN="flag"/>
+<node CREATED="1450747608380" ID="ID_1982672839" MODIFIED="1450747677057" TEXT="Debian/stable hat nur 3.4">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1450747615699" ID="ID_1784694324" MODIFIED="1450747624022" TEXT="Backport von unstable?"/>
+</node>
+</node>
 <node CREATED="1436641933487" ID="ID_761151833" MODIFIED="1436641943273" TEXT="Debian/Wheezy">
 <node CREATED="1436641944199" ID="ID_1369329699" MODIFIED="1436641947899" TEXT="nur Python 3.2">
 <node CREATED="1436642050607" ID="ID_1468804991" MODIFIED="1436642060680" TEXT="Fehler-Diagnostik-Meldungen"/>
@@ -45,6 +83,7 @@
 <arrowlink DESTINATION="ID_588391845" ENDARROW="Default" ENDINCLINATION="-48;30;" ID="Arrow_ID_1192109263" STARTARROW="None" STARTINCLINATION="86;-8;"/>
 <icon BUILTIN="button_ok"/>
 </node>
+<node CREATED="1450744772181" ID="ID_1261967164" MODIFIED="1450744774928" TEXT="2.76b"/>
 </node>
 </node>
 <node CREATED="1436641853957" HGAP="81" ID="ID_576569203" MODIFIED="1436714459865" POSITION="left" TEXT="Review" VSHIFT="9">
@@ -813,7 +852,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1450569522268" FOLDED="true" ID="ID_1081477982" MODIFIED="1450740353608" TEXT="2.75a &#x2023; 2.76b">
+<node CREATED="1450569522268" ID="ID_1081477982" MODIFIED="1450744732847" TEXT="2.75a &#x2023; 2.76b">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1450571427991" ID="ID_959805861" MODIFIED="1450571478605" TEXT="Debian/experimental hat daf&#xfc;r schon ein Paket">
 <icon BUILTIN="idea"/>
@@ -896,8 +935,7 @@
       
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1450740315652" ID="ID_434422417" MODIFIED="1450740329218" TEXT="Debug-Build + Arbeitsumgebung wiederherstellen">
@@ -920,8 +958,7 @@
       startet
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
