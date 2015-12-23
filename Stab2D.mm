@@ -33,8 +33,7 @@
       apt-get install libalut-dev libavcodec-dev libavdevice-dev libavformat-dev libboost-locale1.55-dev libilmbase-dev libjemalloc-dev libjpeg-dev liblzma-dev liblzo2-dev libopenal-dev libopencolorio-dev libopenexr-dev libopenimageio-dev libopenjpeg-dev libspnav-dev libswscale-dev libtiff-dev python3-requests
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="info"/>
 </node>
 <node CREATED="1450744914930" ID="ID_1895661092" MODIFIED="1450744928303" TEXT="zus&#xe4;tzlich (GL, SDL)">
@@ -47,8 +46,7 @@
       apt-get install libgettextpo-dev libglew-dev libgsm1-dev libsdl-dev
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -149,7 +147,7 @@
 </node>
 <node CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1436749664569" TEXT="erneut einreichen"/>
 </node>
-<node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1437071976006">
+<node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1450913562139">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -160,14 +158,55 @@
     </p>
   </body>
 </html></richcontent>
+<icon BUILTIN="pencil"/>
 <node CREATED="1437071977057" ID="ID_436153482" LINK="https://launchpad.net/~ichthyo/+archive/ubuntu/blender" MODIFIED="1438346475708" TEXT="PPA auf Ubuntu/Launchpad">
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1437072016822" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender"/>
-<node CREATED="1437076248383" ID="ID_1862473466" MODIFIED="1437142713542" TEXT="f&#xfc;r Ubuntu Vivid (14.04)">
-<icon BUILTIN="button_ok"/>
+<node CREATED="1437076248383" ID="ID_1862473466" MODIFIED="1450913500053" TEXT="f&#xfc;r Ubuntu Trusty (14.04 LTS)">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1450913302328" ID="ID_631359525" MODIFIED="1450913309346" TEXT="problematisch"/>
+<node CREATED="1450913310358" ID="ID_413746290" MODIFIED="1450913377305" TEXT="lockere libAV ">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      von 6:10 &#8227; 6:9
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
-<node CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1437142739463" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
+<node CREATED="1450913396699" ID="ID_1899001177" MODIFIED="1450913452427" TEXT="maximal Python 3.4 verf&#xfc;gbar">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      das wird bald (nach 2.76b) ein Problem,
+    </p>
+    <p>
+      so da&#223; ich Ubuntu/Trusty-Support aufgeben mu&#223;
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1450913265829" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1450913261918" TEXT="f&#xfc;r Ubuntu Wily (15.10)">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1450913557101" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS-dev-preview)">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1450913571716" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
 <icon BUILTIN="flag-yellow"/>
 </node>
 </node>
