@@ -48,17 +48,92 @@
   </body>
 </html></richcontent>
 </node>
+<node BACKGROUND_COLOR="#fdfdcf" COLOR="#990000" CREATED="1454072805537" ID="ID_1484231597" MODIFIED="1454072857111" TEXT="brauche Python 3.5">
+<arrowlink COLOR="#f73c73" DESTINATION="ID_1595421125" ENDARROW="Default" ENDINCLINATION="108;-30;" ID="Arrow_ID_890750055" STARTARROW="None" STARTINCLINATION="144;-10;"/>
+<icon BUILTIN="flag"/>
 </node>
 </node>
-<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1450747636835" TEXT="Backport">
+</node>
+<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1454072801576" TEXT="Backport">
+<icon BUILTIN="pencil"/>
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
 <node CREATED="1450747645311" HGAP="57" ID="ID_319007264" MODIFIED="1450747653404" TEXT="Debian/Jessie" VSHIFT="12">
-<node CREATED="1450747598613" ID="ID_1595421125" MODIFIED="1450747628567" TEXT="Problem: brauche Python 3.5">
+<node CREATED="1450747598613" ID="ID_1595421125" MODIFIED="1454072857111" TEXT="Problem: brauche Python 3.5">
+<linktarget COLOR="#f73c73" DESTINATION="ID_1595421125" ENDARROW="Default" ENDINCLINATION="108;-30;" ID="Arrow_ID_890750055" SOURCE="ID_1484231597" STARTARROW="None" STARTINCLINATION="144;-10;"/>
 <icon BUILTIN="flag"/>
 <node CREATED="1450747608380" ID="ID_1982672839" MODIFIED="1450747677057" TEXT="Debian/stable hat nur 3.4">
 <icon BUILTIN="messagebox_warning"/>
 </node>
-<node CREATED="1450747615699" ID="ID_1784694324" MODIFIED="1450747624022" TEXT="Backport von unstable?"/>
+<node CREATED="1450747615699" ID="ID_1784694324" MODIFIED="1454072785358" TEXT="Backport von unstable?">
+<icon BUILTIN="pencil"/>
+<node CREATED="1454075991040" ID="ID_72477546" LINK="http://flaucher:9023/Dreck/wiki/Debian.Pakete#Schema" MODIFIED="1454076112984">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      siehe dazu <font color="#c60828">Trac:Debian-Paket-Seite</font>
+    </p>
+  </body>
+</html></richcontent>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1454075991042" ID="ID_1350471379" MODIFIED="1454076094945">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Kurzfassung: <i>keine Sorge, Debian hat das im Griff</i>
+    </p>
+  </body>
+</html></richcontent>
+<icon BUILTIN="ksmiletris"/>
+</node>
+<node CREATED="1454075991043" ID="ID_3201104" MODIFIED="1454076106154" TEXT="...man kann eine neue Python-Version optional dazuinstallieren">
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1454076121216" ID="ID_903156921" MODIFIED="1457919267985">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      also python3.5 <b>Backport</b>
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="yes"/>
+<node CREATED="1454079484794" ID="ID_1346892933" MODIFIED="1454079493021" TEXT="Problem hierbei: GCC-5">
+<node CREATED="1454079494297" ID="ID_1424053780" MODIFIED="1454079532088" TEXT="das Deb-Paket verlangt den"/>
+<node CREATED="1454079504199" ID="ID_1087211205" MODIFIED="1454079511546" TEXT="der &#xdc;bergang ist problematisch"/>
+<node CREATED="1454079512182" ID="ID_1465059323" MODIFIED="1454079523273" TEXT="f&#xfc;r Debian-Backports soll man 4.9 verwenden"/>
+</node>
+<node CREATED="1454079535947" ID="ID_516975752" MODIFIED="1454079551472" TEXT="versuche es mit GCC-4.9">
+<icon BUILTIN="yes"/>
+<node CREATED="1457922512496" ID="ID_404201657" MODIFIED="1457922570532">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Paket aus Unstable/Testing (3.5.1) <font color="#e92101"><i>scheitert</i>&#160;(SEGFAULT)</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1457922573839" ID="ID_1314270854" MODIFIED="1457922590446" TEXT="Paket aus Ubuntu/Wily (3.5.0)">
+<icon BUILTIN="pencil"/>
+</node>
+</node>
+</node>
+</node>
 </node>
 </node>
 <node CREATED="1436641933487" ID="ID_761151833" MODIFIED="1436641943273" TEXT="Debian/Wheezy">
@@ -176,8 +251,7 @@
       von 6:10 &#8227; 6:9
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1450913396699" ID="ID_1899001177" MODIFIED="1450913452427" TEXT="maximal Python 3.4 verf&#xfc;gbar">
 <richcontent TYPE="NOTE"><html>
@@ -192,8 +266,7 @@
       so da&#223; ich Ubuntu/Trusty-Support aufgeben mu&#223;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="messagebox_warning"/>
 </node>
 </node>
