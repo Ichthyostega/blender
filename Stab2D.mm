@@ -17,6 +17,75 @@
 <node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1458007695992" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="prepare"/>
+<node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
+<font NAME="SansSerif" SIZE="14"/>
+<icon BUILTIN="info"/>
+<node CREATED="1459010971348" ID="ID_1296493455" LINK="https://wiki.blender.org/index.php/Dev:Doc/Building_Blender" MODIFIED="1459011046471">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Blender-Entwickler-Sektion
+    </p>
+  </body>
+</html>
+</richcontent>
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...hier auch:
+    </p>
+    <p>
+      eine grundlegende Strukturbeschreibung
+    </p>
+    <p>
+      zum CMake-Buildsystem
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459010971349" ID="ID_852055023" LINK="https://wiki.blender.org/index.php/Dev:Doc/Building_Blender/Linux/Ubuntu/CMake" MODIFIED="1459011014026" TEXT="speziell f&#xfc;r Ubuntu"/>
+<node CREATED="1459010971351" ID="ID_1256784536" LINK="https://wiki.blender.org/index.php/Dev:Doc/Building_Blender/Linux/cmake" MODIFIED="1459011211674" TEXT="generische CMake-Seite">
+<linktarget COLOR="#9bd3bd" DESTINATION="ID_1256784536" ENDARROW="Default" ENDINCLINATION="-9;17;" ID="Arrow_ID_1440776048" SOURCE="ID_1880592644" STARTARROW="None" STARTINCLINATION="-252;0;"/>
+</node>
+<node CREATED="1459011064208" FOLDED="true" HGAP="47" ID="ID_1369372321" MODIFIED="1459011242860" TEXT="CMake" VSHIFT="16">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1459011071334" ID="ID_1445350994" MODIFIED="1459011078425" TEXT="automatisch per Makefile"/>
+<node CREATED="1459011079462" ID="ID_508138430" MODIFIED="1459011088088" TEXT="CMake-UI verwenden!"/>
+<node CREATED="1459011088796" ID="ID_211678043" MODIFIED="1459011103990" TEXT="Build-Verzeichnis festlegen">
+<node CREATED="1459011105146" ID="ID_789667069" MODIFIED="1459011110596" TEXT="Empfohlen: build"/>
+<node CREATED="1459011110953" ID="ID_1353298435" MODIFIED="1459011117684" TEXT="durch ersten Aufruf von CMake"/>
+<node CREATED="1459011118040" ID="ID_1659809313" MODIFIED="1459011123723" TEXT="dabei relativer Pfad zum Source-Root"/>
+</node>
+<node CREATED="1459011125975" ID="ID_485852950" MODIFIED="1459011136186" TEXT="dort die CMakeCache.txt editieren"/>
+</node>
+<node CREATED="1459011141805" HGAP="48" ID="ID_888719963" MODIFIED="1459011230185" TEXT="Tips" VSHIFT="8">
+<icon BUILTIN="idea"/>
+<node CREATED="1459011148100" ID="ID_609900106" MODIFIED="1459011154479" TEXT="alle WITH_XXX deaktivieren"/>
+<node CREATED="1459011156987" ID="ID_1100483241" MODIFIED="1459011186401" TEXT="Symlinks auf Installation legen">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      damit kann man das Build-Ergebnis sofort ohne Installation starten
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459011186391" ID="ID_1880592644" MODIFIED="1459011223523" TEXT="siehe CMake-Seite">
+<arrowlink COLOR="#9bd3bd" DESTINATION="ID_1256784536" ENDARROW="Default" ENDINCLINATION="-9;17;" ID="Arrow_ID_1440776048" STARTARROW="None" STARTINCLINATION="-252;0;"/>
+</node>
+</node>
+</node>
 <node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1450747670433" TEXT="Umgebung">
 <icon BUILTIN="pencil"/>
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1458007456349" TEXT="SCons-Build">
@@ -27,7 +96,7 @@
 <node CREATED="1458007473095" ID="ID_1821525904" MODIFIED="1458007480160" TEXT="SCons wird aufgegeben">
 <icon BUILTIN="smily_bad"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1458007494308" ID="ID_1344172698" MODIFIED="1458007794862" TEXT="Konfiguration: herausfinden">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1458007494308" ID="ID_1344172698" MODIFIED="1459006961854" TEXT="Konfiguration: herausfinden">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -43,8 +112,7 @@
       Das ist wieder so ein Bastel-Zeug
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="flag-yellow"/>
 <node CREATED="1458007557711" ID="ID_1906314728" MODIFIED="1458007598818" TEXT="WITH_BF_OPENAL = False"/>
 <node CREATED="1458007557712" ID="ID_988993064" MODIFIED="1458007557712" TEXT="WITH_BF_GAMEENGINE = False"/>
@@ -139,8 +207,7 @@
       also python3.5 <b>Backport</b>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="yes"/>
 <node CREATED="1454079484794" ID="ID_1346892933" MODIFIED="1454079493021" TEXT="Problem hierbei: GCC-5">
 <node CREATED="1454079494297" ID="ID_1424053780" MODIFIED="1454079532088" TEXT="das Deb-Paket verlangt den"/>
@@ -159,8 +226,7 @@
       Paket aus Unstable/Testing (3.5.1) <font color="#e92101"><i>scheitert</i>&#160;(SEGFAULT)</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1457922573839" ID="ID_1314270854" MODIFIED="1458007324789" TEXT="Paket aus Ubuntu/Wily (3.5.0)">
 <icon BUILTIN="button_ok"/>
@@ -189,8 +255,7 @@
       obsolet...
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1436641944199" ID="ID_1369329699" MODIFIED="1436641947899" TEXT="nur Python 3.2">
 <node CREATED="1436642050607" ID="ID_1468804991" MODIFIED="1436642060680" TEXT="Fehler-Diagnostik-Meldungen"/>
 <node CREATED="1436642013735" ID="ID_715643907" MODIFIED="1436642029139" TEXT="String compilieren/interpretieren"/>
