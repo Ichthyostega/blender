@@ -54,10 +54,37 @@
 <node CREATED="1459010971351" ID="ID_1256784536" LINK="https://wiki.blender.org/index.php/Dev:Doc/Building_Blender/Linux/cmake" MODIFIED="1459011211674" TEXT="generische CMake-Seite">
 <linktarget COLOR="#9bd3bd" DESTINATION="ID_1256784536" ENDARROW="Default" ENDINCLINATION="-9;17;" ID="Arrow_ID_1440776048" SOURCE="ID_1880592644" STARTARROW="None" STARTINCLINATION="-252;0;"/>
 </node>
-<node CREATED="1459011064208" FOLDED="true" HGAP="47" ID="ID_1369372321" MODIFIED="1459011242860" TEXT="CMake" VSHIFT="16">
+<node CREATED="1459011064208" FOLDED="true" HGAP="47" ID="ID_1369372321" MODIFIED="1459011661195" TEXT="CMake" VSHIFT="16">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1459011071334" ID="ID_1445350994" MODIFIED="1459011078425" TEXT="automatisch per Makefile"/>
-<node CREATED="1459011079462" ID="ID_508138430" MODIFIED="1459011088088" TEXT="CMake-UI verwenden!"/>
+<node CREATED="1459011079462" ID="ID_508138430" MODIFIED="1459011088088" TEXT="CMake-UI verwenden!">
+<node CREATED="1459011612717" ID="ID_498760722" MODIFIED="1459011639740">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b>ccmake</b>&#160;== cmake-curses-gui
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459011615094" ID="ID_368320013" MODIFIED="1459011652531">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b>cmake-gui</b>&#160;== cmake-qt-gui
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 <node CREATED="1459011088796" ID="ID_211678043" MODIFIED="1459011103990" TEXT="Build-Verzeichnis festlegen">
 <node CREATED="1459011105146" ID="ID_789667069" MODIFIED="1459011110596" TEXT="Empfohlen: build"/>
 <node CREATED="1459011110953" ID="ID_1353298435" MODIFIED="1459011117684" TEXT="durch ersten Aufruf von CMake"/>
