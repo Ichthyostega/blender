@@ -30,8 +30,7 @@
       Blender-Entwickler-Sektion
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -47,8 +46,7 @@
       zum CMake-Buildsystem
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459010971349" ID="ID_852055023" LINK="https://wiki.blender.org/index.php/Dev:Doc/Building_Blender/Linux/Ubuntu/CMake" MODIFIED="1459011014026" TEXT="speziell f&#xfc;r Ubuntu"/>
 <node CREATED="1459010971351" ID="ID_1256784536" LINK="https://wiki.blender.org/index.php/Dev:Doc/Building_Blender/Linux/cmake" MODIFIED="1459011211674" TEXT="generische CMake-Seite">
@@ -68,8 +66,7 @@
       <b>ccmake</b>&#160;== cmake-curses-gui
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459011615094" ID="ID_368320013" MODIFIED="1459011652531">
 <richcontent TYPE="NODE"><html>
@@ -81,8 +78,7 @@
       <b>cmake-gui</b>&#160;== cmake-qt-gui
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1459011088796" ID="ID_211678043" MODIFIED="1459011103990" TEXT="Build-Verzeichnis festlegen">
@@ -105,42 +101,25 @@
       damit kann man das Build-Ergebnis sofort ohne Installation starten
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459011186391" ID="ID_1880592644" MODIFIED="1459011223523" TEXT="siehe CMake-Seite">
 <arrowlink COLOR="#9bd3bd" DESTINATION="ID_1256784536" ENDARROW="Default" ENDINCLINATION="-9;17;" ID="Arrow_ID_1440776048" STARTARROW="None" STARTINCLINATION="-252;0;"/>
 </node>
 </node>
 </node>
-<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1450747670433" TEXT="Umgebung">
-<icon BUILTIN="pencil"/>
+<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1459047427774" TEXT="Umgebung">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1458007456349" TEXT="SCons-Build">
 <icon BUILTIN="button_cancel"/>
 </node>
-<node CREATED="1458007463432" ID="ID_1630361744" MODIFIED="1458007649288" TEXT="Umstellung auf CMake">
-<icon BUILTIN="pencil"/>
+<node COLOR="#338800" CREATED="1458007463432" FOLDED="true" ID="ID_1630361744" MODIFIED="1459047008206" TEXT="Umstellung auf CMake">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1458007473095" ID="ID_1821525904" MODIFIED="1458007480160" TEXT="SCons wird aufgegeben">
 <icon BUILTIN="smily_bad"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1458007494308" ID="ID_1344172698" MODIFIED="1459006961854" TEXT="Konfiguration: herausfinden">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      grrr....
-    </p>
-    <p>
-      ich mag CMake nicht wirklich.
-    </p>
-    <p>
-      Das ist wieder so ein Bastel-Zeug
-    </p>
-  </body>
-</html></richcontent>
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1459046907611" FOLDED="true" ID="ID_154576468" MODIFIED="1459046926682" TEXT="unter SCons hatte ich...">
+<icon BUILTIN="info"/>
 <node CREATED="1458007557711" ID="ID_1906314728" MODIFIED="1458007598818" TEXT="WITH_BF_OPENAL = False"/>
 <node CREATED="1458007557712" ID="ID_988993064" MODIFIED="1458007557712" TEXT="WITH_BF_GAMEENGINE = False"/>
 <node CREATED="1458007557712" ID="ID_1690132206" MODIFIED="1458007557712" TEXT="WITH_BF_BULLET = False"/>
@@ -148,6 +127,372 @@
 <node CREATED="1458007557713" ID="ID_1247593780" MODIFIED="1458007557713" TEXT="WITH_BF_3DMOUSE = False"/>
 <node CREATED="1458007557713" ID="ID_1676526264" MODIFIED="1458007557713" TEXT="WITH_BF_INTERNATIONAL = False"/>
 <node CREATED="1458007605333" ID="ID_855067123" MODIFIED="1458007611991" TEXT="wie man einen debug-Build bekommt"/>
+</node>
+<node COLOR="#338800" CREATED="1458007494308" ID="ID_1344172698" MODIFIED="1459046996097" TEXT="Konfiguration: herausfinden">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1459048052605" TEXT="CMake-Build">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1459043036468" ID="ID_1115892122" MODIFIED="1459043053798" TEXT="Festlegungen">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...<i>meine</i>&#160;Festlegungen...
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1459043055561" ID="ID_540304307" MODIFIED="1459043063596" TEXT="Bauen in build"/>
+<node CREATED="1459043064280" ID="ID_1894768707" MODIFIED="1459043073907" TEXT="Binaries nach target"/>
+</node>
+<node CREATED="1459043113658" ID="ID_1447112482" MODIFIED="1459043118821" TEXT="cmake-gui verwenden">
+<node CREATED="1459043120057" ID="ID_883907537" MODIFIED="1459043127995" TEXT="aus build aufrufen"/>
+<node CREATED="1459043128463" ID="ID_500190073" MODIFIED="1459043132587" TEXT="cmake-gui .."/>
+</node>
+<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1459046867571" TEXT="Konfiguration">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1459043158388" ID="ID_269990641" MODIFIED="1459043169878" TEXT="Build-Typ = Debug"/>
+<node CREATED="1459043287627" ID="ID_970294739" MODIFIED="1459043292134" TEXT="abgew&#xe4;hlt">
+<node CREATED="1459043293338" ID="ID_1483037408" MODIFIED="1459043296605" TEXT="BULLET"/>
+<node CREATED="1459043309967" ID="ID_393185468" MODIFIED="1459043314283" TEXT="CYCLES"/>
+<node CREATED="1459043351170" ID="ID_1099624633" MODIFIED="1459043356765" TEXT="FREESTYLE"/>
+<node CREATED="1459043363752" ID="ID_158045827" MODIFIED="1459043366332" TEXT="GAMEENGINE"/>
+<node CREATED="1459043380022" ID="ID_194673353" MODIFIED="1459043392853" TEXT="GHOST-XDND">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      drag-n-drop f&#252;r X
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459043464443" ID="ID_211753040" MODIFIED="1459043490154" TEXT="IK_ITASK">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      IK = inverse kinematics
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459043475458" ID="ID_16374181" MODIFIED="1459043479085" TEXT="IK_SOLVER"/>
+<node CREATED="1459043528435" ID="ID_1952938042" MODIFIED="1459043531326" TEXT="IMAGE_CINEON"/>
+<node CREATED="1459043531794" ID="ID_1115786097" MODIFIED="1459043534214" TEXT="IMAGE_DDS"/>
+<node CREATED="1459043534778" ID="ID_202910389" MODIFIED="1459043538125" TEXT="IMAGE_HDR"/>
+<node CREATED="1459043583275" ID="ID_373805308" MODIFIED="1459043594565" TEXT="INTERNATIONAL">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      I18N
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459043639404" ID="ID_339965241" MODIFIED="1459043648966" TEXT="MOD_FLUID">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      fluid-simulation
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459043664137" ID="ID_1569058896" MODIFIED="1459043666724" TEXT="MOD_REMSEH"/>
+<node CREATED="1459043667216" ID="ID_1300696542" MODIFIED="1459043670092" TEXT="MOD_SMOKE"/>
+<node CREATED="1459043709107" ID="ID_1800510433" MODIFIED="1459043718522" TEXT="OPENAL">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      3D-Sound
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459044003620" ID="ID_1994320354" MODIFIED="1459044024003" TEXT="FFTW3">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      f&#252;r Smoke und Sound-Generierung
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459043735807" ID="ID_923749371" MODIFIED="1459043738698" TEXT="OPENIMAGEIO"/>
+<node CREATED="1459043740215" ID="ID_161359357" MODIFIED="1459043746729" TEXT="OPENMP"/>
+<node CREATED="1459043783857" ID="ID_951334963" MODIFIED="1459043820088" TEXT="PYTHON_INSTAL...">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      hab ich mal deaktiviert
+    </p>
+    <p>
+      ich glaube nicht, da&#223; ich es mag,
+    </p>
+    <p>
+      wenn Blender mein System-Python in den Installationsfolder kopiert
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1459046819215" ID="ID_1229984910" MODIFIED="1459046863783" TEXT="aber nur wenn man Symlinks legt">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      cd target
+    </p>
+    <p>
+      ln -s ../release release
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459046834429" ID="ID_1602747164" MODIFIED="1459046848530" TEXT="sonst ist das Interface ziemlich &quot;minimalisitisch&quot;">
+<icon BUILTIN="ksmiletris"/>
+</node>
+</node>
+</node>
+<node CREATED="1459043893218" ID="ID_47298513" MODIFIED="1459043897813" TEXT="zugew&#xe4;hlt">
+<node CREATED="1459043898930" ID="ID_1666664013" MODIFIED="1459043910380" TEXT="FONTCONFIG">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      discovering fonts installed on Linux
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459043933685" ID="ID_1815415451" MODIFIED="1459043937688" TEXT="CODEC_FFMPEC"/>
+<node CREATED="1459044062188" ID="ID_822628814" MODIFIED="1459044077885" TEXT="GLES">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      OpenGL besser schon verwenden...
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459044065340" ID="ID_1052998402" MODIFIED="1459044067855" TEXT="GLEW"/>
+<node CREATED="1459045536209" ID="ID_50688803" MODIFIED="1459045541300" TEXT="CPP11"/>
+</node>
+<node CREATED="1459044891782" ID="ID_1135795039" MODIFIED="1459045530941" TEXT="my changes...">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      Commandline options:
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      -DWITH_CPP11:BOOL=&quot;1&quot;
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      -DWITH_OPENMP:BOOL=&quot;0&quot; -DWITH_MOD_FLUID:BOOL=&quot;0&quot; -DWITH_IMAGE_DDS:BOOL=&quot;0&quot; -DWITH_OPENAL:BOOL=&quot;0&quot; -DWITH_OPENIMAGEIO:BOOL=&quot;0&quot; -DCMAKE_INSTALL_PREFIX:PATH=&quot;/home/hiv/devel/a/blend/target&quot; -DWITH_FONTCONFIG:BOOL=&quot;1&quot; -DWITH_IMAGE_CINEON:BOOL=&quot;0&quot; -DWITH_FREESTYLE:BOOL=&quot;0&quot; -DWITH_MOD_SMOKE:BOOL=&quot;0&quot; -DCMAKE_BUILD_TYPE:STRING=&quot;Debug&quot; -DWITH_GHOST_XDND:BOOL=&quot;0&quot; -DWITH_IK_SOLVER:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL_NUMPY:BOOL=&quot;0&quot; -DWITH_CYCLES:BOOL=&quot;0&quot; -DWITH_MOD_REMESH:BOOL=&quot;0&quot; -DWITH_INTERNATIONAL:BOOL=&quot;0&quot; -DWITH_IMAGE_HDR:BOOL=&quot;0&quot; -DWITH_BULLET:BOOL=&quot;0&quot; -DWITH_IK_ITASC:BOOL=&quot;0&quot; -DWITH_CODEC_FFMPEG:BOOL=&quot;1&quot; -DWITH_GAMEENGINE:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL_REQUESTS:BOOL=&quot;0&quot;
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      <br />
+      
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      <br />
+      
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      Cache file:
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_CPP11:BOOL=1
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_OPENMP:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_MOD_FLUID:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_IMAGE_DDS:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_OPENAL:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_OPENIMAGEIO:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      CMAKE_INSTALL_PREFIX:PATH=/home/hiv/devel/a/blend/target
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_FONTCONFIG:BOOL=1
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_IMAGE_CINEON:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_FREESTYLE:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_MOD_SMOKE:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      CMAKE_BUILD_TYPE:STRING=Debug
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_GHOST_XDND:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_IK_SOLVER:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_PYTHON_INSTALL_NUMPY:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_CYCLES:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_MOD_REMESH:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_INTERNATIONAL:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_IMAGE_HDR:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_BULLET:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_IK_ITASC:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_CODEC_FFMPEG:BOOL=1
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_GAMEENGINE:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_PYTHON_INSTALL:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_PYTHON_INSTALL_REQUESTS:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      <br />
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1459047361287" HGAP="40" ID="ID_875609941" MODIFIED="1459047416589" TEXT="Einrichtung" VSHIFT="6">
+<node CREATED="1459043079702" ID="ID_1299306805" MODIFIED="1459046805437" TEXT="Symlinks legen">
+<linktarget COLOR="#a9b4c1" DESTINATION="ID_1299306805" ENDARROW="Default" ENDINCLINATION="144;0;" ID="Arrow_ID_727874697" SOURCE="ID_1926862727" STARTARROW="None" STARTINCLINATION="188;0;"/>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1459046775453" ID="ID_1416601077" MODIFIED="1459046784175" TEXT="ln -s target/blender blender"/>
+<node CREATED="1459046787443" ID="ID_945841013" MODIFIED="1459046798832">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      cd target
+    </p>
+    <p>
+      ln -s ../release release
+    </p>
+  </body>
+</html></richcontent>
+</node>
+</node>
+<node CREATED="1459047369222" FOLDED="true" ID="ID_740678750" MODIFIED="1459047398939" TEXT="Tip: lokale ignores nach .git/info/exclude">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...damit mu&#223; man sie nicht einchecken!
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1459047390523" ID="ID_622142784" MODIFIED="1459047393487" TEXT="build"/>
+<node CREATED="1459047393890" ID="ID_856928945" MODIFIED="1459047395782" TEXT="target"/>
+<node CREATED="1459047396282" ID="ID_1984269164" MODIFIED="1459047397062" TEXT="stab"/>
+</node>
+</node>
+<node CREATED="1459045956049" ID="ID_1727293916" MODIFIED="1459046034523" TEXT="build">
+<icon BUILTIN="idea"/>
+<node CREATED="1459045972567" ID="ID_184267978" MODIFIED="1459045974155" TEXT="cd build"/>
+<node CREATED="1459045974742" ID="ID_108952533" MODIFIED="1459045978298" TEXT="make -j12"/>
+<node CREATED="1459045980310" ID="ID_1926862727" MODIFIED="1459048049729" TEXT="ggfs: make install">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      sp&#228;ter nicht mehr notwendig,
+    </p>
+    <p>
+      sofern man Symlinks gelegt hat.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      --&gt; man kann dann sogar <b>L&#246;schen</b>&#160;target/share
+    </p>
+  </body>
+</html>
+</richcontent>
+<arrowlink COLOR="#a9b4c1" DESTINATION="ID_1299306805" ENDARROW="Default" ENDINCLINATION="144;0;" ID="Arrow_ID_727874697" STARTARROW="None" STARTINCLINATION="188;0;"/>
+</node>
 </node>
 </node>
 <node CREATED="1436641912336" ID="ID_1618985498" MODIFIED="1436641915507" TEXT="Eclipse-CDT"/>
@@ -188,7 +533,7 @@
 <icon BUILTIN="pencil"/>
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
 <node CREATED="1450747645311" HGAP="57" ID="ID_319007264" MODIFIED="1450747653404" TEXT="Debian/Jessie" VSHIFT="12">
-<node CREATED="1450747598613" ID="ID_1595421125" MODIFIED="1458007356517" TEXT="Problem: brauche Python 3.5">
+<node CREATED="1450747598613" FOLDED="true" ID="ID_1595421125" MODIFIED="1459047464019" TEXT="Problem: brauche Python 3.5">
 <linktarget COLOR="#f73c73" DESTINATION="ID_1595421125" ENDARROW="Default" ENDINCLINATION="108;-30;" ID="Arrow_ID_890750055" SOURCE="ID_1484231597" STARTARROW="None" STARTINCLINATION="144;-10;"/>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1450747608380" ID="ID_1982672839" MODIFIED="1450747677057" TEXT="Debian/stable hat nur 3.4">
@@ -268,7 +613,10 @@
 <node CREATED="1458007724205" ID="ID_1073626343" MODIFIED="1458007731864" TEXT="incl. meines Patches">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1458007733636" ID="ID_1045312425" MODIFIED="1458007746194" TEXT="Entwickler-Stand M&#xe4;rz bauen">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459048483466" ID="ID_1671492074" MODIFIED="1459048503768" TEXT="neues Release 2.77 bauen">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459048492089" ID="ID_758483927" MODIFIED="1459048503153" TEXT="Entwickler-Stand Ostern bauen">
 <icon BUILTIN="flag-yellow"/>
 </node>
 </node>
@@ -304,6 +652,9 @@
 </node>
 <node CREATED="1450744772181" ID="ID_1261967164" MODIFIED="1458007714495" TEXT="2.76b">
 <icon BUILTIN="button_ok"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459047483327" ID="ID_1564946431" MODIFIED="1459047488775" TEXT="2.77">
+<icon BUILTIN="flag-yellow"/>
 </node>
 </node>
 </node>
