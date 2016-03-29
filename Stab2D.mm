@@ -14,9 +14,9 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1458007695992" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1459233480504" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="prepare"/>
+<icon BUILTIN="go"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
 <font NAME="SansSerif" SIZE="14"/>
 <icon BUILTIN="info"/>
@@ -132,7 +132,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1459229535239" TEXT="CMake-Build">
+<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1459229912565" TEXT="CMake-Build">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043036468" ID="ID_1115892122" MODIFIED="1459043053798" TEXT="Festlegungen">
 <richcontent TYPE="NOTE"><html>
@@ -144,8 +144,7 @@
       ...<i>meine</i>&#160;Festlegungen...
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1459043055561" ID="ID_540304307" MODIFIED="1459043063596" TEXT="Bauen in build"/>
 <node CREATED="1459043064280" ID="ID_1894768707" MODIFIED="1459043073907" TEXT="Binaries nach target"/>
 </node>
@@ -171,8 +170,7 @@
       drag-n-drop f&#252;r X
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459043464443" ID="ID_211753040" MODIFIED="1459043490154" TEXT="IK_ITASK">
 <richcontent TYPE="NOTE"><html>
@@ -184,8 +182,7 @@
       IK = inverse kinematics
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459043475458" ID="ID_16374181" MODIFIED="1459043479085" TEXT="IK_SOLVER"/>
 <node CREATED="1459043528435" ID="ID_1952938042" MODIFIED="1459043531326" TEXT="IMAGE_CINEON"/>
@@ -202,8 +199,7 @@
       I18N
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459043639404" ID="ID_339965241" MODIFIED="1459043648966" TEXT="MOD_FLUID">
 <richcontent TYPE="NOTE"><html>
@@ -215,8 +211,7 @@
       fluid-simulation
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459043664137" ID="ID_1569058896" MODIFIED="1459043666724" TEXT="MOD_REMSEH"/>
 <node CREATED="1459043667216" ID="ID_1300696542" MODIFIED="1459043670092" TEXT="MOD_SMOKE"/>
@@ -230,8 +225,7 @@
       3D-Sound
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459044003620" ID="ID_1994320354" MODIFIED="1459044024003" TEXT="FFTW3">
 <richcontent TYPE="NOTE"><html>
@@ -243,8 +237,7 @@
       f&#252;r Smoke und Sound-Generierung
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459043735807" ID="ID_923749371" MODIFIED="1459043738698" TEXT="OPENIMAGEIO"/>
 <node CREATED="1459043740215" ID="ID_161359357" MODIFIED="1459043746729" TEXT="OPENMP"/>
@@ -264,8 +257,7 @@
       wenn Blender mein System-Python in den Installationsfolder kopiert
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1459046819215" ID="ID_1229984910" MODIFIED="1459046863783" TEXT="aber nur wenn man Symlinks legt">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -279,8 +271,7 @@
       ln -s ../release release
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459046834429" ID="ID_1602747164" MODIFIED="1459046848530" TEXT="sonst ist das Interface ziemlich &quot;minimalisitisch&quot;">
 <icon BUILTIN="ksmiletris"/>
@@ -298,8 +289,7 @@
       discovering fonts installed on Linux
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459043933685" ID="ID_1815415451" MODIFIED="1459043937688" TEXT="CODEC_FFMPEC"/>
 <node CREATED="1459044062188" ID="ID_822628814" MODIFIED="1459044077885" TEXT="GLES">
@@ -312,8 +302,7 @@
       OpenGL besser schon verwenden...
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459044065340" ID="ID_1052998402" MODIFIED="1459044067855" TEXT="GLEW"/>
 <node CREATED="1459045536209" ID="ID_50688803" MODIFIED="1459229510173" TEXT="C11"/>
@@ -423,8 +412,7 @@
       WITH_PYTHON_INSTALL_REQUESTS:BOOL=0
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="info"/>
 </node>
 </node>
@@ -459,8 +447,7 @@
       ...damit mu&#223; man sie nicht einchecken!
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1459047390523" ID="ID_622142784" MODIFIED="1459047393487" TEXT="build"/>
 <node CREATED="1459047393890" ID="ID_856928945" MODIFIED="1459047395782" TEXT="target"/>
 <node CREATED="1459047396282" ID="ID_1984269164" MODIFIED="1459047397062" TEXT="stab"/>
@@ -489,13 +476,34 @@
       --&gt; man kann dann sogar <b>L&#246;schen</b>&#160;target/share
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <arrowlink COLOR="#a9b4c1" DESTINATION="ID_1299306805" ENDARROW="Default" ENDINCLINATION="144;0;" ID="Arrow_ID_727874697" STARTARROW="None" STARTINCLINATION="188;0;"/>
 </node>
 </node>
 </node>
-<node CREATED="1436641912336" ID="ID_1618985498" MODIFIED="1436641915507" TEXT="Eclipse-CDT"/>
+<node CREATED="1436641912336" ID="ID_1618985498" MODIFIED="1459233384760" TEXT="Eclipse-CDT">
+<icon BUILTIN="button_ok"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459233389143" ID="ID_663645706" MODIFIED="1459233449537" TEXT="Problem mit eGit">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      stackoverflow...
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1459233416651" ID="ID_177098735" MODIFIED="1459233427985" TEXT="disconnect project">
+<icon BUILTIN="smily_bad"/>
+</node>
+<node CREATED="1459233430673" ID="ID_632542780" MODIFIED="1459233436448" TEXT="Bug reporten">
+<icon BUILTIN="help"/>
+</node>
+</node>
+</node>
 <node CREATED="1436641916575" ID="ID_1658953336" MODIFIED="1459229539123" TEXT="Git-Zweig">
 <icon BUILTIN="button_ok"/>
 </node>
@@ -531,8 +539,8 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1454072801576" TEXT="Backport">
-<icon BUILTIN="pencil"/>
+<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1459230724172" TEXT="Backport">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
 <node CREATED="1450747645311" HGAP="57" ID="ID_319007264" MODIFIED="1450747653404" TEXT="Debian/Jessie" VSHIFT="12">
 <node CREATED="1450747598613" FOLDED="true" ID="ID_1595421125" MODIFIED="1459047464019" TEXT="Problem: brauche Python 3.5">
@@ -618,8 +626,8 @@
 <node CREATED="1459048483466" ID="ID_1671492074" MODIFIED="1459225166774" TEXT="neues Release 2.77 bauen">
 <icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459048492089" ID="ID_758483927" MODIFIED="1459048503153" TEXT="Entwickler-Stand Ostern bauen">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1459048492089" ID="ID_758483927" MODIFIED="1459230705269" TEXT="Entwickler-Stand Ostern bauen">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 <node CREATED="1436641933487" FOLDED="true" ID="ID_761151833" MODIFIED="1458007782927" TEXT="Debian/Wheezy">
@@ -1222,6 +1230,31 @@
 </node>
 </node>
 </node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459233524077" ID="ID_346547773" MODIFIED="1459233579966" TEXT="Doxygen format">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1459233539003" ID="ID_1691501696" MODIFIED="1459233574974" TEXT="policy lesen">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...dankenswerterweise gibt es jetzt eine
+    </p>
+    <p>
+      im Gegensatz zu damals
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      ...also empfiehlt es sich auch, sich daran zu halten
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 </node>
 </node>
 <node CREATED="1436642178566" HGAP="81" ID="ID_1345154609" MODIFIED="1436642184732" POSITION="right" TEXT="Integration" VSHIFT="96">
@@ -1575,8 +1608,8 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459191312000" ID="ID_459273421" MODIFIED="1459191327049" TEXT="2.76b &#x2023; 2.77">
-<icon BUILTIN="pencil"/>
+<node CREATED="1459191312000" ID="ID_459273421" MODIFIED="1459230692941" TEXT="2.76b &#x2023; 2.77">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1459191339509" ID="ID_414527174" MODIFIED="1459191417009" TEXT="Debian">
 <icon BUILTIN="info"/>
 <node CREATED="1459191372081" ID="ID_421373659" MODIFIED="1459191413781" TEXT="noch nicht in Debian/unstable">
@@ -1602,8 +1635,7 @@
       brauche nun verbindlich <b>Python 3.5</b>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1459213157734" ID="ID_443217135" MODIFIED="1459213315819" TEXT="mu&#xdf; diese Version fest per debian/rules vorgeben">
 <richcontent TYPE="NOTE"><html>
@@ -1626,8 +1658,7 @@
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1459191513486" ID="ID_1806460455" MODIFIED="1459191518369" TEXT="Patch rebasen">
@@ -1671,8 +1702,7 @@
       &#160;&#160;&#160;&#160;Blender 2.77: Point submodules to an updated hashes
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1459191539995" ID="ID_1314434020" MODIFIED="1459202715172" TEXT="auf aktuellen master">
@@ -1703,11 +1733,12 @@
       
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1459191546442" ID="ID_1241711681" MODIFIED="1459191554284" TEXT="Debug-Build + Arbeitsumgebung"/>
+<node CREATED="1459191546442" ID="ID_1241711681" MODIFIED="1459230676728" TEXT="Debug-Build + Arbeitsumgebung">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 </node>
 </node>
