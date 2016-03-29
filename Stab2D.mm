@@ -113,7 +113,7 @@
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1458007456349" TEXT="SCons-Build">
 <icon BUILTIN="button_cancel"/>
 </node>
-<node COLOR="#338800" CREATED="1458007463432" FOLDED="true" ID="ID_1630361744" MODIFIED="1459047008206" TEXT="Umstellung auf CMake">
+<node COLOR="#338800" CREATED="1458007463432" FOLDED="true" ID="ID_1630361744" MODIFIED="1459228698122" TEXT="Umstellung auf CMake">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1458007473095" ID="ID_1821525904" MODIFIED="1458007480160" TEXT="SCons wird aufgegeben">
 <icon BUILTIN="smily_bad"/>
@@ -132,7 +132,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1459228333870" TEXT="CMake-Build">
+<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1459229535239" TEXT="CMake-Build">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043036468" ID="ID_1115892122" MODIFIED="1459043053798" TEXT="Festlegungen">
 <richcontent TYPE="NOTE"><html>
@@ -153,7 +153,7 @@
 <node CREATED="1459043120057" ID="ID_883907537" MODIFIED="1459043127995" TEXT="aus build aufrufen"/>
 <node CREATED="1459043128463" ID="ID_500190073" MODIFIED="1459043132587" TEXT="cmake-gui .."/>
 </node>
-<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1459228330547" TEXT="Konfiguration">
+<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1459229519481" TEXT="Konfiguration">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043158388" ID="ID_269990641" MODIFIED="1459043169878" TEXT="Build-Typ = Debug"/>
 <node CREATED="1459043287627" ID="ID_970294739" MODIFIED="1459043292134" TEXT="abgew&#xe4;hlt">
@@ -190,6 +190,7 @@
 <node CREATED="1459043475458" ID="ID_16374181" MODIFIED="1459043479085" TEXT="IK_SOLVER"/>
 <node CREATED="1459043528435" ID="ID_1952938042" MODIFIED="1459043531326" TEXT="IMAGE_CINEON"/>
 <node CREATED="1459043531794" ID="ID_1115786097" MODIFIED="1459043534214" TEXT="IMAGE_DDS"/>
+<node CREATED="1459229017962" ID="ID_1253289951" MODIFIED="1459229022821" TEXT="IMAGE_FRAMESERVER"/>
 <node CREATED="1459043534778" ID="ID_202910389" MODIFIED="1459043538125" TEXT="IMAGE_HDR"/>
 <node CREATED="1459043583275" ID="ID_373805308" MODIFIED="1459043594565" TEXT="INTERNATIONAL">
 <richcontent TYPE="NOTE"><html>
@@ -315,9 +316,9 @@
 </richcontent>
 </node>
 <node CREATED="1459044065340" ID="ID_1052998402" MODIFIED="1459044067855" TEXT="GLEW"/>
-<node CREATED="1459045536209" ID="ID_50688803" MODIFIED="1459045541300" TEXT="CPP11"/>
+<node CREATED="1459045536209" ID="ID_50688803" MODIFIED="1459229510173" TEXT="C11"/>
 </node>
-<node CREATED="1459044891782" ID="ID_1135795039" MODIFIED="1459045530941" TEXT="my changes...">
+<node CREATED="1459044891782" ID="ID_1135795039" MODIFIED="1459229472429" TEXT="my changes...">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -327,10 +328,7 @@
       Commandline options:
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
-      -DWITH_CPP11:BOOL=&quot;1&quot;
-    </p>
-    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
-      -DWITH_OPENMP:BOOL=&quot;0&quot; -DWITH_MOD_FLUID:BOOL=&quot;0&quot; -DWITH_IMAGE_DDS:BOOL=&quot;0&quot; -DWITH_OPENAL:BOOL=&quot;0&quot; -DWITH_OPENIMAGEIO:BOOL=&quot;0&quot; -DCMAKE_INSTALL_PREFIX:PATH=&quot;/home/hiv/devel/a/blend/target&quot; -DWITH_FONTCONFIG:BOOL=&quot;1&quot; -DWITH_IMAGE_CINEON:BOOL=&quot;0&quot; -DWITH_FREESTYLE:BOOL=&quot;0&quot; -DWITH_MOD_SMOKE:BOOL=&quot;0&quot; -DCMAKE_BUILD_TYPE:STRING=&quot;Debug&quot; -DWITH_GHOST_XDND:BOOL=&quot;0&quot; -DWITH_IK_SOLVER:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL_NUMPY:BOOL=&quot;0&quot; -DWITH_CYCLES:BOOL=&quot;0&quot; -DWITH_MOD_REMESH:BOOL=&quot;0&quot; -DWITH_INTERNATIONAL:BOOL=&quot;0&quot; -DWITH_IMAGE_HDR:BOOL=&quot;0&quot; -DWITH_BULLET:BOOL=&quot;0&quot; -DWITH_IK_ITASC:BOOL=&quot;0&quot; -DWITH_CODEC_FFMPEG:BOOL=&quot;1&quot; -DWITH_GAMEENGINE:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL_REQUESTS:BOOL=&quot;0&quot;
+      -DWITH_OPENMP:BOOL=&quot;0&quot; -DWITH_MOD_FLUID:BOOL=&quot;0&quot; -DWITH_IMAGE_DDS:BOOL=&quot;0&quot; -DWITH_OPENAL:BOOL=&quot;0&quot; -DWITH_OPENIMAGEIO:BOOL=&quot;0&quot; -DCMAKE_C_STANDARD_LIBRARIES:STRING=&quot;&quot; -DCMAKE_INSTALL_PREFIX:PATH=&quot;/home/hiv/devel/a/blend/target&quot; -DWITH_IMAGE_FRAMESERVER:BOOL=&quot;0&quot; -DWITH_FONTCONFIG:BOOL=&quot;1&quot; -DWITH_IMAGE_CINEON:BOOL=&quot;0&quot; -DWITH_FREESTYLE:BOOL=&quot;0&quot; -DWITH_C11:BOOL=&quot;1&quot; -DWITH_MOD_SMOKE:BOOL=&quot;0&quot; -DCMAKE_BUILD_TYPE:STRING=&quot;Debug&quot; -DWITH_GHOST_XDND:BOOL=&quot;0&quot; -DWITH_IK_SOLVER:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL_NUMPY:BOOL=&quot;0&quot; -DWITH_CYCLES:BOOL=&quot;0&quot; -DWITH_INTERNATIONAL:BOOL=&quot;0&quot; -DWITH_IMAGE_HDR:BOOL=&quot;0&quot; -DWITH_MOD_REMESH:BOOL=&quot;0&quot; -DWITH_BULLET:BOOL=&quot;0&quot; -DWITH_IK_ITASC:BOOL=&quot;0&quot; -DWITH_CODEC_FFMPEG:BOOL=&quot;1&quot; -DWITH_GAMEENGINE:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL:BOOL=&quot;0&quot; -DWITH_PYTHON_INSTALL_REQUESTS:BOOL=&quot;0&quot;
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       <br />
@@ -342,9 +340,6 @@
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       Cache file:
-    </p>
-    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
-      WITH_CPP11:BOOL=1
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       WITH_OPENMP:BOOL=0
@@ -362,7 +357,13 @@
       WITH_OPENIMAGEIO:BOOL=0
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      CMAKE_C_STANDARD_LIBRARIES:STRING=
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       CMAKE_INSTALL_PREFIX:PATH=/home/hiv/devel/a/blend/target
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_IMAGE_FRAMESERVER:BOOL=0
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       WITH_FONTCONFIG:BOOL=1
@@ -372,6 +373,9 @@
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       WITH_FREESTYLE:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_C11:BOOL=1
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       WITH_MOD_SMOKE:BOOL=0
@@ -392,13 +396,13 @@
       WITH_CYCLES:BOOL=0
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
-      WITH_MOD_REMESH:BOOL=0
-    </p>
-    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       WITH_INTERNATIONAL:BOOL=0
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       WITH_IMAGE_HDR:BOOL=0
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_MOD_REMESH:BOOL=0
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       WITH_BULLET:BOOL=0
@@ -417,10 +421,6 @@
     </p>
     <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
       WITH_PYTHON_INSTALL_REQUESTS:BOOL=0
-    </p>
-    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
-      <br />
-      
     </p>
   </body>
 </html>
@@ -496,7 +496,9 @@
 </node>
 </node>
 <node CREATED="1436641912336" ID="ID_1618985498" MODIFIED="1436641915507" TEXT="Eclipse-CDT"/>
-<node CREATED="1436641916575" ID="ID_1658953336" MODIFIED="1436641921363" TEXT="Git-Zweig"/>
+<node CREATED="1436641916575" ID="ID_1658953336" MODIFIED="1459229539123" TEXT="Git-Zweig">
+<icon BUILTIN="button_ok"/>
+</node>
 <node CREATED="1450744777276" ID="ID_1521884380" MODIFIED="1450744783647" TEXT="Libraries f&#xfc;r debug-Build">
 <node CREATED="1450744786299" ID="ID_1516085841" MODIFIED="1450744802324" TEXT="Grundinstallation">
 <richcontent TYPE="NOTE"><html>
