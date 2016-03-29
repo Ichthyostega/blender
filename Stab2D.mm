@@ -52,7 +52,7 @@
 <node CREATED="1459010971351" ID="ID_1256784536" LINK="https://wiki.blender.org/index.php/Dev:Doc/Building_Blender/Linux/cmake" MODIFIED="1459011211674" TEXT="generische CMake-Seite">
 <linktarget COLOR="#9bd3bd" DESTINATION="ID_1256784536" ENDARROW="Default" ENDINCLINATION="-9;17;" ID="Arrow_ID_1440776048" SOURCE="ID_1880592644" STARTARROW="None" STARTINCLINATION="-252;0;"/>
 </node>
-<node CREATED="1459011064208" FOLDED="true" HGAP="47" ID="ID_1369372321" MODIFIED="1459011661195" TEXT="CMake" VSHIFT="16">
+<node CREATED="1459011064208" FOLDED="true" HGAP="47" ID="ID_1369372321" MODIFIED="1459228313861" TEXT="CMake" VSHIFT="16">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1459011071334" ID="ID_1445350994" MODIFIED="1459011078425" TEXT="automatisch per Makefile"/>
 <node CREATED="1459011079462" ID="ID_508138430" MODIFIED="1459011088088" TEXT="CMake-UI verwenden!">
@@ -132,7 +132,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1459048052605" TEXT="CMake-Build">
+<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1459228333870" TEXT="CMake-Build">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043036468" ID="ID_1115892122" MODIFIED="1459043053798" TEXT="Festlegungen">
 <richcontent TYPE="NOTE"><html>
@@ -153,7 +153,7 @@
 <node CREATED="1459043120057" ID="ID_883907537" MODIFIED="1459043127995" TEXT="aus build aufrufen"/>
 <node CREATED="1459043128463" ID="ID_500190073" MODIFIED="1459043132587" TEXT="cmake-gui .."/>
 </node>
-<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1459046867571" TEXT="Konfiguration">
+<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1459228330547" TEXT="Konfiguration">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043158388" ID="ID_269990641" MODIFIED="1459043169878" TEXT="Build-Typ = Debug"/>
 <node CREATED="1459043287627" ID="ID_970294739" MODIFIED="1459043292134" TEXT="abgew&#xe4;hlt">
@@ -613,8 +613,8 @@
 <node CREATED="1458007724205" ID="ID_1073626343" MODIFIED="1458007731864" TEXT="incl. meines Patches">
 <icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459048483466" ID="ID_1671492074" MODIFIED="1459048503768" TEXT="neues Release 2.77 bauen">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1459048483466" ID="ID_1671492074" MODIFIED="1459225166774" TEXT="neues Release 2.77 bauen">
+<icon BUILTIN="button_ok"/>
 </node>
 <node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459048492089" ID="ID_758483927" MODIFIED="1459048503153" TEXT="Entwickler-Stand Ostern bauen">
 <icon BUILTIN="flag-yellow"/>
@@ -653,8 +653,8 @@
 <node CREATED="1450744772181" ID="ID_1261967164" MODIFIED="1458007714495" TEXT="2.76b">
 <icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459047483327" ID="ID_1564946431" MODIFIED="1459047488775" TEXT="2.77">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1459047483327" ID="ID_1564946431" MODIFIED="1459225148528" TEXT="2.77">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 </node>
@@ -1571,6 +1571,141 @@
   </body>
 </html></richcontent>
 <icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1459191312000" ID="ID_459273421" MODIFIED="1459191327049" TEXT="2.76b &#x2023; 2.77">
+<icon BUILTIN="pencil"/>
+<node CREATED="1459191339509" ID="ID_414527174" MODIFIED="1459191417009" TEXT="Debian">
+<icon BUILTIN="info"/>
+<node CREATED="1459191372081" ID="ID_421373659" MODIFIED="1459191413781" TEXT="noch nicht in Debian/unstable">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1459191374121" ID="ID_1073293730" MODIFIED="1459191420757" TEXT="selber n&#xe4;chstes Paket machen">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1459191447807" ID="ID_1453510687" MODIFIED="1459225125378" TEXT="2.77-backport Paket">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1459191464893" ID="ID_1300066567" MODIFIED="1459191471031" TEXT="Standard-Release-Zyklus"/>
+<node CREATED="1459191471500" ID="ID_1228226182" MODIFIED="1459203483993" TEXT="bei n&#xe4;chster Gelegenheit wieder mit Debian zusammenf&#xfc;hren">
+<icon BUILTIN="yes"/>
+</node>
+<node CREATED="1459191484794" ID="ID_128573482" MODIFIED="1459191498967">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      brauche nun verbindlich <b>Python 3.5</b>
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1459213157734" ID="ID_443217135" MODIFIED="1459213315819" TEXT="mu&#xdf; diese Version fest per debian/rules vorgeben">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Erl&#228;uterung
+    </p>
+    <ul>
+      <li>
+        Blender funktioniert jeweils nur mit <b>einer einzigen</b>&#160;Python-Version
+      </li>
+      <li>
+        im CMakeList.txt wird PYTHON_VERSION fest so gesetzt
+      </li>
+      <li>
+        allerdings hat man dabei die Plattform &quot;Unix&quot; &#252;bersehen
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1459191513486" ID="ID_1806460455" MODIFIED="1459191518369" TEXT="Patch rebasen">
+<node CREATED="1459191531300" ID="ID_1102801700" MODIFIED="1459196536864" TEXT="auf release 2.77">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      tag v2.77
+    </p>
+    <p>
+      Tagger: Sergey Sharybin &lt;sergey.vfx@gmail.com&gt;
+    </p>
+    <p>
+      Date:&#160;&#160;&#160;Fri Mar 25 09:08:50 2016 +0100
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Tagging blender release 2.77
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      commit 22a2853b5d5636d5b47407f1e854d47f9b57c295
+    </p>
+    <p>
+      Author: Sergey Sharybin &lt;sergey.vfx@gmail.com&gt;
+    </p>
+    <p>
+      Date:&#160;&#160;&#160;Fri Mar 18 17:34:06 2016 +0500
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;Blender 2.77: Point submodules to an updated hashes
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1459191539995" ID="ID_1314434020" MODIFIED="1459202715172" TEXT="auf aktuellen master">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Tag Ichthyo.Stand.16-4 == b1f918bcc
+    </p>
+    <p>
+      commit b1f918bcc53d552dec2a5327b15f77751dca0712
+    </p>
+    <p>
+      Author: Bastien Montagne &lt;montagne29@wanadoo.fr&gt;
+    </p>
+    <p>
+      Date:&#160;&#160;&#160;Mon Mar 28 18:17:45 2016 +0200
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;Fix T47958: Crash in Walk or Fly Navigation in Camera mode when invoking from non-3DView region
+    </p>
+    <p>
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1459191546442" ID="ID_1241711681" MODIFIED="1459191554284" TEXT="Debug-Build + Arbeitsumgebung"/>
 </node>
 </node>
 </node>
