@@ -14,7 +14,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1459233480504" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" FOLDED="true" HGAP="60" ID="ID_1218644922" MODIFIED="1459389409715" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
@@ -108,7 +108,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1459047427774" TEXT="Umgebung">
+<node CREATED="1436641870656" FOLDED="true" ID="ID_1917334295" MODIFIED="1459389399405" TEXT="Umgebung">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1458007456349" TEXT="SCons-Build">
 <icon BUILTIN="button_cancel"/>
@@ -539,7 +539,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1459230724172" TEXT="Backport">
+<node CREATED="1436641873568" FOLDED="true" ID="ID_38644124" MODIFIED="1459389406275" TEXT="Backport">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
 <node CREATED="1450747645311" HGAP="57" ID="ID_319007264" MODIFIED="1450747653404" TEXT="Debian/Jessie" VSHIFT="12">
@@ -731,7 +731,7 @@
 </node>
 <node CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1436749664569" TEXT="erneut einreichen"/>
 </node>
-<node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1450913562139">
+<node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1459389369532">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -742,13 +742,24 @@
     </p>
   </body>
 </html></richcontent>
-<icon BUILTIN="pencil"/>
+<icon BUILTIN="button_ok"/>
 <node CREATED="1437071977057" ID="ID_436153482" LINK="https://launchpad.net/~ichthyo/+archive/ubuntu/blender" MODIFIED="1438346475708" TEXT="PPA auf Ubuntu/Launchpad">
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1437072016822" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender"/>
-<node CREATED="1437076248383" ID="ID_1862473466" MODIFIED="1450913500053" TEXT="f&#xfc;r Ubuntu Trusty (14.04 LTS)">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1437076248383" FOLDED="true" ID="ID_1862473466" MODIFIED="1459288361847" TEXT="f&#xfc;r Ubuntu Trusty (14.04 LTS)">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      aufgegeben, demn&#228;chst obsolet
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_cancel"/>
 <node CREATED="1450913302328" ID="ID_631359525" MODIFIED="1450913309346" TEXT="problematisch"/>
 <node CREATED="1450913310358" ID="ID_413746290" MODIFIED="1450913377305" TEXT="lockere libAV ">
 <richcontent TYPE="NOTE"><html>
@@ -779,14 +790,17 @@
 <icon BUILTIN="messagebox_warning"/>
 </node>
 </node>
-<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1450913265829" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1459389364336" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1459290182517" ID="ID_1004440108" MODIFIED="1459309728395" TEXT="braucht auch Python-3.5-backport">
+<icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1450913261918" TEXT="f&#xfc;r Ubuntu Wily (15.10)">
-<icon BUILTIN="flag-yellow"/>
 </node>
-<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1450913557101" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS-dev-preview)">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1459294654156" TEXT="f&#xfc;r Ubuntu Wily (15.10)">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1459389358487" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS-dev-preview)">
+<icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1450913571716" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
 <icon BUILTIN="flag-yellow"/>
@@ -1498,7 +1512,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1450569522268" ID="ID_1081477982" MODIFIED="1450744732847" TEXT="2.75a &#x2023; 2.76b">
+<node CREATED="1450569522268" FOLDED="true" ID="ID_1081477982" MODIFIED="1459295992223" TEXT="2.75a &#x2023; 2.76b">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1450571427991" ID="ID_959805861" MODIFIED="1450571478605" TEXT="Debian/experimental hat daf&#xfc;r schon ein Paket">
 <icon BUILTIN="idea"/>
@@ -1661,7 +1675,8 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1459191513486" ID="ID_1806460455" MODIFIED="1459191518369" TEXT="Patch rebasen">
+<node CREATED="1459191513486" ID="ID_1806460455" MODIFIED="1459295973320" TEXT="Patch rebasen">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1459191531300" ID="ID_1102801700" MODIFIED="1459196536864" TEXT="auf release 2.77">
 <richcontent TYPE="NOTE"><html>
   <head>
