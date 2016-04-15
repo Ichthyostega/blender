@@ -493,8 +493,7 @@
       stackoverflow...
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="messagebox_warning"/>
 <node CREATED="1459233416651" ID="ID_177098735" MODIFIED="1459233427985" TEXT="disconnect project">
 <icon BUILTIN="smily_bad"/>
@@ -729,7 +728,12 @@
 <node CREATED="1436749653805" ID="ID_874379201" MODIFIED="1437142722453" TEXT="in mein DEB einbringen">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1436749664569" TEXT="erneut einreichen"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1460747895197" ID="ID_1389537258" MODIFIED="1460747904822" TEXT="aktualisieren auf 2.77a">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1460747758076" TEXT="erneut einreichen">
+<icon BUILTIN="flag-yellow"/>
+</node>
 </node>
 <node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1459389369532">
 <richcontent TYPE="NODE"><html>
@@ -746,7 +750,9 @@
 <node CREATED="1437071977057" ID="ID_436153482" LINK="https://launchpad.net/~ichthyo/+archive/ubuntu/blender" MODIFIED="1438346475708" TEXT="PPA auf Ubuntu/Launchpad">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1437072016822" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender"/>
+<node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1460747779213" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender">
+<icon BUILTIN="info"/>
+</node>
 <node CREATED="1437076248383" FOLDED="true" ID="ID_1862473466" MODIFIED="1459288361847" TEXT="f&#xfc;r Ubuntu Trusty (14.04 LTS)">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -757,8 +763,7 @@
       aufgegeben, demn&#228;chst obsolet
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_cancel"/>
 <node CREATED="1450913302328" ID="ID_631359525" MODIFIED="1450913309346" TEXT="problematisch"/>
 <node CREATED="1450913310358" ID="ID_413746290" MODIFIED="1450913377305" TEXT="lockere libAV ">
@@ -790,18 +795,13 @@
 <icon BUILTIN="messagebox_warning"/>
 </node>
 </node>
-<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1459389364336" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
-<icon BUILTIN="button_ok"/>
+<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1460747785314" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
 <node CREATED="1459290182517" ID="ID_1004440108" MODIFIED="1459309728395" TEXT="braucht auch Python-3.5-backport">
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1459294654156" TEXT="f&#xfc;r Ubuntu Wily (15.10)">
-<icon BUILTIN="button_ok"/>
-</node>
-<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1459389358487" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS-dev-preview)">
-<icon BUILTIN="button_ok"/>
-</node>
+<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1460747788191" TEXT="f&#xfc;r Ubuntu Wily (15.10)"/>
+<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1460747791121" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS-dev-preview)"/>
 <node CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1450913571716" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
 <icon BUILTIN="flag-yellow"/>
 </node>
@@ -1265,8 +1265,7 @@
       ...also empfiehlt es sich auch, sich daran zu halten
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -1754,6 +1753,16 @@
 <node CREATED="1459191546442" ID="ID_1241711681" MODIFIED="1459230676728" TEXT="Debug-Build + Arbeitsumgebung">
 <icon BUILTIN="button_ok"/>
 </node>
+</node>
+</node>
+<node CREATED="1460747812770" ID="ID_377701135" MODIFIED="1460747838057" TEXT="2.77b &#x2023; 2.77a">
+<icon BUILTIN="flag"/>
+<node CREATED="1460747848923" ID="ID_536750763" MODIFIED="1460747855918" TEXT="mein Debian-Paket aktualisieren"/>
+<node CREATED="1460747857002" ID="ID_409766696" MODIFIED="1460747860990" TEXT="Patch rebasen">
+<node CREATED="1460747862498" ID="ID_1210202471" MODIFIED="1460747867196" TEXT="auf release 2.88a"/>
+<node CREATED="1460747867809" ID="ID_1157148556" MODIFIED="1460747872860" TEXT="auf aktuellen master"/>
+<node CREATED="1460747873448" ID="ID_618426756" MODIFIED="1460747878234" TEXT="Arbeitsumgebung portieren"/>
+<node CREATED="1460747878654" ID="ID_1244095914" MODIFIED="1460747883042" TEXT="Debug-Build ausf&#xfc;hren"/>
 </node>
 </node>
 </node>
