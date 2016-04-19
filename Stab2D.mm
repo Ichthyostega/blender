@@ -678,7 +678,7 @@
 </node>
 <node CREATED="1436642134070" ID="ID_1101247684" MODIFIED="1436642137250" TEXT="zweiter Anlauf">
 <node CREATED="1436749670772" ID="ID_787845565" MODIFIED="1436749672856" TEXT="Patch">
-<node CREATED="1436714326727" FOLDED="true" ID="ID_636372309" MODIFIED="1436749640163" TEXT="Patch-Update">
+<node CREATED="1436714326727" FOLDED="true" ID="ID_636372309" MODIFIED="1461030329017" TEXT="Patch-Update">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436714331607" ID="ID_1393441477" MODIFIED="1436716509758" TEXT="versioning_270.c">
 <icon BUILTIN="button_ok"/>
@@ -728,8 +728,22 @@
 <node CREATED="1436749653805" ID="ID_874379201" MODIFIED="1437142722453" TEXT="in mein DEB einbringen">
 <icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1460747895197" ID="ID_1389537258" MODIFIED="1460747904822" TEXT="aktualisieren auf 2.77a">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1460747895197" ID="ID_1389537258" MODIFIED="1461032482507" TEXT="aktualisieren auf 2.77a">
 <icon BUILTIN="flag-yellow"/>
+<icon BUILTIN="pencil"/>
+<node CREATED="1461030350413" ID="ID_1388243559" MODIFIED="1461030395449">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Anker: <b>Ichthyo.Stand.16-4</b>&#160;c42a796e9
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 <node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1460747758076" TEXT="erneut einreichen">
 <icon BUILTIN="flag-yellow"/>
@@ -1755,12 +1769,79 @@
 </node>
 </node>
 </node>
-<node CREATED="1460747812770" ID="ID_377701135" MODIFIED="1460747838057" TEXT="2.77b &#x2023; 2.77a">
-<icon BUILTIN="flag"/>
-<node CREATED="1460747848923" ID="ID_536750763" MODIFIED="1460747855918" TEXT="mein Debian-Paket aktualisieren"/>
+<node CREATED="1460747812770" ID="ID_377701135" MODIFIED="1461032464355" TEXT="2.77b &#x2023; 2.77a">
+<icon BUILTIN="pencil"/>
+<node CREATED="1460747848923" ID="ID_536750763" MODIFIED="1460747855918" TEXT="mein Debian-Paket aktualisieren">
+<node CREATED="1461028647110" ID="ID_1402281702" MODIFIED="1461028675980" TEXT="Debian ist noch auf 2.76b">
+<icon BUILTIN="smily_bad"/>
+</node>
+</node>
 <node CREATED="1460747857002" ID="ID_409766696" MODIFIED="1460747860990" TEXT="Patch rebasen">
-<node CREATED="1460747862498" ID="ID_1210202471" MODIFIED="1460747867196" TEXT="auf release 2.88a"/>
-<node CREATED="1460747867809" ID="ID_1157148556" MODIFIED="1460747872860" TEXT="auf aktuellen master"/>
+<node CREATED="1460747862498" ID="ID_1210202471" MODIFIED="1461031207836" TEXT="auf release 2.77a">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      tag v2.77a
+    </p>
+    <p>
+      Tagger: Sergey Sharybin &lt;sergey.vfx@gmail.com&gt;
+    </p>
+    <p>
+      Date:&#160;&#160;&#160;Thu Apr 7 15:42:26 2016 +0200
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Tagging blender release 2.77a
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      commit abf6f081c4cd5248e174caa8c1c765aa69b8cd96
+    </p>
+    <p>
+      Author: Sergey Sharybin &lt;sergey.vfx@gmail.com&gt;
+    </p>
+    <p>
+      Date:&#160;&#160;&#160;Tue Apr 5 20:12:32 2016 +0200
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &#160;&#160;&#160;&#160;Blender 2.77a: Use proper char for the release
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1460747867809" ID="ID_1157148556" MODIFIED="1461031042392" TEXT="auf aktuellen master">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Tag <b>Ichthyo.Stand.16-4</b>&#160;== c42a796e9
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      Joshua Leung&lt;aligorith@gmail.com&gt;
+    </p>
+    <p>
+      date: 18.04.16 14:42
+    </p>
+    <p>
+      Fix: Make it easier to tell if Color Swatches are greyed out or not
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 <node CREATED="1460747873448" ID="ID_618426756" MODIFIED="1460747878234" TEXT="Arbeitsumgebung portieren"/>
 <node CREATED="1460747878654" ID="ID_1244095914" MODIFIED="1460747883042" TEXT="Debug-Build ausf&#xfc;hren"/>
 </node>
