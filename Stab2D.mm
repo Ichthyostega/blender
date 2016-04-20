@@ -14,9 +14,9 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1461117064252" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1461119517686" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="prepare"/>
+<icon BUILTIN="go"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
 <font NAME="SansSerif" SIZE="14"/>
 <icon BUILTIN="info"/>
@@ -108,7 +108,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1461117147836" TEXT="Umgebung">
+<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1461119535663" TEXT="Umgebung">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1458007456349" TEXT="SCons-Build">
 <icon BUILTIN="button_cancel"/>
@@ -132,7 +132,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459043019934" ID="ID_483743294" MODIFIED="1461117158112" TEXT="CMake-Build">
+<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1461119522156" TEXT="CMake-Build">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043036468" ID="ID_1115892122" MODIFIED="1459043053798" TEXT="Festlegungen">
 <richcontent TYPE="NOTE"><html>
@@ -497,7 +497,7 @@
 <icon BUILTIN="idea"/>
 <node CREATED="1459045972567" ID="ID_184267978" MODIFIED="1459045974155" TEXT="cd build"/>
 <node CREATED="1459045974742" ID="ID_108952533" MODIFIED="1459045978298" TEXT="make -j12"/>
-<node CREATED="1459045980310" ID="ID_1926862727" MODIFIED="1459048049729" TEXT="ggfs: make install">
+<node CREATED="1459045980310" ID="ID_1926862727" MODIFIED="1461119504969" TEXT="(optional / ggfs): make install">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -518,6 +518,23 @@
   </body>
 </html></richcontent>
 <arrowlink COLOR="#a9b4c1" DESTINATION="ID_1299306805" ENDARROW="Default" ENDINCLINATION="144;0;" ID="Arrow_ID_727874697" STARTARROW="None" STARTINCLINATION="188;0;"/>
+<icon BUILTIN="button_cancel"/>
+</node>
+<node CREATED="1461119461923" ID="ID_169614383" MODIFIED="1461119499087" TEXT="./blender">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      geht selbst nach einem Regenerieren der Build-Umbegung, ohne vorher make install gemacht zu haben.
+    </p>
+    <p>
+      Das ist der Sinn der Symlinks!
+    </p>
+  </body>
+</html>
+</richcontent>
 </node>
 </node>
 </node>
@@ -671,8 +688,8 @@
 <node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1461117094446" ID="ID_344735929" MODIFIED="1461117103646" TEXT="neues Release 2.77a bauen">
 <icon BUILTIN="flag-yellow"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1461117104804" ID="ID_68979036" MODIFIED="1461117115131" TEXT="Entwickler-Stand April bauen">
-<icon BUILTIN="flag-yellow"/>
+<node COLOR="#338800" CREATED="1461117104804" ID="ID_68979036" MODIFIED="1461119564567" TEXT="Entwickler-Stand April bauen">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 <node CREATED="1436641933487" FOLDED="true" ID="ID_761151833" MODIFIED="1461117137502" TEXT="Debian/Wheezy">
@@ -1896,7 +1913,9 @@
 <node CREATED="1460747873448" ID="ID_618426756" MODIFIED="1461117016154" TEXT="Arbeitsumgebung portieren">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1460747878654" ID="ID_1244095914" MODIFIED="1460747883042" TEXT="Debug-Build ausf&#xfc;hren"/>
+<node CREATED="1460747878654" ID="ID_1244095914" MODIFIED="1461119582749" TEXT="Debug-Build ausf&#xfc;hren">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 </node>
 </node>
