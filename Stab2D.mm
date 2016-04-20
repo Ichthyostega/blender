@@ -14,9 +14,9 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" FOLDED="true" HGAP="60" ID="ID_1218644922" MODIFIED="1459389409715" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1461117064252" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="go"/>
+<icon BUILTIN="prepare"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
 <font NAME="SansSerif" SIZE="14"/>
 <icon BUILTIN="info"/>
@@ -108,7 +108,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641870656" FOLDED="true" ID="ID_1917334295" MODIFIED="1459389399405" TEXT="Umgebung">
+<node CREATED="1436641870656" ID="ID_1917334295" MODIFIED="1461117147836" TEXT="Umgebung">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436641905079" ID="ID_32595620" MODIFIED="1458007456349" TEXT="SCons-Build">
 <icon BUILTIN="button_cancel"/>
@@ -132,7 +132,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1459229912565" TEXT="CMake-Build">
+<node CREATED="1459043019934" ID="ID_483743294" MODIFIED="1461117158112" TEXT="CMake-Build">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043036468" ID="ID_1115892122" MODIFIED="1459043053798" TEXT="Festlegungen">
 <richcontent TYPE="NOTE"><html>
@@ -151,8 +151,10 @@
 <node CREATED="1459043113658" ID="ID_1447112482" MODIFIED="1459043118821" TEXT="cmake-gui verwenden">
 <node CREATED="1459043120057" ID="ID_883907537" MODIFIED="1459043127995" TEXT="aus build aufrufen"/>
 <node CREATED="1459043128463" ID="ID_500190073" MODIFIED="1459043132587" TEXT="cmake-gui .."/>
+<node CREATED="1461117948829" ID="ID_1025687762" MODIFIED="1461117957743" TEXT="...dann Konfiguration durchpr&#xfc;fen"/>
+<node CREATED="1461117958331" ID="ID_370326114" MODIFIED="1461117962815" TEXT="schlie&#xdf;lich generieren"/>
 </node>
-<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1459229519481" TEXT="Konfiguration">
+<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1461117965675" TEXT="Konfiguration">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043158388" ID="ID_269990641" MODIFIED="1459043169878" TEXT="Build-Typ = Debug"/>
 <node CREATED="1459043287627" ID="ID_970294739" MODIFIED="1459043292134" TEXT="abgew&#xe4;hlt">
@@ -306,8 +308,11 @@
 </node>
 <node CREATED="1459044065340" ID="ID_1052998402" MODIFIED="1459044067855" TEXT="GLEW"/>
 <node CREATED="1459045536209" ID="ID_50688803" MODIFIED="1459229510173" TEXT="C11"/>
+<node CREATED="1461117745776" ID="ID_1651163042" MODIFIED="1461117749859" TEXT="Cxx11"/>
 </node>
-<node CREATED="1459044891782" ID="ID_1135795039" MODIFIED="1459229472429" TEXT="my changes...">
+<node CREATED="1459044891782" ID="ID_1135795039" MODIFIED="1461117882688" TEXT="my changes...">
+<icon BUILTIN="info"/>
+<node CREATED="1461117862232" ID="ID_1250322183" MODIFIED="1461117878378" TEXT="2.77">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -412,8 +417,43 @@
       WITH_PYTHON_INSTALL_REQUESTS:BOOL=0
     </p>
   </body>
-</html></richcontent>
-<icon BUILTIN="info"/>
+</html>
+</richcontent>
+</node>
+<node CREATED="1461117884309" ID="ID_1830163186" MODIFIED="1461117928560" TEXT="2.77a">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      Commandline options:
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      -DWITH_CXX11:BOOL=&quot;1&quot;
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      <br />
+      
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      <br />
+      
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      Cache file:
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      WITH_CXX11:BOOL=1
+    </p>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      <br />
+      
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 </node>
 <node CREATED="1459047361287" HGAP="40" ID="ID_875609941" MODIFIED="1459047416589" TEXT="Einrichtung" VSHIFT="6">
@@ -538,7 +578,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641873568" FOLDED="true" ID="ID_38644124" MODIFIED="1459389406275" TEXT="Backport">
+<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1461117078124" TEXT="Backport">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
 <node CREATED="1450747645311" HGAP="57" ID="ID_319007264" MODIFIED="1450747653404" TEXT="Debian/Jessie" VSHIFT="12">
@@ -628,8 +668,14 @@
 <node CREATED="1459048492089" ID="ID_758483927" MODIFIED="1459230705269" TEXT="Entwickler-Stand Ostern bauen">
 <icon BUILTIN="button_ok"/>
 </node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1461117094446" ID="ID_344735929" MODIFIED="1461117103646" TEXT="neues Release 2.77a bauen">
+<icon BUILTIN="flag-yellow"/>
 </node>
-<node CREATED="1436641933487" FOLDED="true" ID="ID_761151833" MODIFIED="1458007782927" TEXT="Debian/Wheezy">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1461117104804" ID="ID_68979036" MODIFIED="1461117115131" TEXT="Entwickler-Stand April bauen">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
+<node CREATED="1436641933487" FOLDED="true" ID="ID_761151833" MODIFIED="1461117137502" TEXT="Debian/Wheezy">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -640,6 +686,7 @@
     </p>
   </body>
 </html></richcontent>
+<icon BUILTIN="button_cancel"/>
 <node CREATED="1436641944199" ID="ID_1369329699" MODIFIED="1436641947899" TEXT="nur Python 3.2">
 <node CREATED="1436642050607" ID="ID_1468804991" MODIFIED="1436642060680" TEXT="Fehler-Diagnostik-Meldungen"/>
 <node CREATED="1436642013735" ID="ID_715643907" MODIFIED="1436642029139" TEXT="String compilieren/interpretieren"/>
@@ -664,6 +711,9 @@
 </node>
 <node CREATED="1459047483327" ID="ID_1564946431" MODIFIED="1459225148528" TEXT="2.77">
 <icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1461117071441" ID="ID_1697587802" MODIFIED="1461117075051" TEXT="2.77a">
+<icon BUILTIN="pencil"/>
 </node>
 </node>
 </node>
@@ -1820,7 +1870,7 @@
 </html>
 </richcontent>
 </node>
-<node CREATED="1460747867809" ID="ID_1157148556" MODIFIED="1461031042392" TEXT="auf aktuellen master">
+<node CREATED="1460747867809" ID="ID_1157148556" MODIFIED="1461117007833" TEXT="auf aktuellen master">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1841,8 +1891,11 @@
   </body>
 </html>
 </richcontent>
+<icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1460747873448" ID="ID_618426756" MODIFIED="1460747878234" TEXT="Arbeitsumgebung portieren"/>
+<node CREATED="1460747873448" ID="ID_618426756" MODIFIED="1461117016154" TEXT="Arbeitsumgebung portieren">
+<icon BUILTIN="button_ok"/>
+</node>
 <node CREATED="1460747878654" ID="ID_1244095914" MODIFIED="1460747883042" TEXT="Debug-Build ausf&#xfc;hren"/>
 </node>
 </node>
