@@ -470,7 +470,7 @@ WITH_CPU_SSE:BOOL=ON
 WITH_CUDA_DYNLOAD:BOOL=ON
 
 //Build with C++11 standard enabled, for development use only!
-WITH_CXX11:BOOL=OFF
+WITH_CXX11:BOOL=ON
 
 //Enable GuardedAlloc for C++ memory allocation tracking (only
 // enable for development)
@@ -1224,6 +1224,9 @@ extern_clew_LIB_DEPENDS:STATIC=
 extern_cuew_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
+extern_curve_fit_nd_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 extern_gflags_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
@@ -1433,7 +1436,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=98
+CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=99
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
