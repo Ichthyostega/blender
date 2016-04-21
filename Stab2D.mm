@@ -887,6 +887,34 @@
 <icon BUILTIN="flag-yellow"/>
 </node>
 </node>
+<node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1461280564949" ID="ID_1965919603" MODIFIED="1461280574357" TEXT="brauche Windows-Build">
+<icon BUILTIN="flag-pink"/>
+<node CREATED="1461280575828" ID="ID_1423456016" MODIFIED="1461280787673" TEXT="Sergey m&#xf6;chte Feedback von Usern/K&#xfc;nstlern">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1461280747741" ID="ID_1268453490" MODIFIED="1461280769918" TEXT="speziell Sean Kennedy w&#xe4;re wichtig"/>
+<node CREATED="1461280770482" ID="ID_1283715626" MODIFIED="1461280794156" TEXT="er und viele ander haben nur Windows">
+<icon BUILTIN="smily_bad"/>
+</node>
+<node CREATED="1461280776641" ID="ID_1729296314" MODIFIED="1461280801142" TEXT="ich hab kein Windows">
+<icon BUILTIN="smiley-oh"/>
+</node>
+<node CREATED="1461280842249" ID="ID_614417157" MODIFIED="1461280886018">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b>Kevin Mossey</b>&#160;hat mich privat angeschrieben
+    </p>
+  </body>
+</html>
+</richcontent>
+<node CREATED="1461280849240" ID="ID_984190337" MODIFIED="1461280863481" TEXT="hat Erfolg mit seinen Flug/Drohnen-Bildern"/>
+<node CREATED="1461280864374" ID="ID_245691621" MODIFIED="1461280871129" TEXT="bietet an, Windows-Build zu machen"/>
+</node>
+</node>
 </node>
 </node>
 <node CREATED="1436642086687" HGAP="-16" ID="ID_667891095" MODIFIED="1436642092300" POSITION="left" TEXT="Doku" VSHIFT="95">
@@ -1325,9 +1353,10 @@
 </node>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1459233524077" ID="ID_346547773" MODIFIED="1459233579966" TEXT="Doxygen format">
-<icon BUILTIN="flag-yellow"/>
-<node CREATED="1459233539003" ID="ID_1691501696" MODIFIED="1459233574974" TEXT="policy lesen">
+<node COLOR="#338800" CREATED="1459233524077" ID="ID_346547773" MODIFIED="1461280117091" TEXT="Doxygen format">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1461280096980" ID="ID_174791296" LINK="https://wiki.blender.org/index.php/Dev:Doc/Code_Style" MODIFIED="1461280106696" TEXT="Blender Styleguide"/>
+<node CREATED="1459233539003" ID="ID_1691501696" MODIFIED="1461280111435" TEXT="policy lesen">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1346,7 +1375,23 @@
       ...also empfiehlt es sich auch, sich daran zu halten
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1461280120528" ID="ID_309936636" MODIFIED="1461280159437" TEXT="au&#xdf;erdem: &#xf6;ffnende Klammer f&#xfc;r Funktionen">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...kommt stets an den Anfang einer neuen Zeile!
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="info"/>
 </node>
 </node>
 </node>
@@ -1844,7 +1889,7 @@
 </node>
 </node>
 <node CREATED="1460747857002" ID="ID_409766696" MODIFIED="1460747860990" TEXT="Patch rebasen">
-<node CREATED="1460747862498" ID="ID_1210202471" MODIFIED="1461031207836" TEXT="auf release 2.77a">
+<node CREATED="1460747862498" ID="ID_1210202471" MODIFIED="1461281021035" TEXT="auf release 2.77a">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1886,6 +1931,7 @@
   </body>
 </html>
 </richcontent>
+<icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1460747867809" ID="ID_1157148556" MODIFIED="1461117007833" TEXT="auf aktuellen master">
 <richcontent TYPE="NOTE"><html>
