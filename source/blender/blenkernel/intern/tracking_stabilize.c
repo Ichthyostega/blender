@@ -121,15 +121,18 @@ typedef struct StabilizationAnimatedValues {
 
 /* == access animated values for given frame == */
 
-static FCurve *retrieve_stab_animation(MovieClip *clip, const char *data_path, int idx) {
+static FCurve *retrieve_stab_animation(MovieClip *clip, const char *data_path, int idx)
+{
 	return id_data_find_fcurve(&clip->id, &clip->tracking.stabilization, &RNA_MovieTrackingStabilization, data_path, idx, NULL);
 }
 
-static FCurve *retrieve_track_weight_animation(MovieClip *clip, MovieTrackingTrack *track) {
+static FCurve *retrieve_track_weight_animation(MovieClip *clip, MovieTrackingTrack *track)
+{
 	return id_data_find_fcurve(&clip->id, track, &RNA_MovieTrackingTrack, "weight", 0, NULL);
 }
 
-static float fetch_from_fcurve(FCurve *animation, int framenr, StabilizationAnimatedValues *ani, float default_value) {
+static float fetch_from_fcurve(FCurve *animation, int framenr, StabilizationAnimatedValues *ani, float default_value)
+{
 	if (animation && ani->useAnimation) {
 		int scene_framenr = BKE_movieclip_remap_clip_to_scene_frame(ani->clip, framenr);
 		return evaluate_fcurve(animation, scene_framenr);
@@ -138,39 +141,46 @@ static float fetch_from_fcurve(FCurve *animation, int framenr, StabilizationAnim
 }
 
 
-static float get_animated_locinf(MovieTrackingStabilization *stab, int framenr) {
+static float get_animated_locinf(MovieTrackingStabilization *stab, int framenr)
+{
 	StabilizationAnimatedValues *ani = stab->animated_params;
 	return fetch_from_fcurve(ani->locinf, framenr, ani, stab->locinf);
 }
 
-static float get_animated_rotinf(MovieTrackingStabilization *stab, int framenr) {
+static float get_animated_rotinf(MovieTrackingStabilization *stab, int framenr)
+{
 	StabilizationAnimatedValues *ani = stab->animated_params;
 	return fetch_from_fcurve(ani->rotinf, framenr, ani, stab->rotinf);
 }
 
-static float get_animated_scaleinf(MovieTrackingStabilization *stab, int framenr) {
+static float get_animated_scaleinf(MovieTrackingStabilization *stab, int framenr)
+{
 	StabilizationAnimatedValues *ani = stab->animated_params;
 	return fetch_from_fcurve(ani->scaleinf, framenr, ani, stab->scaleinf);
 }
 
 static void get_animated_target_pos(MovieTrackingStabilization *stab, int framenr,
-		                            float target_pos[2]) {
+		                            float target_pos[2])
+{
 	StabilizationAnimatedValues *ani = stab->animated_params;
 	target_pos[0] = fetch_from_fcurve(ani->target_pos[0], framenr, ani, stab->target_pos[0]);
 	target_pos[1] = fetch_from_fcurve(ani->target_pos[1], framenr, ani, stab->target_pos[1]);
 }
 
-static float get_animated_target_rot(MovieTrackingStabilization *stab, int framenr) {
+static float get_animated_target_rot(MovieTrackingStabilization *stab, int framenr)
+{
 	StabilizationAnimatedValues *ani = stab->animated_params;
 	return fetch_from_fcurve(ani->target_rot, framenr, ani, stab->target_rot);
 }
 
-static float get_animated_target_scale(MovieTrackingStabilization *stab, int framenr) {
+static float get_animated_target_scale(MovieTrackingStabilization *stab, int framenr)
+{
 	StabilizationAnimatedValues *ani = stab->animated_params;
 	return fetch_from_fcurve(ani->target_scale, framenr, ani, stab->scale);
 }
 
-static float get_animated_weight(MovieTrackingTrack *track, int framenr) {
+static float get_animated_weight(MovieTrackingTrack *track, int framenr)
+{
 	TrackStabilizationBase *working_data = track->stabilizationBase;
 	if (working_data && working_data->track_weight_curve) {
 		int scene_framenr = BKE_movieclip_remap_clip_to_scene_frame(working_data->clip, framenr);
@@ -180,7 +190,8 @@ static float get_animated_weight(MovieTrackingTrack *track, int framenr) {
 }
 
 /** Prepare access to possibly animated values: retrieve available F-curves */
-static void initialize_animated_params(MovieTrackingStabilization *stab, MovieClip *clip) {
+static void initialize_animated_params(MovieTrackingStabilization *stab, MovieClip *clip)
+{
 	StabilizationAnimatedValues *ani = stab->animated_params;
 	if (!ani) {
 		ani = stab->animated_params = MEM_callocN(sizeof(StabilizationAnimatedValues), "2D stabilization animation runtime data");
@@ -197,7 +208,8 @@ static void initialize_animated_params(MovieTrackingStabilization *stab, MovieCl
 	ani->useAnimation  = true;
 }
 
-static void use_values_from_fcurves(MovieTrackingStabilization *stab, bool toggle) {
+static void use_values_from_fcurves(MovieTrackingStabilization *stab, bool toggle)
+{
 	StabilizationAnimatedValues *ani = stab->animated_params;
 	if (ani) {
 		ani->useAnimation = toggle;
@@ -206,23 +218,27 @@ static void use_values_from_fcurves(MovieTrackingStabilization *stab, bool toggl
 
 
 
-static bool is_init_for_stabilization(MovieTrackingTrack *track) {
+static bool is_init_for_stabilization(MovieTrackingTrack *track)
+{
 	TrackStabilizationBase *base = track->stabilizationBase;
 	return (base && base->is_init_for_stabilization);
 }
 
-static bool is_usable_for_stabilization(MovieTrackingTrack *track) {
+static bool is_usable_for_stabilization(MovieTrackingTrack *track)
+{
 	return (track->flag & TRACK_USE_2D_STAB) &&
 			is_init_for_stabilization(track);
 }
 
-static bool is_effectively_disabled(MovieTrackingTrack *track, MovieTrackingMarker *marker) {
+static bool is_effectively_disabled(MovieTrackingTrack *track, MovieTrackingMarker *marker)
+{
 	return (marker->flag & MARKER_DISABLED) ||
 	       (EPSILON_WEIGHT > get_animated_weight(track, marker->framenr));
 }
 
 
-static int search_closest_marker_index(MovieTrackingTrack *track, int ref_frame) {
+static int search_closest_marker_index(MovieTrackingTrack *track, int ref_frame)
+{
 	MovieTrackingMarker *markers = track->markers;
 	int end = track->markersnr;
 	int i = track->last_marker;
@@ -236,7 +252,8 @@ static int search_closest_marker_index(MovieTrackingTrack *track, int ref_frame)
 	return i;
 }
 
-static void retrieve_next_higher_usable_frame(MovieTrackingTrack *track, int i, int ref_frame, int *next_higher) {
+static void retrieve_next_higher_usable_frame(MovieTrackingTrack *track, int i, int ref_frame, int *next_higher)
+{
 	MovieTrackingMarker *markers = track->markers;
 	int end = track->markersnr;
 	BLI_assert(0 <= i && i < end);
@@ -252,7 +269,8 @@ static void retrieve_next_higher_usable_frame(MovieTrackingTrack *track, int i, 
 	}
 }
 
-static void	retrieve_next_lower_usable_frame(MovieTrackingTrack *track, int i, int ref_frame, int *next_lower) {
+static void	retrieve_next_lower_usable_frame(MovieTrackingTrack *track, int i, int ref_frame, int *next_lower)
+{
 	MovieTrackingMarker *markers = track->markers;
 	int end = track->markersnr;
 	BLI_assert(0 <= i && i < end);
@@ -271,13 +289,15 @@ static void	retrieve_next_lower_usable_frame(MovieTrackingTrack *track, int i, i
 
 /**
  * find closest frames with usable stabilization data.
- * A frame counts as usable when there is at least one track marked for translation stabilization,
+ * A frame counts as _usable_ when there is at least one track marked for translation stabilization,
  * which has an enabled tracking marker at this very frame. We search both for the next lower
  * and next higher position, to allow the caller to interpolate gaps and to extrapolate
  * at the ends of the definition range.
- * @remarks regarding performance note that the individual tracks will cache the last search position.
+ * \remarks regarding performance note that the individual tracks will cache the last search position.
  */
-static void find_next_working_frames(MovieTracking *tracking, int framenr, int *next_lower, int *next_higher) {
+static void find_next_working_frames(MovieTracking *tracking, int framenr,
+		                             int *next_lower, int *next_higher)
+{
 	MovieTrackingTrack *track;
 	for (track = tracking->tracks.first; track; track = track->next)
 		if (is_usable_for_stabilization(track)){
@@ -289,7 +309,8 @@ static void find_next_working_frames(MovieTracking *tracking, int framenr, int *
 
 
 /** find active (enabled) marker closest to the reference frame */
-static MovieTrackingMarker *get_closest_marker(MovieTrackingTrack *track, int ref_frame) {
+static MovieTrackingMarker *get_closest_marker(MovieTrackingTrack *track, int ref_frame)
+{
 	if (track->markersnr > 0) {
 		int next_lower = MINAFRAME;
 		int next_higher = MAXFRAME;
@@ -330,16 +351,16 @@ static MovieTrackingMarker *get_tracking_data_point(MovieTrackingTrack *track, i
 
 
 /**
- * Calculate the contribution of a single track at implicitly given time point (frame).
+ * Calculate the contribution of a single track at the time position (frame) of the given marker.
  * Each track has a local reference frame, which is as close as possible to the global anchor_frame.
  * Thus the translation contribution is comprised of the offset relative to the image position at that
  * reference frame, plus a guess of the contribution for the time span between the anchor_frame and the
  * local reference frame of this track. The constant part of this contribution is precomputed initially.
  * At the anchor_frame, by definition the contribution of all tracks is zero, keeping the frame in place.
  *
- * @param trackRef per track baseline contribution at reference frame; filled in at initialization
- * @param marker tracking data to use as contribution for current frame.
- * @param result_offset total cumulated contribution of this track,
+ * \param trackRef per track baseline contribution at reference frame; filled in at initialization
+ * \param marker tracking data to use as contribution for current frame.
+ * \param result_offset total cumulated contribution of this track,
  *                      relative to the stabilization anchor_frame,
  *                      in normalized (0...1) coordinates.
  */
@@ -350,27 +371,28 @@ static void translation_contribution(TrackStabilizationBase *trackRef, MovieTrac
 }
 
 /**
- * Similar to the #translation_contribution, the rotation contribution is comprised of the contribution
+ * Similar to the ::translation_contribution(), the rotation contribution is comprised of the contribution
  * by this individual track, and the averaged contribution from anchor_frame to the ref point of this track.
  * - contribution is in terms of angles, -pi < angle < +pi, and all averaging happens in this domain
  * - yet the actual measurement happens as vector between pivot and the current tracking point
- * - for now we use the center of frame as approximation for the rotation pivot point.
+ * - currently we use the center of frame as approximation for the rotation pivot point.
  * - moreover, the pivot point has to be compensated for the already determined shift offset,
- *   in order to get the pure rotation around the pivot. To turn this into a \e contribution,
- *   the likewise corrected angle at the reference frame has to be subtracted, to get only the pure
- *   angle difference this tracking point has captured.
+ *   in order to get the pure rotation around the pivot. To turn this into a _contribution_,
+ *   the likewise corrected angle at the reference frame has to be subtracted, to get only the
+ *   pure angle difference this tracking point has captured.
  * - to get from vectors to angles, we have to go through an arcus tangens, which involves the issue
  *   of the definition range: the resulting angles will flip by 360deg when the measured vector passes
- *   from the 2nd to the third quadrant, thus messing up the average calculation. Since \e any tracking
+ *   from the 2nd to the third quadrant, thus messing up the average calculation. Since _any_ tracking
  *   point might be used, these problems are quite common in practice.
  * - thus we perform the subtraction of the reference and the addition of the baseline contribution
  *   in polar coordinates as simple addition of angles; since these parts are fixed, we can bake
  *   them into a rotation matrix. With this approach, the border of the arcus tangens definition range
- *   will be reached only, when the \e whole contribution approaches +- 180deg, meaning we've already
+ *   will be reached only, when the _whole_ contribution approaches +- 180deg, meaning we've already
  *   tilted the frame upside down. This situation is way less common and can be tolerated.
- * - when activated, also changes in image scale relative to the rotation center can be picked up.
- *   To handle those values in the same framework, we average the scales as logarithms.
- *  @param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
+ * - as an additional feature, when activated, also changes in image scale relative to the rotation center
+ *   can be picked up. To handle those values in the same framework, we average the scales as logarithms.
+ *
+ * \param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
  */
 static void rotation_contribution(TrackStabilizationBase *trackRef, MovieTrackingMarker *marker, float aspect,
                                   float target_pos[2], float averaged_translation_contribution[2],
@@ -396,19 +418,20 @@ static void rotation_contribution(TrackStabilizationBase *trackRef, MovieTrackin
 
 
 /**
- * Weighted average of the per track cumulated contributions at given frame
- * @return true if all desired calculations could be done and all averages are available
- * @note even if the result is not \c true, the returned translation and angle are
+ * Weighted average of the per track cumulated contributions at given frame.
+ * \return `true` if all desired calculations could be done and all averages are available
+ * \note even if the result is not `true`, the returned translation and angle are
  *       always sensible and as good as can be. Especially in the initialization phase
  *       we might not be able to get any average (yet) or get only a translation value.
  *       Since initialization visits tracks in a specific order, starting from anchor_frame,
  *       the result is logically correct non the less. But under normal operation conditions,
- *       a result of \c false should disable the stabilization function
+ *       a result of `false` should disable the stabilization function
  */
 static bool average_track_contributions(MovieTracking *tracking, int framenr, float aspect,
                                         float translation[2], float* angle, float* scale_step)
 {
-	bool ok; float weight_sum;
+	bool ok;
+	float weight_sum;
 	MovieTrackingTrack *track;
 	MovieTrackingStabilization *stab = &tracking->stabilization;
 	BLI_assert(stab->flag & TRACKING_2D_STABILIZATION);
@@ -481,15 +504,16 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
  * This function is used to fill gaps in the middle of the covered area,
  * at frames without any usable tracks for stabilization.
  *
- * @param framenr position to interpolate for
- * @param frame_a valid measurement point below framenr
- * @param frame_b valid measurement point above framenr
- * @return \c true if both measurements could actually be retrieved.
+ * \param framenr position to interpolate for
+ * \param frame_a valid measurement point below framenr
+ * \param frame_b valid measurement point above framenr
+ * \return `true` if both measurements could actually be retrieved.
  *         Otherwise output parameters remain unaltered
  */
 static bool interpolate_averaged_track_contributions(MovieTracking *tracking,
                                                      int framenr, int frame_a, int frame_b, float aspect,
-                                                     float translation[2], float* angle, float* scale_step) {
+                                                     float translation[2], float* angle, float* scale_step)
+{
 	float t, s;
 	float trans_a[2], trans_b[2];
 	float angle_a, angle_b;
@@ -521,9 +545,9 @@ static bool interpolate_averaged_track_contributions(MovieTracking *tracking,
  * starting farer away from anchor_frame altogether will be visited later.
  * This allows to build up baseline contributions incrementally.
  *
- * @param order array for sorting the tracks. Must be of suitable size to hold all tracks.
- * @return number of actually usable tracks, can be less than the overall number of tracks
- * @remark after returning, the order array holds entries up to the number of usable tracks,
+ * \param order array for sorting the tracks. Must be of suitable size to hold all tracks.
+ * \return number of actually usable tracks, can be less than the overall number of tracks
+ * \remark after returning, the order array holds entries up to the number of usable tracks,
  *         appropriately sorted starting with the closest tracks. Initialization includes
  *         disabled tracks, since they might be enabled through automation later.
  */
@@ -564,10 +588,10 @@ static int establish_track_initialization_order(MovieTracking *tracking, TrackIn
  * over all frames -- which of course would be way more expensive, especially for longer
  * clips. To the contrary, our solution cumulates the total contribution per track and
  * averages afterwards over all tracks; it can thus be calculated just based on the
- * data of a single frame, plus the "baseline" for the reference frame, which we're
- * computing here.
+ * data of a single frame, plus the "baseline" for the reference frame, which is
+ * what we are computing here.
  *
- * Since we're averaging \e contributions, we have to calculate the \e difference of
+ * Since we're averaging _contributions_, we have to calculate the _difference_ of
  * the measured position at current frame and the position at the reference frame.
  * But the "reference" part of this difference is constant and can thus be packed
  * together with the baseline contribution into a single precomputed vector per track.
@@ -580,18 +604,20 @@ static int establish_track_initialization_order(MovieTracking *tracking, TrackIn
  * we perform this baseline addition and reference angle subtraction in polar
  * coordinates and bake this operation into a precomputed rotation matrix.
  *
- * @param track to initialize
- * @param reference_frame local for this track, the closest pick to the global anchor_frame
- * @param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
- * @param target_pos possibly animated target position as set by the user for the reference_frame
- * @param average_translation value observed by the \e other tracks for the gap between
+ * \param track to initialize
+ * \param reference_frame local for this track, the closest pick to the global anchor_frame
+ * \param aspect total aspect ratio of the undistorted image (includes fame and pixel aspect)
+ * \param target_pos possibly animated target position as set by the user for the reference_frame
+ * \param average_translation value observed by the _other_ tracks for the gap between
  *                            reference_frame and anchor_frame. This average must not contain
- *                            contributions of not yet initialized frames
- * @param average_scale_step image scale factor observed on average by the other tracks
+ *                            contributions of frames not yet initialized
+ * \param average_angle in a similar way, the rotation value observed by the _other_tracks.
+ * \param average_scale_step image scale factor observed on average by the other tracks
  *                            for this frame. This value is recorded and averaged as logarithm.
  *                            The recorded scale changes are damped for very small contributions,
  *                            to limit the effect of probe points approaching the pivot too closely.
- * @note when done, this track is marked as initialized
+ *
+ * \note when done, this track is marked as initialized
  */
 static void initialize_track_for_stabilization(MovieTrackingTrack *track, int reference_frame, float aspect,
                                                const float target_pos[2], const float average_translation[2],
@@ -660,7 +686,7 @@ static void initialize_all_tracks(MovieClip *clip, float aspect)
 	if (!order) return;
 
 	track_cnt = establish_track_initialization_order(tracking, order);
-	if (!track_cnt) goto cleanup;
+	if (track_cnt == 0) goto cleanup;
 
 	for (i=0; i < track_cnt; ++i) {
 		track = order[i].data;
@@ -669,7 +695,8 @@ static void initialize_all_tracks(MovieClip *clip, float aspect)
 			average_track_contributions(tracking, reference_frame, aspect, average_translation, &average_angle, &average_scale_step);
 			get_animated_target_pos(&tracking->stabilization, reference_frame, target_pos_at_ref_frame);
 		}
-		initialize_track_for_stabilization(track, reference_frame, aspect, target_pos_at_ref_frame, average_translation, average_angle, average_scale_step);
+		initialize_track_for_stabilization(track, reference_frame, aspect, target_pos_at_ref_frame,
+		                                   average_translation, average_angle, average_scale_step);
 	}
 
 	cleanup:
@@ -680,11 +707,11 @@ static void initialize_all_tracks(MovieClip *clip, float aspect)
 
 /**
  * Retrieve the measurement of frame movement by averaging contributions of active tracks.
- * @param translation measurement in normalized 0..1 coordinates
- * @param angle measurement in radians -pi..+pi counter clockwise relative to translation compensated frame center
- * @param scale_step measurement of image scale changes, in logarithmic scale (zero means scale == 1)
- * @return calculation enabled and all data retrieved as expected for this frame.
- * @note when returning \c false, output params are reset to neutral values
+ * \param translation measurement in normalized 0..1 coordinates
+ * \param angle measurement in radians -pi..+pi counter clockwise relative to translation compensated frame center
+ * \param scale_step measurement of image scale changes, in logarithmic scale (zero means scale == 1)
+ * \return calculation enabled and all data retrieved as expected for this frame.
+ * \note when returning `false`, output parameters are reset to neutral values
  */
 static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, int framenr, float aspect,
                                                      float translation[2], float* angle, float* scale_step)
@@ -731,9 +758,9 @@ static bool stabilization_determine_offset_for_frame(MovieTracking *tracking, in
  * Calculate stabilization data (translation, scale and rotation) from given raw measurements.
  * Result is in absolute image dimensions (expanded image, square pixels), includes automatic
  * or manual scaling and compensates for a target frame position, if given.
- * @param size of the expanded image, the width in pixels is size * aspect
- * @param aspect ratio (width / height) of the effective canvas (square pixels)
- * @param do_compensate actually output values necessary to \e compensate the determined
+ * \param size of the expanded image, the width in pixels is size * aspect
+ * \param aspect ratio (width / height) of the effective canvas (square pixels)
+ * \param do_compensate actually output values necessary to _compensate_ the determined
  *                      frame movement. Otherwise, the effective target movement is returned
  */
 static void stabilization_calculate_data(MovieTracking *tracking, int framenr, int size, float aspect,
@@ -778,7 +805,8 @@ static void stabilization_calculate_data(MovieTracking *tracking, int framenr, i
  * Determine the inner part of the frame, which is always safe to use.
  * When enlarging the image by the inverse of this factor, any black areas
  * appearing due to frame translation and rotation will be removed.
- * @note when calling this function, basic initialization of tracks must be done already
+ *
+ * \note when calling this function, basic initialization of tracks must be done already
  */
 static void stabilization_determine_safe_image_area(MovieTracking *tracking, int size, float image_aspect)
 {
@@ -903,14 +931,14 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
 
 /**
  * Get stabilization data (translation, scaling and angle) for a given frame.
- * Returned data describes the detected movement, but with any chosen scale factor
- * already applied and any target frame position already compensated. In case
- * stabilization fails or is disabled, neutral values are returned.
- * @param framenr frame number, relative to the clip (not relative to the scene timeline)
- * @param width effective width of the canvas (square pixels), used to scale the determined translation
- * @param translation (output) of the lateral shift, absolute canvas coordinates (square pixels)
- * @param scale (output) of the scaling to apply
- * @param angle (output) of the rotation angle, relative to the frame center
+ * Returned data describes how to compensate the detected movement, but with any
+ * chosen scale factor already applied and any target frame position already compensated.
+ * In case stabilization fails or is disabled, neutral values are returned.
+ * \param framenr frame number, relative to the clip (not relative to the scene timeline)
+ * \param width effective width of the canvas (square pixels), used to scale the determined translation
+ * \param translation (output) of the lateral shift, absolute canvas coordinates (square pixels)
+ * \param scale (output) of the scaling to apply
+ * \param angle (output) of the rotation angle, relative to the frame center
  */
 void BKE_tracking_stabilization_data_get(MovieClip *clip, int framenr, int width, int height,
                                          float translation[2], float *scale, float *angle)
@@ -948,10 +976,10 @@ void BKE_tracking_stabilization_data_get(MovieClip *clip, int framenr, int width
 	}
 }
 
-/* Stabilize given image buffer using stabilization data for
- * a specified frame number.
+/**
+ * Stabilize given image buffer using stabilization data for a specified frame number.
  *
- * NOTE: frame number should be in clip space, not scene space
+ * \note frame number should be in clip space, not scene space
  */
 ImBuf *BKE_tracking_stabilize_frame(MovieClip *clip, int framenr, ImBuf *ibuf,
                                     float translation[2], float *scale, float *angle)

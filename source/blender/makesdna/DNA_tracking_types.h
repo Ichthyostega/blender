@@ -254,7 +254,7 @@ typedef struct MovieTrackingSettings {
 typedef struct MovieTrackingStabilization {
 	int flag;
 	int tot_track, act_track;       	/* total number of translation tracks and index of active track in list */
-	int tot_rot_track, act_rot_track;	/* total number of translation tracks and index of active track in list */
+	int tot_rot_track, act_rot_track;	/* total number of rotation tracks and index of active track in list */
 
 	/* 2d stabilization */
 	float maxscale;         /* max auto-scale factor */

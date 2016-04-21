@@ -57,7 +57,6 @@ void unit_m2(float m[2][2])
 	m[1][0] = 0.0f;
 }
 
-
 void unit_m3(float m[3][3])
 {
 	m[0][0] = m[1][1] = m[2][2] = 1.0f;
