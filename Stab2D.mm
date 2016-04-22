@@ -14,7 +14,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1461119517686" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" FOLDED="true" HGAP="60" ID="ID_1218644922" MODIFIED="1461341199385" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
@@ -685,8 +685,8 @@
 <node CREATED="1459048492089" ID="ID_758483927" MODIFIED="1459230705269" TEXT="Entwickler-Stand Ostern bauen">
 <icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1461117094446" ID="ID_344735929" MODIFIED="1461117103646" TEXT="neues Release 2.77a bauen">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1461117094446" ID="ID_344735929" MODIFIED="1461289824665" TEXT="neues Release 2.77a bauen">
+<icon BUILTIN="button_ok"/>
 </node>
 <node COLOR="#338800" CREATED="1461117104804" ID="ID_68979036" MODIFIED="1461119564567" TEXT="Entwickler-Stand April bauen">
 <icon BUILTIN="button_ok"/>
@@ -729,8 +729,8 @@
 <node CREATED="1459047483327" ID="ID_1564946431" MODIFIED="1459225148528" TEXT="2.77">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1461117071441" ID="ID_1697587802" MODIFIED="1461117075051" TEXT="2.77a">
-<icon BUILTIN="pencil"/>
+<node CREATED="1461117071441" ID="ID_1697587802" MODIFIED="1461289836300" TEXT="2.77a">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 </node>
@@ -795,10 +795,9 @@
 <node CREATED="1436749653805" ID="ID_874379201" MODIFIED="1437142722453" TEXT="in mein DEB einbringen">
 <icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1460747895197" ID="ID_1389537258" MODIFIED="1461032482507" TEXT="aktualisieren auf 2.77a">
-<icon BUILTIN="flag-yellow"/>
-<icon BUILTIN="pencil"/>
-<node CREATED="1461030350413" ID="ID_1388243559" MODIFIED="1461030395449">
+<node COLOR="#338800" CREATED="1460747895197" ID="ID_1389537258" MODIFIED="1461287296562" TEXT="aktualisieren auf 2.77a">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1461030350413" ID="ID_1388243559" MODIFIED="1461287286999">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -810,13 +809,17 @@
   </body>
 </html>
 </richcontent>
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1461287271973" ID="ID_1297612818" MODIFIED="1461287283532" TEXT="Patch rebased + Style-clean-up">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1460747758076" TEXT="erneut einreichen">
-<icon BUILTIN="flag-yellow"/>
+<node COLOR="#338800" CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1461341121435" TEXT="erneut einreichen">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1459389369532">
+<node CREATED="1437071968242" FOLDED="true" ID="ID_1325711910" MODIFIED="1461342422647">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -876,15 +879,20 @@
 <icon BUILTIN="messagebox_warning"/>
 </node>
 </node>
-<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1460747785314" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
+<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1461289844768" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1459290182517" ID="ID_1004440108" MODIFIED="1459309728395" TEXT="braucht auch Python-3.5-backport">
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1460747788191" TEXT="f&#xfc;r Ubuntu Wily (15.10)"/>
-<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1460747791121" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS-dev-preview)"/>
-<node CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1450913571716" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1461289847630" TEXT="f&#xfc;r Ubuntu Wily (15.10)">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1461289850362" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS-dev-preview)">
+<icon BUILTIN="button_ok"/>
+</node>
+<node COLOR="#338800" CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1461342413904" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 <node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1461280564949" ID="ID_1965919603" MODIFIED="1461280574357" TEXT="brauche Windows-Build">
@@ -1747,7 +1755,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459191312000" ID="ID_459273421" MODIFIED="1459230692941" TEXT="2.76b &#x2023; 2.77">
+<node CREATED="1459191312000" FOLDED="true" ID="ID_459273421" MODIFIED="1461341168774" TEXT="2.76b &#x2023; 2.77">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459191339509" ID="ID_414527174" MODIFIED="1459191417009" TEXT="Debian">
 <icon BUILTIN="info"/>
@@ -1881,14 +1889,65 @@
 </node>
 </node>
 </node>
-<node CREATED="1460747812770" ID="ID_377701135" MODIFIED="1461032464355" TEXT="2.77b &#x2023; 2.77a">
-<icon BUILTIN="pencil"/>
-<node CREATED="1460747848923" ID="ID_536750763" MODIFIED="1460747855918" TEXT="mein Debian-Paket aktualisieren">
+<node CREATED="1460747812770" FOLDED="true" ID="ID_377701135" MODIFIED="1461341916930" TEXT="2.77b &#x2023; 2.77a">
+<icon BUILTIN="button_ok"/>
+<node COLOR="#338800" CREATED="1460747848923" ID="ID_536750763" MODIFIED="1461287225843" TEXT="mein Debian-Paket aktualisieren">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1461028647110" ID="ID_1402281702" MODIFIED="1461028675980" TEXT="Debian ist noch auf 2.76b">
 <icon BUILTIN="smily_bad"/>
 </node>
+<node CREATED="1461287202413" ID="ID_531340265" MODIFIED="1461287229102" TEXT="Paket neu gebaut, incl Patch">
+<icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1460747857002" ID="ID_409766696" MODIFIED="1460747860990" TEXT="Patch rebasen">
+<node CREATED="1461287211412" ID="ID_1141120874" MODIFIED="1461287231492" TEXT="ver&#xf6;ffentlicht auf Lumiera">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1461287235105" ID="ID_436084396" MODIFIED="1461287241379" TEXT="ver&#xf6;ffentlicht im PPA">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1461298015374" ID="ID_872492051" MODIFIED="1461341159702">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b><font color="#e9263b">FEHLER</font></b>: Versionsnummer falsch vergeben
+    </p>
+  </body>
+</html>
+</richcontent>
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ich h&#228;tte das 'a' mit Punkt getrennt anh&#228;ngen m&#252;ssen
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1461298028812" ID="ID_1429422306" MODIFIED="1461298097833" TEXT="&#x27f9; Verionsreihenfolge durcheinander">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ... f&#252;r Debian erscheint das <b>neuere</b>&#160;2.77a <b>kleiner als</b>&#160; das vorhergehende 2.77
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1461341142928" ID="ID_1183045548" MODIFIED="1461341154897" TEXT="nochmal gebaut mit korrekter Version 2.77.a">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node COLOR="#338800" CREATED="1460747857002" ID="ID_409766696" MODIFIED="1461287254679" TEXT="Patch rebasen">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1460747862498" ID="ID_1210202471" MODIFIED="1461281021035" TEXT="auf release 2.77a">
 <richcontent TYPE="NOTE"><html>
   <head>
