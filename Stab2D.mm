@@ -417,8 +417,7 @@
       WITH_PYTHON_INSTALL_REQUESTS:BOOL=0
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1461117884309" ID="ID_1830163186" MODIFIED="1461117928560" TEXT="2.77a">
 <richcontent TYPE="NOTE"><html>
@@ -451,8 +450,7 @@
       
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -533,8 +531,7 @@
       Das ist der Sinn der Symlinks!
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -807,8 +804,7 @@
       Anker: <b>Ichthyo.Stand.16-4</b>&#160;c42a796e9
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="info"/>
 </node>
 <node CREATED="1461287271973" ID="ID_1297612818" MODIFIED="1461287283532" TEXT="Patch rebased + Style-clean-up">
@@ -895,8 +891,8 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1461280564949" ID="ID_1965919603" MODIFIED="1461280574357" TEXT="brauche Windows-Build">
-<icon BUILTIN="flag-pink"/>
+<node COLOR="#338800" CREATED="1461280564949" ID="ID_1965919603" MODIFIED="1468189190898" TEXT="brauche Windows-Build">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1461280575828" ID="ID_1423456016" MODIFIED="1461280787673" TEXT="Sergey m&#xf6;chte Feedback von Usern/K&#xfc;nstlern">
 <icon BUILTIN="messagebox_warning"/>
 </node>
@@ -917,10 +913,35 @@
       <b>Kevin Mossey</b>&#160;hat mich privat angeschrieben
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1461280849240" ID="ID_984190337" MODIFIED="1461280863481" TEXT="hat Erfolg mit seinen Flug/Drohnen-Bildern"/>
 <node CREATED="1461280864374" ID="ID_245691621" MODIFIED="1461280871129" TEXT="bietet an, Windows-Build zu machen"/>
+</node>
+<node CREATED="1468189234852" ID="ID_1865511838" MODIFIED="1468189262013">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      schlie&#223;lich hat <b>&#1052;&#1091;&#1082;&#1072;&#1077;&#1074; &#1042;&#1080;&#1082;&#1090;&#1086;&#1088;</b>&#160; &lt;vitos1g@gmail.com&gt; den Build gemacht
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1468189276660" ID="ID_210863761" MODIFIED="1468189280358" TEXT="User-Feedback">
+<node CREATED="1468189282395" ID="ID_324814762" MODIFIED="1468189286711" TEXT="Sean Kennedy">
+<node CREATED="1468189291186" ID="ID_749978544" MODIFIED="1468189297492" TEXT="grunds&#xe4;tzlich positiv"/>
+<node CREATED="1468189299026" ID="ID_1652672540" MODIFIED="1468189313674" TEXT="hat aber die Tracks nicht sinnvoll gew&#xe4;hlt"/>
+<node CREATED="1468189314399" ID="ID_1868445454" MODIFIED="1468189324849" TEXT="Michael P. hat ihn darauf hingewiesen"/>
+<node CREATED="1468189325421" ID="ID_809297377" MODIFIED="1468189356389" TEXT="danach: funktioniert bis auf minimale Ungenauigkeiten"/>
+<node CREATED="1468189357849" ID="ID_844453657" MODIFIED="1468189367003" TEXT="diese kann ich erkl&#xe4;ren, das &#xfc;bliche Pivot-Problem"/>
+</node>
+<node CREATED="1468189372375" ID="ID_872254410" MODIFIED="1468189376833" TEXT="Michael P.">
+<node CREATED="1468189377774" ID="ID_887071452" MODIFIED="1468189385072" TEXT="das Problem, die Tracks sinnvoll zu w&#xe4;hlen"/>
 </node>
 </node>
 </node>
@@ -1383,8 +1404,7 @@
       ...also empfiehlt es sich auch, sich daran zu halten
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1461280120528" ID="ID_309936636" MODIFIED="1461280159437" TEXT="au&#xdf;erdem: &#xf6;ffnende Klammer f&#xfc;r Funktionen">
@@ -1397,9 +1417,48 @@
       ...kommt stets an den Anfang einer neuen Zeile!
     </p>
   </body>
+</html></richcontent>
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1468189533593" ID="ID_542931550" MODIFIED="1468189650140" TEXT="UI-Parameter">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1468189542192" ID="ID_564266092" MODIFIED="1468189653219" TEXT="expected zoom: 0 ausschlie&#xdf;en">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ein zoom == 0 bedeutet, da&#223; das Bild komplett weg ist.
+    </p>
+    <p>
+      Das f&#252;hrt bisweilen zu Artefakten
+    </p>
+  </body>
 </html>
 </richcontent>
-<icon BUILTIN="info"/>
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1468189585482" ID="ID_1615408028" MODIFIED="1468189655424" TEXT="expected rotation: stepping">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      da hat sich wohl zwischenzeitlich das Verhalten des UI-Bindings ge&#228;ndert.
+    </p>
+    <p>
+      Habe daraufhin das Stepping um den Faktor 100 vergr&#246;&#223;ert,
+    </p>
+    <p>
+      so da&#223; ein einfacher Schritt sich im Bereich von 1&#176; bewegt
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 </node>
@@ -1915,8 +1974,7 @@
       <b><font color="#e9263b">FEHLER</font></b>: Versionsnummer falsch vergeben
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1926,8 +1984,7 @@
       ich h&#228;tte das 'a' mit Punkt getrennt anh&#228;ngen m&#252;ssen
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1461298028812" ID="ID_1429422306" MODIFIED="1461298097833" TEXT="&#x27f9; Verionsreihenfolge durcheinander">
 <richcontent TYPE="NOTE"><html>
@@ -1939,8 +1996,7 @@
       ... f&#252;r Debian erscheint das <b>neuere</b>&#160;2.77a <b>kleiner als</b>&#160; das vorhergehende 2.77
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1461341142928" ID="ID_1183045548" MODIFIED="1461341154897" TEXT="nochmal gebaut mit korrekter Version 2.77.a">
 <icon BUILTIN="button_ok"/>
@@ -1988,8 +2044,7 @@
       &#160;&#160;&#160;&#160;Blender 2.77a: Use proper char for the release
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1460747867809" ID="ID_1157148556" MODIFIED="1461117007833" TEXT="auf aktuellen master">
@@ -2011,8 +2066,7 @@
       Fix: Make it easier to tell if Color Swatches are greyed out or not
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1460747873448" ID="ID_618426756" MODIFIED="1461117016154" TEXT="Arbeitsumgebung portieren">
