@@ -14,7 +14,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" FOLDED="true" HGAP="60" ID="ID_1218644922" MODIFIED="1461341199385" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1470234484661" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
@@ -52,7 +52,7 @@
 <node CREATED="1459010971351" ID="ID_1256784536" LINK="https://wiki.blender.org/index.php/Dev:Doc/Building_Blender/Linux/cmake" MODIFIED="1459011211674" TEXT="generische CMake-Seite">
 <linktarget COLOR="#9bd3bd" DESTINATION="ID_1256784536" ENDARROW="Default" ENDINCLINATION="-9;17;" ID="Arrow_ID_1440776048" SOURCE="ID_1880592644" STARTARROW="None" STARTINCLINATION="-252;0;"/>
 </node>
-<node CREATED="1459011064208" FOLDED="true" HGAP="47" ID="ID_1369372321" MODIFIED="1459228313861" TEXT="CMake" VSHIFT="16">
+<node CREATED="1459011064208" HGAP="47" ID="ID_1369372321" MODIFIED="1470234488356" TEXT="CMake" VSHIFT="16">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
 <node CREATED="1459011071334" ID="ID_1445350994" MODIFIED="1459011078425" TEXT="automatisch per Makefile"/>
 <node CREATED="1459011079462" ID="ID_508138430" MODIFIED="1459011088088" TEXT="CMake-UI verwenden!">
@@ -132,7 +132,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1461119522156" TEXT="CMake-Build">
+<node CREATED="1459043019934" ID="ID_483743294" MODIFIED="1470234505467" TEXT="CMake-Build">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043036468" ID="ID_1115892122" MODIFIED="1459043053798" TEXT="Festlegungen">
 <richcontent TYPE="NOTE"><html>
@@ -154,7 +154,7 @@
 <node CREATED="1461117948829" ID="ID_1025687762" MODIFIED="1461117957743" TEXT="...dann Konfiguration durchpr&#xfc;fen"/>
 <node CREATED="1461117958331" ID="ID_370326114" MODIFIED="1461117962815" TEXT="schlie&#xdf;lich generieren"/>
 </node>
-<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1461117965675" TEXT="Konfiguration">
+<node CREATED="1459043138318" FOLDED="true" ID="ID_230063324" MODIFIED="1470234632404" TEXT="Konfiguration">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043158388" ID="ID_269990641" MODIFIED="1459043169878" TEXT="Build-Typ = Debug"/>
 <node CREATED="1459043287627" ID="ID_970294739" MODIFIED="1459043292134" TEXT="abgew&#xe4;hlt">
@@ -927,8 +927,7 @@
       schlie&#223;lich hat <b>&#1052;&#1091;&#1082;&#1072;&#1077;&#1074; &#1042;&#1080;&#1082;&#1090;&#1086;&#1088;</b>&#160; &lt;vitos1g@gmail.com&gt; den Build gemacht
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
@@ -942,6 +941,50 @@
 </node>
 <node CREATED="1468189372375" ID="ID_872254410" MODIFIED="1468189376833" TEXT="Michael P.">
 <node CREATED="1468189377774" ID="ID_887071452" MODIFIED="1468189385072" TEXT="das Problem, die Tracks sinnvoll zu w&#xe4;hlen"/>
+</node>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470234834382" ID="ID_1659497085" MODIFIED="1470234848644" TEXT="Review Sergej">
+<font NAME="SansSerif" SIZE="16"/>
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1470234851491" ID="ID_695533582" MODIFIED="1470330121984" TEXT="@deprecated">
+<node CREATED="1470234857411" ID="ID_56703129" MODIFIED="1470234860190" TEXT="rot_track">
+<node CREATED="1470234871105" ID="ID_637276206" MODIFIED="1470234875020" TEXT="clip-utils.c">
+<node CREATED="1470234878472" ID="ID_845345549" MODIFIED="1470234878472" TEXT="clip_delete_track">
+<node CREATED="1470234887550" ID="ID_49687534" MODIFIED="1470234896249" TEXT="l&#xf6;scht ggfs. Eintrag f&#xfc;r rot-track"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470234896885" ID="ID_1626766501" MODIFIED="1470234903685" TEXT="TODO: umschreiben auf neues System">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
+</node>
+<node CREATED="1470234961020" ID="ID_430653296" MODIFIED="1470234964295" TEXT="tracking-ops.c">
+<node CREATED="1470234965361" ID="ID_1253998623" MODIFIED="1470234965361" TEXT="join_tracks_exec">
+<node CREATED="1470235021508" ID="ID_894853834" MODIFIED="1470235044072" TEXT="Frage: behandelt BKE_tracking_tracks_join schon das neue setup">
+<icon BUILTIN="help"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470235033666" ID="ID_1586334417" MODIFIED="1470235041506" TEXT="sonst: umschreiben auf neus System">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470235091825" ID="ID_73207132" MODIFIED="1470235115545" TEXT="rna-tracking-gen.c">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1470235105490" MODIFIED="1470235105490" TEXT="MovieTrackingStabilization_rotation_track_get"/>
+<node CREATED="1470235113668" MODIFIED="1470235113668" TEXT="MovieTrackingStabilization_rotation_track_set"/>
+</node>
+</node>
+</node>
+<node CREATED="1470330124084" ID="ID_1337304539" MODIFIED="1470330129111" TEXT="track-weight">
+<node CREATED="1470330245291" ID="ID_1628004076" MODIFIED="1470330265572" TEXT="separates Stab-weight einf&#xfc;hren">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1470330268152" ID="ID_810445048" MODIFIED="1470330271923" TEXT="Feld in DNA"/>
+<node CREATED="1470330273007" ID="ID_448809218" MODIFIED="1470330275899" TEXT="RNA-binding"/>
+<node CREATED="1470330276558" ID="ID_1726061116" MODIFIED="1470330279074" TEXT="UI"/>
+</node>
+</node>
+<node CREATED="1470330218638" ID="ID_808458925" MODIFIED="1470330242679" TEXT="runtime-data">
+<icon BUILTIN="pencil"/>
+<node CREATED="1470330222446" ID="ID_772950835" MODIFIED="1470330226697" TEXT="Sergey: in DNA"/>
+<node CREATED="1470330227117" ID="ID_1269944653" MODIFIED="1470330232497" TEXT="ich: nein, nur Zeiger"/>
 </node>
 </node>
 </node>
@@ -1436,8 +1479,7 @@
       Das f&#252;hrt bisweilen zu Artefakten
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1468189585482" ID="ID_1615408028" MODIFIED="1468189655424" TEXT="expected rotation: stepping">
@@ -1456,8 +1498,7 @@
       so da&#223; ein einfacher Schritt sich im Bereich von 1&#176; bewegt
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
