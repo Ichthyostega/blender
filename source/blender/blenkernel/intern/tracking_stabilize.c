@@ -128,7 +128,7 @@ static FCurve *retrieve_stab_animation(MovieClip *clip, const char *data_path, i
 
 static FCurve *retrieve_track_weight_animation(MovieClip *clip, MovieTrackingTrack *track)
 {
-	return id_data_find_fcurve(&clip->id, track, &RNA_MovieTrackingTrack, "weight", 0, NULL);
+	return id_data_find_fcurve(&clip->id, track, &RNA_MovieTrackingTrack, "weight_stab", 0, NULL);
 }
 
 static float fetch_from_fcurve(FCurve *animation, int framenr, StabilizationAnimatedValues *ani, float default_value)
@@ -186,7 +186,7 @@ static float get_animated_weight(MovieTrackingTrack *track, int framenr)
 		int scene_framenr = BKE_movieclip_remap_clip_to_scene_frame(working_data->clip, framenr);
 		return evaluate_fcurve(working_data->track_weight_curve, scene_framenr);
 	}
-	return track->weight;
+	return track->weight_stab;
 }
 
 /** Prepare access to possibly animated values: retrieve available F-curves */

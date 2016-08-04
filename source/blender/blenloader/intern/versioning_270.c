@@ -63,6 +63,7 @@
 #include "BKE_scene.h"
 #include "BKE_sequencer.h"
 #include "BKE_screen.h"
+#include "BKE_tracking.h"
 #include "BKE_gpencil.h"
 
 #include "BLI_math.h"
@@ -1339,6 +1340,28 @@ void blo_do_versions_270(FileData *fd, Library *UNUSED(lib), Main *main)
 			}
 		}
 		/* ------- end of grease pencil initialization --------------- */
+	}
+
+	if (!DNA_struct_elem_find(fd->filesdna, "MovieTrackingTrack", "float", "weight_stab") &&
+		DNA_struct_elem_find(fd->filesdna, "MovieTrackingTrack", "float" ,"weight")) {
+		MovieClip *clip;
+		for (clip = main->movieclip.first; clip; clip = clip->id.next) {
+			MovieTracking *tracking = &clip->tracking;
+			MovieTrackingObject *tracking_object;
+			for (tracking_object = tracking->objects.first;
+				 tracking_object;
+				 tracking_object = tracking_object->next)
+			{
+				ListBase *tracksbase = BKE_tracking_object_get_tracks(tracking, tracking_object);
+				MovieTrackingTrack *track;
+				for (track = tracksbase->first;
+					 track;
+					 track = track->next)
+				{
+					track->weight_stab = track->weight;
+				}
+			}
+		}
 	}
 
 	if (!DNA_struct_elem_find(fd->filesdna, "MovieTrackingStabilization", "int", "tot_rot_track") &&

@@ -567,6 +567,7 @@ MovieTrackingTrack *BKE_tracking_track_add(MovieTracking *tracking, ListBase *tr
 	track->flag = settings->default_flag;
 	track->algorithm_flag = settings->default_algorithm_flag;
 	track->weight = settings->default_weight;
+	track->weight_stab = settings->default_weight;
 
 	memset(&marker, 0, sizeof(marker));
 	marker.pos[0] = x;

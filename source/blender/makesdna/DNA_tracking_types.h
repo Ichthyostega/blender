@@ -158,7 +158,10 @@ typedef struct MovieTrackingTrack {
 	 * Used to prevent jumps of the camera when tracks are appearing or
 	 * disappearing.
 	 */
-	float weight, pad;
+	float weight;
+
+	/* track weight especially for 2D stabilization */
+	float weight_stab;
 
 	void *stabilizationBase;	/* 2D stabilization working data */
 

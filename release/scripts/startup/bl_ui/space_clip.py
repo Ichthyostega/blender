@@ -621,6 +621,7 @@ class CLIP_PT_track(CLIP_PT_tracking_panel, Panel):
                  text="", toggle=True, icon='IMAGE_ALPHA')
 
         layout.prop(act_track, "weight")
+        layout.prop(act_track, "weight_stab")
 
         if act_track.has_bundle:
             label_text = "Average Error: %.4f" % (act_track.average_error)

@@ -1532,6 +1532,12 @@ static void rna_def_trackingTrack(BlenderRNA *brna)
 	RNA_def_property_range(prop, 0.0f, 1.0f);
 	RNA_def_property_ui_text(prop, "Weight", "Influence of this track on a final solution");
 
+	/* weight_stab */
+	prop = RNA_def_property(srna, "weight_stab", PROP_FLOAT, PROP_FACTOR);
+	RNA_def_property_float_sdna(prop, NULL, "weight_stab");
+	RNA_def_property_range(prop, 0.0f, 1.0f);
+	RNA_def_property_ui_text(prop, "Stab Weight", "Influence of this track on 2D stabilization");
+
 	/* offset */
 	prop = RNA_def_property(srna, "offset", PROP_FLOAT, PROP_TRANSLATION);
 	RNA_def_property_array(prop, 2);
