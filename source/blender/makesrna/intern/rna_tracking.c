@@ -1738,13 +1738,6 @@ static void rna_def_trackingStabilization(BlenderRNA *brna)
 	                           "rna_tracking_stabRotTracks_active_index_range");
 	RNA_def_property_ui_text(prop, "Active Rotation Track Index", "Index of active track in rotation stabilization tracks list");
 
-	/* rotation track DEPRECATED */
-	prop = RNA_def_property(srna, "rotation_track", PROP_POINTER, PROP_NONE);
-	RNA_def_property_pointer_sdna(prop, NULL, "rot_track");
-	RNA_def_property_flag(prop, PROP_EDITABLE);
-	RNA_def_property_ui_text(prop, "Rotation Track", "(deprecated) Formerly used to compensate rotation, now replaced by rotation_tracks");
-	RNA_def_property_update(prop, NC_MOVIECLIP | NA_EDITED, "rna_tracking_flushUpdate");
-
 	/* anchor frame */
 	prop = RNA_def_property(srna, "anchor_frame", PROP_INT, PROP_NONE);
 	RNA_def_property_int_sdna(prop, NULL, "anchor_frame");

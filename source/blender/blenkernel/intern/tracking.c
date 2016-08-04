@@ -250,9 +250,6 @@ static void tracking_stabilization_copy(
         GHash *tracks_mapping)
 {
 	*stabilization_dst = *stabilization_src;
-	if (stabilization_src->rot_track) {
-		stabilization_dst->rot_track = BLI_ghash_lookup(tracks_mapping, stabilization_src->rot_track);
-	}
 }
 
 /* Copy tracking object. */
