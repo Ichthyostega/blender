@@ -17,6 +17,14 @@
 //The threading library used by boost-thread
 BOOST_THREAD_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpthread.so
 
+//Use instead of the current date for reproducable builds (empty
+// string disables this option)
+BUILDINFO_OVERRIDE_DATE:STRING=
+
+//Use instead of the current time for reproducable builds (empty
+// string disables this option)
+BUILDINFO_OVERRIDE_TIME:STRING=
+
 //Value Computed by CMake
 Blender_BINARY_DIR:STATIC=/home/hiv/devel/a/blend/build
 
@@ -516,6 +524,9 @@ WITH_FREESTYLE:BOOL=OFF
 //Enable Game Engine
 WITH_GAMEENGINE:BOOL=OFF
 
+//Support BlackMagicDesign DeckLink cards in the Game Engine
+WITH_GAMEENGINE_DECKLINK:BOOL=OFF
+
 //Enable debugging output for the GHOST library
 WITH_GHOST_DEBUG:BOOL=OFF
 
@@ -727,6 +738,9 @@ WITH_SYSTEM_LZO:BOOL=OFF
 
 //Use the operating systems OpenJPEG library
 WITH_SYSTEM_OPENJPEG:BOOL=OFF
+
+//Enable X11 transparent background
+WITH_X11_ALPHA:BOOL=ON
 
 //Enable X11 video mode switching
 WITH_X11_XF86VMODE:BOOL=ON
@@ -1107,6 +1121,9 @@ bf_intern_audaspace_LIB_DEPENDS:STATIC=
 bf_intern_cycles_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
+bf_intern_decklink_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 bf_intern_dualcon_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
@@ -1300,6 +1317,10 @@ ge_videotex_LIB_DEPENDS:STATIC=
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: BUILDINFO_OVERRIDE_DATE
+BUILDINFO_OVERRIDE_DATE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BUILDINFO_OVERRIDE_TIME
+BUILDINFO_OVERRIDE_TIME-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_DEBUG
 Boost_DATE_TIME_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_RELEASE
