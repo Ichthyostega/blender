@@ -14,7 +14,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1470234484661" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" FOLDED="true" HGAP="60" ID="ID_1218644922" MODIFIED="1470342044421" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
@@ -132,7 +132,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1459043019934" ID="ID_483743294" MODIFIED="1470234505467" TEXT="CMake-Build">
+<node CREATED="1459043019934" FOLDED="true" ID="ID_483743294" MODIFIED="1470342040132" TEXT="CMake-Build">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1459043036468" ID="ID_1115892122" MODIFIED="1459043053798" TEXT="Festlegungen">
 <richcontent TYPE="NOTE"><html>
@@ -949,36 +949,134 @@
 <node CREATED="1470234851491" ID="ID_695533582" MODIFIED="1470330121984" TEXT="@deprecated">
 <node CREATED="1470234857411" ID="ID_56703129" MODIFIED="1470234860190" TEXT="rot_track">
 <node CREATED="1470234871105" ID="ID_637276206" MODIFIED="1470234875020" TEXT="clip-utils.c">
-<node CREATED="1470234878472" ID="ID_845345549" MODIFIED="1470234878472" TEXT="clip_delete_track">
+<node CREATED="1470234878472" ID="ID_845345549" MODIFIED="1470332463514" TEXT="clip_delete_track">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1470234887550" ID="ID_49687534" MODIFIED="1470234896249" TEXT="l&#xf6;scht ggfs. Eintrag f&#xfc;r rot-track"/>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470234896885" ID="ID_1626766501" MODIFIED="1470234903685" TEXT="TODO: umschreiben auf neues System">
-<icon BUILTIN="flag-yellow"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470234896885" ID="ID_1626766501" MODIFIED="1470332367976">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      TODO: <font color="#010101">umschreiben auf neues System</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1470332394522" ID="ID_1009949337" MODIFIED="1470332454164" TEXT="neues System ist sauberer">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...denn dort mu&#223; man nicht mehr einen externen Pointer auf NULL setzen.
+    </p>
+    <p>
+      Stattdessen ist die track-&gt;flag entsprechend gesetzt.
+    </p>
+    <p>
+      D.h. es gen&#252;gt, wenn der Track selber aus allen verpointerten Listen entfernt wurde!
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="info"/>
 </node>
 </node>
 </node>
 <node CREATED="1470234961020" ID="ID_430653296" MODIFIED="1470234964295" TEXT="tracking-ops.c">
-<node CREATED="1470234965361" ID="ID_1253998623" MODIFIED="1470234965361" TEXT="join_tracks_exec">
+<node CREATED="1470234965361" ID="ID_1253998623" MODIFIED="1470334533633" TEXT="join_tracks_exec">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1470235021508" ID="ID_894853834" MODIFIED="1470235044072" TEXT="Frage: behandelt BKE_tracking_tracks_join schon das neue setup">
 <icon BUILTIN="help"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470235033666" ID="ID_1586334417" MODIFIED="1470235041506" TEXT="sonst: umschreiben auf neus System">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1470334573644" ID="ID_415837053" MODIFIED="1470334676764">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Antwort: nein, das war definitiv falsch
+    </p>
+  </body>
+</html>
+</richcontent>
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      beim &quot;join&quot; werden bestehende Tracks zusammengef&#252;hrt und dann gel&#246;scht.
+    </p>
+    <p>
+      Wenn einer der derart verarbeiteten Tracks f&#252;r Stab. markiert war, dann mu&#223;
+    </p>
+    <p>
+      der betreffende Marker auf den Ziel-Track gesetzt werden!
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      AUA: bisher &#252;bersehen; dadurch kommt die Maximalzahl der Tracks durcheinander
+    </p>
+    <p>
+      Keine Ahnung, ob das ein Problem darstellt...
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470235033666" ID="ID_1586334417" MODIFIED="1470334561647">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      sonst: <font color="#010101">umschreiben auf neus System</font>
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470235091825" ID="ID_73207132" MODIFIED="1470235115545" TEXT="rna-tracking-gen.c">
-<icon BUILTIN="flag-yellow"/>
-<node CREATED="1470235105490" MODIFIED="1470235105490" TEXT="MovieTrackingStabilization_rotation_track_get"/>
-<node CREATED="1470235113668" MODIFIED="1470235113668" TEXT="MovieTrackingStabilization_rotation_track_set"/>
+<node CREATED="1470235091825" ID="ID_73207132" MODIFIED="1470346638758" TEXT="rna-tracking-gen.c">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1470235105490" ID="ID_1642720462" MODIFIED="1470235105490" TEXT="MovieTrackingStabilization_rotation_track_get"/>
+<node CREATED="1470235113668" ID="ID_1518569217" MODIFIED="1470235113668" TEXT="MovieTrackingStabilization_rotation_track_set"/>
+<node COLOR="#338800" CREATED="1470346641925" ID="ID_1387642654" MODIFIED="1470346652092" TEXT="Beide komplett enfernt">
+<icon BUILTIN="button_ok"/>
 </node>
+</node>
+</node>
+<node COLOR="#338800" CREATED="1470346658371" ID="ID_1352593355" MODIFIED="1470346672306" TEXT="jetzt keine deprecation-Warnings mehr">
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 <node CREATED="1470330124084" ID="ID_1337304539" MODIFIED="1470330129111" TEXT="track-weight">
 <node CREATED="1470330245291" ID="ID_1628004076" MODIFIED="1470330265572" TEXT="separates Stab-weight einf&#xfc;hren">
 <icon BUILTIN="messagebox_warning"/>
-<node CREATED="1470330268152" ID="ID_810445048" MODIFIED="1470330271923" TEXT="Feld in DNA"/>
-<node CREATED="1470330273007" ID="ID_448809218" MODIFIED="1470330275899" TEXT="RNA-binding"/>
-<node CREATED="1470330276558" ID="ID_1726061116" MODIFIED="1470330279074" TEXT="UI"/>
+<node CREATED="1470330268152" ID="ID_810445048" MODIFIED="1470346699967" TEXT="Feld in DNA">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1470346683320" ID="ID_1054981589" MODIFIED="1470346687611" TEXT="weight_stab"/>
+<node CREATED="1470346705660" ID="ID_690146765" MODIFIED="1470346709239" TEXT="Migration"/>
+</node>
+<node CREATED="1470330273007" ID="ID_448809218" MODIFIED="1470346696051" TEXT="RNA-binding">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1470330276558" ID="ID_1726061116" MODIFIED="1470346703103" TEXT="UI">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 </node>
 <node CREATED="1470330218638" ID="ID_808458925" MODIFIED="1470330242679" TEXT="runtime-data">
@@ -1009,7 +1107,7 @@
 </html></richcontent>
 <icon BUILTIN="idea"/>
 <node CREATED="1436741297860" ID="ID_164730890" MODIFIED="1436741313808" TEXT="Memory Management">
-<node CREATED="1436741366548" FOLDED="true" ID="ID_640241160" MODIFIED="1436748600592" TEXT="System">
+<node CREATED="1436741366548" FOLDED="true" ID="ID_640241160" MODIFIED="1470342077327" TEXT="System">
 <node CREATED="1436741373676" ID="ID_1221253732" MODIFIED="1436741383280" TEXT="eigner Allokator">
 <node CREATED="1436741403724" ID="ID_1848419789" MODIFIED="1436741407400" TEXT="mallocn.c"/>
 <node CREATED="1436741407939" ID="ID_29563260" MODIFIED="1436741419744" TEXT="&#xfc;ber f-ptr virtualisiert"/>
@@ -1046,7 +1144,12 @@
 </node>
 </node>
 </node>
-<node CREATED="1436742376976" FOLDED="true" ID="ID_1510557677" MODIFIED="1436748585785" TEXT="Tracking">
+<node CREATED="1470346568951" ID="ID_1898078474" MODIFIED="1470346573002" TEXT="Speichern/Laden">
+<node CREATED="1470346576366" ID="ID_1128909248" MODIFIED="1470346585465" TEXT="DNA-Struct-Definition notwendig"/>
+<node CREATED="1470346585917" ID="ID_1651902381" MODIFIED="1470346591656" TEXT="der Rest passiert automatisch"/>
+<node CREATED="1470346592124" ID="ID_1564282766" MODIFIED="1470346602479" TEXT="man mu&#xdf; nur beim Laden Sub-Structs richtig linken"/>
+</node>
+<node CREATED="1436742376976" FOLDED="true" ID="ID_1510557677" MODIFIED="1470346564858" TEXT="Tracking">
 <node CREATED="1436742392144" ID="ID_222217427" MODIFIED="1436742397308" TEXT="tracking_reconstruction">
 <node CREATED="1436742412760" ID="ID_1334916516" MODIFIED="1436742420244" TEXT="findet Trajektorie als L&#xf6;sung"/>
 <node CREATED="1436744482528" ID="ID_1337998690" MODIFIED="1436744506187" STYLE="fork">
@@ -1064,7 +1167,7 @@
 <node CREATED="1436742421504" ID="ID_611423963" MODIFIED="1436742510140" TEXT="SolveCameraJob"/>
 <node CREATED="1436742510824" ID="ID_1934601769" MODIFIED="1436742551723" TEXT="danach: fertigstellen">
 <node CREATED="1436742553048" ID="ID_535884950" MODIFIED="1436742567243" TEXT="BKE_tracking_reconstruction_finish"/>
-<node CREATED="1436742568167" ID="ID_1381465869" MODIFIED="1436746132008" TEXT="ruft: tracks_map_merge">
+<node CREATED="1436742568167" ID="ID_1381465869" MODIFIED="1470342133979" TEXT="ruft: tracks_map_merge">
 <linktarget COLOR="#99ffff" DESTINATION="ID_1381465869" ENDARROW="Default" ENDINCLINATION="-260;-167;" ID="Arrow_ID_555610345" SOURCE="ID_1739650187" STARTARROW="None" STARTINCLINATION="-10;97;"/>
 <node CREATED="1436742659007" ID="ID_67946877" MODIFIED="1436742675411" TEXT="TracksMap">
 <node CREATED="1436742675903" ID="ID_1352457271" MODIFIED="1436742684315" TEXT="ist eine hashmap von Tracks"/>
@@ -1262,7 +1365,7 @@
 </node>
 </node>
 <node CREATED="1436745870315" HGAP="225" ID="ID_744407749" MODIFIED="1436745881353" TEXT="Interna" VSHIFT="26">
-<node CREATED="1436745882619" FOLDED="true" ID="ID_1225557596" MODIFIED="1436748518672" TEXT="Initialisierung">
+<node CREATED="1436745882619" FOLDED="true" ID="ID_1225557596" MODIFIED="1470342189535" TEXT="Initialisierung">
 <linktarget COLOR="#99ffff" DESTINATION="ID_1225557596" ENDARROW="Default" ENDINCLINATION="-73;187;" ID="Arrow_ID_445220708" SOURCE="ID_1274016984" STARTARROW="None" STARTINCLINATION="586;-144;"/>
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436745891907" ID="ID_1179549760" MODIFIED="1436745899895" TEXT="globale Flag (stab-&gt;ok)"/>
@@ -1294,10 +1397,10 @@
 </node>
 </node>
 </node>
-<node CREATED="1436712879197" HGAP="113" ID="ID_715016663" MODIFIED="1436747370320" TEXT="QA" VSHIFT="45">
+<node CREATED="1436712879197" FOLDED="true" HGAP="113" ID="ID_715016663" MODIFIED="1470346618368" TEXT="QA" VSHIFT="45">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
-<node CREATED="1436713462114" FOLDED="true" ID="ID_310396424" MODIFIED="1436748522137" TEXT="double free">
+<node CREATED="1436713462114" ID="ID_310396424" MODIFIED="1470342139801" TEXT="double free">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436713491938" ID="ID_41806219" MODIFIED="1436713495638" TEXT="tracking_util.c"/>
 <node CREATED="1436713496298" ID="ID_1219431946" MODIFIED="1436713521047">
@@ -1324,7 +1427,7 @@
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436746071938" ID="ID_561487150" MODIFIED="1436746078294" TEXT="schwer zu verstehen">
 <node CREATED="1436746079594" ID="ID_1606005684" MODIFIED="1436746084430" TEXT="verteiltes Mem-management"/>
-<node CREATED="1436746084922" ID="ID_1739650187" MODIFIED="1436746139944" TEXT="tracks_map_merge">
+<node CREATED="1436746084922" ID="ID_1739650187" MODIFIED="1470342133979" TEXT="tracks_map_merge">
 <arrowlink COLOR="#99ffff" DESTINATION="ID_1381465869" ENDARROW="Default" ENDINCLINATION="-260;-167;" ID="Arrow_ID_555610345" STARTARROW="None" STARTINCLINATION="-10;97;"/>
 </node>
 </node>
