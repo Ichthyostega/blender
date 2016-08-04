@@ -1705,7 +1705,7 @@ static void rna_def_trackingStabilization(BlenderRNA *brna)
 	prop = RNA_def_property(srna, "use_stabilize_scale", PROP_BOOLEAN, PROP_NONE);
 	RNA_def_property_clear_flag(prop, PROP_ANIMATABLE);
 	RNA_def_property_boolean_sdna(prop, NULL, "flag", TRACKING_STABILIZE_SCALE);
-	RNA_def_property_ui_text(prop, "Stabilize Zoom", "Compensate any scale changes relative to center of rotation");
+	RNA_def_property_ui_text(prop, "Stabilize Scale", "Compensate any scale changes relative to center of rotation");
 	RNA_def_property_update(prop, NC_MOVIECLIP | ND_DISPLAY, "rna_tracking_flushUpdate");
 
 	/* tracks */
