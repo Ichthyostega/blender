@@ -7429,7 +7429,6 @@ static void direct_link_movieTracks(FileData *fd, ListBase *tracksbase)
 	
 	for (track = tracksbase->first; track; track = track->next) {
 		track->markers = newdataadr(fd, track->markers);
-		track->stabilizationBase = NULL; /* working data is never saved */
 	}
 }
 
@@ -7481,7 +7480,6 @@ static void direct_link_movieclip(FileData *fd, MovieClip *clip)
 
 	clip->tracking.stabilization.ok = 0;
 	clip->tracking.stabilization.rot_track = newdataadr(fd, clip->tracking.stabilization.rot_track);
-	clip->tracking.stabilization.animated_params = NULL;
 
 	if (!clip->tracking.stabilization.scale) {
 		clip->tracking.stabilization.scale = 1.0f;

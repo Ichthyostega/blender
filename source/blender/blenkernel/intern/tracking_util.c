@@ -100,7 +100,6 @@ void tracks_map_insert(TracksMap *map, MovieTrackingTrack *track, void *customda
 	MovieTrackingTrack new_track = *track;
 
 	new_track.markers = MEM_dupallocN(new_track.markers);
-	new_track.stabilizationBase = NULL; /* not used here, no need to duplicate */
 
 	map->tracks[map->ptr] = new_track;
 
@@ -138,6 +137,7 @@ void tracks_map_merge(TracksMap *map, MovieTracking *tracking)
 	 * of currently operating tracks (if needed)
 	 */
 	for (a = 0; a < map->num_tracks; a++) {
+		TrackStabilizationBase *privateData;
 		MovieTrackingTrack *old_track;
 		bool mapped_to_old = false;
 
@@ -145,9 +145,11 @@ void tracks_map_merge(TracksMap *map, MovieTracking *tracking)
 
 		/* discard any stabilization working data to prevent double-free;
 		 * it needs to be recalculated anyway */
-		if (track->stabilizationBase)
-			MEM_freeN(track->stabilizationBase);
-		track->stabilizationBase = NULL;
+		privateData = accessStabilizationBaselineData(track);
+		if (privateData) {
+			discardStabilizationBaselineData(track);
+			MEM_freeN(privateData);
+		}
 
 		/* find original of operating track in list of previously displayed tracks */
 		old_track = BLI_ghash_lookup(map->hash, track);
@@ -163,8 +165,11 @@ void tracks_map_merge(TracksMap *map, MovieTracking *tracking)
 				track->search_flag = old_track->search_flag;
 
 				/* discard stabilization working data; old_track about to be trashed */
-				if (old_track->stabilizationBase)
-					MEM_freeN(old_track->stabilizationBase);
+				privateData = accessStabilizationBaselineData(old_track);
+				if (privateData) {
+					discardStabilizationBaselineData(old_track);
+					MEM_freeN(privateData);
+				}
 
 				/* Copy all the rest settings back from the map to the actual tracks. */
 				MEM_freeN(old_track->markers);

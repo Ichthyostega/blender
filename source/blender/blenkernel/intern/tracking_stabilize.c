@@ -117,6 +117,47 @@ typedef struct StabilizationAnimatedValues {
 } StabilizationAnimatedValues;
 
 
+static GHash *privateLink = NULL;
+
+static void initPrivateDataLink(void)
+{
+	if (!privateLink) {
+		privateLink = BLI_ghash_new(BLI_ghashutil_ptrhash, BLI_ghashutil_ptrcmp, "2D stabilization private working data association to DNA");
+	}
+}
+
+
+TrackStabilizationBase* accessStabilizationBaselineData(MovieTrackingTrack *track)
+{
+	return BLI_ghash_lookup(privateLink, track);
+}
+
+void linkStabilizationBaselineData(MovieTrackingTrack *track, TrackStabilizationBase* privateData)
+{
+	return BLI_ghash_insert(privateLink, track, privateData);
+}
+
+bool discardStabilizationBaselineData(MovieTrackingTrack *track)
+{
+	return BLI_ghash_remove(privateLink, track, NULL, NULL);
+}
+
+
+StabilizationAnimatedValues* accessStabilizationAnimatedValues(MovieTrackingStabilization *stab)
+{
+	return BLI_ghash_lookup(privateLink, stab);
+}
+
+void linkStabilizationAnimatedValues(MovieTrackingStabilization *stab, StabilizationAnimatedValues* privateData)
+{
+	return BLI_ghash_insert(privateLink, stab, privateData);
+}
+
+bool discardStabilizationAnimatedValues(MovieTrackingStabilization *stab)
+{
+	return BLI_ghash_remove(privateLink, stab, NULL, NULL);
+}
+
 
 
 /* == access animated values for given frame == */
@@ -131,11 +172,11 @@ static FCurve *retrieve_track_weight_animation(MovieClip *clip, MovieTrackingTra
 	return id_data_find_fcurve(&clip->id, track, &RNA_MovieTrackingTrack, "weight_stab", 0, NULL);
 }
 
-static float fetch_from_fcurve(FCurve *animation, int framenr, StabilizationAnimatedValues *ani, float default_value)
+static float fetch_from_fcurve(FCurve *animationCurve, int framenr, StabilizationAnimatedValues *ani, float default_value)
 {
-	if (animation && ani->useAnimation) {
+	if (ani && ani->useAnimation && animationCurve) {
 		int scene_framenr = BKE_movieclip_remap_clip_to_scene_frame(ani->clip, framenr);
-		return evaluate_fcurve(animation, scene_framenr);
+		return evaluate_fcurve(animationCurve, scene_framenr);
 	}
 	return default_value;
 }
@@ -143,45 +184,45 @@ static float fetch_from_fcurve(FCurve *animation, int framenr, StabilizationAnim
 
 static float get_animated_locinf(MovieTrackingStabilization *stab, int framenr)
 {
-	StabilizationAnimatedValues *ani = stab->animated_params;
+	StabilizationAnimatedValues *ani = accessStabilizationAnimatedValues(stab);
 	return fetch_from_fcurve(ani->locinf, framenr, ani, stab->locinf);
 }
 
 static float get_animated_rotinf(MovieTrackingStabilization *stab, int framenr)
 {
-	StabilizationAnimatedValues *ani = stab->animated_params;
+	StabilizationAnimatedValues *ani = accessStabilizationAnimatedValues(stab);
 	return fetch_from_fcurve(ani->rotinf, framenr, ani, stab->rotinf);
 }
 
 static float get_animated_scaleinf(MovieTrackingStabilization *stab, int framenr)
 {
-	StabilizationAnimatedValues *ani = stab->animated_params;
+	StabilizationAnimatedValues *ani = accessStabilizationAnimatedValues(stab);
 	return fetch_from_fcurve(ani->scaleinf, framenr, ani, stab->scaleinf);
 }
 
 static void get_animated_target_pos(MovieTrackingStabilization *stab, int framenr,
 		                            float target_pos[2])
 {
-	StabilizationAnimatedValues *ani = stab->animated_params;
+	StabilizationAnimatedValues *ani = accessStabilizationAnimatedValues(stab);
 	target_pos[0] = fetch_from_fcurve(ani->target_pos[0], framenr, ani, stab->target_pos[0]);
 	target_pos[1] = fetch_from_fcurve(ani->target_pos[1], framenr, ani, stab->target_pos[1]);
 }
 
 static float get_animated_target_rot(MovieTrackingStabilization *stab, int framenr)
 {
-	StabilizationAnimatedValues *ani = stab->animated_params;
+	StabilizationAnimatedValues *ani = accessStabilizationAnimatedValues(stab);
 	return fetch_from_fcurve(ani->target_rot, framenr, ani, stab->target_rot);
 }
 
 static float get_animated_target_scale(MovieTrackingStabilization *stab, int framenr)
 {
-	StabilizationAnimatedValues *ani = stab->animated_params;
+	StabilizationAnimatedValues *ani = accessStabilizationAnimatedValues(stab);
 	return fetch_from_fcurve(ani->target_scale, framenr, ani, stab->scale);
 }
 
 static float get_animated_weight(MovieTrackingTrack *track, int framenr)
 {
-	TrackStabilizationBase *working_data = track->stabilizationBase;
+	TrackStabilizationBase *working_data = accessStabilizationBaselineData(track);
 	if (working_data && working_data->track_weight_curve) {
 		int scene_framenr = BKE_movieclip_remap_clip_to_scene_frame(working_data->clip, framenr);
 		return evaluate_fcurve(working_data->track_weight_curve, scene_framenr);
@@ -192,11 +233,13 @@ static float get_animated_weight(MovieTrackingTrack *track, int framenr)
 /** Prepare access to possibly animated values: retrieve available F-curves */
 static void initialize_animated_params(MovieTrackingStabilization *stab, MovieClip *clip)
 {
-	StabilizationAnimatedValues *ani = stab->animated_params;
+	StabilizationAnimatedValues *ani = accessStabilizationAnimatedValues(stab);
 	if (!ani) {
-		ani = stab->animated_params = MEM_callocN(sizeof(StabilizationAnimatedValues), "2D stabilization animation runtime data");
+		ani = MEM_callocN(sizeof(StabilizationAnimatedValues), "2D stabilization animation runtime data");
+		linkStabilizationAnimatedValues(stab, ani);
 		ani->clip = clip;
 	}
+	BLI_assert(ani);
 	BLI_assert(clip == ani->clip); /* otherwise init and memory ownership is possibly broken */
 	ani->locinf        = retrieve_stab_animation(clip, "influence_location", 0);
 	ani->rotinf        = retrieve_stab_animation(clip, "influence_rotation", 0);
@@ -210,7 +253,7 @@ static void initialize_animated_params(MovieTrackingStabilization *stab, MovieCl
 
 static void use_values_from_fcurves(MovieTrackingStabilization *stab, bool toggle)
 {
-	StabilizationAnimatedValues *ani = stab->animated_params;
+	StabilizationAnimatedValues *ani = accessStabilizationAnimatedValues(stab);
 	if (ani) {
 		ani->useAnimation = toggle;
 	}
@@ -220,8 +263,8 @@ static void use_values_from_fcurves(MovieTrackingStabilization *stab, bool toggl
 
 static bool is_init_for_stabilization(MovieTrackingTrack *track)
 {
-	TrackStabilizationBase *base = track->stabilizationBase;
-	return (base && base->is_init_for_stabilization);
+	TrackStabilizationBase *workingData = accessStabilizationBaselineData(track);
+	return (workingData && workingData->is_init_for_stabilization);
 }
 
 static bool is_usable_for_stabilization(MovieTrackingTrack *track)
@@ -448,9 +491,11 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 			float weight = 0.0f;
 			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, &weight);
 			if (marker) {
+				TrackStabilizationBase *stabilizationBase = accessStabilizationBaselineData(track);
+				BLI_assert(stabilizationBase);
 				float offset[2];
 				weight_sum += weight;
-				translation_contribution(track->stabilizationBase, marker, offset);
+				translation_contribution(stabilizationBase, marker, offset);
 				mul_v2_fl(offset, weight);
 				add_v2_v2(translation, offset);
 				ok = (weight_sum > EPSILON_WEIGHT);
@@ -472,11 +517,13 @@ static bool average_track_contributions(MovieTracking *tracking, int framenr, fl
 			float weight = 0.0f;
 			MovieTrackingMarker *marker = get_tracking_data_point(track, framenr, &weight);
 			if (marker) {
+				TrackStabilizationBase *stabilizationBase = accessStabilizationBaselineData(track);
+				BLI_assert(stabilizationBase);
 				float rotation, scale;
 				float target_pos[2];
 				weight_sum += weight;
 				get_animated_target_pos(stab, framenr, target_pos);
-				rotation_contribution(track->stabilizationBase, marker, aspect, target_pos, translation, &rotation, &scale);
+				rotation_contribution(stabilizationBase, marker, aspect, target_pos, translation, &rotation, &scale);
 				*angle += rotation * weight;
 				if (stab->flag & TRACKING_STABILIZE_SCALE)
 					*scale_step += logf(scale) * weight;
@@ -626,7 +673,7 @@ static void initialize_track_for_stabilization(MovieTrackingTrack *track, int re
 	float pos[2], angle, len;
 	float pivot[2];
 
-	TrackStabilizationBase *localData = track->stabilizationBase;
+	TrackStabilizationBase *localData = accessStabilizationBaselineData(track);
 	MovieTrackingMarker *marker = BKE_tracking_marker_get_exact(track, reference_frame);
 	BLI_assert(marker); /* logic for initialization order ensures there *is* a marker on that very frame */
 	BLI_assert(localData);
@@ -670,10 +717,12 @@ static void initialize_all_tracks(MovieClip *clip, float aspect)
 
 	/* initialize private working data */
 	for (track = tracking->tracks.first; track; track = track->next) {
-		TrackStabilizationBase *localData = track->stabilizationBase;
+		TrackStabilizationBase *localData = accessStabilizationBaselineData(track);
 		if (!localData) {
-			localData = track->stabilizationBase = MEM_callocN(sizeof(TrackStabilizationBase), "2D stabilization per track baseline data");
+			localData = MEM_callocN(sizeof(TrackStabilizationBase), "2D stabilization per track baseline data");
+			linkStabilizationBaselineData(track, localData);
 		}
+		BLI_assert(localData);
 		localData->clip = clip;
 		localData->track_weight_curve = retrieve_track_weight_animation(clip, track);
 		localData->is_init_for_stabilization = false;
@@ -948,13 +997,13 @@ void BKE_tracking_stabilization_data_get(MovieClip *clip, int framenr, int width
 	float pixel_aspect = tracking->camera.pixel_aspect;
 
 	bool enabled = stab->flag & TRACKING_2D_STABILIZATION;
-	bool initialized = stab->ok;
 	bool do_compensate = true; /* might become a parameter of a stabilization compositor node */
 	float scale_step = 0.0f;
 	float aspect = (float)width * pixel_aspect / height;
 	int size = height;
 
-	if (enabled && !initialized) {
+	if (enabled && !stab->ok) {
+		initPrivateDataLink();
 		initialize_animated_params(stab, clip);
 		initialize_all_tracks(clip, aspect);
 		if (stab->flag & TRACKING_AUTOSCALE) {

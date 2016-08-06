@@ -162,9 +162,6 @@ typedef struct MovieTrackingTrack {
 
 	/* track weight especially for 2D stabilization */
 	float weight_stab;
-
-	void *stabilizationBase;	/* 2D stabilization working data */
-
 } MovieTrackingTrack;
 
 typedef struct MovieTrackingPlaneMarker {
@@ -274,8 +271,6 @@ typedef struct MovieTrackingStabilization {
 
 	/* initialization and run-time data */
 	int ok;					/* are track initialization offsets and precomputed scale still valid? */
-
-	void *animated_params;	/* runtime data for accessing possibly animated values, e.g. target_pos, locinf,... */
 } MovieTrackingStabilization;
 
 typedef struct MovieTrackingReconstruction {

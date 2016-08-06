@@ -187,9 +187,10 @@ void BKE_tracking_free(MovieTracking *tracking)
 
 	tracking_dopesheet_free(&tracking->dopesheet);
 
-	if (tracking->stabilization.animated_params) {
-		MEM_freeN(tracking->stabilization.animated_params);
-		tracking->stabilization.animated_params = NULL;
+	StabilizationAnimatedValues *privateData = accessStabilizationAnimatedValues(&tracking->stabilization); 
+	if (privateData) {
+		discardStabilizationAnimatedValues(&tracking->stabilization);
+		MEM_freeN(privateData);
 	}
 }
 
@@ -350,7 +351,6 @@ void BKE_tracking_settings_init(MovieTracking *tracking)
 	tracking->stabilization.locinf = 1.0f;
 	tracking->stabilization.rotinf = 1.0f;
 	tracking->stabilization.maxscale = 2.0f;
-	tracking->stabilization.animated_params = NULL;
 	tracking->stabilization.filter = TRACKING_FILTER_BILINEAR;
 	tracking->stabilization.flag |= TRACKING_SHOW_STAB_TRACKS;
 
@@ -605,7 +605,6 @@ MovieTrackingTrack *BKE_tracking_track_duplicate(MovieTrackingTrack *track)
 	new_track->next = new_track->prev = NULL;
 
 	new_track->markers = MEM_dupallocN(new_track->markers);
-	new_track->stabilizationBase = MEM_dupallocN(new_track->stabilizationBase);
 
 	return new_track;
 }
@@ -629,8 +628,11 @@ void BKE_tracking_track_free(MovieTrackingTrack *track)
 {
 	if (track->markers)
 		MEM_freeN(track->markers);
-	if (track->stabilizationBase)
-		MEM_freeN(track->stabilizationBase);
+	TrackStabilizationBase *privateData = accessStabilizationBaselineData(track);
+	if (privateData) {
+		discardStabilizationBaselineData(track);
+		MEM_freeN(privateData);
+	}
 }
 
 /* Set flag for all specified track's areas.
