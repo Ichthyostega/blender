@@ -606,6 +606,11 @@ MovieTrackingTrack *BKE_tracking_track_duplicate(MovieTrackingTrack *track)
 
 	new_track->markers = MEM_dupallocN(new_track->markers);
 
+	/* prevent duplicate from being used for 2D stabilization.
+	 * If necessary, it shall be added explicitly. */
+	new_track->flag &= ~TRACK_USE_2D_STAB;
+	new_track->flag &= ~TRACK_USE_2D_STAB_ROT;
+
 	return new_track;
 }
 
