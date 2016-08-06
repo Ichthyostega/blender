@@ -946,7 +946,8 @@
 <node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470234834382" ID="ID_1659497085" MODIFIED="1470234848644" TEXT="Review Sergej">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="flag-yellow"/>
-<node CREATED="1470234851491" ID="ID_695533582" MODIFIED="1470330121984" TEXT="@deprecated">
+<node CREATED="1470234851491" ID="ID_695533582" MODIFIED="1470484723819" TEXT="@deprecated">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1470234857411" ID="ID_56703129" MODIFIED="1470234860190" TEXT="rot_track">
 <node CREATED="1470234871105" ID="ID_637276206" MODIFIED="1470234875020" TEXT="clip-utils.c">
 <node CREATED="1470234878472" ID="ID_845345549" MODIFIED="1470332463514" TEXT="clip_delete_track">
@@ -962,8 +963,7 @@
       TODO: <font color="#010101">umschreiben auf neues System</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1470332394522" ID="ID_1009949337" MODIFIED="1470332454164" TEXT="neues System ist sauberer">
@@ -982,8 +982,7 @@
       D.h. es gen&#252;gt, wenn der Track selber aus allen verpointerten Listen entfernt wurde!
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="info"/>
 </node>
 </node>
@@ -1004,8 +1003,7 @@
       Antwort: nein, das war definitiv falsch
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1030,8 +1028,7 @@
       Keine Ahnung, ob das ein Problem darstellt...
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="messagebox_warning"/>
 </node>
 <node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470235033666" ID="ID_1586334417" MODIFIED="1470334561647">
@@ -1044,8 +1041,7 @@
       sonst: <font color="#010101">umschreiben auf neus System</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
@@ -1063,7 +1059,8 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1470330124084" ID="ID_1337304539" MODIFIED="1470330129111" TEXT="track-weight">
+<node CREATED="1470330124084" ID="ID_1337304539" MODIFIED="1470484720852" TEXT="track-weight">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1470330245291" ID="ID_1628004076" MODIFIED="1470330265572" TEXT="separates Stab-weight einf&#xfc;hren">
 <icon BUILTIN="messagebox_warning"/>
 <node CREATED="1470330268152" ID="ID_810445048" MODIFIED="1470346699967" TEXT="Feld in DNA">
@@ -1079,10 +1076,15 @@
 </node>
 </node>
 </node>
-<node CREATED="1470330218638" ID="ID_808458925" MODIFIED="1470330242679" TEXT="runtime-data">
-<icon BUILTIN="pencil"/>
+<node CREATED="1470330218638" ID="ID_808458925" MODIFIED="1470484690005" TEXT="runtime-data">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1470330222446" ID="ID_772950835" MODIFIED="1470330226697" TEXT="Sergey: in DNA"/>
 <node CREATED="1470330227117" ID="ID_1269944653" MODIFIED="1470330232497" TEXT="ich: nein, nur Zeiger"/>
+<node CREATED="1470442756637" ID="ID_349316371" MODIFIED="1470442765287" TEXT="Vorschlag Sergej: GHash verwenden"/>
+<node COLOR="#c50945" CREATED="1470442766515" ID="ID_1114699346" LINK="https://wiki.blender.org/index.php/Dev:Source/Data_Structures/GHash_Tutorial" MODIFIED="1470442790616" TEXT="Tutorial"/>
+</node>
+<node CREATED="1470484698789" HGAP="22" ID="ID_1462131547" MODIFIED="1470484715609" TEXT="Frage: Init des GHash synchronisieren" VSHIFT="19">
+<icon BUILTIN="help"/>
 </node>
 </node>
 </node>
