@@ -32,8 +32,6 @@
  *  \author Sergey Sharybin
  */
 
-#include "BLI_ghash.h"
-
 struct bGPDlayer;
 struct ImBuf;
 struct ListBase;
@@ -285,19 +283,6 @@ struct ImBuf *BKE_tracking_stabilize_frame(struct MovieClip *clip, int framenr, 
                                            float translation[2], float *scale, float *angle);
 void BKE_tracking_stabilization_data_to_mat4(int width, int height, float aspect, float translation[2],
                                              float scale, float angle, float mat[4][4]);
-
-/* 2D stabilization private working data */
-typedef struct MovieTrackingTrack MovieTrackingTrack;
-typedef struct TrackStabilizationBase TrackStabilizationBase;
-typedef struct MovieTrackingStabilization MovieTrackingStabilization;
-typedef struct StabilizationAnimatedValues StabilizationAnimatedValues;
-
-TrackStabilizationBase* accessStabilizationBaselineData(MovieTrackingTrack *track);
-void linkStabilizationBaselineData(MovieTrackingTrack *track, TrackStabilizationBase* privateData);
-bool discardStabilizationBaselineData(MovieTrackingTrack *track);
-StabilizationAnimatedValues* accessStabilizationAnimatedValues(MovieTrackingStabilization *stab);
-void linkStabilizationAnimatedValues(MovieTrackingStabilization *stab, StabilizationAnimatedValues* privateData);
-bool discardStabilizationAnimatedValues(MovieTrackingStabilization *stab);
 
 /* Dopesheet */
 void BKE_tracking_dopesheet_tag_update(struct MovieTracking *tracking);

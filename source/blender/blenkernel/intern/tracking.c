@@ -68,6 +68,7 @@
 
 #include "libmv-capi.h"
 #include "tracking_private.h"
+#include "tracking_stabilize_private.h"
 
 typedef struct MovieDistortion {
 	struct libmv_CameraIntrinsics *intrinsics;

@@ -55,6 +55,7 @@
 #include "IMB_moviecache.h"
 
 #include "tracking_private.h"
+#include "tracking_stabilize_private.h"
 
 #include "libmv-capi.h"
 

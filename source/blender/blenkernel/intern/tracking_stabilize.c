@@ -52,6 +52,8 @@
 #include "IMB_imbuf_types.h"
 #include "IMB_imbuf.h"
 
+#include "tracking_stabilize_private.h"
+
 
 /* == Parameterization constants == */
 
