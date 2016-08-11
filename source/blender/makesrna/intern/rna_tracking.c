@@ -461,9 +461,6 @@ static void rna_tracking_stabRotTracks_active_index_range(PointerRNA *ptr, int *
 static void rna_tracking_flushUpdate(Main *UNUSED(bmain), Scene *scene, PointerRNA *ptr)
 {
 	MovieClip *clip = (MovieClip *)ptr->id.data;
-	MovieTrackingStabilization *stab = &clip->tracking.stabilization;
-
-	stab->ok = 0;
 
 	nodeUpdateID(scene->nodetree, &clip->id);
 

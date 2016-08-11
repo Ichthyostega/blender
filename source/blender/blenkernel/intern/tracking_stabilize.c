@@ -867,12 +867,6 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
 	int sfra = INT_MAX, efra = INT_MIN, cfra;
 	float scale = 1.0f, scale_step = 0.0f;
 	MovieTrackingTrack *track;
-
-	/* Early output if stabilization is already initialized or not enabled. */
-	if (stab->ok || !(stab->flag & TRACKING_2D_STABILIZATION)) {
-		return;
-	}
-
 	stab->scale = 1.0f;
 
 	/* Calculate maximal frame range of tracks where stabilization is active. */

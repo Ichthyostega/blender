@@ -270,7 +270,7 @@ typedef struct MovieTrackingStabilization {
 	int filter;     /* filter used for pixel interpolation */
 
 	/* initialization and run-time data */
-	int ok;					/* are track initialization offsets and precomputed scale still valid? */
+	int ok DNA_DEPRECATED;	/* Without effect now, we initialize on every frame. Formerly used for caching of init values */
 } MovieTrackingStabilization;
 
 typedef struct MovieTrackingReconstruction {

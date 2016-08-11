@@ -1569,7 +1569,6 @@ static int join_tracks_exec(bContext *C, wmOperator *op)
 	}
 
 	if (update_stabilization) {
-		tracking->stabilization.ok = false;
 		WM_event_add_notifier(C, NC_MOVIECLIP | ND_DISPLAY, clip);
 	}
 

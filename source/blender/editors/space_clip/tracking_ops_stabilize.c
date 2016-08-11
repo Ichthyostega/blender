@@ -84,7 +84,6 @@ static int stabilize_2d_add_exec(bContext *C, wmOperator *UNUSED(op))
 	}
 
 	if (update) {
-		stab->ok = 0;
 		DAG_id_tag_update(&clip->id, 0);
 		WM_event_add_notifier(C, NC_MOVIECLIP | ND_DISPLAY, clip);
 	}
@@ -139,7 +138,6 @@ static int stabilize_2d_remove_exec(bContext *C, wmOperator *UNUSED(op))
 	}
 
 	if (update) {
-		stab->ok = 0;
 		DAG_id_tag_update(&clip->id, 0);
 		WM_event_add_notifier(C, NC_MOVIECLIP | ND_DISPLAY, clip);
 	}
@@ -229,7 +227,6 @@ static int stabilize_2d_rotation_add_exec(bContext *C, wmOperator *UNUSED(op))
 	}
 
 	if (update) {
-		stab->ok = 0;
 		DAG_id_tag_update(&clip->id, 0);
 		WM_event_add_notifier(C, NC_MOVIECLIP | ND_DISPLAY, clip);
 	}
@@ -284,7 +281,6 @@ static int stabilize_2d_rotation_remove_exec(bContext *C, wmOperator *UNUSED(op)
 	}
 
 	if (update) {
-		stab->ok = 0;
 		DAG_id_tag_update(&clip->id, 0);
 		WM_event_add_notifier(C, NC_MOVIECLIP | ND_DISPLAY, clip);
 	}

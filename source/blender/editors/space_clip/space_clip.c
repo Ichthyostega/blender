@@ -225,18 +225,6 @@ static void clip_scopes_check_gpencil_change(ScrArea *sa)
 	}
 }
 
-static void clip_stabilization_tag_refresh(ScrArea *sa)
-{
-	SpaceClip *sc = (SpaceClip *) sa->spacedata.first;
-	MovieClip *clip = ED_space_clip_get_clip(sc);
-
-	if (clip) {
-		MovieTrackingStabilization *stab = &clip->tracking.stabilization;
-
-		stab->ok = false;
-	}
-}
-
 /* ******************** default callbacks for clip space ***************** */
 
 static SpaceLink *clip_new(const bContext *C)
@@ -368,7 +356,6 @@ static void clip_listener(bScreen *UNUSED(sc), ScrArea *sa, wmNotifier *wmn)
 				case NA_REMOVED:
 				case NA_EDITED:
 				case NA_EVALUATED:
-					clip_stabilization_tag_refresh(sa);
 					/* fall-through */
 
 				case NA_SELECTED:
@@ -412,7 +399,6 @@ static void clip_listener(bScreen *UNUSED(sc), ScrArea *sa, wmNotifier *wmn)
 		case NC_SPACE:
 			if (wmn->data == ND_SPACE_CLIP) {
 				clip_scopes_tag_refresh(sa);
-				clip_stabilization_tag_refresh(sa);
 				ED_area_tag_redraw(sa);
 			}
 			break;
