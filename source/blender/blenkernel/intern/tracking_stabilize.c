@@ -976,6 +976,32 @@ static void stabilization_determine_safe_image_area(MovieTracking *tracking, int
 }
 
 
+/**
+ * Prepare working data and determine reference point for each track.
+ *
+ * \remark these calculations _could_ be cached and reused for all frames of the same clip.
+ *         However, since proper initialization depends on (weight) animation and setup of tracks,
+ *         ensuring consistency of cached init data turns out to be tricky, hard to maintain
+ *         and generally not worth the effort. Thus we'll re-initialize on every frame.
+ */
+static void init_stabilizer(MovieClip *clip, int width, int height)
+{
+	MovieTracking *tracking = &clip->tracking;
+	MovieTrackingStabilization *stab = &tracking->stabilization;
+	float pixel_aspect = tracking->camera.pixel_aspect;
+	float aspect = (float)width * pixel_aspect / height;
+	int size = height;
+
+	initPrivateDataLink();
+	initialize_animated_params(stab, clip);
+	initialize_all_tracks(clip, aspect);
+	if (stab->flag & TRACKING_AUTOSCALE) {
+		stabilization_determine_safe_image_area(tracking, size, aspect);
+	}
+	use_values_from_fcurves(stab, false); /* by default, just use values for the global current frame */
+}
+
+
 
 
 /* === public interface functions === */
@@ -995,24 +1021,16 @@ void BKE_tracking_stabilization_data_get(MovieClip *clip, int framenr, int width
                                          float translation[2], float *scale, float *angle)
 {
 	MovieTracking *tracking = &clip->tracking;
-	MovieTrackingStabilization *stab = &tracking->stabilization;
-	float pixel_aspect = tracking->camera.pixel_aspect;
 
-	bool enabled = stab->flag & TRACKING_2D_STABILIZATION;
+	bool enabled = tracking->stabilization.flag & TRACKING_2D_STABILIZATION;
 	bool do_compensate = true; /* might become a parameter of a stabilization compositor node */
 	float scale_step = 0.0f;
+	float pixel_aspect = tracking->camera.pixel_aspect;
 	float aspect = (float)width * pixel_aspect / height;
 	int size = height;
 
-	if (enabled && !stab->ok) {
-		initPrivateDataLink();
-		initialize_animated_params(stab, clip);
-		initialize_all_tracks(clip, aspect);
-		if (stab->flag & TRACKING_AUTOSCALE) {
-			stabilization_determine_safe_image_area(tracking, size, aspect);
-		}
-		use_values_from_fcurves(stab, false); /* just use values for the global current frame */
-		stab->ok = true;
+	if (enabled) {
+		init_stabilizer(clip, width, height);
 	}
 
 	if (enabled &&
