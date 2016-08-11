@@ -1086,6 +1086,32 @@
 <node CREATED="1470484698789" HGAP="22" ID="ID_1462131547" MODIFIED="1470484715609" TEXT="Frage: Init des GHash synchronisieren" VSHIFT="19">
 <icon BUILTIN="help"/>
 </node>
+<node CREATED="1470944922721" ID="ID_1000448607" MODIFIED="1470945048957" TEXT="Diskussion: Definition for runtime-data gekl&#xe4;rt">
+<icon BUILTIN="idea"/>
+<node CREATED="1470945016484" ID="ID_1741729944" MODIFIED="1470945027861" TEXT="entweder: wirklich persistent und immer konsistent -&gt; DNA"/>
+<node CREATED="1470945028522" ID="ID_884142249" MODIFIED="1470945036556" TEXT="oder: lokal per Callgraph"/>
+<node CREATED="1470945037760" ID="ID_1200038840" MODIFIED="1470945044149" TEXT="und nix dazwischen">
+<icon BUILTIN="yes"/>
+</node>
+</node>
+<node CREATED="1470944952276" ID="ID_736890491" MODIFIED="1470945007349" TEXT="Beschlu&#xdf;">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1470944958459" ID="ID_1724650102" MODIFIED="1470945058079" TEXT="kein Caching von Werten mehr">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1470944967457" ID="ID_460969564" MODIFIED="1470945060856" TEXT="Init-Pass f&#xfc;r jeden Frame">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1470944974193" ID="ID_332007735" MODIFIED="1470945063275" TEXT="lokaler StabCtx per Call-Graph">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1470944986248" ID="ID_755692977" MODIFIED="1470945066339" TEXT="vereinfacht Memory-Management drastisch">
+<icon BUILTIN="ksmiletris"/>
+</node>
+<node CREATED="1470944995725" ID="ID_276574663" MODIFIED="1470945069161" TEXT="stab-&gt;ok wird @depreciated">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
 </node>
 </node>
 </node>
