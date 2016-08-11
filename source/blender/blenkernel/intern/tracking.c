@@ -68,7 +68,6 @@
 
 #include "libmv-capi.h"
 #include "tracking_private.h"
-#include "tracking_stabilize_private.h"
 
 typedef struct MovieDistortion {
 	struct libmv_CameraIntrinsics *intrinsics;
@@ -187,12 +186,6 @@ void BKE_tracking_free(MovieTracking *tracking)
 		BKE_tracking_distortion_free(tracking->camera.intrinsics);
 
 	tracking_dopesheet_free(&tracking->dopesheet);
-
-	StabilizationAnimatedValues *privateData = accessStabilizationAnimatedValues(&tracking->stabilization); 
-	if (privateData) {
-		discardStabilizationAnimatedValues(&tracking->stabilization);
-		MEM_freeN(privateData);
-	}
 }
 
 /* Copy the whole list of tracks. */
@@ -248,8 +241,7 @@ static void tracking_reconstruction_copy(
 
 /* Copy stabilization structure. */
 static void tracking_stabilization_copy(
-        MovieTrackingStabilization *stabilization_dst, MovieTrackingStabilization *stabilization_src,
-        GHash *tracks_mapping)
+        MovieTrackingStabilization *stabilization_dst, MovieTrackingStabilization *stabilization_src)
 {
 	*stabilization_dst = *stabilization_src;
 }
@@ -288,7 +280,7 @@ void BKE_tracking_copy(MovieTracking *tracking_dst, MovieTracking *tracking_src)
 	tracking_tracks_copy(&tracking_dst->tracks, &tracking_src->tracks, tracks_mapping);
 	tracking_plane_tracks_copy(&tracking_dst->plane_tracks, &tracking_src->plane_tracks, tracks_mapping);
 	tracking_reconstruction_copy(&tracking_dst->reconstruction, &tracking_src->reconstruction);
-	tracking_stabilization_copy(&tracking_dst->stabilization, &tracking_src->stabilization, tracks_mapping);
+	tracking_stabilization_copy(&tracking_dst->stabilization, &tracking_src->stabilization);
 	if (tracking_src->act_track) {
 		tracking_dst->act_track = BLI_ghash_lookup(tracks_mapping, tracking_src->act_track);
 	}
@@ -634,11 +626,6 @@ void BKE_tracking_track_free(MovieTrackingTrack *track)
 {
 	if (track->markers)
 		MEM_freeN(track->markers);
-	TrackStabilizationBase *privateData = accessStabilizationBaselineData(track);
-	if (privateData) {
-		discardStabilizationBaselineData(track);
-		MEM_freeN(privateData);
-	}
 }
 
 /* Set flag for all specified track's areas.
