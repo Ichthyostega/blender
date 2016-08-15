@@ -1369,6 +1369,13 @@ void blo_do_versions_270(FileData *fd, Library *UNUSED(lib), Main *main)
 		for (clip = main->movieclip.first; clip; clip = clip->id.next) {
 			if (clip->tracking.stabilization.rot_track) {
 				migrate_single_rot_stabilization_track_settings(&clip->tracking.stabilization);
+
+				if (!clip->tracking.stabilization.scale) {
+					/* ensure init.
+					 * Was previously used for autoscale only,
+					 * now used always (as "target scale") */
+					clip->tracking.stabilization.scale = 1.0f;
+				}
 			}
 		}
 	}
