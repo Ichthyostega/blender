@@ -1094,7 +1094,7 @@
 <icon BUILTIN="yes"/>
 </node>
 </node>
-<node CREATED="1470944952276" ID="ID_736890491" MODIFIED="1470945007349" TEXT="Beschlu&#xdf;">
+<node CREATED="1470944952276" ID="ID_736890491" MODIFIED="1471260132962" TEXT="Beschlu&#xdf;">
 <icon BUILTIN="messagebox_warning"/>
 <node CREATED="1470944958459" ID="ID_1724650102" MODIFIED="1470945058079" TEXT="kein Caching von Werten mehr">
 <icon BUILTIN="button_ok"/>
@@ -1109,6 +1109,101 @@
 <icon BUILTIN="ksmiletris"/>
 </node>
 <node CREATED="1470944995725" ID="ID_276574663" MODIFIED="1470945069161" TEXT="stab-&gt;ok wird @depreciated">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1471259772960" ID="ID_775129741" MODIFIED="1471259821926" TEXT="&#xc4;rger beim Dev-Meeting 14.8.">
+<icon BUILTIN="smily_bad"/>
+<node CREATED="1471259793173" ID="ID_1024623231" MODIFIED="1471260142823" TEXT="Sergej hat den Update nicht angeschaut">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1471259803762" ID="ID_995747974" MODIFIED="1471259810120" TEXT="Ton: &quot;zu sp&#xe4;t&quot;"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471259811043" ID="ID_1333201584" MODIFIED="1471259836282" TEXT="Nachtermin bis n&#xe4;chsten Dienstag">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
+<node CREATED="1471259838454" ID="ID_306570822" MODIFIED="1471259845632" TEXT="letzte Punkte">
+<node CREATED="1471259846840" ID="ID_1341257935" MODIFIED="1471259849472" TEXT="Migration">
+<node CREATED="1471259877592" ID="ID_656382109" MODIFIED="1471260194674" TEXT="sollte nicht nach untern absichern">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ich hatte einen zus&#228;tzlichen Check eingebaut,
+    </p>
+    <p>
+      falls man von einer zu alten Blender-Version migriert, die noch keinen
+    </p>
+    <p>
+      Tracking-Support hat
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Habe jetzt den (vereinfachenden) Patch von Sergej mal angewendet
+    </p>
+    <p>
+      vlt. ist sp&#228;ter noch die M&#246;glichkeit, das zu diskutieren.
+    </p>
+    <p>
+      Schlie&#223;lich ist der Tracking-Support nun inzwischen auch schon lang in Blender
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471259890078" ID="ID_1435634092" MODIFIED="1471259986493" TEXT="noch zu diskutieren">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node CREATED="1471259895671" ID="ID_407961591" MODIFIED="1471260203484" TEXT="Init f&#xfc;r stabilization.scale sicherstellen">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      das habe ich bisher in readfile.c gemacht
+    </p>
+    <p>
+      Ist aber eine Migrations-Angelegenheit:
+    </p>
+    <p>
+      fr&#252;her war stabilization.scale nur ein Wert-Cache f&#252;r die &quot;Autoscale&quot;-Funktion
+    </p>
+    <p>
+      nun ist es immer ein g&#252;ltiger Wert
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      Inzwischen habe ich &#252;berall guards f&#252;r scale==0 eingebaut, so da&#223; es nur noch einmal
+    </p>
+    <p>
+      bei der Migration passieren m&#252;&#223;te
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1471259852692" ID="ID_626586485" MODIFIED="1471260205614" TEXT="unn&#xf6;tiger NULL-Check">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Sergey: wenn ein Track keine Marker hat, dann ist das ein Fehler und crasht &#252;berall
+    </p>
+  </body>
+</html>
+</richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
