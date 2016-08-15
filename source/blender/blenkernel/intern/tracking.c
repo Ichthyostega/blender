@@ -1261,7 +1261,7 @@ MovieTrackingMarker *BKE_tracking_marker_get_exact(MovieTrackingTrack *track, in
 {
 	MovieTrackingMarker *marker = BKE_tracking_marker_get(track, framenr);
 
-	if (!marker || marker->framenr != framenr)
+	if (marker->framenr != framenr)
 		return NULL;
 
 	return marker;
