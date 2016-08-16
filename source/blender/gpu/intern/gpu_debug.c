@@ -30,6 +30,7 @@
  */
 
 #include "BLI_sys_types.h"
+#include "BLI_system.h"
 
 #include "BKE_global.h"
 
@@ -207,6 +208,11 @@ static void APIENTRY gpu_debug_proc(
         GLenum severity, GLsizei UNUSED(length),
         const GLchar *message, const GLvoid *UNUSED(userParm))
 {
+	if (type == GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR) {
+		/* Blender 2.7x uses OpenGL 2.1, we don't care if features are deprecated */
+		return;
+	}
+
 	bool backtrace = false;
 
 	switch (severity) {
@@ -232,6 +238,11 @@ static void APIENTRY gpu_debug_proc_amd(
         GLenum severity, GLsizei UNUSED(length),
         const GLchar *message,  GLvoid *UNUSED(userParm))
 {
+	if (category == GL_DEBUG_CATEGORY_DEPRECATION_AMD) {
+		/* Blender 2.7x uses OpenGL 2.1, we don't care if features are deprecated */
+		return;
+	}
+
 	bool backtrace = false;
 
 	switch (severity) {
