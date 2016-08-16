@@ -1348,14 +1348,14 @@ void blo_do_versions_270(FileData *fd, Library *UNUSED(lib), Main *main)
 			MovieTracking *tracking = &clip->tracking;
 			MovieTrackingObject *tracking_object;
 			for (tracking_object = tracking->objects.first;
-				 tracking_object;
-				 tracking_object = tracking_object->next)
+			     tracking_object != NULL;
+			     tracking_object = tracking_object->next)
 			{
 				ListBase *tracksbase = BKE_tracking_object_get_tracks(tracking, tracking_object);
 				MovieTrackingTrack *track;
 				for (track = tracksbase->first;
-					 track;
-					 track = track->next)
+				     track != NULL;
+				     track = track->next)
 				{
 					track->weight_stab = track->weight;
 				}
@@ -1366,7 +1366,7 @@ void blo_do_versions_270(FileData *fd, Library *UNUSED(lib), Main *main)
 	if (!DNA_struct_elem_find(fd->filesdna, "MovieTrackingStabilization", "int", "tot_rot_track")) {
 
 		MovieClip *clip;
-		for (clip = main->movieclip.first; clip; clip = clip->id.next) {
+		for (clip = main->movieclip.first; clip != NULL; clip = clip->id.next) {
 			if (clip->tracking.stabilization.rot_track) {
 				migrate_single_rot_stabilization_track_settings(&clip->tracking.stabilization);
 
