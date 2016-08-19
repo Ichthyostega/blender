@@ -22,10 +22,16 @@
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.915169151" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.556748922" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 								<option id="gnu.cpp.compiler.option.preprocessor.def.419445975" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def"/>
+								<option id="gnu.cpp.compiler.option.include.paths.383963678" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/intern/guardedalloc}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.770853918" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.1046571729" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1430896971" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols"/>
+								<option id="gnu.c.compiler.option.include.paths.196342930" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/intern/guardedalloc}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.2043678518" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.912385470" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base"/>
@@ -36,15 +42,19 @@
 								</inputType>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.base.263038221" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base">
+								<option id="gnu.both.asm.option.include.paths.1119432746" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/intern/guardedalloc}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.7283471" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
 					<folderInfo id="cdt.managedbuild.toolchain.gnu.base.1956067967.407506738" name="/" resourcePath="source/blender/makesdna">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.base.365420981" name="cdt.managedbuild.toolchain.gnu.base" superClass="cdt.managedbuild.toolchain.gnu.base" unusedChildren="">
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.target.gnu.platform.base" name="Debug Platform" osList="linux,hpux,aix,qnx" superClass="cdt.managedbuild.target.gnu.platform.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.592846852" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.915169151"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.69664451" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base.556748922">
-								<option id="gnu.cpp.compiler.option.include.paths.1118353627" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+								<option id="gnu.cpp.compiler.option.include.paths.1118353627" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesdna}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesrna}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesdna/intern}&quot;"/>
@@ -53,7 +63,7 @@
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.204332798" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.638361060" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base.1046571729">
-								<option id="gnu.c.compiler.option.include.paths.1543089681" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+								<option id="gnu.c.compiler.option.include.paths.1543089681" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesdna}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesrna}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesdna/intern}&quot;"/>
@@ -64,7 +74,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.2011217955" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base.912385470"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.447316610" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base.2064770840"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.base.8022546" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base.263038221">
-								<option id="gnu.both.asm.option.include.paths.215369681" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+								<option id="gnu.both.asm.option.include.paths.215369681" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesdna}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesrna}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Blender/source/blender/makesdna/intern}&quot;"/>
