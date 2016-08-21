@@ -1152,8 +1152,7 @@
       Schlie&#223;lich ist der Tracking-Support nun inzwischen auch schon lang in Blender
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471259890078" ID="ID_1435634092" MODIFIED="1471259986493" TEXT="noch zu diskutieren">
@@ -1187,8 +1186,7 @@
       bei der Migration passieren m&#252;&#223;te
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
@@ -1202,10 +1200,95 @@
       Sergey: wenn ein Track keine Marker hat, dann ist das ein Fehler und crasht &#252;berall
     </p>
   </body>
+</html></richcontent>
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1471793578214" HGAP="23" ID="ID_1900329216" MODIFIED="1471793588341" TEXT="UI-Anpassungen" VSHIFT="19">
+<icon BUILTIN="pencil"/>
+<node CREATED="1471793590725" ID="ID_139068983" MODIFIED="1471793607973" TEXT="Sergej hat das &quot;collapse tracks&quot; entfernt">
+<icon BUILTIN="smiley-angry"/>
+</node>
+<node CREATED="1471793609651" ID="ID_73978739" MODIFIED="1471793620790" TEXT="daraufhin war ich sehr b&#xf6;hse"/>
+<node CREATED="1471793621280" ID="ID_404827959" MODIFIED="1471793655118" TEXT="sehr guter neuer Vorschlag von Sergej ">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ... Radiobuttons verwenden!
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1471793658363" ID="ID_1754145043" MODIFIED="1471793669347" TEXT="Feinanpassungen am Enable/Disable">
+<icon BUILTIN="button_ok"/>
+</node>
+<node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1471793670379" ID="ID_692647915" MODIFIED="1471793681491" TEXT="Orientierung des Expected-Zoom">
+<icon BUILTIN="flag-pink"/>
+<node CREATED="1471793684168" ID="ID_55679672" MODIFIED="1471793704377" TEXT="ich: warum verh&#xe4;lt sich das so unintuitiv">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1471793705581" ID="ID_1099901639" MODIFIED="1471793717430" TEXT="ich: warum arbeitet das anders herum">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1471793737377" ID="ID_87674632" MODIFIED="1471793748605" TEXT="Vorschlag: in RNA fixen: 1/scale">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1471793785163" ID="ID_1030308694" MODIFIED="1471793815525" TEXT="nebenbei bemerkt: Fehler in scale_influence">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      sollte nicht auf den &quot;expected&quot;-Parameter wirken
+    </p>
+  </body>
 </html>
 </richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
+<node CREATED="1471793749608" ID="ID_637273414" MODIFIED="1471793782656" TEXT="AUA: da ist ja tats&#xe4;chlich ein Fehler im Code">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ich multipliziere durch die Baseline, anstatt durch sie zu dividieren
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="idea"/>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471793822502" ID="ID_1308709955" MODIFIED="1471793827670" TEXT="noch zu committen">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471793554782" ID="ID_87320557" MODIFIED="1471793927057" TEXT="EInwand Sean Kennedy">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1471793832101" ID="ID_1065214031" MODIFIED="1471793845101" TEXT="&quot;warum wurde das committed&quot;???">
+<icon BUILTIN="smiley-angry"/>
+</node>
+<node CREATED="1471793846219" ID="ID_1388185696" MODIFIED="1471793858429" TEXT="&quot;ich hab doch gesagt, das funktioniert nicht&quot;!!!!"/>
+<node CREATED="1471793859225" ID="ID_1554342439" MODIFIED="1471793867028" TEXT="naja, so hat ers nicht gesagt!"/>
+<node CREATED="1471793867879" ID="ID_607535122" MODIFIED="1471793881758" TEXT="aber: Sergej sagt: Test-Szene ist Regression">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1471793887845" ID="ID_780088858" MODIFIED="1471793923519" TEXT="in Untersuchung">
+<icon BUILTIN="pencil"/>
+<node CREATED="1471793893676" ID="ID_1299832627" MODIFIED="1471793900407" TEXT="alte L&#xf6;sung verwendet Trick"/>
+<node CREATED="1471793900787" ID="ID_1807053105" MODIFIED="1471793906855" TEXT="extrem schwer in neuer nachzubauen"/>
+<node CREATED="1471793907347" ID="ID_1318745022" MODIFIED="1471793912469" TEXT="sollte aber grunds&#xe4;tzlich gehen"/>
+<node CREATED="1471793912890" ID="ID_1130090789" MODIFIED="1471793920501" TEXT="Alternative: doch den Pivot durchreichen"/>
 </node>
 </node>
 </node>
