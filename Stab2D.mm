@@ -1273,7 +1273,7 @@
 </node>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471793554782" ID="ID_87320557" MODIFIED="1471793927057" TEXT="EInwand Sean Kennedy">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471793554782" ID="ID_87320557" MODIFIED="1471793932684" TEXT="Einwand Sean Kennedy">
 <icon BUILTIN="flag-yellow"/>
 <node CREATED="1471793832101" ID="ID_1065214031" MODIFIED="1471793845101" TEXT="&quot;warum wurde das committed&quot;???">
 <icon BUILTIN="smiley-angry"/>
@@ -1286,8 +1286,12 @@
 <node CREATED="1471793887845" ID="ID_780088858" MODIFIED="1471793923519" TEXT="in Untersuchung">
 <icon BUILTIN="pencil"/>
 <node CREATED="1471793893676" ID="ID_1299832627" MODIFIED="1471793900407" TEXT="alte L&#xf6;sung verwendet Trick"/>
-<node CREATED="1471793900787" ID="ID_1807053105" MODIFIED="1471793906855" TEXT="extrem schwer in neuer nachzubauen"/>
-<node CREATED="1471793907347" ID="ID_1318745022" MODIFIED="1471793912469" TEXT="sollte aber grunds&#xe4;tzlich gehen"/>
+<node CREATED="1471793900787" ID="ID_1807053105" MODIFIED="1471842179138" TEXT="extrem schwer in Neuer nachzubauen"/>
+<node CREATED="1471793907347" ID="ID_1318745022" MODIFIED="1471842195353" TEXT="sollte aber grunds&#xe4;tzlich gehen">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1471842180222" ID="ID_1402694142" MODIFIED="1471842184921" TEXT="ja, war extrem ekelig"/>
+<node CREATED="1471842185645" ID="ID_1058920010" MODIFIED="1471842191856" TEXT="aber Systematik wirkt!"/>
+</node>
 <node CREATED="1471793912890" ID="ID_1130090789" MODIFIED="1471793920501" TEXT="Alternative: doch den Pivot durchreichen"/>
 </node>
 </node>
