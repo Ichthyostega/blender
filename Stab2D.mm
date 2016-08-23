@@ -731,16 +731,17 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641853957" HGAP="81" ID="ID_576569203" MODIFIED="1436714459865" POSITION="left" TEXT="Review" VSHIFT="9">
+<node CREATED="1436641853957" HGAP="81" ID="ID_576569203" MODIFIED="1471981026984" POSITION="left" TEXT="Review" VSHIFT="9">
 <font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="prepare"/>
+<icon BUILTIN="go"/>
 <node CREATED="1436642114382" ID="ID_975531283" MODIFIED="1436714422577" TEXT="Entry">
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1436642124742" ID="ID_1890100547" MODIFIED="1436714441672" TEXT="erster Anlauf">
 <icon BUILTIN="button_cancel"/>
 </node>
-<node CREATED="1436642134070" ID="ID_1101247684" MODIFIED="1436642137250" TEXT="zweiter Anlauf">
+<node COLOR="#338800" CREATED="1436642134070" ID="ID_1101247684" MODIFIED="1471981038220" TEXT="zweiter Anlauf">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1436749670772" ID="ID_787845565" MODIFIED="1436749672856" TEXT="Patch">
 <node CREATED="1436714326727" FOLDED="true" ID="ID_636372309" MODIFIED="1461030329017" TEXT="Patch-Update">
 <icon BUILTIN="button_ok"/>
@@ -815,7 +816,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1437071968242" FOLDED="true" ID="ID_1325711910" MODIFIED="1461342422647">
+<node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1471981182797">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -891,7 +892,7 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node COLOR="#338800" CREATED="1461280564949" ID="ID_1965919603" MODIFIED="1468189190898" TEXT="brauche Windows-Build">
+<node COLOR="#338800" CREATED="1461280564949" FOLDED="true" ID="ID_1965919603" MODIFIED="1471981200304" TEXT="brauche Windows-Build">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1461280575828" ID="ID_1423456016" MODIFIED="1461280787673" TEXT="Sergey m&#xf6;chte Feedback von Usern/K&#xfc;nstlern">
 <icon BUILTIN="messagebox_warning"/>
@@ -931,7 +932,8 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node CREATED="1468189276660" ID="ID_210863761" MODIFIED="1468189280358" TEXT="User-Feedback">
+<node CREATED="1468189276660" HGAP="62" ID="ID_210863761" MODIFIED="1471980970013" TEXT="User-Feedback" VSHIFT="24">
+<icon BUILTIN="messagebox_warning"/>
 <node CREATED="1468189282395" ID="ID_324814762" MODIFIED="1468189286711" TEXT="Sean Kennedy">
 <node CREATED="1468189291186" ID="ID_749978544" MODIFIED="1468189297492" TEXT="grunds&#xe4;tzlich positiv"/>
 <node CREATED="1468189299026" ID="ID_1652672540" MODIFIED="1468189313674" TEXT="hat aber die Tracks nicht sinnvoll gew&#xe4;hlt"/>
@@ -943,9 +945,9 @@
 <node CREATED="1468189377774" ID="ID_887071452" MODIFIED="1468189385072" TEXT="das Problem, die Tracks sinnvoll zu w&#xe4;hlen"/>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1470234834382" ID="ID_1659497085" MODIFIED="1470234848644" TEXT="Review Sergej">
+<node COLOR="#338800" CREATED="1470234834382" FOLDED="true" HGAP="57" ID="ID_1659497085" MODIFIED="1471980992350" TEXT="Review Sergej" VSHIFT="16">
 <font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="flag-yellow"/>
+<icon BUILTIN="button_ok"/>
 <node CREATED="1470234851491" ID="ID_695533582" MODIFIED="1470484723819" TEXT="@deprecated">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1470234857411" ID="ID_56703129" MODIFIED="1470234860190" TEXT="rot_track">
@@ -1226,8 +1228,7 @@
 <node CREATED="1471793658363" ID="ID_1754145043" MODIFIED="1471793669347" TEXT="Feinanpassungen am Enable/Disable">
 <icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1471793670379" ID="ID_692647915" MODIFIED="1471793681491" TEXT="Orientierung des Expected-Zoom">
-<icon BUILTIN="flag-pink"/>
+<node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1471793670379" ID="ID_692647915" MODIFIED="1471980852229" TEXT="Orientierung des Expected-Zoom">
 <node CREATED="1471793684168" ID="ID_55679672" MODIFIED="1471793704377" TEXT="ich: warum verh&#xe4;lt sich das so unintuitiv">
 <icon BUILTIN="help"/>
 </node>
@@ -1264,9 +1265,25 @@
 <icon BUILTIN="idea"/>
 <icon BUILTIN="messagebox_warning"/>
 </node>
+<node COLOR="#338800" CREATED="1471980759985" HGAP="26" ID="ID_271166152" MODIFIED="1471980826953" TEXT="Letzten Endes doch in DNA/Code gefixt" VSHIFT="16">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...und so akzeptiert auf Master: <b>e5b96d6a05</b>
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="info"/>
+<icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471793822502" ID="ID_1308709955" MODIFIED="1471793827670" TEXT="noch zu committen">
-<icon BUILTIN="flag-yellow"/>
+</node>
+<node COLOR="#338800" CREATED="1471980860020" HGAP="35" ID="ID_1856298651" MODIFIED="1471980876450" TEXT="alles auf Master akzeptiert" VSHIFT="23">
+<font NAME="SansSerif" SIZE="15"/>
+<icon BUILTIN="button_ok"/>
 </node>
 </node>
 </node>
@@ -1293,11 +1310,13 @@
 <node COLOR="#338800" CREATED="1471927814923" ID="ID_906535068" MODIFIED="1471927853735" TEXT="Umbau: translation weight centre als Pivot">
 <icon BUILTIN="button_ok"/>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471927766378" ID="ID_1352082951" MODIFIED="1471927786999" TEXT="dabei bemerkt: Autoscale kaputt">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471927766378" HGAP="-4" ID="ID_1352082951" MODIFIED="1471981015244" TEXT="dabei bemerkt: Autoscale kaputt" VSHIFT="18">
+<arrowlink COLOR="#b352a6" DESTINATION="ID_846947601" ENDARROW="Default" ENDINCLINATION="-21;-32;" ID="Arrow_ID_1776169316" STARTARROW="None" STARTINCLINATION="-232;-31;"/>
 <icon BUILTIN="messagebox_warning"/>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471927876147" HGAP="25" ID="ID_846947601" MODIFIED="1471927894206" TEXT="Autoscale-Problem" VSHIFT="33">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471927876147" FOLDED="true" HGAP="25" ID="ID_846947601" MODIFIED="1471981017201" TEXT="Autoscale-Problem" VSHIFT="33">
+<linktarget COLOR="#b352a6" DESTINATION="ID_846947601" ENDARROW="Default" ENDINCLINATION="-21;-32;" ID="Arrow_ID_1776169316" SOURCE="ID_1352082951" STARTARROW="None" STARTINCLINATION="-232;-31;"/>
 <icon BUILTIN="flag-yellow"/>
 <node CREATED="1471927901400" ID="ID_721885726" MODIFIED="1471927906619" TEXT="berechnet falschen Scale-Faktor"/>
 <node CREATED="1471927907447" ID="ID_756053696" MODIFIED="1471927927148" TEXT="Regression durch Pivot-&#xc4;nderung">
@@ -1325,8 +1344,7 @@
       Es hat im Besonderen NICHTS zu tun mit dem Aspect-Ratio-Problem
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1471928059267" ID="ID_452528711" MODIFIED="1471928070245" TEXT="Vergleich Original vs. meine Version">
@@ -1369,6 +1387,40 @@
 </node>
 </node>
 </node>
+<node CREATED="1471948602737" ID="ID_1313145950" MODIFIED="1471948659445" TEXT="Sergey hat&apos;s gefixt!!">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1471948616395" ID="ID_1864508822" MODIFIED="1471948630721" TEXT="viel sauberer geschrieben"/>
+<node CREATED="1471980915796" ID="ID_321071221" MODIFIED="1471980924087" TEXT="verwendet nun Vektor-Mathematik"/>
+<node CREATED="1471948631885" ID="ID_1915281025" MODIFIED="1471948643192" TEXT="eigentlich Stab-Matrix-Konstruktion in Hilfsfunktion"/>
+<node CREATED="1471948645955" ID="ID_1048740254" MODIFIED="1471948651584" TEXT="freut mich">
+<icon BUILTIN="ksmiletris"/>
+</node>
+</node>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471981047675" HGAP="-50" ID="ID_1724995751" MODIFIED="1471981164889" VSHIFT="80">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Sergej: <b>akzeptiert</b>&#160;und Probleme <b>gefixt</b>
+    </p>
+  </body>
+</html>
+</richcontent>
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      [12:47] hackerman- ichthyo: huh, so motrack is no longer a stopper for testbuild
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="idea"/>
 </node>
 </node>
 </node>
