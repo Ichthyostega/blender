@@ -1220,8 +1220,7 @@
       ... Radiobuttons verwenden!
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 </node>
 <node CREATED="1471793658363" ID="ID_1754145043" MODIFIED="1471793669347" TEXT="Feinanpassungen am Enable/Disable">
@@ -1248,8 +1247,7 @@
       sollte nicht auf den &quot;expected&quot;-Parameter wirken
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1471793749608" ID="ID_637273414" MODIFIED="1471793782656" TEXT="AUA: da ist ja tats&#xe4;chlich ein Fehler im Code">
@@ -1262,8 +1260,7 @@
       ich multipliziere durch die Baseline, anstatt durch sie zu dividieren
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 <icon BUILTIN="messagebox_warning"/>
 </node>
@@ -1273,8 +1270,8 @@
 </node>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471793554782" ID="ID_87320557" MODIFIED="1471793932684" TEXT="Einwand Sean Kennedy">
-<icon BUILTIN="flag-yellow"/>
+<node COLOR="#338800" CREATED="1471793554782" HGAP="52" ID="ID_87320557" MODIFIED="1471927891583" TEXT="Einwand Sean Kennedy" VSHIFT="16">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1471793832101" ID="ID_1065214031" MODIFIED="1471793845101" TEXT="&quot;warum wurde das committed&quot;???">
 <icon BUILTIN="smiley-angry"/>
 </node>
@@ -1283,8 +1280,7 @@
 <node CREATED="1471793867879" ID="ID_607535122" MODIFIED="1471793881758" TEXT="aber: Sergej sagt: Test-Szene ist Regression">
 <icon BUILTIN="messagebox_warning"/>
 </node>
-<node CREATED="1471793887845" ID="ID_780088858" MODIFIED="1471793923519" TEXT="in Untersuchung">
-<icon BUILTIN="pencil"/>
+<node CREATED="1471793887845" ID="ID_780088858" MODIFIED="1471927801585" TEXT="Untersuchung">
 <node CREATED="1471793893676" ID="ID_1299832627" MODIFIED="1471793900407" TEXT="alte L&#xf6;sung verwendet Trick"/>
 <node CREATED="1471793900787" ID="ID_1807053105" MODIFIED="1471842179138" TEXT="extrem schwer in Neuer nachzubauen"/>
 <node CREATED="1471793907347" ID="ID_1318745022" MODIFIED="1471842195353" TEXT="sollte aber grunds&#xe4;tzlich gehen">
@@ -1293,6 +1289,85 @@
 <node CREATED="1471842185645" ID="ID_1058920010" MODIFIED="1471842191856" TEXT="aber Systematik wirkt!"/>
 </node>
 <node CREATED="1471793912890" ID="ID_1130090789" MODIFIED="1471793920501" TEXT="Alternative: doch den Pivot durchreichen"/>
+</node>
+<node COLOR="#338800" CREATED="1471927814923" ID="ID_906535068" MODIFIED="1471927853735" TEXT="Umbau: translation weight centre als Pivot">
+<icon BUILTIN="button_ok"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471927766378" ID="ID_1352082951" MODIFIED="1471927786999" TEXT="dabei bemerkt: Autoscale kaputt">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471927876147" HGAP="25" ID="ID_846947601" MODIFIED="1471927894206" TEXT="Autoscale-Problem" VSHIFT="33">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1471927901400" ID="ID_721885726" MODIFIED="1471927906619" TEXT="berechnet falschen Scale-Faktor"/>
+<node CREATED="1471927907447" ID="ID_756053696" MODIFIED="1471927927148" TEXT="Regression durch Pivot-&#xc4;nderung">
+<icon BUILTIN="help"/>
+</node>
+<node CREATED="1471927928036" ID="ID_943007210" MODIFIED="1471927932024" TEXT="NEIN">
+<icon BUILTIN="idea"/>
+<node CREATED="1471927934379" ID="ID_420664632" MODIFIED="1471927943342" TEXT="per Bisect untersucht"/>
+<node CREATED="1471927943810" ID="ID_1573014863" MODIFIED="1471928048876" TEXT="Ist kaputt seit Anbeginn meines Patches">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      das hei&#223;t:
+    </p>
+    <p>
+      Ich habe eine sehr fr&#252;he Version rekonstruiert, jedoch on Top of aktuellem Master.
+    </p>
+    <p>
+      Dabei zeigt sich: Bereits die aller erste rudiment&#228;r funktionierend Version hat Autoscale gebrochen!!
+    </p>
+    <p>
+      Es hat im Besonderen NICHTS zu tun mit dem Aspect-Ratio-Problem
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1471928059267" ID="ID_452528711" MODIFIED="1471928070245" TEXT="Vergleich Original vs. meine Version">
+<node CREATED="1471928074032" ID="ID_374096815" MODIFIED="1471928080948" TEXT="mit Printf beobachten"/>
+<node CREATED="1471928081376" ID="ID_39358657" MODIFIED="1471928093842" TEXT="offizielle Stabilizer-Testszene"/>
+<node CREATED="1471928095022" ID="ID_871587255" MODIFIED="1471928119174" TEXT="Ursache: translation-Feld verh&#xe4;lt sich unterschiedlich">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1471928128498" ID="ID_952738463" MODIFIED="1471928132149" TEXT="Ursache">
+<node CREATED="1471928134017" ID="ID_1155910097" MODIFIED="1471928137557" TEXT="zwei Probleme"/>
+<node CREATED="1471928180267" ID="ID_1499689130" MODIFIED="1471928187199" TEXT="Problem-1">
+<icon BUILTIN="full-1"/>
+<node CREATED="1471928138096" ID="ID_789188396" MODIFIED="1471928157737" TEXT="translation enh&#xe4;lt den Workaround f&#xfc;r das Pivot-Problem"/>
+<node CREATED="1471928159750" ID="ID_1515994569" MODIFIED="1471928171888" TEXT="...und die Original-Version setzt das so vorraus"/>
+<node CREATED="1471928195265" ID="ID_1120919573" MODIFIED="1471928221665" TEXT="Bisher hatte mein Patch diesen Murks nicht ==&gt; Autoscale kaputt"/>
+<node CREATED="1471928222797" ID="ID_889811978" MODIFIED="1471928247230" TEXT="Jetzt rechnet mein Patch etwas anders ==&gt; Autoscale kaputt"/>
+<node CREATED="1471928248034" ID="ID_942478687" MODIFIED="1471928266779" TEXT="L&#xf6;sung: wie Original machen: Rotiere um Mitte des Frames"/>
+</node>
+<node CREATED="1471928275110" ID="ID_1426855139" MODIFIED="1471928281571" TEXT="Problem-2">
+<icon BUILTIN="full-2"/>
+<node CREATED="1471928283309" ID="ID_1006774506" MODIFIED="1471928298759" TEXT="Autoscale erwartet, da&#xdf; zentrisch skaliert wird"/>
+<node CREATED="1471928299211" ID="ID_502197769" MODIFIED="1471928306438" TEXT="mein Patch skaliert aber um den Pivot"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471928310489" ID="ID_1870004942" MODIFIED="1471928324769" TEXT="nicht ohne Weiteres l&#xf6;sbar">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1471928325767" ID="ID_114956309" MODIFIED="1471928339372" TEXT="f&#xe4;llt auf bei asymetrischem Pivot">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node COLOR="#ae1010" CREATED="1471928345125" HGAP="24" ID="ID_536506441" MODIFIED="1471928438758" TEXT="eigentliche Ursache" VSHIFT="3">
+<icon BUILTIN="idea"/>
+<node CREATED="1471928369882" ID="ID_14378667" MODIFIED="1471928380836" TEXT="Qualit&#xe4;t der Autoscale-Funktion"/>
+<node CREATED="1471928382680" ID="ID_431852744" MODIFIED="1471928393579" TEXT="ist nicht verst&#xe4;ndlich geschrieben"/>
+<node CREATED="1471928394263" ID="ID_1252512367" MODIFIED="1471928421093" TEXT="verwendet translate und angle">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1471928400878" ID="ID_1154153499" MODIFIED="1471928431967" TEXT="anstatt sich nur auf die effektive Matrix zu st&#xfc;tzen">
+<icon BUILTIN="yes"/>
+</node>
+</node>
 </node>
 </node>
 </node>
