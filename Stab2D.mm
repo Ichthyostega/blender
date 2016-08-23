@@ -815,8 +815,40 @@
 <node COLOR="#338800" CREATED="1436749658973" ID="ID_1531296958" MODIFIED="1461341121435" TEXT="erneut einreichen">
 <icon BUILTIN="button_ok"/>
 </node>
+<node COLOR="#338800" CREATED="1471981390302" HGAP="25" ID="ID_656551865" MODIFIED="1471981582452" TEXT="final Submission" VSHIFT="11">
+<icon BUILTIN="button_ok"/>
+<node CREATED="1471981400652" ID="ID_212035823" MODIFIED="1471981582452">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Anker: <b>Ichthyo.Stand.16-8</b>&#160;2c03d0186a
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="info"/>
 </node>
-<node CREATED="1437071968242" ID="ID_1325711910" MODIFIED="1471981182797">
+<node CREATED="1471981478370" ID="ID_490321972" MODIFIED="1471981582452">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      offiziell akzeptiert <b>Stab.Landung</b>&#160;b1677201f9
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1471981551272" ID="ID_1744568792" MODIFIED="1471981582452" TEXT="Anpassungen: UI, Pivot, Autoscale"/>
+</node>
+</node>
+<node CREATED="1437071968242" HGAP="27" ID="ID_1325711910" MODIFIED="1471981366894" STYLE="fork" VSHIFT="13">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -827,14 +859,14 @@
     </p>
   </body>
 </html></richcontent>
-<icon BUILTIN="button_ok"/>
-<node CREATED="1437071977057" ID="ID_436153482" LINK="https://launchpad.net/~ichthyo/+archive/ubuntu/blender" MODIFIED="1438346475708" TEXT="PPA auf Ubuntu/Launchpad">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1437071977057" ID="ID_436153482" LINK="https://launchpad.net/~ichthyo/+archive/ubuntu/blender" MODIFIED="1471981310077" TEXT="PPA auf Ubuntu/Launchpad">
 <icon BUILTIN="button_ok"/>
 </node>
-<node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1460747779213" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender">
+<node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1471981310077" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender">
 <icon BUILTIN="info"/>
 </node>
-<node CREATED="1437076248383" FOLDED="true" ID="ID_1862473466" MODIFIED="1459288361847" TEXT="f&#xfc;r Ubuntu Trusty (14.04 LTS)">
+<node CREATED="1437076248383" FOLDED="true" ID="ID_1862473466" MODIFIED="1471981310077" TEXT="f&#xfc;r Ubuntu Trusty (14.04 LTS)">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -876,23 +908,18 @@
 <icon BUILTIN="messagebox_warning"/>
 </node>
 </node>
-<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1461289844768" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
-<icon BUILTIN="button_ok"/>
-<node CREATED="1459290182517" ID="ID_1004440108" MODIFIED="1459309728395" TEXT="braucht auch Python-3.5-backport">
-<icon BUILTIN="button_ok"/>
-</node>
-</node>
-<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1461289847630" TEXT="f&#xfc;r Ubuntu Wily (15.10)">
-<icon BUILTIN="button_ok"/>
-</node>
-<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1461289850362" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS-dev-preview)">
-<icon BUILTIN="button_ok"/>
-</node>
-<node COLOR="#338800" CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1461342413904" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
+<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1471981334412" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
+<node CREATED="1459290182517" ID="ID_1004440108" MODIFIED="1471981310077" TEXT="braucht auch Python-3.5-backport">
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node COLOR="#338800" CREATED="1461280564949" FOLDED="true" ID="ID_1965919603" MODIFIED="1471981200304" TEXT="brauche Windows-Build">
+<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1471981340485" TEXT="f&#xfc;r Ubuntu Wily (15.10)"/>
+<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1471981352654" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS)"/>
+<node COLOR="#338800" CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1471981310078" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node COLOR="#338800" CREATED="1461280564949" FOLDED="true" HGAP="39" ID="ID_1965919603" MODIFIED="1471981370013" TEXT="brauche Windows-Build" VSHIFT="14">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1461280575828" ID="ID_1423456016" MODIFIED="1461280787673" TEXT="Sergey m&#xf6;chte Feedback von Usern/K&#xfc;nstlern">
 <icon BUILTIN="messagebox_warning"/>
