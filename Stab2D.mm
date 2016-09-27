@@ -14,7 +14,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" FOLDED="true" HGAP="60" ID="ID_1218644922" MODIFIED="1470342044421" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1474934695669" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
@@ -592,7 +592,71 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641873568" ID="ID_38644124" MODIFIED="1461117078124" TEXT="Backport">
+<node CREATED="1474934718072" HGAP="67" ID="ID_1572105179" MODIFIED="1474934730530" TEXT="Doku" VSHIFT="22">
+<node CREATED="1474934733685" ID="ID_79686303" MODIFIED="1474934736536" TEXT="Blender-Wiki">
+<node COLOR="#11af9a" CREATED="1474935037788" ID="ID_710343759" LINK="https://wiki.blender.org/index.php/User:Ichthyostega" MODIFIED="1474935071228" TEXT="meine User-Page">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1474934737620" ID="ID_1700359008" MODIFIED="1474934741511" TEXT="Blender-Manual">
+<node CREATED="1474934752050" ID="ID_577366675" MODIFIED="1474934756246" TEXT="HOWTO"/>
+<node CREATED="1474934756882" ID="ID_287662638" MODIFIED="1474934761629" TEXT="reStructuredText"/>
+<node CREATED="1474934831336" ID="ID_869142924" MODIFIED="1474934833899" TEXT="Umgebung">
+<node CREATED="1474934834671" ID="ID_1617315608" MODIFIED="1474934872396" TEXT="Python">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1474934838087" ID="ID_56107851" MODIFIED="1474934869840" TEXT="Subversion">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1474934840598" ID="ID_189553168" MODIFIED="1474934866687" TEXT="python-pip">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1474935296562" ID="ID_993028743" MODIFIED="1474935383909" TEXT="Python-Dependencies">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+<node CREATED="1474935250734" ID="ID_218345316" MODIFIED="1474935396371" TEXT="install">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      sudo pip install -r requirements.txt
+    </p>
+  </body>
+</html></richcontent>
+<arrowlink COLOR="#469c8a" DESTINATION="ID_520518513" ENDARROW="Default" ENDINCLINATION="150;150;" ID="Arrow_ID_257403671" STARTARROW="None" STARTINCLINATION="-125;-101;"/>
+<icon BUILTIN="idea"/>
+</node>
+<node CREATED="1474935363520" ID="ID_429825048" MODIFIED="1474935380244" TEXT="Stand 9/2016">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Sphinx==1.4.6
+    </p>
+    <p>
+      sphinx_rtd_theme==0.1.9
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="info"/>
+</node>
+</node>
+</node>
+<node CREATED="1474934763257" ID="ID_520518513" MODIFIED="1474936178613" TEXT="~/debBild/blendMan">
+<linktarget COLOR="#469c8a" DESTINATION="ID_520518513" ENDARROW="Default" ENDINCLINATION="150;150;" ID="Arrow_ID_257403671" SOURCE="ID_218345316" STARTARROW="None" STARTINCLINATION="-125;-101;"/>
+<linktarget COLOR="#a9b4c1" DESTINATION="ID_520518513" ENDARROW="Default" ENDINCLINATION="1727;0;" ID="Arrow_ID_384435083" SOURCE="ID_623904785" STARTARROW="None" STARTINCLINATION="1727;0;"/>
+<node CREATED="1474934915573" ID="ID_1440662314" MODIFIED="1474934923271" TEXT="svn checkout"/>
+<node COLOR="#44e56b" CREATED="1474934924931" ID="ID_1616703512" LINK="https://svn.blender.org/svnroot/bf-manual/trunk/blender_docs" MODIFIED="1474935077193" TEXT="Upstream">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1436641873568" HGAP="27" ID="ID_38644124" MODIFIED="1474934725979" TEXT="Backport" VSHIFT="14">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436641925670" ID="ID_1080364414" MODIFIED="1436641933019" TEXT="Debian/unstable"/>
 <node CREATED="1450747645311" HGAP="57" ID="ID_319007264" MODIFIED="1450747653404" TEXT="Debian/Jessie" VSHIFT="12">
@@ -827,8 +891,7 @@
       Anker: <b>Ichthyo.Stand.16-8</b>&#160;2c03d0186a
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="info"/>
 </node>
 <node CREATED="1471981478370" ID="ID_490321972" MODIFIED="1471981582452">
@@ -841,8 +904,7 @@
       offiziell akzeptiert <b>Stab.Landung</b>&#160;b1677201f9
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 </node>
 <node CREATED="1471981551272" ID="ID_1744568792" MODIFIED="1471981582452" TEXT="Anpassungen: UI, Pivot, Autoscale"/>
@@ -1302,8 +1364,7 @@
       ...und so akzeptiert auf Master: <b>e5b96d6a05</b>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="info"/>
 <icon BUILTIN="button_ok"/>
 </node>
@@ -1434,8 +1495,7 @@
       Sergej: <b>akzeptiert</b>&#160;und Probleme <b>gefixt</b>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1445,9 +1505,64 @@
       [12:47] hackerman- ichthyo: huh, so motrack is no longer a stopper for testbuild
     </p>
   </body>
+</html></richcontent>
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1474935990830" HGAP="29" ID="ID_268296904" MODIFIED="1474935998490" TEXT="Doku" VSHIFT="36">
+<node COLOR="#338800" CREATED="1474935999644" ID="ID_1640624135" MODIFIED="1474936106648" TEXT="Release-Notes">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1474936004812" ID="ID_1194888207" MODIFIED="1474936008295" TEXT="Entwurf im Wiki">
+<node COLOR="#338800" CREATED="1474936059613" ID="ID_1454369440" MODIFIED="1474936076652" TEXT="Text schreiben">
+<icon BUILTIN="button_ok"/>
+</node>
+<node COLOR="#338800" CREATED="1474936063332" ID="ID_426937857" MODIFIED="1474936077292" TEXT="Demo-Bilder">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1474936067955" ID="ID_1056898657" MODIFIED="1474936080030" TEXT="Feedback">
+<icon BUILTIN="smily_bad"/>
+<node CREATED="1474936081505" ID="ID_1857302519" MODIFIED="1474936086850" TEXT="angek&#xfc;ndigt">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1474936087737" ID="ID_1869705257" MODIFIED="1474936096117" TEXT="leider keine Reaktion">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+</node>
+<node CREATED="1474936008699" ID="ID_153073339" MODIFIED="1474936037468" TEXT="Beitrag f&#xfc;r User-Manual ver&#xf6;ffentlichen">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1474936038176" ID="ID_1172944941" MODIFIED="1474952925572" TEXT="bin leider sp&#xe4;t dran">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1474936042719" ID="ID_623904785" MODIFIED="1474936178614">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Entwurf aus <b>Wiki</b>
+    </p>
+    <p>
+      nach reStructuredText
+    </p>
+  </body>
 </html>
 </richcontent>
-<icon BUILTIN="idea"/>
+<arrowlink DESTINATION="ID_520518513" ENDARROW="Default" ENDINCLINATION="1727;0;" ID="Arrow_ID_384435083" STARTARROW="None" STARTINCLINATION="1727;0;"/>
+<node CREATED="1474936140890" ID="ID_1177608886" MODIFIED="1474952936292" TEXT="Movie Clip Editor">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1474936149065" ID="ID_227865023" MODIFIED="1474952944519" TEXT="Neue Seite: stabilization">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1474936154232" ID="ID_1573422554" MODIFIED="1474952946564" TEXT="Querverweis">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1474936160031" ID="ID_1892624397" MODIFIED="1474952948593" TEXT="Bilder">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
 </node>
 </node>
 </node>
