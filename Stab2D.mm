@@ -14,7 +14,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1436641676560" HGAP="60" ID="ID_1218644922" MODIFIED="1474934695669" POSITION="left" TEXT="Build" VSHIFT="-61">
+<node CREATED="1436641676560" FOLDED="true" HGAP="60" ID="ID_1218644922" MODIFIED="1476074291662" POSITION="left" TEXT="Build" VSHIFT="-61">
 <font NAME="SansSerif" SIZE="16"/>
 <icon BUILTIN="go"/>
 <node CREATED="1459010961256" ID="ID_1252841914" MODIFIED="1459010969404" TEXT="Infos">
@@ -640,8 +640,7 @@
       sphinx_rtd_theme==0.1.9
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="info"/>
 </node>
 </node>
@@ -752,6 +751,9 @@
 <node COLOR="#338800" CREATED="1461117104804" ID="ID_68979036" MODIFIED="1461119564567" TEXT="Entwickler-Stand April bauen">
 <icon BUILTIN="button_ok"/>
 </node>
+<node CREATED="1476074260176" ID="ID_1571908181" MODIFIED="1476074269474" TEXT="neues Release 2.78 bauen">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 <node CREATED="1436641933487" FOLDED="true" ID="ID_761151833" MODIFIED="1461117137502" TEXT="Debian/Wheezy">
 <richcontent TYPE="NOTE"><html>
@@ -793,6 +795,9 @@
 <node CREATED="1461117071441" ID="ID_1697587802" MODIFIED="1461289836300" TEXT="2.77a">
 <icon BUILTIN="button_ok"/>
 </node>
+<node CREATED="1476074280269" ID="ID_101881722" MODIFIED="1476074285045" TEXT="2.78">
+<icon BUILTIN="button_ok"/>
+</node>
 </node>
 </node>
 <node CREATED="1436641853957" HGAP="81" ID="ID_576569203" MODIFIED="1471981026984" POSITION="left" TEXT="Review" VSHIFT="9">
@@ -804,7 +809,7 @@
 <node CREATED="1436642124742" ID="ID_1890100547" MODIFIED="1436714441672" TEXT="erster Anlauf">
 <icon BUILTIN="button_cancel"/>
 </node>
-<node COLOR="#338800" CREATED="1436642134070" ID="ID_1101247684" MODIFIED="1471981038220" TEXT="zweiter Anlauf">
+<node COLOR="#338800" CREATED="1436642134070" FOLDED="true" ID="ID_1101247684" MODIFIED="1475967305278" TEXT="zweiter Anlauf">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436749670772" ID="ID_787845565" MODIFIED="1436749672856" TEXT="Patch">
 <node CREATED="1436714326727" FOLDED="true" ID="ID_636372309" MODIFIED="1461030329017" TEXT="Patch-Update">
@@ -1509,7 +1514,8 @@
 <icon BUILTIN="idea"/>
 </node>
 </node>
-<node CREATED="1474935990830" HGAP="29" ID="ID_268296904" MODIFIED="1474935998490" TEXT="Doku" VSHIFT="36">
+<node COLOR="#338800" CREATED="1474935990830" FOLDED="true" HGAP="29" ID="ID_268296904" MODIFIED="1475967298144" TEXT="Doku" VSHIFT="36">
+<icon BUILTIN="button_ok"/>
 <node COLOR="#338800" CREATED="1474935999644" ID="ID_1640624135" MODIFIED="1474936106648" TEXT="Release-Notes">
 <icon BUILTIN="button_ok"/>
 </node>
@@ -1527,6 +1533,9 @@
 </node>
 <node CREATED="1474936087737" ID="ID_1869705257" MODIFIED="1474936096117" TEXT="leider keine Reaktion">
 <icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1475967231399" ID="ID_1073082399" MODIFIED="1475967239636" TEXT="doch, kam dann sp&#xe4;ter noch...">
+<icon BUILTIN="ksmiletris"/>
 </node>
 </node>
 </node>
@@ -1547,8 +1556,7 @@
       nach reStructuredText
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <arrowlink DESTINATION="ID_520518513" ENDARROW="Default" ENDINCLINATION="1727;0;" ID="Arrow_ID_384435083" STARTARROW="None" STARTINCLINATION="1727;0;"/>
 <node CREATED="1474936140890" ID="ID_1177608886" MODIFIED="1474952936292" TEXT="Movie Clip Editor">
 <icon BUILTIN="button_ok"/>
@@ -1563,6 +1571,9 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
+</node>
+<node CREATED="1475967273857" ID="ID_648278092" MODIFIED="1475967293810" TEXT="hey: die Ilkah&#xf6;he war sogar auf Heise online!!!">
+<icon BUILTIN="ksmiletris"/>
 </node>
 </node>
 </node>
