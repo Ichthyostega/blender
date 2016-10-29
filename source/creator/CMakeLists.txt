@@ -491,7 +491,7 @@ if(UNIX AND NOT APPLE)
 		install(
 			PROGRAMS
 			${CMAKE_SOURCE_DIR}/release/bin/blender-thumbnailer.py
-			DESTINATION "."
+			DESTINATION ${CMAKE_INSTALL_PREFIX}/share/blender/scripts
 		)
 
 		set(BLENDER_TEXT_FILES_DESTINATION ".")

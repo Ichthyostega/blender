@@ -1,0 +1,4 @@
+[Thumbnailer Entry]
+TryExec=/usr/share/blender/scripts/blender-thumbnailer.py
+Exec=/usr/share/blender/scripts/blender-thumbnailer.py %i %o
+MimeType=application/x-blender;
