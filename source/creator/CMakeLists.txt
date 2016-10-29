@@ -358,8 +358,8 @@ if(WITH_PYTHON)
 	endif()
 
 	install(
-		DIRECTORY ${CMAKE_SOURCE_DIR}/release/scripts
-		DESTINATION ${TARGETDIR_VER}
+		DIRECTORY ${CMAKE_SOURCE_DIR}/release/scripts/
+		DESTINATION ${CMAKE_INSTALL_PREFIX}/share/blender/scripts/
 		PATTERN ".git" EXCLUDE
 		PATTERN ".gitignore" EXCLUDE
 		PATTERN ".arcconfig" EXCLUDE
