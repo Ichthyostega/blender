@@ -152,6 +152,13 @@ if(WITH_JACK)
 	endif()
 endif()
 
+if(WITH_FONTCONFIG)
+	find_package(Fontconfig)
+	if(NOT FONTCONFIG_FOUND)
+		set(WITH_FONTCONFIG OFF)
+	endif()
+endif()
+
 # Codecs
 if(WITH_CODEC_SNDFILE)
 	find_package_wrapper(SndFile)

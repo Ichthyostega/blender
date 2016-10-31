@@ -156,6 +156,49 @@ char *BLI_file_ungzip_to_mem(const char *from_file, int *r_size)
 	return mem;
 }
 
+/* Read the file in from_file and write it to memory to_mem,
+   at most size bytes. Return the file size.
+*/
+char *BLI_file_to_mem(const char *from_file, int *size_r) {
+
+    FILE * file;
+    int readsize, size, alloc_size = 0;
+    char *mem = NULL;
+    const int chunk_size = 512*1024;
+
+    size= 0;
+
+    file = fopen(from_file, "rb");
+
+    for(;;) {
+        if(mem == NULL) {
+            mem = MEM_callocN(chunk_size, "BLI_file_to_mem");
+            alloc_size = chunk_size;
+        } else {
+            mem = MEM_reallocN(mem, size+chunk_size);
+            alloc_size += chunk_size;
+        }
+
+        readsize = fread(mem+size, 1, chunk_size, file);
+        if(readsize > 0) {
+            size += readsize;
+        }
+        else break;
+    }
+
+    if(size == 0) {
+        MEM_freeN(mem);
+        mem = NULL;
+    }
+    else if(alloc_size != size)
+        mem = MEM_reallocN(mem, size);
+
+    fclose(file);
+    *size_r = size;
+
+    return mem;
+}
+
 /**
  * Returns true if the file with the specified name can be written.
  * This implementation uses access(2), which makes the check according

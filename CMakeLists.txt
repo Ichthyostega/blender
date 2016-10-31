@@ -204,6 +204,9 @@ option(WITH_BLENDER "Build blender (disable to build only the blender player)" O
 mark_as_advanced(WITH_BLENDER)
 
 option(WITH_INTERNATIONAL "Enable I18N (International fonts and text)" ON)
+if(UNIX AND NOT APPLE)
+    option(WITH_FONTCONFIG "Enable Fontconfig (discovering fonts installed on Linux)" OFF)
+endif()
 
 option(WITH_PYTHON        "Enable Embedded Python API  (only disable for development)" ON)
 option(WITH_PYTHON_SECURITY "Disables execution of scripts within blend files by default" ON)
@@ -1795,6 +1798,9 @@ if(FIRST_RUN)
 	if(WIN32)
 		info_cfg_option(WITH_GL_ANGLE)
 	endif()
+
+	info_cfg_text("Other:")
+	info_cfg_option(WITH_FONTCONFIG)
 
 	info_cfg_text("")
 

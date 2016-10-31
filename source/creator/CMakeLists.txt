@@ -374,12 +374,6 @@ endif()
 
 # localization
 if(WITH_INTERNATIONAL)
-	install(
-		DIRECTORY
-			${CMAKE_SOURCE_DIR}/release/datafiles/fonts
-		DESTINATION ${CMAKE_INSTALL_PREFIX}/share/locale
-	)
-
 	set(_locale_dir "${CMAKE_SOURCE_DIR}/release/datafiles/locale")
 	set(_locale_target_dir ${CMAKE_INSTALL_PREFIX}/share/locale)
 

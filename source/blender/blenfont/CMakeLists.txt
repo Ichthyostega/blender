@@ -64,6 +64,13 @@ if(WITH_INTERNATIONAL)
 	add_definitions(-DWITH_INTERNATIONAL)
 endif()
 
+if(WITH_FONTCONFIG)
+	list(APPEND INC_SYS
+		${FONTCONFIG_INCLUDE_DIRS}
+	)
+	add_definitions(-DWITH_FONTCONFIG)
+endif()
+
 if(WITH_PYTHON)
 	add_definitions(-DWITH_PYTHON)
 	list(APPEND INC
