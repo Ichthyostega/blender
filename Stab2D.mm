@@ -1965,9 +1965,9 @@
 </node>
 </node>
 </node>
-<node CREATED="1436712879197" HGAP="113" ID="ID_715016663" MODIFIED="1490051303280" TEXT="QA" VSHIFT="45">
+<node CREATED="1436712879197" HGAP="113" ID="ID_715016663" MODIFIED="1490059906695" TEXT="QA" VSHIFT="45">
 <font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="go"/>
+<icon BUILTIN="prepare"/>
 <node CREATED="1436713462114" FOLDED="true" ID="ID_310396424" MODIFIED="1490051318571" TEXT="double free">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436713491938" ID="ID_41806219" MODIFIED="1436713495638" TEXT="tracking_util.c"/>
@@ -2171,6 +2171,117 @@
   </body>
 </html></richcontent>
 <icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1490057176362" ID="ID_1203965115" MODIFIED="1490059913041" TEXT="Rotations-Spr&#xfc;nge">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1490057182329" ID="ID_216492201" MODIFIED="1490057740704" TEXT="Rotation springt wenn der Pivot springt">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ....und mit der neuen L&#246;sung, die den Pivot in das Gewichtszentrum legt,
+    </p>
+    <p>
+      wird er tats&#228;chlich schlagartig springen, wenn ein neuer Track hinzukommt.
+    </p>
+    <p>
+      <i>Ob </i>sich allerdings ein verschobener Pivot auch auf die Rotations-Beitr&#228;ge auswirkt,
+    </p>
+    <p>
+      h&#228;ngt von der konkreten Lage der&#160;&#160;Punkte zueinander ab....
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490057203934" ID="ID_1524328313" MODIFIED="1490057247297" TEXT="Pivot-Bewegung erzeugt scheinbaren Winkelbeitrag">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...das ist das bekannte Problem
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490057751270" ID="ID_97054628" MODIFIED="1490057771549" TEXT="Idee: Pivot-Beitrag">
+<icon BUILTIN="idea"/>
+<node CREATED="1490057772355" ID="ID_1332864252" MODIFIED="1490057785836">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      da unsere L&#246;sung auf Winkel-<i>Beitr&#228;gen</i>&#160;beruht
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490057786641" ID="ID_358270215" MODIFIED="1490057807610" TEXT="k&#xf6;nnte man einen Beitrag der Pivot-Verschiebung ermitteln"/>
+<node CREATED="1490057808158" ID="ID_43785278" MODIFIED="1490057817657" TEXT="das w&#xe4;re dann ein reiner &quot;Artefakt-Beitrag&quot;"/>
+<node CREATED="1490057822013" ID="ID_694401088" MODIFIED="1490057854693" TEXT="...den man rausrechnen k&#xf6;nnte">
+<icon BUILTIN="ksmiletris"/>
+</node>
+<node CREATED="1490057829500" ID="ID_1099105484" MODIFIED="1490057849908" TEXT="also: wie bekommen wir diesen Artefakt-Beitrag?">
+<icon BUILTIN="help"/>
+</node>
+</node>
+<node CREATED="1490058492068" ID="ID_1392942481" MODIFIED="1490058495484" TEXT="Berechnung">
+<node CREATED="1490058495485" ID="ID_685490974" MODIFIED="1490058507710" TEXT="Beitrag = act - (act - old)"/>
+<node CREATED="1490058508466" ID="ID_1174233369" MODIFIED="1490058515717" TEXT="wobei">
+<node CREATED="1490058516753" ID="ID_687133828" MODIFIED="1490058529099" TEXT="act = Winkelbeitrag bezogen auf aktuellen Pivot"/>
+<node CREATED="1490058529735" ID="ID_1520436203" MODIFIED="1490058542961" TEXT="old = Winkelbeitrag der sich mit dem originalen Pivot ergeben w&#xfc;rde"/>
+</node>
+<node CREATED="1490058552268" ID="ID_13258954" MODIFIED="1490058561823" TEXT="Ziel">
+<node CREATED="1490058562715" ID="ID_1583573135" MODIFIED="1490058571437" TEXT="(act - old) geometrisch darstellen"/>
+<node CREATED="1490058571857" ID="ID_432758372" MODIFIED="1490058599567">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      und dabei so zerlegen,<br />da&#223; ein Teil in den konstanten
+    </p>
+    <p>
+      Bezugs-Offset gepackt werden kann
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490059616727" ID="ID_46548578" MODIFIED="1490059897341" TEXT="Problem">
+<icon BUILTIN="pencil"/>
+<node CREATED="1490059622231" ID="ID_1505119598" MODIFIED="1490059634856" TEXT="wir vertauschen Mittelung und Integration"/>
+<node CREATED="1490059636700" ID="ID_832612964" MODIFIED="1490059641776" TEXT="daher: Beweis notwendig"/>
+<node CREATED="1490059642556" ID="ID_489946787" MODIFIED="1490059646535" TEXT="bei Integration....">
+<node CREATED="1490059647387" ID="ID_1955979308" MODIFIED="1490059659141" TEXT="w&#xfc;rden wir f&#xfc;r jeden Wechsel des Pivot"/>
+<node CREATED="1490059659778" ID="ID_1783655630" MODIFIED="1490059674348" TEXT="eine Umrechnung des alten Integral_Beitrages"/>
+<node CREATED="1490059674799" ID="ID_1164213969" MODIFIED="1490059683474" TEXT="auf den neuen Pivot-Bezugspunkt machen"/>
+<node CREATED="1490059686574" ID="ID_99600919" MODIFIED="1490059702592" TEXT="und diese w&#xfc;rden ihrerseits aufintegriert (summiert)"/>
+</node>
+<node CREATED="1490059704795" ID="ID_1173023686" MODIFIED="1490059727773" TEXT="nun berechnen wir die Integraion symbolisch">
+<node CREATED="1490059735072" ID="ID_538070523" MODIFIED="1490059740667" TEXT="und brauchen daher diese Summe"/>
+<node CREATED="1490059741015" ID="ID_276527283" MODIFIED="1490059745450" TEXT="der Korrekturen"/>
+</node>
+<node CREATED="1490059765563" ID="ID_850752893" MODIFIED="1490059773775" TEXT="Verdacht">
+<icon BUILTIN="idea"/>
+<node CREATED="1490059775514" ID="ID_387258749" MODIFIED="1490059780277" TEXT="das l&#xe4;uft darauf hinaus...."/>
+<node CREATED="1490059780722" ID="ID_1882143921" MODIFIED="1490059812233" TEXT="f&#xfc;r jeden Track stets den Pivot von seinem Bezugspunkt zu verwenden"/>
+<node CREATED="1490059826396" ID="ID_167810274" MODIFIED="1490059864123" TEXT="ggfs plus einen Anpassungsfaktor (bezugspivot -&gt; aktueller pivot)"/>
+<node CREATED="1490059851160" ID="ID_1916675942" MODIFIED="1490059867914" TEXT="und dieser Anpassungsfaktor...."/>
+<node CREATED="1490059868502" ID="ID_547179529" MODIFIED="1490059882696" TEXT="wird genau die Verschiebung bedingt durch anderes Rotationszentrum sein"/>
+</node>
+</node>
+</node>
 </node>
 </node>
 </node>
