@@ -2282,6 +2282,60 @@
 </node>
 </node>
 </node>
+<node CREATED="1490132014644" ID="ID_742968483" MODIFIED="1490132018695" TEXT="Analyse">
+<node CREATED="1490132078851" ID="ID_1144864447" MODIFIED="1490132085542" TEXT="Winkel sind additiv">
+<icon BUILTIN="idea"/>
+<node CREATED="1490132094481" ID="ID_744299859" MODIFIED="1490132104980" TEXT="das hei&#xdf;t, wir k&#xf6;nnen die Beitr&#xe4;ge umordnen"/>
+<node CREATED="1490132126917" ID="ID_403952757" MODIFIED="1490132146374" TEXT="neu hinzkommt: ein Korrektur-Beitrag wegen Pivot-Verschiebung"/>
+<node CREATED="1490133232356" ID="ID_1850619523" MODIFIED="1490133236647" TEXT="wir teilen auf">
+<node CREATED="1490133239227" ID="ID_1807776479" MODIFIED="1490133248749" TEXT="Beitr&#xe4;ge bedingt durch Bewegungen"/>
+<node CREATED="1490133249265" ID="ID_48184613" MODIFIED="1490133264579" TEXT="Beitr&#xe4;ge durch Pivot-Verschiebung ohne Bewegung"/>
+</node>
+<node CREATED="1490132374172" ID="ID_997727539" MODIFIED="1490132393318" TEXT="Feststellung: die Beitr&#xe4;ge relativ zum neuen Pivot heben sich raus"/>
+<node CREATED="1490132403721" ID="ID_1647949819" MODIFIED="1490133304121">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b>Ergebnis</b>: es bleiben nur die Beitr&#228;te zum Pivot am Bezugspunkt &#252;brig!
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1490132511658" ID="ID_1504357720" MODIFIED="1490136987911" TEXT="ABER:">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1490136876269" ID="ID_1369123062" MODIFIED="1490136876269" TEXT="zus&#xe4;tzlich gibt es noch eine Nullpunkt-Verschiebung"/>
+<node CREATED="1490136917726" ID="ID_1563042564" MODIFIED="1490136932512" TEXT="wenn wir pl&#xf6;tzlich um einen verschobenen Pivot drehen..."/>
+<node CREATED="1490136971431" ID="ID_1162967785" MODIFIED="1490136985649" TEXT="wird zwar dort der gleiche (korrekte) Drehwinkel angewendet"/>
+<node CREATED="1490137164741" ID="ID_19216386" MODIFIED="1490137218358">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      aber zus&#228;tzich m&#252;sen wir genau um das Bogenst&#252;ck kompensieren,
+    </p>
+    <p>
+      welches der neue (verschobene) Pivot zur&#252;cklegt, wenn wir den Winkel
+    </p>
+    <p>
+      um den alten Pivot herum anwenden
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1490137914707" ID="ID_930227689" MODIFIED="1490137930346" TEXT="TODO: diesen Offset so einarbeiten, da&#xdf; er sich &quot;ergibt">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
+</node>
 </node>
 </node>
 </node>
