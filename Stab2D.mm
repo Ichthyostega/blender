@@ -2283,6 +2283,7 @@
 </node>
 </node>
 <node CREATED="1490132014644" ID="ID_742968483" MODIFIED="1490132018695" TEXT="Analyse">
+<node CREATED="1490279153692" ID="ID_1029583966" MODIFIED="1490279167605" TEXT="1.Anlauf">
 <node CREATED="1490132078851" ID="ID_1144864447" MODIFIED="1490132085542" TEXT="Winkel sind additiv">
 <icon BUILTIN="idea"/>
 <node CREATED="1490132094481" ID="ID_744299859" MODIFIED="1490132104980" TEXT="das hei&#xdf;t, wir k&#xf6;nnen die Beitr&#xe4;ge umordnen"/>
@@ -2302,8 +2303,7 @@
       <b>Ergebnis</b>: es bleiben nur die Beitr&#228;te zum Pivot am Bezugspunkt &#252;brig!
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 </node>
 </node>
@@ -2328,11 +2328,401 @@
       um den alten Pivot herum anwenden
     </p>
   </body>
+</html></richcontent>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1490137914707" ID="ID_930227689" MODIFIED="1490280702499" TEXT="TODO: diesen Offset so einarbeiten, da&#xdf; er sich &quot;ergibt&quot;">
+<icon BUILTIN="stop-sign"/>
+</node>
+</node>
+</node>
+<node CREATED="1490279192903" ID="ID_40004779" MODIFIED="1490279194922" TEXT="Kritik">
+<node CREATED="1490280518808" ID="ID_453357927" MODIFIED="1490280521035" TEXT="Problem-1">
+<node CREATED="1490279197974" ID="ID_376934695" MODIFIED="1490279217483">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Winkel sind additiv, <i>aber nur diese</i>
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1490279227666" ID="ID_1873531559" MODIFIED="1490280369484">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Im Besonderen sind <i>beobchtete (absolute) Winkel</i>&#160;auf den jeweiligen Pivot bezogen
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1490279444046" ID="ID_357478383" MODIFIED="1490280489514">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Konsequenz: beide Winkel, aus denen wir einen Beitrag als Differenz errechnen,
+    </p>
+    <p>
+      m&#252;ssen sich auf den gleichen Pivot beziehen.
+    </p>
+  </body>
+</html></richcontent>
+<icon BUILTIN="forward"/>
+</node>
+<node CREATED="1490280496795" ID="ID_777869497" MODIFIED="1490280710081" TEXT="genau das ist in der aktuellen Implementierung nicht gew&#xe4;hrleistet">
+<icon BUILTIN="idea"/>
+</node>
+</node>
+<node CREATED="1490280528590" ID="ID_1231404371" MODIFIED="1490280531130" TEXT="Problem-2">
+<node CREATED="1490281457212" ID="ID_510318343" MODIFIED="1490281492251" TEXT="Wechsel auf einen anderen Pivot erzeugt stets einen Sprung"/>
+<node CREATED="1490281496727" ID="ID_1221406554" MODIFIED="1490281540071">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      der Offset, der dabei auftritt, h&#228;ngt vom <i>aktuellen Drehwinkel </i>ab
+    </p>
+  </body>
 </html>
 </richcontent>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1490137914707" ID="ID_930227689" MODIFIED="1490137930346" TEXT="TODO: diesen Offset so einarbeiten, da&#xdf; er sich &quot;ergibt">
-<icon BUILTIN="flag-yellow"/>
+<node CREATED="1490281522675" ID="ID_733006275" MODIFIED="1490281529070" TEXT="...ist also kein konstanter Offset"/>
+<node CREATED="1490281622062" ID="ID_1054758819" MODIFIED="1490281701107">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      und die Anwendung dieses Offsets f&#252;hrt exakt wieder dazu,
+    </p>
+    <p>
+      da&#223; die Drehung um den urspr&#252;nglichen Pivot erfolgt,
+    </p>
+    <p>
+      nicht mehr um den neuen Pivot!
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490281717114" ID="ID_549836700" MODIFIED="1490281719205" TEXT="Konsequenz">
+<node CREATED="1490281719889" ID="ID_423317295" MODIFIED="1490281733204" TEXT="entweder wir fixieren den Pivot global"/>
+<node CREATED="1490281733888" ID="ID_282993280" MODIFIED="1490281739955" TEXT="oder wir m&#xfc;ssen mit den Spr&#xfc;ngen leben"/>
+</node>
+</node>
+<node CREATED="1490282780438" ID="ID_951730806" MODIFIED="1490282783473" TEXT="Problem-3">
+<node CREATED="1490282784277" ID="ID_1024798606" MODIFIED="1490282987044">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      wir kennen den <i>realen</i>&#160;Pivot nicht
+    </p>
+  </body>
+</html>
+</richcontent>
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...das heit&#223;t
+    </p>
+    <p>
+      denjenigen Pivot, der f&#252;r die reale Bewegung im Video urs&#228;chlich war
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490282987035" ID="ID_252304905" MODIFIED="1490283017318" TEXT="Drehung um einen unbekannten Pivot messen wir auch als Verschiebung">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+<node CREATED="1490283041171" ID="ID_1974397568" MODIFIED="1490283135190">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      aber: nur mit Verschiebung + Drehung um den Schwerpunkt
+    </p>
+    <p>
+      messen wir die reale Transformation komplett und korrekt
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node CREATED="1490283187376" ID="ID_1524265738" MODIFIED="1490283191315" TEXT="Konsequenz">
+<node CREATED="1490283192063" ID="ID_385667316" MODIFIED="1490283211857" TEXT="unterscheide zwischen Pivot f&#xfc;r Messung und Pivot f&#xfc;r Anwendung"/>
+<node CREATED="1490283376135" ID="ID_113105866" MODIFIED="1490283395161" TEXT="der Bezugs-Winkel f&#xfc;r jeden Beitrag mu&#xdf; auf aktuellen Pivot umgerechnet werden"/>
+<node CREATED="1490284080107" ID="ID_60841792" MODIFIED="1490284095088">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      wir integrieren nicht -- also argumentieren wir auch nicht <i>als ob</i>
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node CREATED="1490284154553" ID="ID_1702532370" MODIFIED="1490284156596" TEXT="L&#xf6;sung">
+<node CREATED="1490284230679" ID="ID_269971228" MODIFIED="1490284344828" TEXT="Pivot der Anwendung bleibt frei">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...das hei&#223;t konkret
+    </p>
+    <ul>
+      <li>
+        wir sorgen daf&#252;r, da&#223; die Messung korrekt ist
+      </li>
+      <li>
+        f&#252;r die Messung gibt es nur einen logisch korrekten Pivot: im Schwerpunkt
+      </li>
+      <li>
+        wo dann die Drehung angewendet wird, ist eine andere Frage
+      </li>
+      <li>
+        und dies bleibt grunds&#228;tzlich eine offene Option
+      </li>
+    </ul>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490284383459" ID="ID_472862248" MODIFIED="1490284448481" TEXT="wir ignorieren Eigenbewegung der Punkte">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...das hei&#223;t, wir argumentieren so,
+    </p>
+    <p>
+      als w&#252;rde jedwede beobachtbare Bewegung der Punkte im Bild
+    </p>
+    <p>
+      nur allein aus einer Drehstreckung eines statischen Bildes als Ganzes resultieren
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490451913618" ID="ID_1703298944" MODIFIED="1490451920085" TEXT="sauber L&#xf6;sung unm&#xf6;glich">
+<node CREATED="1490451921153" ID="ID_1399865150" MODIFIED="1490451936441" TEXT="es sei denn, man integriert">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...was ich bisher immer vermeiden wollte
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490451948277" ID="ID_1566806421" MODIFIED="1490452297547" TEXT="Problem: Lage des alten Pivot-Punktes unbekannt">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      die Betrachtung erfolgt in <i>Canvas-Koordinaten</i>, das hei&#223;t
+    </p>
+    <p>
+      der aktuelle Pivot-Punkt, der definiert ist als Schwerpunkt der Me&#223;punkte, wird stabilisiert.
+    </p>
+    <p>
+      Leider gilt das sets nur f&#252;r den aktuellen Pivot-Punkt, was bedeutet, sobald sich der
+    </p>
+    <p>
+      Pivot bewegt hat, wissen wir nicht mehr, wo der alte Pivot war, da ja eben genau
+    </p>
+    <p>
+      die Lage der Punkte absolut nicht bekannt ist.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490452503828" ID="ID_185113960" MODIFIED="1490452518118" TEXT="und: durch mehrfache Wechsel schert das System weg vom Ursprung"/>
+</node>
+<node CREATED="1490452946377" ID="ID_1453039873" MODIFIED="1490453017978" TEXT="sch&#xe4;tzen">
+<icon BUILTIN="help"/>
+<node CREATED="1490453040605" ID="ID_1200467296" MODIFIED="1490453403073" TEXT="Drift ignorieren">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      bedingt durch den Wechsel &#252;ber mehrere Pivot-Punkte
+    </p>
+    <p>
+      kann das System als Ganzes vom Bezugspunkt wegdriften. Das bedeutet,
+    </p>
+    <p>
+      es lie&#223;e sich nicht mehr allein durch eine Drehung auf den urspr&#252;nglichen Bezugspunkt
+    </p>
+    <p>
+      zur&#252;ck bringen. Das Problem nun ist, da&#223; sich aufgrund dieser Drift die Winkeldifferenz
+    </p>
+    <p>
+      zwischen altem und neuen Pivot f&#252;r einen gegebenen Punkt nicht mehr bestimmen l&#228;&#223;t.
+    </p>
+    <p>
+      Diese Winkeldifferenz aber brauchen wir, um den Winkelbeitrag dieses Punktes korrekt
+    </p>
+    <p>
+      zu berechnen. M.a.W, wir m&#252;ssen den Bezugs-Winkel um diese Winkeldifferenz korrigieren,
+    </p>
+    <p>
+      da der Bezugs-Winkel ja f&#252;r den urspr&#252;nglichen Pivot-Punkt g&#252;ltig war, nicht f&#252;r den aktuellen.
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      &quot;<b>Drift ignorieren</b>&quot; hei&#223;t nun, einfach blindlings die Verbindungslinie vom Punkt zum
+    </p>
+    <p>
+      alten Pivot-Punkt zu f&#228;llen. Effektiv hei&#223;t das, einfach blindlings den alten Pivot weiterzuverwenden.
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="idea"/>
+<node CREATED="1490453652276" ID="ID_1605397573" MODIFIED="1490453657464" TEXT="sehr einfach zu implementieren"/>
+<node CREATED="1490453665491" ID="ID_1913727391" MODIFIED="1490453868097" TEXT="sollte sich gutm&#xfc;tig verhalten">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      am &#220;bergabepunkt glatt.
+    </p>
+    <p>
+      Unabh&#228;ngig davon entsteht nat&#252;rlich immer ein Sprung,
+    </p>
+    <p>
+      wenn wir den Pivot-Punkt sprunghaft &#228;ndern.
+    </p>
+    <p>
+      Das letztere ist unvermeidbar
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490453674401" ID="ID_1165256107" MODIFIED="1490453692363" TEXT="Fehler steigt mit steigender Drift"/>
+<node CREATED="1490453693383" ID="ID_1493331455" MODIFIED="1490453808016" TEXT="Neue Punkte messen aber korrekt">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      also die Punkte, die erstmals mit dem neuen Pivot beginnen,
+    </p>
+    <p>
+      messen einen korrekten Beitrag. Nur die Punkte, die trotz neuem Pivot
+    </p>
+    <p>
+      einfach den alten Pivot weiterverwenden, liefern einen falschen Beitrag.
+    </p>
+    <p>
+      Deshalb sollte sich das Problem f&#252;r &quot;travelling shots&quot; in Grenzen halten, weil dort
+    </p>
+    <p>
+      auch die Punkte St&#252;ck f&#252;r St&#252;ck ausgetauscht werden, wenn sich das Gesichtsfellt
+    </p>
+    <p>
+      komplett &#228;ndert.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1490453474324" ID="ID_1996158270" MODIFIED="1490453486000" TEXT="Drift kompensieren">
+<icon BUILTIN="broken-line"/>
+<node CREATED="1490453493937" ID="ID_805570738" MODIFIED="1490453499844" TEXT="ist mir nicht gelungen"/>
+<node CREATED="1490453906491" ID="ID_291190616" MODIFIED="1490454037333" TEXT="Idee: einmal ohne Drift und dann Drift ablesen">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      also erst einmal eine vorl&#228;ufige Kompensation mit ignorierter Drift machen.
+    </p>
+    <p>
+      Nach Anwendung dieser w&#228;re die Differenz zur Lage am Bezugspunkt eine Sch&#228;tzung
+    </p>
+    <p>
+      der Drift (nicht genau, denn der Fehler der ersten Kompensation geht ein).
+    </p>
+    <p>
+      Damit lie&#223;e sich die gleiche Kompensation nochmal durchf&#252;hren, nachdem man
+    </p>
+    <p>
+      den neuen Pivot und den Punkt um die gesch&#228;tzte Drift verschoben hat
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node CREATED="1490459419172" ID="ID_842547622" MODIFIED="1490470691212" TEXT="Pivot nicht verwenden">
+<icon BUILTIN="stop-sign"/>
+<node CREATED="1490459483323" ID="ID_1317817670" MODIFIED="1490459496078" TEXT="...sondern die relative Drehung zwischen den Punkten"/>
+<node CREATED="1490459502945" ID="ID_836786133" MODIFIED="1490459532321" TEXT="effektiv ist damit jeweils der aktuelle Punkt als Pivot verwendet"/>
+<node CREATED="1490459591149" ID="ID_1023534805" MODIFIED="1490459595788" TEXT="ist aufwendig">
+<icon BUILTIN="messagebox_warning"/>
+<node CREATED="1490459542892" ID="ID_1935771201" MODIFIED="1490459558957" TEXT="das ist allerdings eine quatdratische Berechnung"/>
+<node CREATED="1490459562577" ID="ID_1323546481" MODIFIED="1490459573595" TEXT="und wir m&#xfc;ssen auf alle Punkte am Bezugsframe zugreifen"/>
+<node CREATED="1490459574591" ID="ID_790223189" MODIFIED="1490459589305" TEXT="und diejenigen herausfiltern, die auch noch am aktuellen Frame vorliegen"/>
+</node>
+<node CREATED="1490470694223" ID="ID_500826669" MODIFIED="1490470705430" TEXT="erst mal vertagt">
+<icon BUILTIN="hourglass"/>
+</node>
+</node>
+</node>
+<node CREATED="1490470713197" ID="ID_1585636920" MODIFIED="1490470722351" TEXT="versuche einfache Korrektur">
+<node CREATED="1490470723387" ID="ID_1130529394" MODIFIED="1490470727375" TEXT="Drift ignorieren">
+<node CREATED="1490470734122" ID="ID_421122361" MODIFIED="1490470749220" TEXT="Pivot am Bezugsframe speichern"/>
+<node CREATED="1490470749880" ID="ID_31308603" MODIFIED="1490470761634" TEXT="immer diesen f&#xfc;r die Winkelberechnung nehmen"/>
+<node CREATED="1490470762934" ID="ID_1041249598" MODIFIED="1490470769425" TEXT="arctustangens-Formel anwenden"/>
 </node>
 </node>
 </node>
