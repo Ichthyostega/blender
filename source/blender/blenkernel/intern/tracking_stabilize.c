@@ -551,18 +551,16 @@ static float rotation_contribution(TrackStabilizationBase *track_ref,
                                    float *result_scale)
 {
 	float len, quality;
-	float d[2], a[2];
+	float a[2];
 	float *b;
-	sub_v2_v2v2(d, marker->pos, pivot);
 	sub_v2_v2v2(a, marker->pos, result_translation);
-	d[0] *= aspect;
 	a[0] *= aspect;
 	sub_v2_v2v2(a, a, track_ref->stabilization_pivot_at_base);
-	b = &track_ref->stabilization_direction_base;
+	b = (float*)&track_ref->stabilization_direction_base;
 
 	*result_angle = atan2f(a[1] * b[0] - a[0] * b[1], a[0] * b[0] + a[1] * b[1]);
 
-	len = len_v2(d);
+	len = len_v2(a);
 
 	/* prevent points very close to the pivot point from poisoning the result */
 	quality = 1 - expf(-len*len / SCALE_ERROR_LIMIT_BIAS*SCALE_ERROR_LIMIT_BIAS);
