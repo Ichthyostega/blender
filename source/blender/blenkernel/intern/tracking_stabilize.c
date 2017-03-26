@@ -1050,6 +1050,10 @@ static void initialize_all_tracks(StabContext *ctx, float aspect)
 			                            pivot,
 			                            &average_angle,
 			                            &average_scale_step);
+			/* ensure we always get the correct pivot, including contributions
+			 * from tracks not yet initialized */
+			average_marker_positions(ctx, reference_frame, average_pos);
+			setup_pivot(average_pos, pivot);
 		}
 		initialize_track_for_stabilization(ctx,
 		                                   track,
