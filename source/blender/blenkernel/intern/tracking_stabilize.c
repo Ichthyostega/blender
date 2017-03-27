@@ -563,7 +563,8 @@ static float rotation_contribution(TrackStabilizationBase *track_ref,
 	len = len_v2(a);
 
 	/* prevent points very close to the pivot point from poisoning the result */
-	quality = 1 - expf(-len*len / SCALE_ERROR_LIMIT_BIAS*SCALE_ERROR_LIMIT_BIAS);
+	quality = len * len_v2(b) / (SCALE_ERROR_LIMIT_BIAS*SCALE_ERROR_LIMIT_BIAS);
+	quality = 1 - expf(-quality);
 	len += SCALE_ERROR_LIMIT_BIAS;
 
 	*result_scale = len * track_ref->stabilization_scale_base;
