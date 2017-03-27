@@ -958,6 +958,7 @@ static void initialize_track_for_stabilization(StabContext *ctx,
                                                const float average_scale_step)
 {
 	float len;
+	float baseline_rot[2][2];
 	TrackStabilizationBase *local_data =
 	        access_stabilization_baseline_data(ctx, track);
 	MovieTrackingMarker *marker =
@@ -979,6 +980,11 @@ static void initialize_track_for_stabilization(StabContext *ctx,
 	sub_v2_v2v2(local_data->stabilization_pivot_at_base, pivot, average_translation);
 	local_data->stabilization_direction_base[0] *= aspect;
 	local_data->stabilization_pivot_at_base[0] *= aspect;
+
+	/* get absolute baseline orientation with the help of the angle
+	 * detected by the other tracks from anchor frame to this frame */
+	angle_to_mat2(baseline_rot, -average_angle);
+	mul_m2v2(baseline_rot, local_data->stabilization_direction_base);
 
 	/* Per track baseline value for zoom. */
 	len = len_v2(local_data->stabilization_direction_base) + SCALE_ERROR_LIMIT_BIAS;
