@@ -97,6 +97,9 @@ typedef struct TrackStabilizationBase {
 	/* measured relative to translated pivot (aspect corrected)*/
 	float stabilization_direction_base[2];
 
+	/* baseline angular contribution at base frame */
+	float stabilization_angle_base;
+
 	/* measured relative to translated pivot */
 	float stabilization_scale_base;
 
@@ -505,6 +508,13 @@ static void translation_contribution(TrackStabilizationBase *track_ref,
 	            marker->pos);
 }
 
+
+static bool is_close_to(const float v1[2], const float v2[2])
+{
+	return len_squared_v2v2(v1,v2) < 10.0f * FLT_EPSILON*FLT_EPSILON;
+}
+
+
 /* Similar to the ::translation_contribution(), the rotation contribution is
  * comprised of the contribution by this individual track, and the averaged
  * contribution from anchor_frame to the ref point of this track.
@@ -512,13 +522,25 @@ static void translation_contribution(TrackStabilizationBase *track_ref,
  *   happens in this domain.
  * - Yet the actual measurement happens as vector between pivot and the current
  *   tracking point
- * - Currently we use the center of frame as approximation for the rotation pivot
- *   point.
+ * - here we use the current weight center of the translation tracks as rotation
+ *   pivot point. This means the pivot might change whenever some of these
+ *   tracks cover only part of the whole clip's duration. In the most general
+ *   case, only an approximative guess is possible, since the point might drift
+ *   away due to moving the pivot several times.
  * - Moreover, the pivot point has to be compensated for the already determined
- *   shift offset, in order to get the pure rotation around the pivot.
+ *   shift offset, in order to get the pure rotation around the pivot. We call
+ *   this the *canvas coordinates* (which additionally also take the aspect
+ *   ratio into account, esp. when using non-square pixels). The canvas is
+ *   like a fixed backdrop, yet the image may still travel relative to the
+ *   canvas due to deliberate camera movements (panning, tilting)
+ * - So we pick up the relation between the current point and the pivot point.
  *   To turn this into a _contribution_, the likewise corrected angle at the
  *   reference frame has to be subtracted, to get only the pure angle difference
- *   this tracking point has captured.
+ *   this tracking point has captured. Moreover, when we detect a changed
+ *   pivot point, we try to compensate for the additional drift introduced
+ *   by pivot movements. This can only be an approximation; a precise
+ *   calculation would require to _intgrate_ over all frames, leading to
+ *   quadratic runtime behavior.
  * - To get from vectors to angles, we have to go through an arcus tangens,
  *   which involves the issue of the definition range: the resulting angles will
  *   flip by 360deg when the measured vector passes from the 2nd to the third
@@ -550,17 +572,48 @@ static float rotation_contribution(TrackStabilizationBase *track_ref,
                                    float *result_angle,
                                    float *result_scale)
 {
-	float len, quality;
-	float a[2];
-	float *b;
-	sub_v2_v2v2(a, marker->pos, result_translation);
+	float angle, len, quality;
+	float a[2], b[2], p[2], pos0[2];
+	float *d;
+
+	/* current pivot in canvas coordinates */
+	sub_v2_v2v2(p, pivot, result_translation);
+	p[0] *= aspect;
+
+	/* this point relative to current pivot in canvas coordinates */
+	sub_v2_v2v2(a, marker->pos, pivot);
 	a[0] *= aspect;
-	sub_v2_v2v2(a, a, track_ref->stabilization_pivot_at_base);
-	b = (float*)&track_ref->stabilization_direction_base;
 
+	/* this point at reference frame, in canvas coordinates */
+	d = (float*)&track_ref->stabilization_direction_base;
+	add_v2_v2v2(pos0, track_ref->stabilization_pivot_at_base, d);
+
+	/* first guess at angle from reference frame to this frame */
+	sub_v2_v2v2(b, pos0, p);
 	*result_angle = atan2f(a[1] * b[0] - a[0] * b[1], a[0] * b[0] + a[1] * b[1]);
-
 	len = len_v2(a);
+
+	/* for the simple case, when just rotating around one pivot, we're done */
+	if (!is_close_to(p, track_ref->stabilization_pivot_at_base)) {
+		float rot[2][2];
+		/* otherwise check to where we get when applying this angle */
+		angle_to_mat2(rot, - *result_angle);
+		mul_m2v2(rot, a);
+		add_v2_v2(a, p);
+
+		if (!is_close_to(a, pos0)) {
+			/* if there was no drift, just applying this angle should have brought us
+			 * back to the position at reference frame. Otherwise, as a second guess,
+			 * pick up  the angle relative to the original pivot (at reference frame),
+			 * which would be necessary to produce the actually observed drift */
+			sub_v2_v2(a, track_ref->stabilization_pivot_at_base);
+
+			angle = atan2f(a[1] * d[0] - a[0] * d[1], a[0] * d[0] + a[1] * d[1]);
+			*result_angle += angle;
+		}
+	}
+
+	*result_angle += track_ref->stabilization_angle_base;
 
 	/* prevent points very close to the pivot point from poisoning the result */
 	quality = len * len_v2(b) / (SCALE_ERROR_LIMIT_BIAS*SCALE_ERROR_LIMIT_BIAS);
@@ -958,7 +1011,6 @@ static void initialize_track_for_stabilization(StabContext *ctx,
                                                const float average_scale_step)
 {
 	float len;
-	float baseline_rot[2][2];
 	TrackStabilizationBase *local_data =
 	        access_stabilization_baseline_data(ctx, track);
 	MovieTrackingMarker *marker =
@@ -981,10 +1033,8 @@ static void initialize_track_for_stabilization(StabContext *ctx,
 	local_data->stabilization_direction_base[0] *= aspect;
 	local_data->stabilization_pivot_at_base[0] *= aspect;
 
-	/* get absolute baseline orientation with the help of the angle
-	 * detected by the other tracks from anchor frame to this frame */
-	angle_to_mat2(baseline_rot, -average_angle);
-	mul_m2v2(baseline_rot, local_data->stabilization_direction_base);
+	/* baseline angle detected by the other tracks from anchor frame to this frame */
+	local_data->stabilization_angle_base = average_angle;
 
 	/* Per track baseline value for zoom. */
 	len = len_v2(local_data->stabilization_direction_base) + SCALE_ERROR_LIMIT_BIAS;
