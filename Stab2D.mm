@@ -503,8 +503,7 @@
       <b>Vorbereitung</b>&#160;/ re-Build
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1490053381295" ID="ID_1806896970" MODIFIED="1490053391794" TEXT="cd debBild/BlendDeb.git"/>
 <node CREATED="1490053392438" ID="ID_1325463514" MODIFIED="1490053395161" TEXT="git reset --hard"/>
 <node CREATED="1490053395677" ID="ID_1332499296" MODIFIED="1490053401657" TEXT="dpkg-checkbuilddeps"/>
@@ -536,8 +535,7 @@
       --&gt; man kann dann sogar <b>L&#246;schen</b>&#160;target/share
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <arrowlink COLOR="#a9b4c1" DESTINATION="ID_1299306805" ENDARROW="Default" ENDINCLINATION="144;0;" ID="Arrow_ID_727874697" STARTARROW="None" STARTINCLINATION="188;0;"/>
 <icon BUILTIN="button_cancel"/>
 </node>
@@ -554,8 +552,7 @@
       Das ist der Sinn der Symlinks!
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -1622,8 +1619,7 @@
       <b>Arbeits</b>-Zweig
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1633,8 +1629,7 @@
       konkret: hier entwickle und teste ich
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1490052579301" ID="ID_945057799" MODIFIED="1490052742961" TEXT="stabilizer_fixes.devel">
 <icon BUILTIN="back"/>
 </node>
@@ -2194,8 +2189,7 @@
       h&#228;ngt von der konkreten Lage der&#160;&#160;Punkte zueinander ab....
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490057203934" ID="ID_1524328313" MODIFIED="1490057247297" TEXT="Pivot-Bewegung erzeugt scheinbaren Winkelbeitrag">
 <richcontent TYPE="NOTE"><html>
@@ -2207,8 +2201,7 @@
       ...das ist das bekannte Problem
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490057751270" ID="ID_97054628" MODIFIED="1490057771549" TEXT="Idee: Pivot-Beitrag">
 <icon BUILTIN="idea"/>
@@ -2222,8 +2215,7 @@
       da unsere L&#246;sung auf Winkel-<i>Beitr&#228;gen</i>&#160;beruht
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490057786641" ID="ID_358270215" MODIFIED="1490057807610" TEXT="k&#xf6;nnte man einen Beitrag der Pivot-Verschiebung ermitteln"/>
 <node CREATED="1490057808158" ID="ID_43785278" MODIFIED="1490057817657" TEXT="das w&#xe4;re dann ein reiner &quot;Artefakt-Beitrag&quot;"/>
@@ -2255,8 +2247,7 @@
       Bezugs-Offset gepackt werden kann
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490059616727" ID="ID_46548578" MODIFIED="1490059897341" TEXT="Problem">
 <icon BUILTIN="pencil"/>
@@ -2393,8 +2384,7 @@
       der Offset, der dabei auftritt, h&#228;ngt vom <i>aktuellen Drehwinkel </i>ab
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490281522675" ID="ID_733006275" MODIFIED="1490281529070" TEXT="...ist also kein konstanter Offset"/>
 <node CREATED="1490281622062" ID="ID_1054758819" MODIFIED="1490281701107">
@@ -2413,8 +2403,7 @@
       nicht mehr um den neuen Pivot!
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490281717114" ID="ID_549836700" MODIFIED="1490281719205" TEXT="Konsequenz">
 <node CREATED="1490281719889" ID="ID_423317295" MODIFIED="1490281733204" TEXT="entweder wir fixieren den Pivot global"/>
@@ -2432,8 +2421,7 @@
       wir kennen den <i>realen</i>&#160;Pivot nicht
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -2446,8 +2434,7 @@
       denjenigen Pivot, der f&#252;r die reale Bewegung im Video urs&#228;chlich war
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490282987035" ID="ID_252304905" MODIFIED="1490283017318" TEXT="Drehung um einen unbekannten Pivot messen wir auch als Verschiebung">
 <icon BUILTIN="messagebox_warning"/>
@@ -2465,8 +2452,7 @@
       messen wir die reale Transformation komplett und korrekt
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -2483,8 +2469,7 @@
       wir integrieren nicht -- also argumentieren wir auch nicht <i>als ob</i>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -2513,8 +2498,7 @@
       </li>
     </ul>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490284383459" ID="ID_472862248" MODIFIED="1490284448481" TEXT="wir ignorieren Eigenbewegung der Punkte">
 <richcontent TYPE="NOTE"><html>
@@ -2532,8 +2516,7 @@
       nur allein aus einer Drehstreckung eines statischen Bildes als Ganzes resultieren
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490451913618" ID="ID_1703298944" MODIFIED="1490451920085" TEXT="sauber L&#xf6;sung unm&#xf6;glich">
 <node CREATED="1490451921153" ID="ID_1399865150" MODIFIED="1490451936441" TEXT="es sei denn, man integriert">
@@ -2546,8 +2529,7 @@
       ...was ich bisher immer vermeiden wollte
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490451948277" ID="ID_1566806421" MODIFIED="1490452297547" TEXT="Problem: Lage des alten Pivot-Punktes unbekannt">
 <richcontent TYPE="NOTE"><html>
@@ -2571,8 +2553,7 @@
       die Lage der Punkte absolut nicht bekannt ist.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490452503828" ID="ID_185113960" MODIFIED="1490452518118" TEXT="und: durch mehrfache Wechsel schert das System weg vom Ursprung"/>
 </node>
@@ -2618,8 +2599,7 @@
       alten Pivot-Punkt zu f&#228;llen. Effektiv hei&#223;t das, einfach blindlings den alten Pivot weiterzuverwenden.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="idea"/>
 <node CREATED="1490453652276" ID="ID_1605397573" MODIFIED="1490453657464" TEXT="sehr einfach zu implementieren"/>
 <node CREATED="1490453665491" ID="ID_1913727391" MODIFIED="1490453868097" TEXT="sollte sich gutm&#xfc;tig verhalten">
@@ -2641,8 +2621,7 @@
       Das letztere ist unvermeidbar
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490453674401" ID="ID_1165256107" MODIFIED="1490453692363" TEXT="Fehler steigt mit steigender Drift"/>
 <node CREATED="1490453693383" ID="ID_1493331455" MODIFIED="1490453808016" TEXT="Neue Punkte messen aber korrekt">
@@ -2670,8 +2649,7 @@
       komplett &#228;ndert.
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1490453474324" ID="ID_1996158270" MODIFIED="1490453486000" TEXT="Drift kompensieren">
@@ -2699,8 +2677,7 @@
       den neuen Pivot und den Punkt um die gesch&#228;tzte Drift verschoben hat
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1490459419172" ID="ID_842547622" MODIFIED="1490470691212" TEXT="Pivot nicht verwenden">
@@ -2718,14 +2695,44 @@
 </node>
 </node>
 </node>
-<node CREATED="1490470713197" ID="ID_1585636920" MODIFIED="1490470722351" TEXT="versuche einfache Korrektur">
+<node CREATED="1490470713197" ID="ID_1585636920" MODIFIED="1491151682527" TEXT="versuche einfache Korrektur">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1490470723387" ID="ID_1130529394" MODIFIED="1490470727375" TEXT="Drift ignorieren">
 <node CREATED="1490470734122" ID="ID_421122361" MODIFIED="1490470749220" TEXT="Pivot am Bezugsframe speichern"/>
 <node CREATED="1490470749880" ID="ID_31308603" MODIFIED="1490470761634" TEXT="immer diesen f&#xfc;r die Winkelberechnung nehmen"/>
 <node CREATED="1490470762934" ID="ID_1041249598" MODIFIED="1490470769425" TEXT="arctustangens-Formel anwenden"/>
 </node>
+<node CREATED="1491151627373" ID="ID_1755363194" MODIFIED="1491151637991" TEXT="Eigenschaften">
+<node CREATED="1491151638723" ID="ID_1722460844" MODIFIED="1491151643559" TEXT="diese L&#xf6;sung funktioniert"/>
+<node CREATED="1491151644002" ID="ID_1283010362" MODIFIED="1491151663268" TEXT="Vorteil: kein Sprung wenn sich Pivot bewegt"/>
+<node CREATED="1491151663904" ID="ID_1707083913" MODIFIED="1491151675826" TEXT="Nachteil: Beitrag wird zunehmend falsch"/>
 </node>
 </node>
+<node CREATED="1491151684022" ID="ID_1221500502" MODIFIED="1491151790742" TEXT="versuche komplexere Korrektur">
+<icon BUILTIN="stop-sign"/>
+<node CREATED="1491151696692" ID="ID_1393565425" MODIFIED="1491151703759" TEXT="Neuen und alten Pivot verwenden"/>
+<node CREATED="1491151704539" ID="ID_1023433647" MODIFIED="1491151714301" TEXT="Nachteil">
+<node CREATED="1491151715081" ID="ID_1023224150" MODIFIED="1491151727755" TEXT="Sprung, wenn sich der Pivot bewegt"/>
+<node CREATED="1491151728895" ID="ID_1268755291" MODIFIED="1491151775093" TEXT="ist im Extremfal genauso unkorrekt wie die einfache L&#xf6;sung"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1491151816004" ID="ID_43579902" MODIFIED="1491151874673" TEXT="Beschlu&#xdf;">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      das Ergebnis von zwei Wochen q&#228;lenden Versuchen, &quot;was cleveres zu machen&quot;
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="yes"/>
+<node CREATED="1491151819588" ID="ID_1360562227" MODIFIED="1491151829702" TEXT="ich reiche nur den einfachen Fix ein"/>
+<node CREATED="1491151830154" ID="ID_1976234120" MODIFIED="1491151837949" TEXT="alles Weitere w&#xfc;rde erfordern, da&#xdf; man integriert"/>
 </node>
 </node>
 </node>
