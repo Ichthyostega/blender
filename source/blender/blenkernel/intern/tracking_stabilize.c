@@ -88,10 +88,14 @@ static float EPSILON_WEIGHT = 0.005f;
  * via `StabContext::private_track_data`
  */
 typedef struct TrackStabilizationBase {
+	/* offset observed at base frame (not aspect corrected) */
 	float stabilization_offset_base[2];
 
-	/* measured relative to translated pivot */
-	float stabilization_rotation_base[2][2];
+	/* translation compensated pivot at base frame (aspect corrected)*/
+	float stabilization_pivot_at_base[2];
+
+	/* measured relative to translated pivot (aspect corrected)*/
+	float stabilization_direction_base[2];
 
 	/* measured relative to translated pivot */
 	float stabilization_scale_base;
@@ -508,13 +512,24 @@ static void translation_contribution(TrackStabilizationBase *track_ref,
  *   happens in this domain.
  * - Yet the actual measurement happens as vector between pivot and the current
  *   tracking point
- * - Currently we use the center of frame as approximation for the rotation pivot
- *   point.
+ * - here we use the current weight center of the translation tracks as rotation
+ *   pivot point. This means the pivot might change whenever some of these
+ *   tracks cover only part of the whole clip's duration. In the most general
+ *   case, only an approximative guess is possible, since the point might drift
+ *   away due to moving the pivot several times.
  * - Moreover, the pivot point has to be compensated for the already determined
- *   shift offset, in order to get the pure rotation around the pivot.
+ *   shift offset, in order to get the pure rotation around the pivot. We call
+ *   this the *canvas coordinates* (which additionally also take the aspect
+ *   ratio into account, esp. when using non-square pixels). The canvas is
+ *   like a fixed backdrop, yet the image may still travel relative to the
+ *   canvas due to deliberate camera movements (panning, tilting)
+ * - So we pick up the relation between the current point and the pivot point.
  *   To turn this into a _contribution_, the likewise corrected angle at the
  *   reference frame has to be subtracted, to get only the pure angle difference
  *   this tracking point has captured.
+ * - Note that each track sticks to "his" pivot point at reference frame.
+ *   While this is not fully accurate, we avoid jumps due to moving the pivot
+ *   An accurate solution would require to _integrate_ over all frames.
  * - To get from vectors to angles, we have to go through an arcus tangens,
  *   which involves the issue of the definition range: the resulting angles will
  *   flip by 360deg when the measured vector passes from the 2nd to the third
@@ -542,22 +557,27 @@ static float rotation_contribution(TrackStabilizationBase *track_ref,
                                    MovieTrackingMarker *marker,
                                    const float aspect,
                                    const float pivot[2],
+                                   float result_translation[2],
                                    float *result_angle,
                                    float *result_scale)
 {
 	float len, quality;
-	float pos[2];
-	sub_v2_v2v2(pos, marker->pos, pivot);
+	float a[2];
+	float *b;
+	/* current point in canvas coordinates */
+	sub_v2_v2v2(a, marker->pos, result_translation);
+	a[0] *= aspect;
 
-	pos[0] *= aspect;
-	mul_m2v2(track_ref->stabilization_rotation_base, pos);
+	/* get angular change relative to pivot at reference frame */
+	sub_v2_v2v2(a, a, track_ref->stabilization_pivot_at_base);
+	b = (float*)&track_ref->stabilization_direction_base;
 
-	*result_angle = atan2f(pos[1],pos[0]);
-
-	len = len_v2(pos);
+	*result_angle = atan2f(a[1] * b[0] - a[0] * b[1], a[0] * b[0] + a[1] * b[1]);
+	len = len_v2(a);
 
 	/* prevent points very close to the pivot point from poisoning the result */
-	quality = 1 - expf(-len*len / SCALE_ERROR_LIMIT_BIAS*SCALE_ERROR_LIMIT_BIAS);
+	quality = len * len_v2(b) / (SCALE_ERROR_LIMIT_BIAS*SCALE_ERROR_LIMIT_BIAS);
+	quality = 1 - expf(-quality);
 	len += SCALE_ERROR_LIMIT_BIAS;
 
 	*result_scale = len * track_ref->stabilization_scale_base;
@@ -694,6 +714,7 @@ static bool average_track_contributions(StabContext *ctx,
 				                                marker,
 				                                aspect,
 				                                r_pivot,
+				                                r_translation,
 				                                &rotation,
 				                                &scale);
 				weight *= quality;
@@ -949,7 +970,8 @@ static void initialize_track_for_stabilization(StabContext *ctx,
                                                const float average_angle,
                                                const float average_scale_step)
 {
-	float pos[2], angle, len;
+	float len;
+	float baseline_rot[2][2];
 	TrackStabilizationBase *local_data =
 	        access_stabilization_baseline_data(ctx, track);
 	MovieTrackingMarker *marker =
@@ -965,15 +987,20 @@ static void initialize_track_for_stabilization(StabContext *ctx,
 	            average_translation,
 	            marker->pos);
 
-	/* Per track baseline value for rotation. */
-	sub_v2_v2v2(pos, marker->pos, pivot);
+	/* Per track baseline data for rotation. */
+	sub_v2_v2v2(local_data->stabilization_direction_base, marker->pos, pivot);
+	/* use translation and aspect compensated "canvas coordinates" */
+	sub_v2_v2v2(local_data->stabilization_pivot_at_base, pivot, average_translation);
+	local_data->stabilization_direction_base[0] *= aspect;
+	local_data->stabilization_pivot_at_base[0] *= aspect;
 
-	pos[0] *= aspect;
-	angle = average_angle - atan2f(pos[1],pos[0]);
-	angle_to_mat2(local_data->stabilization_rotation_base, angle);
+	/* get absolute baseline orientation with the help of the angle
+	 * detected by the other tracks from anchor frame to this frame */
+	angle_to_mat2(baseline_rot, -average_angle);
+	mul_m2v2(baseline_rot, local_data->stabilization_direction_base);
 
 	/* Per track baseline value for zoom. */
-	len = len_v2(pos) + SCALE_ERROR_LIMIT_BIAS;
+	len = len_v2(local_data->stabilization_direction_base) + SCALE_ERROR_LIMIT_BIAS;
 	local_data->stabilization_scale_base = expf(average_scale_step) / len;
 
 	local_data->is_init_for_stabilization = true;
@@ -1043,6 +1070,10 @@ static void initialize_all_tracks(StabContext *ctx, float aspect)
 			                            pivot,
 			                            &average_angle,
 			                            &average_scale_step);
+			/* ensure we always get the correct pivot, including contributions
+			 * from tracks not yet initialized */
+			average_marker_positions(ctx, reference_frame, average_pos);
+			setup_pivot(average_pos, pivot);
 		}
 		initialize_track_for_stabilization(ctx,
 		                                   track,
