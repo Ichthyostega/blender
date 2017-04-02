@@ -821,19 +821,92 @@
 </node>
 </node>
 </node>
-<node CREATED="1436641853957" HGAP="81" ID="ID_576569203" MODIFIED="1471981026984" POSITION="left" TEXT="Review" VSHIFT="9">
+<node CREATED="1491156429834" HGAP="106" ID="ID_1423267742" MODIFIED="1491156467123" POSITION="left" TEXT="PPA" VSHIFT="-14">
+<font NAME="SansSerif" SIZE="15"/>
+<icon BUILTIN="stop"/>
+<node CREATED="1437071977057" ID="ID_436153482" LINK="https://launchpad.net/~ichthyo/+archive/ubuntu/blender" MODIFIED="1471981310077" TEXT="PPA auf Ubuntu/Launchpad">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1471981310077" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender">
+<icon BUILTIN="info"/>
+</node>
+<node CREATED="1437076248383" FOLDED="true" ID="ID_1862473466" MODIFIED="1471981310077" TEXT="f&#xfc;r Ubuntu Trusty (14.04 LTS)">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      aufgegeben, demn&#228;chst obsolet
+    </p>
+  </body>
+</html></richcontent>
+<icon BUILTIN="button_cancel"/>
+<node CREATED="1450913302328" ID="ID_631359525" MODIFIED="1450913309346" TEXT="problematisch"/>
+<node CREATED="1450913310358" ID="ID_413746290" MODIFIED="1450913377305" TEXT="lockere libAV ">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
+      von 6:10 &#8227; 6:9
+    </p>
+  </body>
+</html></richcontent>
+</node>
+<node CREATED="1450913396699" ID="ID_1899001177" MODIFIED="1450913452427" TEXT="maximal Python 3.4 verf&#xfc;gbar">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      das wird bald (nach 2.76b) ein Problem,
+    </p>
+    <p>
+      so da&#223; ich Ubuntu/Trusty-Support aufgeben mu&#223;
+    </p>
+  </body>
+</html></richcontent>
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1491156532329" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
+<icon BUILTIN="button_cancel"/>
+<node CREATED="1459290182517" ID="ID_1004440108" MODIFIED="1471981310077" TEXT="braucht auch Python-3.5-backport">
+<icon BUILTIN="button_ok"/>
+</node>
+</node>
+<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1491156534947" TEXT="f&#xfc;r Ubuntu Wily (15.10)">
+<icon BUILTIN="button_cancel"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1491156568641" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS)">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491156539923" ID="ID_1691471955" MODIFIED="1491156569800" TEXT="f&#xfc;r Ubuntu Yaketty (16.10)">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491156561817" ID="ID_1320206809" MODIFIED="1491156570704" TEXT="f&#xfc;r Debian">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1491156516544" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
+<node CREATED="1436641853957" HGAP="81" ID="ID_576569203" MODIFIED="1491156467564" POSITION="left" TEXT="Review" VSHIFT="9">
 <font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="go"/>
+<icon BUILTIN="stop"/>
 <node CREATED="1436642114382" ID="ID_975531283" MODIFIED="1436714422577" TEXT="Entry">
 <icon BUILTIN="button_ok"/>
 </node>
 <node CREATED="1436642124742" ID="ID_1890100547" MODIFIED="1436714441672" TEXT="erster Anlauf">
 <icon BUILTIN="button_cancel"/>
 </node>
-<node COLOR="#338800" CREATED="1436642134070" FOLDED="true" ID="ID_1101247684" MODIFIED="1475967305278" TEXT="zweiter Anlauf">
+<node COLOR="#338800" CREATED="1436642134070" FOLDED="true" ID="ID_1101247684" MODIFIED="1491156578617" TEXT="zweiter Anlauf">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436749670772" ID="ID_787845565" MODIFIED="1436749672856" TEXT="Patch">
-<node CREATED="1436714326727" FOLDED="true" ID="ID_636372309" MODIFIED="1461030329017" TEXT="Patch-Update">
+<node CREATED="1436714326727" FOLDED="true" ID="ID_636372309" MODIFIED="1491155667248" TEXT="Patch-Update">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436714331607" ID="ID_1393441477" MODIFIED="1436716509758" TEXT="versioning_270.c">
 <icon BUILTIN="button_ok"/>
@@ -934,77 +1007,6 @@
 <icon BUILTIN="idea"/>
 </node>
 <node CREATED="1471981551272" ID="ID_1744568792" MODIFIED="1471981582452" TEXT="Anpassungen: UI, Pivot, Autoscale"/>
-</node>
-</node>
-<node CREATED="1437071968242" HGAP="27" ID="ID_1325711910" MODIFIED="1471981366894" STYLE="fork" VSHIFT="13">
-<richcontent TYPE="NODE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      als <b>PPA</b>
-    </p>
-  </body>
-</html></richcontent>
-<icon BUILTIN="flag-yellow"/>
-<node CREATED="1437071977057" ID="ID_436153482" LINK="https://launchpad.net/~ichthyo/+archive/ubuntu/blender" MODIFIED="1471981310077" TEXT="PPA auf Ubuntu/Launchpad">
-<icon BUILTIN="button_ok"/>
-</node>
-<node CREATED="1437071994026" ID="ID_1343322194" MODIFIED="1471981310077" TEXT="https://launchpad.net/~ichthyo/+archive/ubuntu/blender">
-<icon BUILTIN="info"/>
-</node>
-<node CREATED="1437076248383" FOLDED="true" ID="ID_1862473466" MODIFIED="1471981310077" TEXT="f&#xfc;r Ubuntu Trusty (14.04 LTS)">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      aufgegeben, demn&#228;chst obsolet
-    </p>
-  </body>
-</html></richcontent>
-<icon BUILTIN="button_cancel"/>
-<node CREATED="1450913302328" ID="ID_631359525" MODIFIED="1450913309346" TEXT="problematisch"/>
-<node CREATED="1450913310358" ID="ID_413746290" MODIFIED="1450913377305" TEXT="lockere libAV ">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; text-indent: 0px">
-      von 6:10 &#8227; 6:9
-    </p>
-  </body>
-</html></richcontent>
-</node>
-<node CREATED="1450913396699" ID="ID_1899001177" MODIFIED="1450913452427" TEXT="maximal Python 3.4 verf&#xfc;gbar">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      das wird bald (nach 2.76b) ein Problem,
-    </p>
-    <p>
-      so da&#223; ich Ubuntu/Trusty-Support aufgeben mu&#223;
-    </p>
-  </body>
-</html></richcontent>
-<icon BUILTIN="messagebox_warning"/>
-</node>
-</node>
-<node CREATED="1437076248383" ID="ID_276821151" MODIFIED="1471981334412" TEXT="f&#xfc;r Ubuntu Vivid (15.04)">
-<node CREATED="1459290182517" ID="ID_1004440108" MODIFIED="1471981310077" TEXT="braucht auch Python-3.5-backport">
-<icon BUILTIN="button_ok"/>
-</node>
-</node>
-<node CREATED="1437076248383" ID="ID_1153874609" MODIFIED="1471981340485" TEXT="f&#xfc;r Ubuntu Wily (15.10)"/>
-<node CREATED="1450913523946" ID="ID_1482647820" MODIFIED="1471981352654" TEXT="f&#xfc;r Ubuntu Xenial (16.04 LTS)"/>
-<node COLOR="#338800" CREATED="1437142730140" ID="ID_1449565273" MODIFIED="1471981310078" TEXT="&#xf6;ffentlich ank&#xfc;ndigen">
-<icon BUILTIN="button_ok"/>
 </node>
 </node>
 <node COLOR="#338800" CREATED="1461280564949" FOLDED="true" HGAP="39" ID="ID_1965919603" MODIFIED="1471981370013" TEXT="brauche Windows-Build" VSHIFT="14">
@@ -1429,7 +1431,7 @@
 <icon BUILTIN="messagebox_warning"/>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471927876147" FOLDED="true" HGAP="25" ID="ID_846947601" MODIFIED="1471981017201" TEXT="Autoscale-Problem" VSHIFT="33">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1471927876147" FOLDED="true" HGAP="25" ID="ID_846947601" MODIFIED="1491155523540" TEXT="Autoscale-Problem" VSHIFT="33">
 <linktarget COLOR="#b352a6" DESTINATION="ID_846947601" ENDARROW="Default" ENDINCLINATION="-21;-32;" ID="Arrow_ID_1776169316" SOURCE="ID_1352082951" STARTARROW="None" STARTINCLINATION="-232;-31;"/>
 <icon BUILTIN="flag-yellow"/>
 <node CREATED="1471927901400" ID="ID_721885726" MODIFIED="1471927906619" TEXT="berechnet falschen Scale-Faktor"/>
@@ -1535,7 +1537,33 @@
 <icon BUILTIN="idea"/>
 </node>
 </node>
-<node COLOR="#338800" CREATED="1474935990830" FOLDED="true" HGAP="29" ID="ID_268296904" MODIFIED="1475967298144" TEXT="Doku" VSHIFT="36">
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491155578618" HGAP="19" ID="ID_998440427" MODIFIED="1491156584631" TEXT="Bugfix RotJump" VSHIFT="8">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1491155642914" ID="ID_562959727" MODIFIED="1491155645670" TEXT="Patch">
+<node CREATED="1491155674854" ID="ID_1274467560" MODIFIED="1491155680909" TEXT="zusammenstellen">
+<icon BUILTIN="button_ok"/>
+</node>
+<node CREATED="1491155690915" ID="ID_1210305877" MODIFIED="1491155695039" TEXT="auf aktuellen Master">
+<node CREATED="1461030350413" ID="ID_1988520933" MODIFIED="1491155789119">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Anker: <b>Ichthyo.Stand.17-4</b>&#160;....
+    </p>
+  </body>
+</html>
+</richcontent>
+<icon BUILTIN="info"/>
+</node>
+</node>
+<node CREATED="1491155695843" ID="ID_1743202491" MODIFIED="1491155701462" TEXT="in mein DEB einbringen"/>
+<node CREATED="1491155712001" ID="ID_838893283" MODIFIED="1491155714772" TEXT="Submission"/>
+</node>
+</node>
+<node COLOR="#338800" CREATED="1474935990830" FOLDED="true" HGAP="2" ID="ID_268296904" MODIFIED="1491155602901" TEXT="Doku" VSHIFT="49">
 <icon BUILTIN="button_ok"/>
 <node COLOR="#338800" CREATED="1474935999644" ID="ID_1640624135" MODIFIED="1474936106648" TEXT="Release-Notes">
 <icon BUILTIN="button_ok"/>
@@ -1598,9 +1626,9 @@
 </node>
 </node>
 </node>
-<node COLOR="#49508e" CREATED="1490052511538" FOLDED="true" HGAP="53" ID="ID_1756637707" MODIFIED="1490057066458" POSITION="left" TEXT="Historie" VSHIFT="11">
+<node COLOR="#49508e" CREATED="1490052511538" HGAP="53" ID="ID_1756637707" MODIFIED="1491156060732" POSITION="left" TEXT="Historie" VSHIFT="11">
 <icon BUILTIN="info"/>
-<node CREATED="1490052557804" FOLDED="true" ID="ID_1684039180" MODIFIED="1490052883347" TEXT="Repos">
+<node CREATED="1490052557804" FOLDED="true" ID="ID_1684039180" MODIFIED="1491156390936" TEXT="Repos">
 <node CREATED="1490052606367" ID="ID_830116680" MODIFIED="1490052606367" TEXT="BlenderUp.git"/>
 <node CREATED="1490052613424" ID="ID_1215421427" MODIFIED="1490052613424" TEXT="BlenderDeb.git"/>
 <node CREATED="1490052599147" ID="ID_1231940445" MODIFIED="1490052620190" TEXT="BlenderWork.git"/>
@@ -1635,18 +1663,68 @@
 </node>
 </node>
 </node>
-<node CREATED="1490052540582" FOLDED="true" ID="ID_1270842368" MODIFIED="1490052769818" TEXT="Ankerpunkte">
+<node CREATED="1490052540582" ID="ID_1270842368" MODIFIED="1491156180693" TEXT="Ankerpunkte">
 <node CREATED="1490052658411" ID="ID_1257951284" MODIFIED="1490052658411" TEXT="5/14 Beginn Stabiliser-Patch: 19f7f9af (v2.70rc)"/>
 <node CREATED="1490052658412" ID="ID_389789958" MODIFIED="1490052658412" TEXT="6/14 Stabiliser-Patch: 81afc1244"/>
 <node CREATED="1490052658412" ID="ID_246361455" MODIFIED="1490052658412" TEXT="4/16 Neuer Anlauf zum Review b1f918bcc (kurz nach v2.77)"/>
 <node CREATED="1490052658413" ID="ID_966448821" MODIFIED="1490052658413" TEXT="8/16 Ankerpunkt f&#xfc;r die abschlie&#xdf;ende Diskussion 2c03d018"/>
-<node CREATED="1490052658413" MODIFIED="1490052658413" TEXT="Stab.Landung b1677201 &#x279e; Commit auf der offiziellen Historie, mit der mein Beitrag akzeptiert wurde"/>
-<node CREATED="1490052658436" MODIFIED="1490052658436" TEXT="Stab.Fixes e2f323c3 &#x279e; Abschlu&#xdf; der nachfolgenden Fixes und Verbesserungen, auf der offiziellen Historie"/>
+<node CREATED="1490052658413" ID="ID_1481209182" MODIFIED="1491156303072">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b>Stab.Landung</b>&#160;b1677201 &#10142; Commit auf der offiziellen Historie: Beitrag akzeptiert
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1490052658436" ID="ID_1180910423" MODIFIED="1491156297764">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b>Stab.Fixes</b>&#160;e2f323c3 &#10142; Abschlu&#223; der nachfolgenden Fixes und Verbesserungen
+    </p>
+  </body>
+</html>
+</richcontent>
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      auf der offiziellen Historie
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node CREATED="1491156192569" ID="ID_572312752" MODIFIED="1491156330391">
+<richcontent TYPE="NODE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <b>Ichthyo.Stand.17-4</b>&#160;Bugfix RotJump
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
 </node>
 <node CREATED="1490052770864" ID="ID_1938222889" MODIFIED="1490052875978" TEXT="aktuell">
 <icon BUILTIN="info"/>
-<node CREATED="1490052825873" ID="ID_9884591" MODIFIED="1490052835212" TEXT="kurz vor 2.78 RC2"/>
-<node CREATED="1490052836320" ID="ID_1227050471" MODIFIED="1490052855513" TEXT="offizielle Version akzeptiert und fertig"/>
+<node CREATED="1490052825873" ID="ID_9884591" MODIFIED="1491156376653" TEXT="kurz vor 2.79 Bcon3"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491156363266" ID="ID_1989924773" MODIFIED="1491156367603" TEXT="Fix einzureichen">
+<icon BUILTIN="flag-yellow"/>
+</node>
 <node CREATED="1490052862716" ID="ID_82022040" MODIFIED="1490052872455" TEXT="stabilizer_fixes -&gt; .devel"/>
 </node>
 </node>
@@ -2168,8 +2246,8 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
-<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1490057176362" ID="ID_1203965115" MODIFIED="1490059913041" TEXT="Rotations-Spr&#xfc;nge">
-<icon BUILTIN="flag-yellow"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1490057176362" ID="ID_1203965115" MODIFIED="1491155912189" TEXT="Rotations-Spr&#xfc;nge">
+<icon BUILTIN="pencil"/>
 <node CREATED="1490057182329" ID="ID_216492201" MODIFIED="1490057740704" TEXT="Rotation springt wenn der Pivot springt">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -2226,7 +2304,8 @@
 <icon BUILTIN="help"/>
 </node>
 </node>
-<node CREATED="1490058492068" ID="ID_1392942481" MODIFIED="1490058495484" TEXT="Berechnung">
+<node CREATED="1490058492068" FOLDED="true" HGAP="38" ID="ID_1392942481" MODIFIED="1491155884733" TEXT="Berechnung" VSHIFT="-3">
+<icon BUILTIN="info"/>
 <node CREATED="1490058495485" ID="ID_685490974" MODIFIED="1490058507710" TEXT="Beitrag = act - (act - old)"/>
 <node CREATED="1490058508466" ID="ID_1174233369" MODIFIED="1490058515717" TEXT="wobei">
 <node CREATED="1490058516753" ID="ID_687133828" MODIFIED="1490058529099" TEXT="act = Winkelbeitrag bezogen auf aktuellen Pivot"/>
@@ -2473,7 +2552,9 @@
 </node>
 </node>
 </node>
-<node CREATED="1490284154553" ID="ID_1702532370" MODIFIED="1490284156596" TEXT="L&#xf6;sung">
+</node>
+<node COLOR="#338800" CREATED="1490284154553" FOLDED="true" HGAP="49" ID="ID_1702532370" MODIFIED="1491155858271" TEXT="L&#xf6;sung" VSHIFT="2">
+<icon BUILTIN="button_ok"/>
 <node CREATED="1490284230679" ID="ID_269971228" MODIFIED="1490284344828" TEXT="Pivot der Anwendung bleibt frei">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -2717,7 +2798,6 @@
 </node>
 </node>
 </node>
-</node>
 <node CREATED="1491151816004" ID="ID_43579902" MODIFIED="1491151874673" TEXT="Beschlu&#xdf;">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -2732,15 +2812,23 @@
 </richcontent>
 <icon BUILTIN="yes"/>
 <node CREATED="1491151819588" ID="ID_1360562227" MODIFIED="1491151829702" TEXT="ich reiche nur den einfachen Fix ein"/>
-<node CREATED="1491151830154" ID="ID_1976234120" MODIFIED="1491151837949" TEXT="alles Weitere w&#xfc;rde erfordern, da&#xdf; man integriert"/>
+<node CREATED="1491151830154" ID="ID_1976234120" MODIFIED="1491155896276" TEXT="alles Weitere w&#xfc;rde erfordern, da&#xdf; man integriert">
+<icon BUILTIN="messagebox_warning"/>
+</node>
+</node>
+<node CREATED="1491155436213" HGAP="16" ID="ID_1917066697" MODIFIED="1491155903165" TEXT="Fix einreichen" VSHIFT="14">
+<icon BUILTIN="pencil"/>
+<node CREATED="1491155808156" ID="ID_1391937272" MODIFIED="1491155811528" TEXT="Submission"/>
+<node CREATED="1491155812187" ID="ID_1940644137" MODIFIED="1491155814511" TEXT="Review"/>
 </node>
 </node>
 </node>
 </node>
-<node CREATED="1436642178566" HGAP="81" ID="ID_1345154609" MODIFIED="1436642184732" POSITION="right" TEXT="Integration" VSHIFT="96">
+<node CREATED="1436642178566" HGAP="81" ID="ID_1345154609" MODIFIED="1491156174269" POSITION="right" TEXT="Integration" VSHIFT="96">
 <font NAME="SansSerif" SIZE="14"/>
-<node CREATED="1436642185702" ID="ID_1881635323" MODIFIED="1436749574835" TEXT="lfd. Upstream">
-<icon BUILTIN="go"/>
+<icon BUILTIN="pencil"/>
+<node CREATED="1436642185702" ID="ID_1881635323" MODIFIED="1491156118625" TEXT="lfd. Upstream">
+<icon BUILTIN="stop"/>
 <node CREATED="1436642198422" FOLDED="true" ID="ID_63230369" MODIFIED="1450740356167" TEXT="2.70 &#x2023; 2.75a">
 <icon BUILTIN="button_ok"/>
 <node CREATED="1436642231118" FOLDED="true" ID="ID_1478045690" MODIFIED="1436749563252" TEXT="BKE_tracking_marker_get_exact">
@@ -3222,7 +3310,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1460747812770" FOLDED="true" ID="ID_377701135" MODIFIED="1461341916930" TEXT="2.77b &#x2023; 2.77a">
+<node CREATED="1460747812770" FOLDED="true" ID="ID_377701135" MODIFIED="1491156096816" TEXT="2.77b &#x2023; 2.77a">
 <icon BUILTIN="button_ok"/>
 <node COLOR="#338800" CREATED="1460747848923" ID="ID_536750763" MODIFIED="1461287225843" TEXT="mein Debian-Paket aktualisieren">
 <icon BUILTIN="button_ok"/>
@@ -3350,6 +3438,12 @@
 <icon BUILTIN="button_ok"/>
 </node>
 </node>
+</node>
+<node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1491156139456" ID="ID_890711869" MODIFIED="1491156166726" TEXT="2.78 &#x2023; 2.78c">
+<icon BUILTIN="flag-pink"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491156139456" ID="ID_1506683868" MODIFIED="1491156168261" TEXT="2.78c &#x2023; 2.79">
+<icon BUILTIN="flag-yellow"/>
 </node>
 </node>
 <node CREATED="1436642648667" ID="ID_1919094305" MODIFIED="1436713399028" TEXT="Problem: Format f&#xfc;r Daten-Feed">
