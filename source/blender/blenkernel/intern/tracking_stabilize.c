@@ -489,18 +489,18 @@ static void setup_pivot(const float ref_pos[2], float r_pivot[2])
  * of this contribution is precomputed initially. At the anchor_frame, by
  * definition the contribution of all tracks is zero, keeping the frame in place.
  *
- * track_ref is per track baseline contribution at reference frame; filled in at
- *           initialization
+ * track_ref is per track baseline contribution at reference frame;
+ *           filled in at initialization
  * marker is tracking data to use as contribution for current frame.
- * result_offset is a total cumulated contribution of this track,
- *               relative to the stabilization anchor_frame,
- *               in normalized (0...1) coordinates.
+ * r_offset is a total cumulated contribution of this track,
+ *           relative to the stabilization anchor_frame,
+ *           in normalized (0...1) coordinates.
  */
 static void translation_contribution(TrackStabilizationBase *track_ref,
                                      MovieTrackingMarker *marker,
-                                     float result_offset[2])
+                                     float r_offset[2])
 {
-	add_v2_v2v2(result_offset,
+	add_v2_v2v2(r_offset,
 	            track_ref->stabilization_offset_base,
 	            marker->pos);
 }
@@ -556,23 +556,22 @@ static void translation_contribution(TrackStabilizationBase *track_ref,
 static float rotation_contribution(TrackStabilizationBase *track_ref,
                                    MovieTrackingMarker *marker,
                                    const float aspect,
-                                   const float pivot[2],
-                                   float result_translation[2],
-                                   float *result_angle,
-                                   float *result_scale)
+                                   float r_translation[2],
+                                   float *r_angle,
+                                   float *r_scale)
 {
 	float len, quality;
 	float a[2];
 	float *b;
 	/* current point in canvas coordinates */
-	sub_v2_v2v2(a, marker->pos, result_translation);
+	sub_v2_v2v2(a, marker->pos, r_translation);
 	a[0] *= aspect;
 
 	/* get angular change relative to pivot at reference frame */
 	sub_v2_v2v2(a, a, track_ref->stabilization_pivot_at_base);
 	b = (float*)&track_ref->stabilization_direction_base;
 
-	*result_angle = atan2f(a[1] * b[0] - a[0] * b[1], a[0] * b[0] + a[1] * b[1]);
+	*r_angle = atan2f(a[1] * b[0] - a[0] * b[1], a[0] * b[0] + a[1] * b[1]);
 	len = len_v2(a);
 
 	/* prevent points very close to the pivot point from poisoning the result */
@@ -580,8 +579,8 @@ static float rotation_contribution(TrackStabilizationBase *track_ref,
 	quality = 1 - expf(-quality);
 	len += SCALE_ERROR_LIMIT_BIAS;
 
-	*result_scale = len * track_ref->stabilization_scale_base;
-	BLI_assert(0.0 < *result_scale);
+	*r_scale = len * track_ref->stabilization_scale_base;
+	BLI_assert(0.0 < *r_scale);
 
 	return quality;
 }
@@ -600,7 +599,7 @@ static void compensate_rotation_center(const int size, float aspect,
                                        const float angle,
                                        const float scale,
                                        const float pivot[2],
-                                       float result_translation[2])
+                                       float r_translation[2])
 {
 	const float origin[2]  = {0.5f*aspect*size, 0.5f*size};
 	float intended_pivot[2], rotated_pivot[2];
@@ -613,8 +612,8 @@ static void compensate_rotation_center(const int size, float aspect,
 	mul_m2v2(rotation_mat, rotated_pivot);
 	mul_v2_fl(rotated_pivot, scale);
 	add_v2_v2(rotated_pivot, origin);
-	add_v2_v2(result_translation, intended_pivot);
-	sub_v2_v2(result_translation, rotated_pivot);
+	add_v2_v2(r_translation, intended_pivot);
+	sub_v2_v2(r_translation, rotated_pivot);
 }
 
 
@@ -713,7 +712,6 @@ static bool average_track_contributions(StabContext *ctx,
 				quality = rotation_contribution(stabilization_base,
 				                                marker,
 				                                aspect,
-				                                r_pivot,
 				                                r_translation,
 				                                &rotation,
 				                                &scale);
