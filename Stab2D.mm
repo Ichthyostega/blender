@@ -1554,8 +1554,7 @@
       Anker: <b>Ichthyo.Stand.17-4</b>&#160;....
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="info"/>
 </node>
 </node>
@@ -1678,8 +1677,7 @@
       <b>Stab.Landung</b>&#160;b1677201 &#10142; Commit auf der offiziellen Historie: Beitrag akzeptiert
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 <node CREATED="1490052658436" ID="ID_1180910423" MODIFIED="1491156297764">
 <richcontent TYPE="NODE"><html>
@@ -1691,8 +1689,7 @@
       <b>Stab.Fixes</b>&#160;e2f323c3 &#10142; Abschlu&#223; der nachfolgenden Fixes und Verbesserungen
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -1702,17 +1699,16 @@
       auf der offiziellen Historie
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
-<node CREATED="1491156192569" ID="ID_572312752" MODIFIED="1491156330391">
+<node CREATED="1491156192569" ID="ID_572312752" MODIFIED="1491183793556">
 <richcontent TYPE="NODE"><html>
   <head>
     
   </head>
   <body>
     <p>
-      <b>Ichthyo.Stand.17-4</b>&#160;Bugfix RotJump
+      <b>Ichthyo.Stand.17-4</b>&#160;3bf0026bec Bugfix RotJump
     </p>
   </body>
 </html>
@@ -2808,8 +2804,7 @@
       das Ergebnis von zwei Wochen q&#228;lenden Versuchen, &quot;was cleveres zu machen&quot;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <icon BUILTIN="yes"/>
 <node CREATED="1491151819588" ID="ID_1360562227" MODIFIED="1491151829702" TEXT="ich reiche nur den einfachen Fix ein"/>
 <node CREATED="1491151830154" ID="ID_1976234120" MODIFIED="1491155896276" TEXT="alles Weitere w&#xfc;rde erfordern, da&#xdf; man integriert">
@@ -3310,7 +3305,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1460747812770" FOLDED="true" ID="ID_377701135" MODIFIED="1491156096816" TEXT="2.77b &#x2023; 2.77a">
+<node CREATED="1460747812770" ID="ID_377701135" MODIFIED="1491189642842" TEXT="2.77b &#x2023; 2.77a">
 <icon BUILTIN="button_ok"/>
 <node COLOR="#338800" CREATED="1460747848923" ID="ID_536750763" MODIFIED="1461287225843" TEXT="mein Debian-Paket aktualisieren">
 <icon BUILTIN="button_ok"/>
@@ -3441,9 +3436,49 @@
 </node>
 <node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1491156139456" ID="ID_890711869" MODIFIED="1491156166726" TEXT="2.78 &#x2023; 2.78c">
 <icon BUILTIN="flag-pink"/>
+<node CREATED="1491189656741" ID="ID_260771299" MODIFIED="1491189784629" TEXT="mein Debian-Paket aktualisieren">
+<icon BUILTIN="pencil"/>
+</node>
+<node CREATED="1491189797226" ID="ID_1247994228" MODIFIED="1491189799054" TEXT="bauen"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491189822310" ID="ID_28764984" MODIFIED="1491189906252" TEXT="ver&#xf6;ffentlichen">
+<icon BUILTIN="flag-yellow"/>
+<node CREATED="1491189869888" ID="ID_1879002675" MODIFIED="1491189871900" TEXT="Lumiera"/>
+<node CREATED="1491189872376" ID="ID_1414007516" MODIFIED="1491189899887" TEXT="PPA">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ...weil:
+    </p>
+    <p>
+      nur wenn danach gefragt wird, ver&#246;ffentliche ich die Preview-Version
+    </p>
+    <p>
+      dann auch nochmal im PPA
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
 </node>
 <node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491156139456" ID="ID_1506683868" MODIFIED="1491156168261" TEXT="2.78c &#x2023; 2.79">
 <icon BUILTIN="flag-yellow"/>
+<node CREATED="1491189656741" ID="ID_58933633" MODIFIED="1491189666360" TEXT="mein Debian-Paket aktualisieren"/>
+<node BACKGROUND_COLOR="#fdfdcf" COLOR="#ff0000" CREATED="1491189693272" ID="ID_1748398503" MODIFIED="1491189778062" TEXT="Patch rebasen">
+<icon BUILTIN="flag-pink"/>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491189730939" ID="ID_1870903278" MODIFIED="1491189778062" TEXT="auf aktuellen preview-Release == master">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491189757119" ID="ID_1301769359" MODIFIED="1491189778062" TEXT="Arbeitsumgebung portieren">
+<icon BUILTIN="flag-yellow"/>
+</node>
+<node BACKGROUND_COLOR="#eee5c3" COLOR="#990000" CREATED="1491189763847" ID="ID_621414654" MODIFIED="1491189778062" TEXT="Debug-Build ausf&#xfc;hren">
+<icon BUILTIN="flag-yellow"/>
+</node>
+</node>
 </node>
 </node>
 <node CREATED="1436642648667" ID="ID_1919094305" MODIFIED="1436713399028" TEXT="Problem: Format f&#xfc;r Daten-Feed">
