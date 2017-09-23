@@ -88,9 +88,9 @@ static void free_locales(void)
 	num_locales = num_locales_menu = 0;
 }
 
-static void fill_locales(void)
+static void fill_locales(char *locale_path)
 {
-	const char * const languages_path = BKE_appdir_folder_id(BLENDER_DATAFILES, "locale");
+	const char * const languages_path = locale_path;
 	char languages[FILE_MAX];
 	LinkNode *lines = NULL, *line;
 	char *str;
@@ -98,7 +98,7 @@ static void fill_locales(void)
 
 	free_locales();
 
-	BLI_join_dirfile(languages, FILE_MAX, languages_path, "languages");
+	BLI_join_dirfile(languages, FILE_MAX, locale_path, "languages");
 	line = lines = BLI_file_read_as_lines(languages);
 
 	/* This whole "parsing" code is a bit weak, in that it expects strictly formatted input file...
@@ -198,7 +198,7 @@ EnumPropertyItem *BLT_lang_RNA_enum_properties(void)
 void BLT_lang_init(void)
 {
 #ifdef WITH_INTERNATIONAL
-	const char * const messagepath = BKE_appdir_folder_id(BLENDER_DATAFILES, "locale");
+	const char * const messagepath = BKE_appdir_folder_id(BLENDER_SYSTEM_LOCALE, NULL);
 #endif
 
 	/* Make sure LANG is correct and wouldn't cause std::rumtime_error. */
@@ -231,7 +231,7 @@ void BLT_lang_init(void)
 #ifdef WITH_INTERNATIONAL
 	if (messagepath) {
 		bl_locale_init(messagepath, TEXT_DOMAIN_NAME);
-		fill_locales();
+		fill_locales(messagepath);
 	}
 	else {
 		printf("%s: 'locale' data path for translations not found, continuing\n", __func__);

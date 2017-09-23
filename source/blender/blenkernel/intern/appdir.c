@@ -422,6 +422,9 @@ const char *BKE_appdir_folder_id_ex(
 			if (get_path_local(path, path_len, "python", subfolder, ver)) break;
 			return NULL;
 
+		case BLENDER_SYSTEM_LOCALE:
+			BLI_strncpy(path, "/usr/share/locale", FILE_MAX); break;
+
 		default:
 			BLI_assert(0);
 			break;

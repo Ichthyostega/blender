@@ -377,11 +377,11 @@ if(WITH_INTERNATIONAL)
 	install(
 		DIRECTORY
 			${CMAKE_SOURCE_DIR}/release/datafiles/fonts
-		DESTINATION ${TARGETDIR_VER}/datafiles
+		DESTINATION ${CMAKE_INSTALL_PREFIX}/share/locale
 	)
 
 	set(_locale_dir "${CMAKE_SOURCE_DIR}/release/datafiles/locale")
-	set(_locale_target_dir ${TARGETDIR_VER}/datafiles/locale)
+	set(_locale_target_dir ${CMAKE_INSTALL_PREFIX}/share/locale)
 
 	file(GLOB _po_files "${_locale_dir}/po/*.po")
 	foreach(_po_file ${_po_files})
