@@ -442,10 +442,10 @@ OPENIMAGEIO_INCLUDE_DIR:PATH=/usr/include
 OPENIMAGEIO_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libOpenImageIO.so
 
 //Path to a file.
-OPENJPEG_INCLUDE_DIR:PATH=/usr/include
+OPENJPEG_INCLUDE_DIR:PATH=/usr/include/openjpeg-2.1
 
 //Path to a library.
-OPENJPEG_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libopenjpeg.so
+OPENJPEG_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libopenjp2.so
 
 //C++ compiler flags for OpenMP parallization
 OpenMP_CXX_FLAGS:STRING=-fopenmp
@@ -1543,7 +1543,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libOpenG
 //Details about finding OpenImageIO
 FIND_PACKAGE_MESSAGE_DETAILS_OpenImageIO:INTERNAL=[/usr/lib/x86_64-linux-gnu/libOpenImageIO.so][/usr/include][v()]
 //Details about finding OpenJPEG
-FIND_PACKAGE_MESSAGE_DETAILS_OpenJPEG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libopenjpeg.so][/usr/include][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenJPEG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libopenjp2.so][/usr/include/openjpeg-2.1][v()]
 //Details about finding OpenMP
 FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[-fopenmp][-fopenmp][v()]
 //Details about finding PNG
