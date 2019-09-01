@@ -810,6 +810,8 @@ if(WITH_PYTHON)
 	# Do this before main 'platform_*' checks,
 	# because UNIX will search for the old Python paths which may not exist.
 	# giving errors about missing paths before this case is met.
+ 	##### Python compatibility warning. Irrelevant right now (building with Debian-Buster, which has 3.7)
+ 	#
 	if(DEFINED PYTHON_VERSION AND "${PYTHON_VERSION}" VERSION_LESS "3.6")
 		message(FATAL_ERROR "At least Python 3.6 is required to build")
 	endif()
