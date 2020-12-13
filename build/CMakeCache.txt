@@ -31,6 +31,18 @@ Blender_BINARY_DIR:STATIC=/home/hiv/devel/a/blend/build
 //Value Computed by CMake
 Blender_SOURCE_DIR:STATIC=/home/hiv/devel/a/blend
 
+//Boost atomic library (debug)
+Boost_ATOMIC_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_atomic.so
+
+//Boost atomic library (release)
+Boost_ATOMIC_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_atomic.so
+
+//Boost chrono library (debug)
+Boost_CHRONO_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_chrono.so
+
+//Boost chrono library (release)
+Boost_CHRONO_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_chrono.so
+
 //Boost date_time library (debug)
 Boost_DATE_TIME_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_date_time.so
 
@@ -51,12 +63,6 @@ Boost_INCLUDE_DIR:PATH=/usr/include
 
 //Boost library directory
 Boost_LIBRARY_DIR:PATH=/usr/lib/x86_64-linux-gnu
-
-//Boost locale library (debug)
-Boost_LOCALE_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_locale.so
-
-//Boost locale library (release)
-Boost_LOCALE_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_locale.so
 
 //Boost regex library (debug)
 Boost_REGEX_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libboost_regex.so
@@ -89,6 +95,14 @@ CMAKE_COLOR_MAKEFILE:BOOL=ON
 //CXX compiler.
 CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
 
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-8
+
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-8
+
 //Flags used by the compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
 
@@ -108,6 +122,14 @@ CMAKE_CXX_STANDARD_LIBRARIES:STRING=
 
 //C compiler.
 CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
+
+//A wrapper around 'ar' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-8
+
+//A wrapper around 'ranlib' adding the appropriate '--plugin' option
+// for the GCC compiler
+CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-8
 
 //Flags used by the compiler during all build types.
 CMAKE_C_FLAGS:STRING=-Wdeprecated-declarations
@@ -178,6 +200,12 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
+CMAKE_PROJECT_DESCRIPTION:STATIC=
+
+//Value Computed by CMake
+CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
+
+//Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=Blender
 
 //Path to a program.
@@ -235,6 +263,12 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=ON
 //Enable to build Debian packages
 CPACK_BINARY_DEB:BOOL=OFF
 
+//Enable to build FreeBSD packages
+CPACK_BINARY_FREEBSD:BOOL=OFF
+
+//Enable to build IFW packages
+CPACK_BINARY_IFW:BOOL=OFF
+
 //Enable to build NSIS packages
 CPACK_BINARY_NSIS:BOOL=OFF
 
@@ -250,14 +284,27 @@ CPACK_BINARY_TBZ2:BOOL=OFF
 //Enable to build TGZ packages
 CPACK_BINARY_TGZ:BOOL=ON
 
+//Enable to build TXZ packages
+CPACK_BINARY_TXZ:BOOL=OFF
+
 //Enable to build TZ packages
 CPACK_BINARY_TZ:BOOL=ON
+
+//Use instead of the standard packagename (empty string disables
+// this option)
+CPACK_OVERRIDE_PACKAGENAME:STRING=
+
+//Enable to build RPM source packages
+CPACK_SOURCE_RPM:BOOL=OFF
 
 //Enable to build TBZ2 source packages
 CPACK_SOURCE_TBZ2:BOOL=ON
 
 //Enable to build TGZ source packages
 CPACK_SOURCE_TGZ:BOOL=ON
+
+//Enable to build TXZ source packages
+CPACK_SOURCE_TXZ:BOOL=OFF
 
 //Enable to build TZ source packages
 CPACK_SOURCE_TZ:BOOL=ON
@@ -273,6 +320,12 @@ FFMPEG:PATH=/usr
 
 //FFMPEG Libraries
 FFMPEG_LIBRARIES:STRING=avformat;avcodec;avutil;avdevice;swscale
+
+//Path to a file.
+FFTW3_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+FFTW3_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libfftw3.so
 
 //Path to a file.
 FONTCONFIG_INCLUDE_DIR:PATH=/usr/include
@@ -341,25 +394,40 @@ OPENEXR_INCLUDE_DIR:PATH=/usr/include
 OPENEXR_VERSION:STRING=2.2.0
 
 //Path to a file.
-OPENGLES_EGL_INCLUDE_DIR:PATH=OPENGLES_EGL_INCLUDE_DIR-NOTFOUND
+OPENGLES_EGL_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.
-OPENGLES_EGL_LIBRARY:FILEPATH=OPENGLES_EGL_LIBRARY-NOTFOUND
+OPENGLES_EGL_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libEGL.so
 
 //Path to a file.
 OPENGLES_INCLUDE_DIR:PATH=OPENGLES_INCLUDE_DIR-NOTFOUND
 
 //Path to a library.
-OPENGLES_LIBRARY:FILEPATH=OPENGLES_LIBRARY-NOTFOUND
+OPENGLES_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLESv2.so
+
+//Path to a file.
+OPENGL_EGL_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a file.
+OPENGL_GLX_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a file.
 OPENGL_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+OPENGL_egl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libEGL.so
 
 //Path to a library.
 OPENGL_gl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGL.so
 
 //Path to a library.
 OPENGL_glu_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLU.so
+
+//Path to a library.
+OPENGL_glx_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLX.so
+
+//Path to a library.
+OPENGL_opengl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libOpenGL.so
 
 //Path to a file.
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
@@ -371,7 +439,7 @@ OPENIMAGEIO_IDIFF:FILEPATH=OPENIMAGEIO_IDIFF-NOTFOUND
 OPENIMAGEIO_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.
-OPENIMAGEIO_LIBRARY:FILEPATH=/usr/lib/libOpenImageIO.so
+OPENIMAGEIO_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libOpenImageIO.so
 
 //Path to a file.
 OPENJPEG_INCLUDE_DIR:PATH=/usr/include
@@ -398,19 +466,19 @@ PNG_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libpng.so
 PNG_PNG_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a program.
-PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3.5m
+PYTHON_EXECUTABLE:FILEPATH=/usr/bin/python3.7m
 
 //Path to a file.
-PYTHON_INCLUDE_CONFIG_DIR:PATH=/usr/include/python3.5m
+PYTHON_INCLUDE_CONFIG_DIR:PATH=/usr/include/python3.7m
 
 //Path to a file.
-PYTHON_INCLUDE_DIR:PATH=/usr/include/python3.5m
+PYTHON_INCLUDE_DIR:PATH=/usr/include/python3.7m
 
 //Path to a file.
 PYTHON_LIBPATH:PATH=/usr/lib
 
 //Path to a library.
-PYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.5m.so
+PYTHON_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
 
 //Linker flags for python
 PYTHON_LINKFLAGS:STRING=-Xlinker -export-dynamic
@@ -425,10 +493,16 @@ PYTHON_REQUESTS_PATH:PATH=/usr/lib/python3/dist-packages
 PYTHON_SITE_PACKAGES:FILEPATH=PYTHON_SITE_PACKAGES-NOTFOUND
 
 //Python Version (major and minor only)
-PYTHON_VERSION:STRING=3.5
+PYTHON_VERSION:STRING=3.7
 
 //Path to a program.
 RPMBUILD:FILEPATH=RPMBUILD-NOTFOUND
+
+//Path to a file.
+SNDFILE_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+SNDFILE_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libsndfile.so
 
 //Path to a file.
 TIFF_INCLUDE_DIR:PATH=/usr/include/x86_64-linux-gnu
@@ -466,7 +540,7 @@ WITH_CODEC_AVI:BOOL=ON
 WITH_CODEC_FFMPEG:BOOL=ON
 
 //Enable libsndfile Support (http://www.mega-nerd.com/libsndfile)
-WITH_CODEC_SNDFILE:BOOL=OFF
+WITH_CODEC_SNDFILE:BOOL=ON
 
 //Enable the tile based nodal compositor
 WITH_COMPOSITOR:BOOL=ON
@@ -512,8 +586,8 @@ WITH_CYCLES_STANDALONE_GUI:BOOL=OFF
 //Create a manual page (Unix manpage)
 WITH_DOC_MANPAGE:BOOL=OFF
 
-//Enable FFTW3 support (Used for smoke and audio effects)
-WITH_FFTW3:BOOL=OFF
+//Enable FFTW3 support (Used for smoke, ocean sim, and audio effects)
+WITH_FFTW3:BOOL=ON
 
 //Enable Fontconfig (discovering fonts installed on Linux)
 WITH_FONTCONFIG:BOOL=ON
@@ -584,7 +658,7 @@ WITH_IMAGE_FRAMESERVER:BOOL=OFF
 WITH_IMAGE_HDR:BOOL=OFF
 
 //Enable OpenEXR Support (http://www.openexr.com)
-WITH_IMAGE_OPENEXR:BOOL=OFF
+WITH_IMAGE_OPENEXR:BOOL=ON
 
 //Enable OpenJpeg Support (http://www.openjpeg.org)
 WITH_IMAGE_OPENJPEG:BOOL=ON
@@ -596,15 +670,15 @@ WITH_IMAGE_TIFF:BOOL=ON
 WITH_INPUT_NDOF:BOOL=OFF
 
 //Install redistributeable runtime, otherwise install into CMAKE_INSTALL_PREFIX
-WITH_INSTALL_PORTABLE:BOOL=ON
+WITH_INSTALL_PORTABLE:BOOL=OFF
 
 //Enable I18N (International fonts and text)
 WITH_INTERNATIONAL:BOOL=OFF
 
-//Enable Jack Support (http://www.jackaudio.org)
+//Enable JACK Support (http://www.jackaudio.org)
 WITH_JACK:BOOL=OFF
 
-//Enable runtime dynamic Jack libraries loading
+//Enable runtime dynamic JACK libraries loading
 WITH_JACK_DYNLOAD:BOOL=OFF
 
 //Build Blender with legacy dependency graph
@@ -615,6 +689,9 @@ WITH_LIBMV:BOOL=ON
 
 //Enable fixed-size schur specializations.
 WITH_LIBMV_SCHUR_SPECIALIZATIONS:BOOL=OFF
+
+//Use ld.gold linker which is usually faster than ld.bfd
+WITH_LINKER_GOLD:BOOL=ON
 
 //Use LLVM
 WITH_LLVM:BOOL=OFF
@@ -654,6 +731,15 @@ WITH_OPENCOLLADA:BOOL=OFF
 
 //Enable OpenColorIO color management
 WITH_OPENCOLORIO:BOOL=OFF
+
+//Enable OpenGL UI drawing related unit testing (Experimental)
+WITH_OPENGL_DRAW_TESTS:BOOL=OFF
+
+//Enable OpenGL render related unit testing (Experimental)
+WITH_OPENGL_RENDER_TESTS:BOOL=OFF
+
+//Enable OpenGL related unit testing (Experimental)
+WITH_OPENGL_TESTS:BOOL=OFF
 
 //Enable OpenImageIO Support (http://www.openimageio.org)
 WITH_OPENIMAGEIO:BOOL=OFF
@@ -696,7 +782,7 @@ WITH_PYTHON_INSTALL_REQUESTS:BOOL=OFF
 WITH_PYTHON_MODULE:BOOL=OFF
 
 //Enable internal API error checking to track invalid data to prevent
-// crash on access (at the expense of some effeciency, only enable
+// crash on access (at the expense of some efficiency, only enable
 // for development).
 WITH_PYTHON_SAFETY:BOOL=OFF
 
@@ -727,23 +813,32 @@ WITH_SYSTEM_BULLET:BOOL=OFF
 //Use the systems Eigen3 library
 WITH_SYSTEM_EIGEN3:BOOL=OFF
 
+//Use system-wide Gflags instead of a bundled one
+WITH_SYSTEM_GFLAGS:BOOL=OFF
+
 //Use OpenGL ES library provided by the operating system
 WITH_SYSTEM_GLES:BOOL=ON
 
 //Use GLEW OpenGL wrapper library provided by the operating system
 WITH_SYSTEM_GLEW:BOOL=ON
 
+//Use system-wide Glog instead of a bundled one
+WITH_SYSTEM_GLOG:BOOL=OFF
+
 //Use the system LZO library
 WITH_SYSTEM_LZO:BOOL=OFF
 
 //Use the operating systems OpenJPEG library
-WITH_SYSTEM_OPENJPEG:BOOL=OFF
+WITH_SYSTEM_OPENJPEG:BOOL=ON
 
 //Enable X11 transparent background
 WITH_X11_ALPHA:BOOL=ON
 
 //Enable X11 video mode switching
 WITH_X11_XF86VMODE:BOOL=ON
+
+//Enable X11 XWayland cursor warping workaround
+WITH_X11_XFIXES:BOOL=OFF
 
 //Enable X11 Xinput (tablet support and unicode input)
 WITH_X11_XINPUT:BOOL=ON
@@ -872,16 +967,16 @@ X11_Xkblib_INCLUDE_PATH:PATH=/usr/include
 X11_Xlib_INCLUDE_PATH:PATH=/usr/include
 
 //Path to a file.
-X11_Xmu_INCLUDE_PATH:PATH=X11_Xmu_INCLUDE_PATH-NOTFOUND
+X11_Xmu_INCLUDE_PATH:PATH=/usr/include
 
 //Path to a library.
-X11_Xmu_LIB:FILEPATH=X11_Xmu_LIB-NOTFOUND
+X11_Xmu_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXmu.so
 
 //Path to a file.
-X11_Xpm_INCLUDE_PATH:PATH=X11_Xpm_INCLUDE_PATH-NOTFOUND
+X11_Xpm_INCLUDE_PATH:PATH=/usr/include
 
 //Path to a library.
-X11_Xpm_LIB:FILEPATH=X11_Xpm_LIB-NOTFOUND
+X11_Xpm_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libXpm.so
 
 //Path to a file.
 X11_Xrandr_INCLUDE_PATH:PATH=/usr/include
@@ -944,172 +1039,19 @@ ZLIB_INCLUDE_DIR:PATH=/usr/include
 ZLIB_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libz.so
 
 //Dependencies for target
-bf_avi_LIB_DEPENDS:STATIC=
+bf_editor_lattice_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-bf_blenfont_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_blenkernel_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_blenlib_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_blenloader_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_blentranslation_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_bmesh_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_compositor_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_depsgraph_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_dna_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_dna_blenlib_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_animation_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_armature_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_curve_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_datafiles_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_gpencil_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_interface_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_io_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_mask_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_mesh_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_metaball_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_object_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_physics_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_render_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_screen_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_sculpt_paint_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_sound_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_action_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_api_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_buttons_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_clip_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_console_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_file_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_graph_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_image_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_info_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_logic_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_nla_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_node_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_outliner_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_script_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_sequencer_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_text_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_time_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_userpref_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_space_view3d_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_transform_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_util_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_editor_uvedit_LIB_DEPENDS:STATIC=
+bf_editor_undo_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_freestyle_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_gpu_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_ikplugin_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_imbuf_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_imbuf_cineon_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_imbuf_dds_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_imbuf_openexr_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_imbuf_openimageio_LIB_DEPENDS:STATIC=
@@ -1127,82 +1069,22 @@ bf_intern_decklink_LIB_DEPENDS:STATIC=
 bf_intern_dualcon_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-bf_intern_eigen_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_intern_elbeem_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_intern_ghost_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_intern_glew_mx_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_intern_guardedalloc_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
 bf_intern_iksolver_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_intern_itasc_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-bf_intern_libmv_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
 bf_intern_locale_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-bf_intern_memutil_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_intern_mikktspace_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
 bf_intern_moto_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_intern_opencolorio_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_intern_rigidbody_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_intern_smoke_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_intern_string_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_modifiers_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_nodes_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_physics_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_python_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_python_bmesh_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_python_ext_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_python_mathutils_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_render_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_rna_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_windowmanager_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 cycles_bvh_LIB_DEPENDS:STATIC=
@@ -1223,49 +1105,10 @@ cycles_subd_LIB_DEPENDS:STATIC=
 cycles_util_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-extern_binreloc_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
 extern_bullet_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-extern_carve_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_ceres_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_clew_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_cuew_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_curve_fit_nd_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_gflags_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_glog_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_lzma_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_minilzo_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_openjpeg_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_rangetree_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
 extern_recastnavigation_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-extern_wcwidth_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 extern_xdnd_LIB_DEPENDS:STATIC=
@@ -1312,6 +1155,9 @@ ge_scenegraph_LIB_DEPENDS:STATIC=
 //Dependencies for target
 ge_videotex_LIB_DEPENDS:STATIC=
 
+//Path to a file.
+jconfig_dir:PATH=/usr/include/x86_64-linux-gnu
+
 
 ########################
 # INTERNAL cache entries
@@ -1321,6 +1167,14 @@ ge_videotex_LIB_DEPENDS:STATIC=
 BUILDINFO_OVERRIDE_DATE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: BUILDINFO_OVERRIDE_TIME
 BUILDINFO_OVERRIDE_TIME-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_ATOMIC_LIBRARY_DEBUG
+Boost_ATOMIC_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_ATOMIC_LIBRARY_RELEASE
+Boost_ATOMIC_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_CHRONO_LIBRARY_DEBUG
+Boost_CHRONO_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_CHRONO_LIBRARY_RELEASE
+Boost_CHRONO_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_DEBUG
 Boost_DATE_TIME_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_RELEASE
@@ -1335,10 +1189,6 @@ Boost_FILESYSTEM_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_LIBRARY_DIR
 Boost_LIBRARY_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_LOCALE_LIBRARY_DEBUG
-Boost_LOCALE_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_LOCALE_LIBRARY_RELEASE
-Boost_LOCALE_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_REGEX_LIBRARY_DEBUG
 Boost_REGEX_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_REGEX_LIBRARY_RELEASE
@@ -1358,9 +1208,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/home/hiv/devel/a/blend/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=0
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=13
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=4
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -1371,6 +1221,10 @@ CMAKE_CPACK_COMMAND:INTERNAL=/usr/bin/cpack
 CMAKE_CTEST_COMMAND:INTERNAL=/usr/bin/ctest
 //ADVANCED property for variable: CMAKE_CXX_COMPILER
 CMAKE_CXX_COMPILER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_COMPILER_AR
+CMAKE_CXX_COMPILER_AR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_CXX_COMPILER_RANLIB
+CMAKE_CXX_COMPILER_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CXX_FLAGS
 CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CXX_FLAGS_DEBUG
@@ -1385,6 +1239,10 @@ CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_CXX_STANDARD_LIBRARIES-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER
 CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER_AR
+CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB
+CMAKE_C_COMPILER_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS
 CMAKE_C_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_DEBUG
@@ -1415,6 +1273,10 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 //Name of generator.
 CMAKE_GENERATOR:INTERNAL=Unix Makefiles
+//Generator instance identifier.
+CMAKE_GENERATOR_INSTANCE:INTERNAL=
+//Name of generator platform.
+CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Have function connect
@@ -1458,14 +1320,18 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
 CMAKE_NUMBER_OF_LOCAL_GENERATORS:INTERNAL=99
+//number of local generators
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=112
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
 CMAKE_OBJDUMP-ADVANCED:INTERNAL=1
+//Platform information initialized
+CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RANLIB
 CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.0
+CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.13
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
@@ -1505,6 +1371,10 @@ CMAKE_USE_RELATIVE_PATHS-ADVANCED:INTERNAL=1
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_DEB
 CPACK_BINARY_DEB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_FREEBSD
+CPACK_BINARY_FREEBSD-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_IFW
+CPACK_BINARY_IFW-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_NSIS
 CPACK_BINARY_NSIS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_RPM
@@ -1515,12 +1385,20 @@ CPACK_BINARY_STGZ-ADVANCED:INTERNAL=1
 CPACK_BINARY_TBZ2-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_TGZ
 CPACK_BINARY_TGZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_BINARY_TXZ
+CPACK_BINARY_TXZ-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_BINARY_TZ
 CPACK_BINARY_TZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_OVERRIDE_PACKAGENAME
+CPACK_OVERRIDE_PACKAGENAME-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_RPM
+CPACK_SOURCE_RPM-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_SOURCE_TBZ2
 CPACK_SOURCE_TBZ2-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_SOURCE_TGZ
 CPACK_SOURCE_TGZ-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_TXZ
+CPACK_SOURCE_TXZ-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_SOURCE_TZ
 CPACK_SOURCE_TZ-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CPACK_SOURCE_ZIP
@@ -1539,6 +1417,8 @@ CXX_WARN_ERROR_IMPLICIT_FUNCTION_DECLARATION:INTERNAL=1
 CXX_WARN_ERROR_RETURN_TYPE:INTERNAL=1
 //Test CXX_WARN_FORMAT_SIGN
 CXX_WARN_FORMAT_SIGN:INTERNAL=
+//Test CXX_WARN_IMPLICIT_FALLTHROUGH
+CXX_WARN_IMPLICIT_FALLTHROUGH:INTERNAL=1
 //Test CXX_WARN_INIT_SELF
 CXX_WARN_INIT_SELF:INTERNAL=1
 //Test CXX_WARN_LOGICAL_OP
@@ -1585,6 +1465,8 @@ C_WARN_ERROR_RETURN_TYPE:INTERNAL=1
 C_WARN_ERROR_VLA:INTERNAL=1
 //Test C_WARN_FORMAT_SIGN
 C_WARN_FORMAT_SIGN:INTERNAL=
+//Test C_WARN_IMPLICIT_FALLTHROUGH
+C_WARN_IMPLICIT_FALLTHROUGH:INTERNAL=1
 //Test C_WARN_INIT_SELF
 C_WARN_INIT_SELF:INTERNAL=1
 //Test C_WARN_LOGICAL_OP
@@ -1601,6 +1483,12 @@ C_WARN_NO_DEPRECATED_DECLARATIONS:INTERNAL=1
 C_WARN_NO_DIV_BY_ZERO:INTERNAL=1
 //Test C_WARN_NO_ERROR_UNUSED_BUT_SET_VARIABLE
 C_WARN_NO_ERROR_UNUSED_BUT_SET_VARIABLE:INTERNAL=1
+//Test C_WARN_NO_FORMAT
+C_WARN_NO_FORMAT:INTERNAL=1
+//Test C_WARN_NO_IMPLICIT_FALLTHROUGH
+C_WARN_NO_IMPLICIT_FALLTHROUGH:INTERNAL=1
+//Test C_WARN_NO_INT_IN_BOOL_CONTEXT
+C_WARN_NO_INT_IN_BOOL_CONTEXT:INTERNAL=1
 //Test C_WARN_NO_NULL
 C_WARN_NO_NULL:INTERNAL=1
 //Test C_WARN_NO_UNKNOWN_PRAGMAS
@@ -1630,16 +1518,22 @@ EXECUTABLE_OUTPUT_PATH:INTERNAL=/home/hiv/devel/a/blend/build/bin
 FFMPEG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: FFMPEG_LIBRARIES
 FFMPEG_LIBRARIES-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FFTW3_INCLUDE_DIR
+FFTW3_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: FFTW3_LIBRARY
+FFTW3_LIBRARY-ADVANCED:INTERNAL=1
+//Details about finding Fftw3
+FIND_PACKAGE_MESSAGE_DETAILS_Fftw3:INTERNAL=[/usr/lib/x86_64-linux-gnu/libfftw3.so][/usr/include][v()]
 //Details about finding Fontconfig
 FIND_PACKAGE_MESSAGE_DETAILS_Fontconfig:INTERNAL=[fontconfig;freetype][/usr/include][v()]
 //Details about finding Freetype
-FIND_PACKAGE_MESSAGE_DETAILS_Freetype:INTERNAL=[/usr/lib/x86_64-linux-gnu/libfreetype.so][/usr/include/freetype2][v2.5.2()]
+FIND_PACKAGE_MESSAGE_DETAILS_Freetype:INTERNAL=[/usr/lib/x86_64-linux-gnu/libfreetype.so][/usr/include/freetype2][v2.9.1()]
 //Details about finding Git
-FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v2.1.4()]
+FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v2.20.1()]
 //Details about finding Glew
 FIND_PACKAGE_MESSAGE_DETAILS_Glew:INTERNAL=[/usr/lib/x86_64-linux-gnu/libGLEW.so][/usr/include][v()]
 //Details about finding JPEG
-FIND_PACKAGE_MESSAGE_DETAILS_JPEG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libjpeg.so][/usr/include][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_JPEG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libjpeg.so][/usr/include][v62()]
 //Details about finding JeMalloc
 FIND_PACKAGE_MESSAGE_DETAILS_JeMalloc:INTERNAL=[/usr/lib/x86_64-linux-gnu/libjemalloc.so][/usr/include/jemalloc][v()]
 //Details about finding OpenAL
@@ -1647,27 +1541,29 @@ FIND_PACKAGE_MESSAGE_DETAILS_OpenAL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libopena
 //Details about finding OpenEXR
 FIND_PACKAGE_MESSAGE_DETAILS_OpenEXR:INTERNAL=[/usr/lib/x86_64-linux-gnu/libHalf.so;/usr/lib/x86_64-linux-gnu/libIex.so;/usr/lib/x86_64-linux-gnu/libIlmImf.so;/usr/lib/x86_64-linux-gnu/libIlmThread.so;/usr/lib/x86_64-linux-gnu/libImath.so][/usr/include][v()]
 //Details about finding OpenGL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libGL.so][/usr/include][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libOpenGL.so][/usr/lib/x86_64-linux-gnu/libGLX.so][/usr/include][c ][v()]
 //Details about finding OpenImageIO
-FIND_PACKAGE_MESSAGE_DETAILS_OpenImageIO:INTERNAL=[/usr/lib/libOpenImageIO.so][/usr/include][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenImageIO:INTERNAL=[/usr/lib/x86_64-linux-gnu/libOpenImageIO.so][/usr/include][v()]
 //Details about finding OpenJPEG
 FIND_PACKAGE_MESSAGE_DETAILS_OpenJPEG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libopenjpeg.so][/usr/include][v()]
 //Details about finding OpenMP
 FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[-fopenmp][-fopenmp][v()]
 //Details about finding PNG
-FIND_PACKAGE_MESSAGE_DETAILS_PNG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpng.so][/usr/include][v1.2.50()]
+FIND_PACKAGE_MESSAGE_DETAILS_PNG:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpng.so][/usr/include][v1.6.36()]
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.28()]
 //Details about finding PythonLibsUnix
-FIND_PACKAGE_MESSAGE_DETAILS_PythonLibsUnix:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpython3.5m.so][/usr/lib][/usr/include/python3.5m][/usr/include/python3.5m][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_PythonLibsUnix:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpython3.7m.so][/usr/lib][/usr/include/python3.7m][/usr/include/python3.7m][v()]
+//Details about finding SndFile
+FIND_PACKAGE_MESSAGE_DETAILS_SndFile:INTERNAL=[/usr/lib/x86_64-linux-gnu/libsndfile.so][/usr/include][v()]
 //Details about finding TIFF
-FIND_PACKAGE_MESSAGE_DETAILS_TIFF:INTERNAL=[/usr/lib/x86_64-linux-gnu/libtiff.so][/usr/include/x86_64-linux-gnu][v4.0.3()]
+FIND_PACKAGE_MESSAGE_DETAILS_TIFF:INTERNAL=[/usr/lib/x86_64-linux-gnu/libtiff.so][/usr/include/x86_64-linux-gnu][v4.1.0()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding X11
 FIND_PACKAGE_MESSAGE_DETAILS_X11:INTERNAL=[/usr/lib/x86_64-linux-gnu/libX11.so][/usr/include]
 //Details about finding ZLIB
-FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[/usr/lib/x86_64-linux-gnu/libz.so][/usr/include][v1.2.8()]
+FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[/usr/lib/x86_64-linux-gnu/libz.so][/usr/include][v1.2.11()]
 FONTCONFIG_CFLAGS:INTERNAL=-I/usr/include/freetype2
 FONTCONFIG_CFLAGS_I:INTERNAL=
 FONTCONFIG_CFLAGS_OTHER:INTERNAL=
@@ -1779,12 +1675,22 @@ OPENGLES_EGL_LIBRARY-ADVANCED:INTERNAL=1
 OPENGLES_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGLES_LIBRARY
 OPENGLES_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_EGL_INCLUDE_DIR
+OPENGL_EGL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_GLX_INCLUDE_DIR
+OPENGL_GLX_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_INCLUDE_DIR
 OPENGL_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_egl_LIBRARY
+OPENGL_egl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_gl_LIBRARY
 OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_glu_LIBRARY
 OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_glx_LIBRARY
+OPENGL_glx_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OPENGL_opengl_LIBRARY
+OPENGL_opengl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_xmesa_INCLUDE_DIR
 OPENGL_xmesa_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENIMAGEIO_IDIFF
@@ -1829,6 +1735,10 @@ PYTHON_SITE_PACKAGES-ADVANCED:INTERNAL=1
 PYTHON_VERSION-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: RPMBUILD
 RPMBUILD-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SNDFILE_INCLUDE_DIR
+SNDFILE_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SNDFILE_LIBRARY
+SNDFILE_LIBRARY-ADVANCED:INTERNAL=1
 //Test SUPPORT_SSE2_BUILD
 SUPPORT_SSE2_BUILD:INTERNAL=1
 //Result of TRY_COMPILE
@@ -1890,6 +1800,8 @@ WITH_HEADLESS-ADVANCED:INTERNAL=1
 WITH_LEGACY_DEPSGRAPH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: WITH_LIBMV_SCHUR_SPECIALIZATIONS
 WITH_LIBMV_SCHUR_SPECIALIZATIONS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: WITH_LINKER_GOLD
+WITH_LINKER_GOLD-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: WITH_MEM_JEMALLOC
 WITH_MEM_JEMALLOC-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: WITH_MEM_VALGRIND
@@ -1906,6 +1818,10 @@ WITH_PYTHON_SECURITY-ADVANCED:INTERNAL=1
 WITH_SYSTEM_AUDASPACE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: WITH_SYSTEM_BULLET
 WITH_SYSTEM_BULLET-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: WITH_SYSTEM_GFLAGS
+WITH_SYSTEM_GFLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: WITH_SYSTEM_GLOG
+WITH_SYSTEM_GLOG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_ICE_INCLUDE_PATH
 X11_ICE_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_ICE_LIB
@@ -2039,11 +1955,15 @@ ZLIB_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ZLIB_LIBRARY
 ZLIB_LIBRARY-ADVANCED:INTERNAL=1
 //Components requested for this build tree.
-_Boost_COMPONENTS_SEARCHED:INTERNAL=date_time;filesystem;locale;regex;system;thread
+_Boost_COMPONENTS_SEARCHED:INTERNAL=atomic;chrono;date_time;filesystem;regex;system;thread
 //Last used Boost_INCLUDE_DIR value.
 _Boost_INCLUDE_DIR_LAST:INTERNAL=/usr/include
+//Last used Boost_LIBRARY_DIR_DEBUG value.
+_Boost_LIBRARY_DIR_DEBUG_LAST:INTERNAL=/usr/lib/x86_64-linux-gnu
 //Last used Boost_LIBRARY_DIR value.
 _Boost_LIBRARY_DIR_LAST:INTERNAL=/usr/lib/x86_64-linux-gnu
+//Last used Boost_LIBRARY_DIR_RELEASE value.
+_Boost_LIBRARY_DIR_RELEASE_LAST:INTERNAL=/usr/lib/x86_64-linux-gnu
 //Last used Boost_NAMESPACE value.
 _Boost_NAMESPACE_LAST:INTERNAL=boost
 //Last used Boost_USE_MULTITHREADED value.
