@@ -510,12 +510,18 @@ TIFF_INCLUDE_DIR:PATH=/usr/include/x86_64-linux-gnu
 //Path to a library.
 TIFF_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libtiff.so
 
+//Enable Alembic Support
+WITH_ALEMBIC:BOOL=OFF
+
+//Enable Legacy Alembic Support (not officially supported)
+WITH_ALEMBIC_HDF5:BOOL=OFF
+
 //Call abort() when raising an assertion through BLI_assert()
 WITH_ASSERT_ABORT:BOOL=OFF
 
 //Build with blenders audio library (only disable if you know what
 // you're doing!)
-WITH_AUDASPACE:BOOL=ON
+WITH_AUDASPACE:BOOL=OFF
 
 //Build blender (disable to build only the blender player)
 WITH_BLENDER:BOOL=ON
@@ -534,7 +540,7 @@ WITH_BULLET:BOOL=OFF
 WITH_C11:BOOL=ON
 
 //Enable Blenders own AVI file support (raw/jpeg)
-WITH_CODEC_AVI:BOOL=ON
+WITH_CODEC_AVI:BOOL=OFF
 
 //Enable FFMPeg Support (http://ffmpeg.org)
 WITH_CODEC_FFMPEG:BOOL=ON
@@ -559,7 +565,7 @@ WITH_CXX11:BOOL=ON
 WITH_CXX_GUARDEDALLOC:BOOL=OFF
 
 //Enable Cycles Render Engine
-WITH_CYCLES:BOOL=OFF
+WITH_CYCLES:BOOL=ON
 
 //Build Cycles CUDA binaries
 WITH_CYCLES_CUDA_BINARIES:BOOL=OFF
@@ -567,12 +573,28 @@ WITH_CYCLES_CUDA_BINARIES:BOOL=OFF
 //Build Cycles with extra debug capabilities
 WITH_CYCLES_DEBUG:BOOL=OFF
 
+//Enable Cycles CUDA compute support
+WITH_CYCLES_DEVICE_CUDA:BOOL=OFF
+
+//Enable Cycles OpenCL compute support
+WITH_CYCLES_DEVICE_OPENCL:BOOL=OFF
+
+//Build Cycles with Embree support
+WITH_CYCLES_EMBREE:BOOL=OFF
+
 //Build Cycles with logging support
 WITH_CYCLES_LOGGING:BOOL=ON
 
 //Build Cycles with native kernel only (which fits current CPU,
 // use for development only)
-WITH_CYCLES_NATIVE_ONLY:BOOL=OFF
+WITH_CYCLES_NATIVE_ONLY:BOOL=ON
+
+//Enable Cycles compute over network support (EXPERIMENTAL and
+// unfinished)
+WITH_CYCLES_NETWORK:BOOL=OFF
+
+//Build Cycles with OpenSubdiv support
+WITH_CYCLES_OPENSUBDIV:BOOL=OFF
 
 //Build Cycles with OSL support
 WITH_CYCLES_OSL:BOOL=OFF
@@ -712,7 +734,7 @@ WITH_MEM_VALGRIND:BOOL=OFF
 WITH_MOD_BOOLEAN:BOOL=ON
 
 //Enable Elbeem Modifier (Fluid Simulation)
-WITH_MOD_FLUID:BOOL=OFF
+WITH_MOD_FLUID:BOOL=ON
 
 //Enable Ocean Modifier
 WITH_MOD_OCEANSIM:BOOL=OFF
@@ -742,7 +764,7 @@ WITH_OPENGL_RENDER_TESTS:BOOL=OFF
 WITH_OPENGL_TESTS:BOOL=OFF
 
 //Enable OpenImageIO Support (http://www.openimageio.org)
-WITH_OPENIMAGEIO:BOOL=OFF
+WITH_OPENIMAGEIO:BOOL=ON
 
 //Enable OpenMP (has to be supported by the compiler)
 WITH_OPENMP:BOOL=OFF
@@ -1054,13 +1076,7 @@ bf_imbuf_cineon_LIB_DEPENDS:STATIC=
 bf_imbuf_dds_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-bf_imbuf_openimageio_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
 bf_intern_audaspace_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-bf_intern_cycles_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_intern_decklink_LIB_DEPENDS:STATIC=
@@ -1085,24 +1101,6 @@ bf_intern_rigidbody_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 bf_intern_smoke_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-cycles_bvh_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-cycles_device_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-cycles_kernel_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-cycles_render_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-cycles_subd_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-cycles_util_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 extern_bullet_LIB_DEPENDS:STATIC=
